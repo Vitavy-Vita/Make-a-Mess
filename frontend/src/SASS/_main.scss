@@ -1,0 +1,65 @@
+@use "variables";
+
+body {
+  background-color: variables.$gray;
+}
+main {
+  h1 {
+    @include title-style;
+    position: absolute;
+    width: 274px;
+    height: 88px;
+    left: 60px;
+    top: 80px;
+  }
+  h2 {
+    @include sub-title-style;
+    position: absolute;
+    left: 145px;
+    top: 480px;
+  }
+  p {
+    @include text-style;
+    position: absolute;
+    width: 227px;
+    height: 209px;
+    left: 80px;
+    top: 262px;
+  }
+  a {
+    position: absolute;
+    width: 120px;
+    left: 153px;
+    top: 560px;
+    padding: 1.2em;
+    color: variables.$white;
+    background-color: variables.$red;
+    border: 1px solid variables.$brown;
+    font-family: variables.$text-font;
+    font-size: variables.$text-size;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+  }
+  a:hover {
+    color: variables.$red;
+    background-color: variables.$white;
+    border: 1px solid variables.$red;
+    font-family: variables.$text-font;
+    font-size: variables.$text-size;
+    scale: 1.1;
+    transition: 0.3s;
+  }
+  .bg-burger {
+    width: 650px;
+    height: 600px;
+    margin-top: 12em;
+    background-size: contain;
+    background-image: url("/assets/images/bg-burger.png");
+    background-repeat: no-repeat;
+    background-position-x: -120%;
+  }
+}
