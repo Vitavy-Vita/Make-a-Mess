@@ -1,18 +1,39 @@
 @use "variables";
+/* -------------------------------------------------------------------------- */
+/*                                    LOGO                                    */
+/* -------------------------------------------------------------------------- */
 img {
   position: absolute;
   width: 110px;
   left: 20px;
   cursor: pointer;
 }
+.move-in {
+  z-index: 1;
+  left: 300px;
+  transition: ease-in 0.5s;
+}
+.move-out {
+  left: 20px;
+  transition: ease-in 0.5s;
+}
+@media screen and (min-width: 412px) and (max-width: 810px) {
+  img {
+    display: none;
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                                   NAVBAR                                   */
+/* -------------------------------------------------------------------------- */
 nav {
   background-color: variables.$red;
   width: 100%;
   height: 5em;
   .nav-menu {
+    padding: 0;
     position: absolute;
     top: 180px;
-    left: -40px;
+    left: 0;
     z-index: 2;
     height: 100vh;
     width: 100%;
@@ -28,6 +49,31 @@ nav {
     font-weight: 900;
     transition: 0.2s;
   }
+
+  .menu {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    width: 65%;
+    height: 100vh;
+    background-color: variables.$red;
+  }
+  .hidden {
+    position: absolute;
+    z-index: 1;
+    right: -300px;
+    width: 65%;
+    height: 100vh;
+    background-color: variables.$red;
+    transition: ease-in 0.5s;
+  }
+  .visible {
+    transition: ease-out 0.5s;
+  }
+
+  /* -------------------------------------------------------------------------- */
+  /*                                   BURGER                                   */
+  /* -------------------------------------------------------------------------- */
   .burger-menu {
     z-index: 2;
     position: absolute;
@@ -42,47 +88,91 @@ nav {
   }
   .clicked:nth-child(1) {
     transform: rotate(45deg) translate(-0.25em, 0.25em);
-    transition: ease-out 0.2s;
+    transition: ease-out 0.5s;
   }
   .clicked:nth-child(2) {
     opacity: 0;
-    transition: ease-out 0.2s;
+    transition: ease-out 0.5s;
   }
   .clicked:nth-child(3) {
     transform: rotate(135deg) translate(-0.5em, 1em);
-    transition: ease-out 0.2s;
+    transition: ease-out 0.5s;
   }
   .unclicked:nth-child(1) {
-    transition: ease-out 0.2s;
+    transition: ease-out 0.5s;
   }
   .unclicked:nth-child(2) {
     opacity: 1;
-    transition: ease-out 0.2s;
+    transition: ease-out 0.5s;
   }
   .unclicked:nth-child(3) {
-    transition: ease-out 0.2s;
+    transition: ease-out 0.5s;
+  }
+  @media screen and (min-width: 412px) and (max-width: 810px) {
+    .burger-menu {
+      display: none;
+    }
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                              NAVBAR MEDIAQUERY                             */
+/* -------------------------------------------------------------------------- */
+@media screen and (min-width: 412px) and (max-width: 810px) {
+  nav {
+    height: 10em;
   }
   .menu {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    width: 65%;
-    height: 100vh;
-    background-color: variables.$red;
-  }
-  .hidden {
     display: none;
   }
-  .visible {
-    right: 0px;
-    transition: ease-out 0.2s;
+  .nav-tablet-desktop {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .nav-option {
+      text-align: center;
+      display: block;
+      border: none;
+      font-size: 25px;
+      width: 50%;
+    }
   }
 }
+/* -------------------------------------------------------------------------- */
+/*                                   BUTTON                                   */
+/* -------------------------------------------------------------------------- */
+.button {
+  @include button;
+  border: 1px solid variables.$white;
+  z-index: 2;
+  left: 55px;
+}
+.button:hover {
+  @include button-hover;
+}
+@media screen and (min-width: 412px) and (max-width: 810px) {
+  .button {
+    display: none;
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                                  ANIMATION                                 */
+/* -------------------------------------------------------------------------- */
 .red {
   background-color: variables.$red;
-  transition: ease-out 0.2s;
+  transition: ease-out 0.5s;
 }
 .gray {
-  background-color: variables.$gray;
-  transition: ease-out 0.2s;
+  background-color: transparent;
+  transition: ease-out 0.5s;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 50;
 }
