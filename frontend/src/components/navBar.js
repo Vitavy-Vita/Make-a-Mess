@@ -45,7 +45,7 @@ export default function BurgerMenu() {
         </div>
         <div className={menuClass}>
           <ul className={menuIndex}>
-            <a className={"nav-option"}>Home</a>
+            <a className={"nav-option"}>Home Page</a>
             <a className={"nav-option"}>Need Ideas?</a>
             <a className={"nav-option"}>About Us</a>
             <a className={"nav-option"}>Contact Us</a>
@@ -54,14 +54,13 @@ export default function BurgerMenu() {
             Start Building
           </a>
         </div>
-        <div className={`${stickyCLass ? "sticky" : ""}`}>
-          <ul className={"nav-tablet-desktop"}>
-            <a className={"nav-option"}>Home</a>
-            <a className={"nav-option"}>Need Ideas?</a>
-            <a className={"nav-option"}>About Us</a>
-            <a className={"nav-option"}>Contact Us</a>
-          </ul>
-        </div>
+        <ul className={"nav-tablet-desktop"}>
+          <a className={"nav-option"}>Home Page</a>
+          <a className={"nav-option"}>Need Ideas?</a>
+          <a className={"nav-option"}>About Us</a>
+          <a className={"nav-option"}>Contact Us</a>
+        </ul>
+        <p className={"login-area"}>Placeholder for login stuff</p>
       </nav>
     </div>
   );

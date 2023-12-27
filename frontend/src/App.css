@@ -11,6 +11,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Roboto&family=Rowdies&family=Six+Caps&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Rowdies&family=Six+Caps&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Roboto&family=Rowdies&family=Six+Caps&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Rowdies&family=Six+Caps&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Roboto&family=Rowdies&family=Six+Caps&display=swap");
 html {
   scroll-behavior: smooth;
   line-height: 1.15; /* 1 */
@@ -503,7 +505,6 @@ nav .nav-menu {
 }
 nav .nav-option {
   cursor: pointer;
-  width: 100%;
   font-family: "Roboto", sans-serif;
   font-style: "Rowdies", sans-serif;
   font-size: 25px;
@@ -590,9 +591,17 @@ nav .unclicked:nth-child(3) {
   display: none;
 }
 
+<<<<<<< HEAD
 @media screen and (min-width: 415px) and (max-width: 810px) {
+=======
+@media screen and (min-width: 412px) and (max-width: 810px) {
+>>>>>>> 37b0287 (fixed navbar)
   nav {
     height: 10em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
   .menu {
     display: none;
@@ -602,19 +611,28 @@ nav .unclicked:nth-child(3) {
     flex-wrap: wrap;
   }
   .nav-tablet-desktop {
+    display: flex;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     display: flex;
     justify-content: start;
     align-items: center;
     flex-wrap: wrap;
     width: 50%;
+=======
+>>>>>>> 37b0287 (fixed navbar)
   }
   .nav-tablet-desktop .nav-option {
     text-align: center;
     display: block;
     border: none;
     font-size: 25px;
+<<<<<<< HEAD
+=======
+    padding: 0.5em;
+    border-radius: 15%;
+>>>>>>> 37b0287 (fixed navbar)
   }
 }
 /* -------------------------------------------------------------------------- */
@@ -675,4 +693,25 @@ nav .unclicked:nth-child(3) {
   top: 0;
   left: 0;
   z-index: 50;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   COLORS                                   */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                    FONT                                    */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                 TEXT-SIZES-MOBILE                                */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                              TEXT-SIZE-DESKTOP                             */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                 login-area                                 */
+/* -------------------------------------------------------------------------- */
+.login-area {
+  margin: 0;
+  padding: 0;
+  background-color: #825b56;
 }/*# sourceMappingURL=App.css.map */

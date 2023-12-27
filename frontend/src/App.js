@@ -1,6 +1,6 @@
 import "./App.scss";
-import Nav from "./components/navBar";
-import Home from "./components/home";
+import Nav from "./components/NavBar";
+import Home from "./components/Home";
 
 function App() {
   return (

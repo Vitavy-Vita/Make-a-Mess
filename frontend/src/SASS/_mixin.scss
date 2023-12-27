@@ -31,7 +31,6 @@
   background-color: variables.$gray;
 }
 @mixin nav-option {
-  width: 100%;
   font-family: variables.$text-font;
   font-style: variables.$title-font;
   font-size: variables.$sub-title-size-mobile;
