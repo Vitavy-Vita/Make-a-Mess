@@ -110,10 +110,11 @@
 /* -------------------------------------------------------------------------- */
 /*                               MOBILE CONNECT                               */
 /* -------------------------------------------------------------------------- */
-
+button {
+  cursor: pointer;
+}
 .mobile-connect {
   a {
-  
     font-family: variables.$text-font;
     color: variables.$gray;
     text-decoration: none;
@@ -123,14 +124,15 @@
     text-decoration: underline;
   }
   .buttons {
-    
     @include display-flex;
     flex-direction: column;
     align-items: start;
     padding: 1em;
-    background-color: variables.$brown;
+    background-color: variables.$red;
+    border: 1px solid variables.$gray;
     border-radius: 15%;
   }
+
   .slide-in {
     position: absolute;
     z-index: 2;
@@ -142,7 +144,7 @@
     z-index: 2;
     position: absolute;
     top: -300px;
-    right:0;
+    right: 0;
     transition: ease-out 0.5s;
   }
 }

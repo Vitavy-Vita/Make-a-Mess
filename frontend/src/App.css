@@ -508,7 +508,7 @@ img {
 
 .move-out {
   left: 20px;
-  transition: ease-in 0.5s;
+  transition: ease-out 0.5s;
 }
 
 @media screen and (min-width: 415px) and (max-width: 810px) {
@@ -550,9 +550,7 @@ nav .nav-option {
 nav .nav-option:hover {
   color: #c85a44;
   background-color: white;
-  border: 1px solid #c85a44;
   font-weight: 900;
-  transition: 0.2s;
 }
 nav .menu {
   position: absolute;
@@ -637,7 +635,7 @@ nav .unclicked:nth-child(3) {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 60%;
+    width: 50%;
   }
   .nav-tablet-desktop .nav-option {
     text-align: center;
@@ -682,7 +680,7 @@ nav .unclicked:nth-child(3) {
 .react-icon {
   color: #faf6f6;
   position: absolute;
-  top: 30px;
+  top: 26px;
   left: 250px;
   z-index: 2;
   cursor: pointer;
@@ -774,7 +772,11 @@ nav .unclicked:nth-child(3) {
 }
 
 @media screen and (min-width: 415px) {
+  .mobile-connect {
+    display: none;
+  }
   .login-area-desktop {
+    width: 40%;
     display: block;
     height: 10em;
     position: absolute;
@@ -783,5 +785,140 @@ nav .unclicked:nth-child(3) {
     margin: 0;
     padding: 0;
     background-color: #825b56;
+    text-align: center;
   }
+  .login-area-desktop form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-area-desktop input {
+    font-family: "Roboto", sans-serif;
+    margin: 0.2em;
+    padding: 0.5em;
+    border: 2px solid #c85a44;
+  }
+  .login-area-desktop input::-moz-placeholder {
+    color: #faf6f6;
+    background-color: #c85a44;
+  }
+  .login-area-desktop input::placeholder {
+    color: #faf6f6;
+    background-color: #c85a44;
+  }
+  .login-area-desktop a {
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    color: #faf6f6;
+  }
+  .login-area-desktop .buttons {
+    margin: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
+  }
+  .login-area-desktop button {
+    font-family: "Roboto", sans-serif;
+    border: 2px solid #c85a44;
+    color: #faf6f6;
+    background-color: #c85a44;
+  }
+  .login-area-desktop button:hover {
+    font-family: "Roboto", sans-serif;
+    border: 2px solid #c85a44;
+    color: #c85a44;
+    background-color: #faf6f6;
+  }
+}
+@media screen and (min-width: 811px) {
+  .login-area-desktop {
+    width: 20%;
+    text-align: center;
+  }
+  .login-area-desktop form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login-area-desktop input {
+    font-family: "Roboto", sans-serif;
+    padding: 0.5em;
+    border: 2px solid #c85a44;
+  }
+  .login-area-desktop input::-moz-placeholder {
+    color: #faf6f6;
+    background-color: #c85a44;
+  }
+  .login-area-desktop input::placeholder {
+    color: #faf6f6;
+    background-color: #c85a44;
+  }
+  .login-area-desktop a {
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    color: #faf6f6;
+  }
+  .login-area-desktop .buttons {
+    margin: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
+  }
+  .login-area-desktop button {
+    font-family: "Roboto", sans-serif;
+    border: 2px solid #c85a44;
+    color: #faf6f6;
+    background-color: #c85a44;
+    padding: 0 2em;
+  }
+  .login-area-desktop button:hover {
+    font-family: "Roboto", sans-serif;
+    border: 2px solid #c85a44;
+    color: #c85a44;
+    background-color: #faf6f6;
+    padding: 0 2em;
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                               MOBILE CONNECT                               */
+/* -------------------------------------------------------------------------- */
+button {
+  cursor: pointer;
+}
+
+.mobile-connect a {
+  font-family: "Roboto", sans-serif;
+  color: #faf6f6;
+  text-decoration: none;
+  margin: 0.5em 0;
+}
+.mobile-connect a:hover {
+  text-decoration: underline;
+}
+.mobile-connect .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  padding: 1em;
+  background-color: #c85a44;
+  border: 1px solid #faf6f6;
+  border-radius: 15%;
+}
+.mobile-connect .slide-in {
+  position: absolute;
+  z-index: 2;
+  top: 82px;
+  left: 250px;
+  transition: ease-out 0.5s;
+}
+.mobile-connect .slide-out {
+  z-index: 2;
+  position: absolute;
+  top: -300px;
+  right: 0;
+  transition: ease-out 0.5s;
 }/*# sourceMappingURL=App.css.map */
