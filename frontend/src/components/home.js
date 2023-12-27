@@ -1,4 +1,6 @@
+import { useBurgerProvider } from "../context/NavBarContext";
 export default function Home() {
+  const value = useBurgerProvider();
   return (
     <main>
       <h1 className={"main-title"}>Welcome to Make-a-Mess</h1>

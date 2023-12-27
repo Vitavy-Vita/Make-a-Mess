@@ -1,12 +1,15 @@
 import "./App.scss";
-import Nav from "./components/NavBar";
-import Home from "./components/Home";
+import NavBarProvider from "./context/NavBarContext";
+import OnClickToggle from "./components/DisplayNavBar";
 
 function App() {
   return (
     <body>
-      <Nav />
-      <Home />
+      <NavBarProvider>
+        <div>
+          <OnClickToggle />
+        </div>
+      </NavBarProvider>
     </body>
   );
 }
