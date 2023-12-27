@@ -476,7 +476,7 @@ img {
   transition: ease-in 0.5s;
 }
 
-@media screen and (min-width: 412px) and (max-width: 810px) {
+@media screen and (min-width: 415px) and (max-width: 810px) {
   img {
     display: none;
   }
@@ -577,7 +577,7 @@ nav .unclicked:nth-child(2) {
 nav .unclicked:nth-child(3) {
   transition: ease-out 0.5s;
 }
-@media screen and (min-width: 412px) and (max-width: 810px) {
+@media screen and (min-width: 415px) and (max-width: 810px) {
   nav .burger-menu {
     display: none;
   }
@@ -586,27 +586,35 @@ nav .unclicked:nth-child(3) {
 /* -------------------------------------------------------------------------- */
 /*                              NAVBAR MEDIAQUERY                             */
 /* -------------------------------------------------------------------------- */
-@media screen and (min-width: 412px) and (max-width: 810px) {
+.nav-tablet-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 415px) and (max-width: 810px) {
   nav {
     height: 10em;
   }
   .menu {
     display: none;
   }
+  .test {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .nav-tablet-desktop {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-wrap: wrap;
+    width: 50%;
   }
   .nav-tablet-desktop .nav-option {
     text-align: center;
     display: block;
     border: none;
     font-size: 25px;
-    width: 50%;
   }
 }
 /* -------------------------------------------------------------------------- */
@@ -644,7 +652,7 @@ nav .unclicked:nth-child(3) {
   transition: 0.3s;
 }
 
-@media screen and (min-width: 412px) and (max-width: 810px) {
+@media screen and (min-width: 415px) and (max-width: 810px) {
   .button {
     display: none;
   }
