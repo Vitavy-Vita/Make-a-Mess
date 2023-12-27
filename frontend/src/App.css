@@ -444,7 +444,40 @@ main .bg-burger {
     background-position-x: -70%;
   }
 }
+@media screen and (min-width: 811px) {
+  main h1 {
+    width: 40%;
+    font-size: 80px;
+    left: 580px;
+    top: 150px;
+    line-height: 80px;
+  }
+  main h2 {
+    font-size: 50px;
+    left: 580px;
+    top: 650px;
+  }
+  main p {
+    width: 30%;
+    font-size: 40px;
+    left: 650px;
+    top: 450px;
+    line-height: 40px;
+  }
+  main a {
+    padding: 2em;
+    left: 1100px;
+    top: 660px;
+  }
+  main .bg-burger {
+    width: 650px;
+    height: 600px;
+    margin-top: 7em;
+    background-position-x: 0%;
+  }
+}
 
+/* Start building */
 /* -------------------------------------------------------------------------- */
 /*                                   COLORS                                   */
 /* -------------------------------------------------------------------------- */
@@ -578,7 +611,7 @@ nav .unclicked:nth-child(2) {
 nav .unclicked:nth-child(3) {
   transition: ease-out 0.5s;
 }
-@media screen and (min-width: 415px) and (max-width: 810px) {
+@media screen and (min-width: 415px) {
   nav .burger-menu {
     display: none;
   }
@@ -591,48 +624,74 @@ nav .unclicked:nth-child(3) {
   display: none;
 }
 
-<<<<<<< HEAD
 @media screen and (min-width: 415px) and (max-width: 810px) {
-=======
-@media screen and (min-width: 412px) and (max-width: 810px) {
->>>>>>> 37b0287 (fixed navbar)
   nav {
     height: 10em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
   }
   .menu {
     display: none;
   }
-  .test {
-    display: flex;
-    flex-wrap: wrap;
-  }
   .nav-tablet-desktop {
-    display: flex;
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
     display: flex;
-    justify-content: start;
-    align-items: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    width: 50%;
-=======
->>>>>>> 37b0287 (fixed navbar)
+    width: 60%;
   }
   .nav-tablet-desktop .nav-option {
     text-align: center;
     display: block;
     border: none;
     font-size: 25px;
-<<<<<<< HEAD
-=======
-    padding: 0.5em;
     border-radius: 15%;
->>>>>>> 37b0287 (fixed navbar)
+    margin: 0.2em;
+  }
+}
+@media screen and (min-width: 811px) {
+  nav {
+    height: 10em;
+  }
+  nav img {
+    width: 200px;
+  }
+  .menu {
+    display: none;
+  }
+  .nav-tablet-desktop {
+    margin: 0;
+    margin-left: 20em;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 60%;
+  }
+  .nav-tablet-desktop .nav-option {
+    text-align: center;
+    display: block;
+    border: none;
+    font-size: 25px;
+    border-radius: 15%;
+    margin: 1.5em;
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                                 REACT ICON                                 */
+/* -------------------------------------------------------------------------- */
+.react-icon {
+  color: #faf6f6;
+  position: absolute;
+  top: 30px;
+  left: 250px;
+  z-index: 2;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+@media screen and (min-width: 415px) {
+  .react-icon {
+    display: none;
   }
 }
 /* -------------------------------------------------------------------------- */
@@ -708,10 +767,21 @@ nav .unclicked:nth-child(3) {
 /*                              TEXT-SIZE-DESKTOP                             */
 /* -------------------------------------------------------------------------- */
 /* -------------------------------------------------------------------------- */
-/*                                 login-area                                 */
+/*                                 login-area-desktop                                */
 /* -------------------------------------------------------------------------- */
-.login-area {
-  margin: 0;
-  padding: 0;
-  background-color: #825b56;
+.login-area-desktop {
+  display: none;
+}
+
+@media screen and (min-width: 415px) {
+  .login-area-desktop {
+    display: block;
+    height: 10em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #825b56;
+  }
 }/*# sourceMappingURL=App.css.map */

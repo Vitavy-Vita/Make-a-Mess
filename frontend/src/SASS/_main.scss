@@ -50,7 +50,7 @@ main {
       left: 330px;
       top: 550px;
     }
-    p{
+    p {
       left: 250px;
       top: 300px;
     }
@@ -65,4 +65,51 @@ main {
       background-position-x: -70%;
     }
   }
+  @media screen and (min-width: 811px) {
+    h1 {
+      width: 40%;
+      font-size: 80px;
+      left: 580px;
+      top: 150px;
+      line-height: 80px;
+    }
+    h2 {
+      font-size: 50px;
+      left: 580px;
+      top: 650px;
+    }
+    p {
+      width: 30%;
+      font-size: 40px;
+      left: 650px;
+      top: 450px;
+      line-height: 40px;
+    }
+    a {
+      padding: 2em;
+      left: 1100px;
+      top: 660px;
+    }
+    .bg-burger {
+      width: 650px;
+      height: 600px;
+      margin-top: 7em;
+      background-position-x: 0%;
+    }
+  }
 }
+
+/* Start building */
+
+// font-family: 'Rowdies';
+// font-style: normal;
+// font-weight: 400;
+// font-size: 24px;
+// line-height: 30px;
+// display: flex;
+// align-items: center;
+// text-align: center;
+// letter-spacing: -0.03em;
+// text-transform: uppercase;
+
+// color: #F0F4F7;

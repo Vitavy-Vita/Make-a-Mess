@@ -1,4 +1,5 @@
 import logo from "../assets/images/logo-burger.png";
+import Login from "./Login"
 import { useState, useEffect } from "react";
 
 export default function BurgerMenu() {
@@ -43,6 +44,7 @@ export default function BurgerMenu() {
           <div className={burgerClass}></div>
           <div className={burgerClass}></div>
         </div>
+        <Login/>
         <div className={menuClass}>
           <ul className={menuIndex}>
             <a className={"nav-option"}>Home Page</a>
@@ -60,7 +62,7 @@ export default function BurgerMenu() {
           <a className={"nav-option"}>About Us</a>
           <a className={"nav-option"}>Contact Us</a>
         </ul>
-        <p className={"login-area"}>Placeholder for login stuff</p>
+        
       </nav>
     </div>
   );
