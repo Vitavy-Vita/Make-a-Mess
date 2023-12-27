@@ -15,7 +15,7 @@ export default function Login() {
         </form>
 
         <div className={"buttons"}>
-          <a href="#">New Account</a>
+          <a href="/">New Account</a>
           <a href="#">Forgot Password</a>
           <button>Login</button>
           <button>Logout</button>

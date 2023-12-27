@@ -666,9 +666,6 @@ nav .unclicked:nth-child(3) {
     width: 60%;
   }
   .nav-tablet-desktop .nav-option {
-    text-align: center;
-    display: block;
-    border: none;
     font-size: 25px;
     border-radius: 15%;
     margin: 1.5em;
@@ -784,7 +781,7 @@ nav .unclicked:nth-child(3) {
     right: 0;
     margin: 0;
     padding: 0;
-    background-color: #825b56;
+    background-color: #dd826f;
     text-align: center;
   }
   .login-area-desktop form {
