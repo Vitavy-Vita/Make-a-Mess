@@ -62,7 +62,6 @@ export default function BurgerMenu() {
           <a className={"nav-option"}>About Us</a>
           <a className={"nav-option"}>Contact Us</a>
         </ul>
-        
       </nav>
     </div>
   );
