@@ -1,4 +1,4 @@
-import { useBurgerProvider } from "../context/NavBarContext";
+import { useBurgerProvider } from "../../context/NavBarContext";
 
 export default function Burger(props){
     const value = useBurgerProvider();

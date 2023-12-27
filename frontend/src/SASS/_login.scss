@@ -18,3 +18,8 @@
     background-color: variables.$brown;
   }
 }
+@media screen and (min-width: 811px){
+  .login-area-desktop{
+    width:20%
+  }
+}

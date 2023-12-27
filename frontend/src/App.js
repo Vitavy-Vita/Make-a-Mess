@@ -1,6 +1,6 @@
 import "./App.scss";
 import NavBarProvider from "./context/NavBarContext";
-import OnClickToggle from "./components/DisplayNavBar";
+import OnClickToggle from "./components/NavBar/DisplayNavBar";
 
 function App() {
   return (

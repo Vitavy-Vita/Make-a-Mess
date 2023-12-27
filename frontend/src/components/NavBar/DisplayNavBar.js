@@ -1,7 +1,7 @@
 import React from "react";
-import { useBurgerProvider } from "../context/NavBarContext";
+import { useBurgerProvider } from "../../context/NavBarContext";
 import NavBar from "./NavBar";
-import Home from "./Home";
+import Home from "../HomePage/Home";
 
 
 export default function OnClickToggle(props) {
