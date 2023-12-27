@@ -6,7 +6,11 @@
 .login-area-desktop {
   display: none;
 }
+
 @media screen and (min-width: 415px) {
+  .mobile-connect {
+    display: none;
+  }
   .login-area-desktop {
     width: 40%;
     display: block;
@@ -43,21 +47,19 @@
       margin: 0.5em;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap:0.5em;
+      gap: 0.5em;
     }
     button {
       font-family: variables.$text-font;
       border: 2px solid variables.$red;
       color: variables.$gray;
       background-color: variables.$red;
-
     }
     button:hover {
       font-family: variables.$text-font;
       border: 2px solid variables.$red;
       color: variables.$red;
       background-color: variables.$gray;
-
     }
   }
 }
@@ -87,7 +89,7 @@
       margin: 0.5em;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap:0.5em;
+      gap: 0.5em;
     }
     button {
       font-family: variables.$text-font;
@@ -95,7 +97,6 @@
       color: variables.$gray;
       background-color: variables.$red;
       padding: 0 2em;
-
     }
     button:hover {
       font-family: variables.$text-font;
@@ -104,5 +105,44 @@
       background-color: variables.$gray;
       padding: 0 2em;
     }
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                               MOBILE CONNECT                               */
+/* -------------------------------------------------------------------------- */
+
+.mobile-connect {
+  a {
+  
+    font-family: variables.$text-font;
+    color: variables.$gray;
+    text-decoration: none;
+    margin: 0.5em 0;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .buttons {
+    
+    @include display-flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 1em;
+    background-color: variables.$brown;
+    border-radius: 15%;
+  }
+  .slide-in {
+    position: absolute;
+    z-index: 2;
+    top: 82px;
+    left: 250px;
+    transition: ease-out 0.5s;
+  }
+  .slide-out {
+    z-index: 2;
+    position: absolute;
+    top: -300px;
+    right:0;
+    transition: ease-out 0.5s;
   }
 }

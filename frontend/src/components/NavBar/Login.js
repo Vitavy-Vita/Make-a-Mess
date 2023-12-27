@@ -1,9 +1,11 @@
 import { FaRegUserCircle } from "react-icons/fa";
+import { useNavBarProvider } from "../../context/NavBarContext";
 
 export default function Login() {
+  const value = useNavBarProvider();
   return (
     <div>
-      <FaRegUserCircle className={"react-icon"} />
+      <FaRegUserCircle className={"react-icon"} onClick={value.onClickSlide} />
       <section className={"login-area-desktop"}>
         <form action="login">
           <label htmlFor="email" />
@@ -13,8 +15,8 @@ export default function Login() {
         </form>
 
         <div className={"buttons"}>
-        <a href="#">New Account</a>
-        <a href="#">Forgot Password ?</a>
+          <a href="#">New Account</a>
+          <a href="#">Forgot Password</a>
           <button>Login</button>
           <button>Logout</button>
         </div>

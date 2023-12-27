@@ -10,11 +10,12 @@ export default function NavBarProvider(props) {
   const [toggleBurger, setToggleBurger] = useState(false);
   const [stickyCLass, setStickyClass] = useState(false);
   const [moveLogo, setMoveLogo] = useState("");
+  const [toggleConnect, setToggleConnect] = useState(false);
+  const [connectSlide, setConnectSlide] = useState("slide-out");
 
   useEffect(() => {
     const stickNavbar = () => {
-        setStickyClass(window.scrollY > 10);
-        console.log(window.scrollY);
+      setStickyClass(window.scrollY > 10);
     };
     window.addEventListener("scroll", stickNavbar);
     return () => window.removeEventListener("scroll", stickNavbar);
@@ -34,6 +35,13 @@ export default function NavBarProvider(props) {
       setMenuIndex("nav-menu hidden");
     }
     setToggleBurger(!toggleBurger);
+  
+  };
+  const onClickSlide = function () {
+    !toggleConnect ? setConnectSlide("slide-in") : setConnectSlide("slide-out");
+    console.log("1");
+    setToggleConnect(!toggleConnect);
+    console.log(toggleConnect);
   };
   return (
     <NavBarContext.Provider
@@ -44,7 +52,9 @@ export default function NavBarProvider(props) {
         menuIndex: menuIndex,
         stickyCLass: stickyCLass,
         moveLogo: moveLogo,
+        connectSlide: connectSlide,
         onClickToggle: onClickToggle,
+        onClickSlide: onClickSlide,
       }}
     >
       {props.children}
