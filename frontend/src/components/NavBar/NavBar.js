@@ -1,11 +1,11 @@
-import { useBurgerProvider } from "../../context/NavBarContext";
+import { useNavBarProvider } from "../../context/NavBarContext";
 import Login from "./Login";
 import Burger from "./Burger";
 import Logo from "./Logo";
 import Button from "./Button";
 
 export default function NavBar(props) {
-  const value = useBurgerProvider();
+  const value = useNavBarProvider();
 
   return (
     <nav className={value.navClass}>

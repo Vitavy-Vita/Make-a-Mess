@@ -60,12 +60,18 @@
   border-radius: 15px;
 }
 
-@mixin button-hover{
+@mixin button-hover {
   color: variables.$red;
-    background-color: variables.$white;
-    border: 1px solid variables.$red;
-    font-family: variables.$text-font;
-    font-size: variables.$text-size-mobile;
-    scale: 1.1;
-    transition: 0.3s;
+  background-color: variables.$white;
+  border: 1px solid variables.$red;
+  font-family: variables.$text-font;
+  font-size: variables.$text-size-mobile;
+  scale: 1.1;
+  transition: 0.3s;
+}
+
+@mixin display-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

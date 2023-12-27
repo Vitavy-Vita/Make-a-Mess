@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-const BurgerContext = createContext();
+const NavBarContext = createContext();
 
 export default function NavBarProvider(props) {
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
@@ -36,7 +36,7 @@ export default function NavBarProvider(props) {
     setToggleBurger(!toggleBurger);
   };
   return (
-    <BurgerContext.Provider
+    <NavBarContext.Provider
       value={{
         burgerClass: burgerClass,
         navClass: navClass,
@@ -48,11 +48,11 @@ export default function NavBarProvider(props) {
       }}
     >
       {props.children}
-    </BurgerContext.Provider>
+    </NavBarContext.Provider>
   );
 }
 
-export function useBurgerProvider() {
-  const value = useContext(BurgerContext);
+export function useNavBarProvider() {
+  const value = useContext(NavBarContext);
   return value;
 }

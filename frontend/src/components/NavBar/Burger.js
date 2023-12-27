@@ -1,7 +1,7 @@
-import { useBurgerProvider } from "../../context/NavBarContext";
+import { useNavBarProvider } from "../../context/NavBarContext";
 
 export default function Burger(props){
-    const value = useBurgerProvider();
+    const value = useNavBarProvider();
 
     return(
         <div className={"burger-menu"} onClick={value.onClickToggle}>

@@ -135,7 +135,7 @@ nav {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 60%;
+    width: 50%;
     .nav-option {
       text-align: center;
       display: block;
@@ -184,7 +184,7 @@ nav {
 .react-icon {
   color: variables.$gray;
   position: absolute;
-  top: 30px;
+  top: 26px;
   left: 250px;
   z-index: 2;
   cursor: pointer;

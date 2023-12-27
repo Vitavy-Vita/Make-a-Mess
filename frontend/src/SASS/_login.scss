@@ -3,11 +3,12 @@
 /* -------------------------------------------------------------------------- */
 /*                                 login-area-desktop                                */
 /* -------------------------------------------------------------------------- */
-.login-area-desktop{
-   display: none;
+.login-area-desktop {
+  display: none;
 }
-@media screen and (min-width: 415px){
+@media screen and (min-width: 415px) {
   .login-area-desktop {
+    width: 40%;
     display: block;
     height: 10em;
     position: absolute;
@@ -16,10 +17,92 @@
     margin: 0;
     padding: 0;
     background-color: variables.$brown;
+    text-align: center;
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    input {
+      font-family: variables.$text-font;
+      margin: 0.2em;
+      padding: 0.5em;
+      border: 2px solid variables.$red;
+    }
+    input::placeholder {
+      color: variables.$gray;
+      background-color: variables.$red;
+    }
+    a {
+      font-family: variables.$text-font;
+      text-decoration: none;
+      color: variables.$gray;
+    }
+    .buttons {
+      margin: 0.5em;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:0.5em;
+    }
+    button {
+      font-family: variables.$text-font;
+      border: 2px solid variables.$red;
+      color: variables.$gray;
+      background-color: variables.$red;
+
+    }
+    button:hover {
+      font-family: variables.$text-font;
+      border: 2px solid variables.$red;
+      color: variables.$red;
+      background-color: variables.$gray;
+
+    }
   }
 }
-@media screen and (min-width: 811px){
-  .login-area-desktop{
-    width:20%
+@media screen and (min-width: 811px) {
+  .login-area-desktop {
+    width: 20%;
+    text-align: center;
+    form {
+      @include display-flex;
+      flex-direction: column;
+    }
+    input {
+      font-family: variables.$text-font;
+      padding: 0.5em;
+      border: 2px solid variables.$red;
+    }
+    input::placeholder {
+      color: variables.$gray;
+      background-color: variables.$red;
+    }
+    a {
+      font-family: variables.$text-font;
+      text-decoration: none;
+      color: variables.$gray;
+    }
+    .buttons {
+      margin: 0.5em;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:0.5em;
+    }
+    button {
+      font-family: variables.$text-font;
+      border: 2px solid variables.$red;
+      color: variables.$gray;
+      background-color: variables.$red;
+      padding: 0 2em;
+
+    }
+    button:hover {
+      font-family: variables.$text-font;
+      border: 2px solid variables.$red;
+      color: variables.$red;
+      background-color: variables.$gray;
+      padding: 0 2em;
+    }
   }
 }

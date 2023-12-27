@@ -11,9 +11,13 @@ export default function Login() {
           <label htmlFor="password" />
           <input type="password" placeholder={"Password:"} />
         </form>
+
+        <div className={"buttons"}>
         <a href="#">New Account</a>
         <a href="#">Forgot Password ?</a>
-        <button>Login</button>
+          <button>Login</button>
+          <button>Logout</button>
+        </div>
       </section>
     </div>
   );

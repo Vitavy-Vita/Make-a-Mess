@@ -1,16 +1,17 @@
 import React from "react";
-import { useBurgerProvider } from "../../context/NavBarContext";
+import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "./NavBar";
 import Home from "../HomePage/Home";
 
-
 export default function OnClickToggle(props) {
-  const value = useBurgerProvider();
+  const value = useNavBarProvider();
 
   return (
-    <div className={`${value.stickyCLass ? "sticky" : ""}`}>
-      <NavBar />
-      <Home />
+    <div>
+      <div className={`${value.stickyCLass ? "sticky" : ""}`}>
+        <NavBar />
+      </div>
+        <Home />
     </div>
   );
 }
