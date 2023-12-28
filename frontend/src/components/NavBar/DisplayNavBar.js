@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "./NavBar";
-import HomePage from "../HomePage/DisplayHomePage";
+import HomePage from "../HomePage/HomePage";
 import MobileConnect from "./MobileConnect";
 
 export default function OnClickToggle(props) {
@@ -13,7 +13,6 @@ export default function OnClickToggle(props) {
         <NavBar/>
         <MobileConnect />
       </div>
-      <HomePage/>
     </div>
   );
 }

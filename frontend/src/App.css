@@ -13,6 +13,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Roboto&family=Rowdies&family=Six+Caps&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Rowdies&family=Six+Caps&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Roboto&family=Rowdies&family=Six+Caps&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Rowdies&family=Six+Caps&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Lato&family=Merriweather+Sans:ital@1&family=Pixelify+Sans&family=Roboto&family=Rowdies&family=Six+Caps&display=swap");
 html {
   scroll-behavior: smooth;
   line-height: 1.15; /* 1 */
@@ -550,7 +552,6 @@ nav .nav-option {
 nav .nav-option:hover {
   color: #c85a44;
   background-color: white;
-  font-weight: 900;
 }
 nav .menu {
   position: absolute;
@@ -663,12 +664,12 @@ nav .unclicked:nth-child(3) {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 60%;
+    width: 55%;
   }
   .nav-tablet-desktop .nav-option {
     font-size: 25px;
     border-radius: 15%;
-    margin: 1.5em;
+    margin: 1em;
   }
 }
 /* -------------------------------------------------------------------------- */
@@ -784,12 +785,6 @@ nav .unclicked:nth-child(3) {
     background-color: #dd826f;
     text-align: center;
   }
-  .login-area-desktop form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
   .login-area-desktop input {
     font-family: "Roboto", sans-serif;
     margin: 0.2em;
@@ -805,15 +800,28 @@ nav .unclicked:nth-child(3) {
     background-color: #c85a44;
   }
   .login-area-desktop a {
+    position: relative;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
     color: #faf6f6;
   }
+  .login-area-desktop a:hover {
+    -webkit-text-decoration: underline white;
+            text-decoration: underline white;
+  }
   .login-area-desktop .buttons {
-    margin: 0.5em;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    font-size: 25px;
+    margin: 1em 2em;
+    gap: 1.5em;
+  }
+  .login-area-desktop .form-icon {
+    position: absolute;
+    top: 2px;
+    left: -30px;
   }
   .login-area-desktop button {
     font-family: "Roboto", sans-serif;
@@ -833,15 +841,8 @@ nav .unclicked:nth-child(3) {
     width: 20%;
     text-align: center;
   }
-  .login-area-desktop form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
   .login-area-desktop input {
     font-family: "Roboto", sans-serif;
-    padding: 0.5em;
     border: 2px solid #c85a44;
   }
   .login-area-desktop input::-moz-placeholder {
@@ -853,29 +854,28 @@ nav .unclicked:nth-child(3) {
     background-color: #c85a44;
   }
   .login-area-desktop a {
+    position: relative;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
     color: #faf6f6;
   }
+  .login-area-desktop a:hover {
+    -webkit-text-decoration: underline white;
+            text-decoration: underline white;
+  }
   .login-area-desktop .buttons {
-    margin: 0.5em;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    font-size: 25px;
+    margin: 1em 2em;
+    gap: 1.5em;
   }
-  .login-area-desktop button {
-    font-family: "Roboto", sans-serif;
-    border: 2px solid #c85a44;
-    color: #faf6f6;
-    background-color: #c85a44;
-    padding: 0 2em;
-  }
-  .login-area-desktop button:hover {
-    font-family: "Roboto", sans-serif;
-    border: 2px solid #c85a44;
-    color: #c85a44;
-    background-color: #faf6f6;
-    padding: 0 2em;
+  .login-area-desktop .form-icon {
+    position: absolute;
+    top: 2px;
+    left: -30px;
   }
 }
 /* -------------------------------------------------------------------------- */
@@ -918,4 +918,103 @@ button {
   top: -300px;
   right: 0;
   transition: ease-out 0.5s;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   COLORS                                   */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                    FONT                                    */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                 TEXT-SIZES-MOBILE                                */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                              TEXT-SIZE-DESKTOP                             */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                    FORM                                    */
+/* -------------------------------------------------------------------------- */
+.form-container {
+  text-align: center;
+  height: 100vh;
+}
+
+h1 {
+  color: #825b56;
+  font-family: "Rowdies", sans-serif;
+  font-size: 40px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  line-height: 50px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 40vh;
+}
+form input {
+  font-family: "Roboto", sans-serif;
+  margin: 0.2em;
+  padding: 0.5em;
+  border: 2px solid #c85a44;
+  margin-top: 0.5em;
+}
+form input::-moz-placeholder {
+  color: #faf6f6;
+  background-color: #c85a44;
+  font-family: "Roboto", sans-serif;
+}
+form input::placeholder {
+  color: #faf6f6;
+  background-color: #c85a44;
+  font-family: "Roboto", sans-serif;
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  border: 2px solid #c85a44;
+  color: #faf6f6;
+  background-color: #c85a44;
+  padding: 0.5em 1.5em;
+  border-radius: 15px;
+}
+
+button:hover {
+  font-family: "Roboto", sans-serif;
+  border: 2px solid #c85a44;
+  color: #c85a44;
+  background-color: #faf6f6;
+}
+
+@media screen and (min-width: 811px) {
+  h1 {
+    color: #faf6f6;
+  }
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-container {
+    background-color: #dd826f;
+    width: 60%;
+  }
+  .form-container input {
+    padding: 1em;
+  }
+  .form-container input::-moz-placeholder {
+    font-size: 20px;
+  }
+  .form-container input::placeholder {
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
+    margin: 2em;
+    padding: 1em 2em;
+  }
 }/*# sourceMappingURL=App.css.map */

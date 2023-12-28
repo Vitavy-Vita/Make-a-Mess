@@ -1,21 +1,12 @@
 import "./App.scss";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Home from "./components/HomePage/Home";
-import CreateAccount from "./components/Create Account/CreateAccount";
+import { BrowserRouter as Router } from "react-router-dom";
+import AnimatedRoutes from "./components/AnimatedRoutes";
 
 function App() {
   return (
     <body>
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/CreateAccount" element={<CreateAccount />} />
-        </Routes>
+        <AnimatedRoutes />
       </Router>
     </body>
   );
