@@ -7,7 +7,7 @@ export default function MobileConnect() {
       <section className={value.connectSlide}>
         <div className="buttons">
           <a href="#">New Account</a>
-          <a href="#">Forgot Password</a>
+          <a href="#">Login</a>
           </div>
       </section>
     </div>
