@@ -1,15 +1,22 @@
 import "./App.scss";
-import NavBarProvider from "./context/NavBarContext";
-import OnClickToggle from "./components/NavBar/DisplayNavBar";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Home from "./components/HomePage/Home";
+import CreateAccount from "./components/Create Account/CreateAccount";
 
 function App() {
   return (
     <body>
-      <NavBarProvider>
-        <div>
-          <OnClickToggle />
-        </div>
-      </NavBarProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/CreateAccount" element={<CreateAccount />} />
+        </Routes>
+      </Router>
     </body>
   );
 }

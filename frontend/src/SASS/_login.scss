@@ -22,44 +22,42 @@
     padding: 0;
     background-color: variables.$light-red;
     text-align: center;
-    form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
     input {
-      font-family: variables.$text-font;
-      margin: 0.2em;
-      padding: 0.5em;
-      border: 2px solid variables.$red;
+      @include input-style;
     }
     input::placeholder {
       color: variables.$gray;
       background-color: variables.$red;
     }
     a {
+      position: relative;
       font-family: variables.$text-font;
       text-decoration: none;
       color: variables.$gray;
     }
+    a:hover{
+      text-decoration: underline white;
+    }
     .buttons {
-      margin: 0.5em;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5em;
+     display:flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: start;
+     font-size: variables.$sub-title-size-mobile;
+     margin:1em 2em;
+     gap: 1.5em;
+    }
+    .form-icon{
+      position: absolute;
+      top:2px;
+      left:-30px;
     }
     button {
-      font-family: variables.$text-font;
-      border: 2px solid variables.$red;
-      color: variables.$gray;
-      background-color: variables.$red;
+      @include button-style;
+      
     }
     button:hover {
-      font-family: variables.$text-font;
-      border: 2px solid variables.$red;
-      color: variables.$red;
-      background-color: variables.$gray;
+      @include button-style-hover;
     }
   }
 }
@@ -67,13 +65,9 @@
   .login-area-desktop {
     width: 20%;
     text-align: center;
-    form {
-      @include display-flex;
-      flex-direction: column;
-    }
+
     input {
       font-family: variables.$text-font;
-      padding: 0.5em;
       border: 2px solid variables.$red;
     }
     input::placeholder {
@@ -81,29 +75,27 @@
       background-color: variables.$red;
     }
     a {
+      position: relative;
       font-family: variables.$text-font;
       text-decoration: none;
       color: variables.$gray;
     }
+    a:hover{
+      text-decoration: underline white;
+    }
     .buttons {
-      margin: 0.5em;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5em;
+     display:flex;
+     justify-content: center;
+     flex-direction: column;
+     align-items: start;
+     font-size: variables.$sub-title-size-mobile;
+     margin:1em 2em;
+     gap: 1.5em;
     }
-    button {
-      font-family: variables.$text-font;
-      border: 2px solid variables.$red;
-      color: variables.$gray;
-      background-color: variables.$red;
-      padding: 0 2em;
-    }
-    button:hover {
-      font-family: variables.$text-font;
-      border: 2px solid variables.$red;
-      color: variables.$red;
-      background-color: variables.$gray;
-      padding: 0 2em;
+    .form-icon{
+      position: absolute;
+      top:2px;
+      left:-30px;
     }
   }
 }

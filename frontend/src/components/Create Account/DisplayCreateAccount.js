@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "../NavBar/NavBar";
-import MobileConnect from "../NavBar/MobileConnect";
-import CreateAccount from "./CreateAccount";
+import CreateForm from "../Create Account/CreateForm";
 
 export default function OnClickToggle(props) {
   const value = useNavBarProvider();
@@ -11,9 +10,9 @@ export default function OnClickToggle(props) {
     <div>
       <div className={`${value.stickyCLass ? "sticky" : ""}`}>
         <NavBar />
-        <MobileConnect />
+        
       </div>
-      <CreateAccount />
+      <CreateForm />
     </div>
   );
 }

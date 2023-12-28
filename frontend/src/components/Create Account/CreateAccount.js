@@ -1,11 +1,14 @@
-export function CreateAccount(){
+import NavBarProvider from "../../context/NavBarContext";
+import OnClickToggle from "../Create Account/DisplayCreateAccount";
 
-    return(
+export default function CreateAccount() {
+  return (
+    <div>
+      <NavBarProvider>
         <div>
-            <form action="">
-                <label htmlFor="Name">Name:</label>
-                <input type="text" />
-            </form>
+          <OnClickToggle />
         </div>
-    )
+      </NavBarProvider>
+    </div>
+  );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "./NavBar";
-import Home from "../HomePage/Home";
+import HomePage from "../HomePage/DisplayHomePage";
 import MobileConnect from "./MobileConnect";
 
 export default function OnClickToggle(props) {
@@ -10,10 +10,10 @@ export default function OnClickToggle(props) {
   return (
     <div>
       <div className={`${value.stickyCLass ? "sticky" : ""}`}>
-        <NavBar />
-        <MobileConnect/>
+        <NavBar/>
+        <MobileConnect />
       </div>
-        <Home />
+      <HomePage/>
     </div>
   );
 }

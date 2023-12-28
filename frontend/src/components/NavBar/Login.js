@@ -1,5 +1,7 @@
 import { FaRegUserCircle } from "react-icons/fa";
 import { useNavBarProvider } from "../../context/NavBarContext";
+import { IoIosLogIn } from "react-icons/io";
+import { MdOutlineManageAccounts } from "react-icons/md";
 
 export default function Login() {
   const value = useNavBarProvider();
@@ -7,18 +9,13 @@ export default function Login() {
     <div>
       <FaRegUserCircle className={"react-icon"} onClick={value.onClickSlide} />
       <section className={"login-area-desktop"}>
-        <form action="login">
-          <label htmlFor="email" />
-          <input type="email" placeholder={"Email:"} />
-          <label htmlFor="password" />
-          <input type="password" placeholder={"Password:"} />
-        </form>
-
-        <div className={"buttons"}>
-          <a href="/">New Account</a>
-          <a href="#">Forgot Password</a>
-          <button>Login</button>
-          <button>Logout</button>
+        <div className="buttons login-menu">
+          <a href="/CreateAccount">
+            <MdOutlineManageAccounts className="form-icon" /> New Account
+          </a>
+          <a href="#">
+            <IoIosLogIn className="form-icon" /> Login
+          </a>
         </div>
       </section>
     </div>

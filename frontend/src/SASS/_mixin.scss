@@ -75,3 +75,26 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin input-style{
+  font-family: variables.$text-font;
+  margin: 0.2em;
+  padding: 0.5em;
+  border: 2px solid variables.$red;
+}
+
+@mixin button-style{
+  font-family: variables.$text-font;
+  border: 2px solid variables.$red;
+  color: variables.$gray;
+  background-color: variables.$red;
+  
+}
+@mixin button-style-hover{
+  
+    font-family: variables.$text-font;
+    border: 2px solid variables.$red;
+    color: variables.$red;
+    background-color: variables.$gray;
+  
+}

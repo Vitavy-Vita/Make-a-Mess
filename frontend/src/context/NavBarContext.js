@@ -7,11 +7,11 @@ export default function NavBarProvider(props) {
   const [navClass, setNavClass] = useState("nav red");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [menuIndex, setMenuIndex] = useState("nav-menu hidden");
+  const [connectSlide, setConnectSlide] = useState("slide-out");
+  const [moveLogo, setMoveLogo] = useState("");
   const [toggleBurger, setToggleBurger] = useState(false);
   const [stickyCLass, setStickyClass] = useState(false);
-  const [moveLogo, setMoveLogo] = useState("");
   const [toggleConnect, setToggleConnect] = useState(false);
-  const [connectSlide, setConnectSlide] = useState("slide-out");
 
   useEffect(() => {
     const stickNavbar = () => {
@@ -35,26 +35,23 @@ export default function NavBarProvider(props) {
       setMenuIndex("nav-menu hidden");
     }
     setToggleBurger(!toggleBurger);
-  
   };
   const onClickSlide = function () {
     !toggleConnect ? setConnectSlide("slide-in") : setConnectSlide("slide-out");
-    console.log("1");
     setToggleConnect(!toggleConnect);
-    console.log(toggleConnect);
   };
   return (
     <NavBarContext.Provider
       value={{
-        burgerClass: burgerClass,
-        navClass: navClass,
-        menuClass: menuClass,
-        menuIndex: menuIndex,
-        stickyCLass: stickyCLass,
-        moveLogo: moveLogo,
-        connectSlide: connectSlide,
-        onClickToggle: onClickToggle,
-        onClickSlide: onClickSlide,
+        burgerClass,
+        navClass,
+        menuClass,
+        menuIndex,
+        stickyCLass,
+        moveLogo,
+        connectSlide,
+        onClickToggle,
+        onClickSlide,
       }}
     >
       {props.children}
