@@ -1,8 +1,8 @@
 import NavBarProvider from "../../context/NavBarContext";
-import OnClickToggle from "../NavBar/DisplayNavBar";
+import OnClickToggle from "../Login/DisplayLogin";
 import { motion } from "framer-motion";
 
-export default function Home() {
+export default function Login() {
   return (
     <motion.div
       initial={{ width: 0 }}

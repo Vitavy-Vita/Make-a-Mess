@@ -13,7 +13,7 @@ export default function Login() {
           <a href="/CreateAccount">
             <MdOutlineManageAccounts className="form-icon" /> New Account
           </a>
-          <a href="#">
+          <a href="/Login">
             <IoIosLogIn className="form-icon" /> Login
           </a>
         </div>
