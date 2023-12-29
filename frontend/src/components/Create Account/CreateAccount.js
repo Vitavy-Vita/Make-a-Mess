@@ -1,5 +1,5 @@
 import NavBarProvider from "../../context/NavBarContext";
-import OnClickToggle from "../Create Account/DisplayCreateAccount";
+import DisplayPage from "../Create Account/DisplayCreateAccount";
 import { motion } from "framer-motion";
 
 export default function CreateAccount() {
@@ -10,7 +10,7 @@ export default function CreateAccount() {
       exit={{ x: window.innerWidth, transition: "0.2s" }}
     >
       <NavBarProvider>
-        <OnClickToggle />
+        <DisplayPage />
       </NavBarProvider>
     </motion.div>
   );

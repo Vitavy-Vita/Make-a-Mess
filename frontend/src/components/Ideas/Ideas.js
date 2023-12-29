@@ -1,8 +1,8 @@
 import NavBarProvider from "../../context/NavBarContext";
-import DisplayPage from "../Login/DisplayLogin";
+import DisplayPage from "../Ideas/DisplayIdeas";
 import { motion } from "framer-motion";
 
-export default function Login() {
+export default function Ideas() {
   return (
     <motion.div
       initial={{ width: 0 }}

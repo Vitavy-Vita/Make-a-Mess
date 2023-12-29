@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import MobileConnect from "./MobileConnect";
 import HomePage from "../HomePage/HomePage";
 
-export default function OnClickToggle(props) {
+export default function DisplayPage(props) {
   const value = useNavBarProvider();
 
   return (

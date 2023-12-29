@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "../NavBar/NavBar";
-import CreateForm from "../Create Account/CreateForm";
-
+import Ideas from "./BurgerGallery";
+import MobileConnect from "../NavBar/MobileConnect";
 export default function DisplayPage(props) {
   const value = useNavBarProvider();
 
@@ -10,9 +10,9 @@ export default function DisplayPage(props) {
     <div>
       <div className={`${value.stickyCLass ? "sticky" : ""}`}>
         <NavBar />
-        
+        <MobileConnect/>
       </div>
-      <CreateForm />
+      <Ideas />
     </div>
   );
 }

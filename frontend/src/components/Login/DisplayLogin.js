@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "../NavBar/NavBar";
-import Login from "./LoginForm";
+import LoginForm from "./LoginForm";
 
-export default function OnClickToggle(props) {
+export default function DisplayPage(props) {
   const value = useNavBarProvider();
 
   return (
@@ -11,7 +11,7 @@ export default function OnClickToggle(props) {
       <div className={`${value.stickyCLass ? "sticky" : ""}`}>
         <NavBar />
       </div>
-      <Login />
+      <LoginForm />
     </div>
   );
 }

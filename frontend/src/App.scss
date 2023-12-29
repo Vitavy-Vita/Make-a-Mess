@@ -1,6 +1,8 @@
-@import "SASS/normalize";
-@import "SASS/mixin";
-@import "SASS/main";
-@import "SASS/header";
-@import "SASS/login";
-@import "SASS/form";
+@import "SASS/generalities/normalize";
+@import "SASS/generalities/mixin";
+@import "SASS/home/main";
+@import "SASS/navigation/header";
+@import "SASS/login/login";
+@import "SASS/login/form";
+@import "SASS/ideas/main";
+@import "SASS/ideas/burger-card.scss";
