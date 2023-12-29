@@ -12,16 +12,16 @@ article {
     padding-left: 0.5em;
     font-size: 40px;
   }
+  p {
+    @include text-style;
+    color: variables.$gray;
+    text-align: left;
+    margin: 1em;
+    font-size: 20px;
+    width: 60%;
+  }
 }
 
-p {
-  @include text-style;
-  color: variables.$gray;
-  text-align: left;
-  margin: 1em;
-  font-size: 20px;
-  width: 60%;
-}
 
 /* -------------------------------------------------------------------------- */
 /*                                 ARTICLE                                */
