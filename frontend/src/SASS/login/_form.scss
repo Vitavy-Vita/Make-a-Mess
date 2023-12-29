@@ -10,6 +10,7 @@
 }
 h1 {
   @include title-style;
+  
 }
 form {
   @include display-flex;

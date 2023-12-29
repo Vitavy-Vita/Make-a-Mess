@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Login from "./Login/Login";
 import Ideas from "./Ideas/Ideas";
+import About from "./About us/About";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function AnimatedRoutes() {
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Ideas" element={<Ideas />} />
+        <Route path="/About" element={<About />} />
       </Routes>
     </AnimatePresence>
   );

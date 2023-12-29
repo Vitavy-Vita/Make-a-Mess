@@ -1,0 +1,54 @@
+@use "../generalities/variables";
+
+/* -------------------------------------------------------------------------- */
+/*                                   LAYOUT                                   */
+/* -------------------------------------------------------------------------- */
+
+article {
+  h2 {
+    @include sub-title-style;
+    text-align: left;
+    text-transform: uppercase;
+    padding-left: 0.5em;
+    font-size: 40px;
+  }
+}
+
+p {
+  @include text-style;
+  color: variables.$gray;
+  text-align: left;
+  margin: 1em;
+  font-size: 20px;
+  width: 60%;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 ARTICLE                                */
+/* -------------------------------------------------------------------------- */
+
+.article-section {
+  @include display-flex;
+  background-color: variables.$light-red;
+  padding: 2em;
+}
+
+.right-article {
+  flex-direction: row-reverse;
+}
+
+@media screen and (min-width: 811px) {
+  .about-title {
+    text-transform: uppercase;
+    font-size: 80px;
+  }
+  article {
+    @include display-flex;
+  }
+  .container-articles {
+    max-width: 1100px;
+  }
+  h1 {
+    @include title-style;
+  }
+}

@@ -16,7 +16,7 @@ export default function NavBar(props) {
         <ul className={value.menuIndex}>
           <a href="/" className={"nav-option"}>Home Page</a>
           <a href="/Ideas" className={"nav-option"}>Need Ideas?</a>
-          <a className={"nav-option"}>About Us</a>
+          <a href="/About" className={"nav-option"}>About Us</a>
           <a className={"nav-option"}>Contact Us</a>
         </ul>
        <Button/>
@@ -24,7 +24,7 @@ export default function NavBar(props) {
       <ul className={"nav-tablet-desktop"}>
         <a href= "/" className={"nav-option"}>Home Page</a>
         <a href="/Ideas" className={"nav-option"}>Need Ideas?</a>
-        <a className={"nav-option"}>About Us</a>
+        <a href="/About" className={"nav-option"}>About Us</a>
         <a className={"nav-option"}>Contact Us</a>
       </ul>
     </nav>
