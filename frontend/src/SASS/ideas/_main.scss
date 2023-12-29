@@ -4,7 +4,6 @@
 /*                                    TITLE                                   */
 /* -------------------------------------------------------------------------- */
 .main-title {
-  margin: 2.5em;
   @include display-flex;
   flex-direction: column;
   h1 {
@@ -29,6 +28,9 @@
   }
 }
 @media screen and (min-width: 412px) and (max-width: 810px) {
+  .main-title{
+    margin:0;
+  }
   .container {
     .main-title {
       text-align: center;
