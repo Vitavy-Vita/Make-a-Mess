@@ -38,13 +38,13 @@ main {
     @include button-hover;
   }
   .bg-burger {
-    width: 650px;
-    height: 600px;
-    margin-top: 5em;
+    width: 400px;
+    height: 400px;
+    // margin-top: 5em;
     background-size: contain;
     background-image: url("/assets/images/bg-burger.png");
     background-repeat: no-repeat;
-    background-position-x: -120%;
+    background-position-x: -160%;
   }
   @media screen and (min-width: 415px) and (max-width: 810px) {
     h1 {
@@ -104,17 +104,3 @@ main {
   }
 }
 
-/* Start building */
-
-// font-family: 'Rowdies';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 24px;
-// line-height: 30px;
-// display: flex;
-// align-items: center;
-// text-align: center;
-// letter-spacing: -0.03em;
-// text-transform: uppercase;
-
-// color: #F0F4F7;

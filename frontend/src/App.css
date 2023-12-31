@@ -357,7 +357,11 @@ template {
 /* -------------------------------------------------------------------------- */
 /*                              TEXT-SIZE-DESKTOP                             */
 /* -------------------------------------------------------------------------- */
-html, body {
+/* -------------------------------------------------------------------------- */
+/*                           HIDE NAVMENU OFFSCREEN                           */
+/* -------------------------------------------------------------------------- */
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -980,13 +984,12 @@ main a:hover {
   transition: 0.3s;
 }
 main .bg-burger {
-  width: 650px;
-  height: 600px;
-  margin-top: 5em;
+  width: 400px;
+  height: 400px;
   background-size: contain;
   background-image: url("/assets/images/bg-burger.png");
   background-repeat: no-repeat;
-  background-position-x: -120%;
+  background-position-x: -160%;
 }
 @media screen and (min-width: 415px) and (max-width: 810px) {
   main h1 {
@@ -1045,7 +1048,6 @@ main .bg-burger {
   }
 }
 
-/* Start building */
 /* -------------------------------------------------------------------------- */
 /*                                   COLORS                                   */
 /* -------------------------------------------------------------------------- */

@@ -1,10 +1,14 @@
 @use "../generalities/variables";
 
-html, body {
+/* -------------------------------------------------------------------------- */
+/*                           HIDE NAVMENU OFFSCREEN                           */
+/* -------------------------------------------------------------------------- */
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
-body{
+body {
   position: relative;
 }
 
@@ -64,7 +68,6 @@ nav {
     width: 65%;
     height: 100vh;
     background-color: variables.$red;
-    
   }
   .hidden {
     position: absolute;
@@ -74,7 +77,6 @@ nav {
     height: 100vh;
     background-color: variables.$red;
     transition: ease-in 0.5s;
-    
   }
   .visible {
     transition: ease-out 0.5s;
@@ -153,21 +155,20 @@ nav {
       border-radius: 15%;
       margin: 0.2em;
     }
-
   }
 }
 @media screen and (min-width: 811px) {
   nav {
     height: 10em;
-    img{
-      width:200px;
+    img {
+      width: 200px;
     }
   }
   .menu {
     display: none;
   }
   .nav-tablet-desktop {
-    margin:0;
+    margin: 0;
     margin-left: 20em;
     padding: 0;
     display: flex;
@@ -179,9 +180,7 @@ nav {
       border-radius: 15%;
       margin: 1em;
     }
- 
   }
-  
 }
 
 /* -------------------------------------------------------------------------- */
@@ -196,11 +195,10 @@ nav {
   cursor: pointer;
   font-size: 30px;
 }
-@media screen and (min-width:415px) {
-  .react-icon{
-    display: none
+@media screen and (min-width: 415px) {
+  .react-icon {
+    display: none;
   }
-  
 }
 /* -------------------------------------------------------------------------- */
 /*                                   BUTTON                                   */
@@ -210,7 +208,7 @@ nav {
   position: absolute;
   z-index: 2;
   left: 65px;
-  top:550px;
+  top: 550px;
 }
 .button:hover {
   @include button-hover;
