@@ -7,7 +7,7 @@
   @include display-flex;
   flex-direction: column;
   h1 {
-    @include title-style;
+    @include title-style-desktop;
     margin: 0;
     font-size: 50px;
     text-transform: uppercase;
@@ -33,17 +33,18 @@
   .main-title{
     margin:0;
     h1{
-      font-size: 100px;
+      font-size: 80px;
       margin-bottom:0.5em;
-      margin-left: 0.5em;
       line-height: 60px;
     }
     h2{
-      font-size: 70px;
+      font-size: 50px;
       text-align: left;
       margin-top:0.5em;
-      width: 70%;
-      line-height: 60px;
+      margin-left: 1.3em;
+      width: 60%;
+      line-height: 40px;
+      letter-spacing:2px;
     }
 
   }

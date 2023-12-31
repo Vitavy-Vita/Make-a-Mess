@@ -671,17 +671,16 @@ nav .unclicked:nth-child(3) {
   }
   .login-area-desktop input::-moz-placeholder {
     color: #faf6f6;
-    background-color: #c85a44;
   }
   .login-area-desktop input::placeholder {
     color: #faf6f6;
-    background-color: #c85a44;
   }
   .login-area-desktop a {
     position: relative;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
     color: #faf6f6;
+    padding: 0.3em;
   }
   .login-area-desktop a:hover {
     -webkit-text-decoration: underline white;
@@ -698,7 +697,7 @@ nav .unclicked:nth-child(3) {
   }
   .login-area-desktop .form-icon {
     position: absolute;
-    top: 2px;
+    top: 9.5px;
     left: -30px;
   }
   .login-area-desktop button {
@@ -725,11 +724,9 @@ nav .unclicked:nth-child(3) {
   }
   .login-area-desktop input::-moz-placeholder {
     color: #faf6f6;
-    background-color: #c85a44;
   }
   .login-area-desktop input::placeholder {
     color: #faf6f6;
-    background-color: #c85a44;
   }
   .login-area-desktop a {
     position: relative;
@@ -750,7 +747,7 @@ nav .unclicked:nth-child(3) {
     margin: 1em 2em;
     gap: 1.5em;
   }
-  .login-area-desktop .form-icon {
+  .login-area-desktop svg {
     position: absolute;
     top: 2px;
     left: -30px;
@@ -819,6 +816,7 @@ button {
 .form-container {
   text-align: center;
   height: 100vh;
+  background-color: #dd826f;
 }
 
 h1 {
@@ -846,13 +844,11 @@ form input {
   margin-top: 0.5em;
 }
 form input::-moz-placeholder {
-  color: #faf6f6;
-  background-color: #c85a44;
+  color: #c85a44;
   font-family: "Roboto", sans-serif;
 }
 form input::placeholder {
-  color: #faf6f6;
-  background-color: #c85a44;
+  color: #c85a44;
   font-family: "Roboto", sans-serif;
 }
 
@@ -996,25 +992,45 @@ main .bg-burger {
 }
 @media screen and (min-width: 415px) and (max-width: 810px) {
   main h1 {
-    left: 220px;
-    top: 150px;
+    color: #825b56;
+    font-family: "Rowdies", sans-serif;
+    font-size: 60px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    line-height: 50px;
+    text-align: center;
+    width: 600px;
+    left: 150px;
+    top: 250px;
   }
   main h2 {
-    left: 330px;
-    top: 550px;
+    color: #825b56;
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    line-height: 28px;
+    text-align: center;
+    left: 370px;
+    top: 650px;
   }
   main p {
-    left: 250px;
-    top: 300px;
+    color: #825b56;
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    line-height: 28px;
+    text-align: center;
+    width: 500px;
+    left: 200px;
+    top: 350px;
   }
   main a {
-    left: 350px;
-    top: 660px;
+    left: 440px;
+    top: 760px;
   }
   main .bg-burger {
-    width: 650px;
-    height: 600px;
-    margin-top: 7em;
+    width: 850px;
+    height: 800px;
+    margin-top: 10em;
     background-position-x: -70%;
   }
 }
@@ -1078,11 +1094,10 @@ main .bg-burger {
 .main-title h1 {
   color: #825b56;
   font-family: "Rowdies", sans-serif;
-  font-size: 40px;
+  font-size: 60px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   line-height: 50px;
   text-align: center;
-  text-transform: uppercase;
   margin: 0;
   font-size: 50px;
   text-transform: uppercase;
@@ -1113,17 +1128,18 @@ main .bg-burger {
     margin: 0;
   }
   .main-title h1 {
-    font-size: 100px;
+    font-size: 80px;
     margin-bottom: 0.5em;
-    margin-left: 0.5em;
     line-height: 60px;
   }
   .main-title h2 {
-    font-size: 70px;
+    font-size: 50px;
     text-align: left;
     margin-top: 0.5em;
-    width: 70%;
-    line-height: 60px;
+    margin-left: 1.3em;
+    width: 60%;
+    line-height: 40px;
+    letter-spacing: 2px;
   }
   .container .main-title {
     text-align: center;
@@ -1262,10 +1278,12 @@ article h2 {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   line-height: 28px;
   text-align: center;
+  position: relative;
   text-align: left;
   text-transform: uppercase;
   padding-left: 0.5em;
   text-transform: uppercase;
+  padding-left: 2em;
 }
 article p {
   color: #825b56;
@@ -1278,6 +1296,11 @@ article p {
   margin: 0.5em;
   text-align: left;
   width: 80%;
+}
+article svg {
+  position: absolute;
+  top: 2px;
+  left: 20px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1311,10 +1334,9 @@ article p {
   h1 {
     color: #825b56;
     font-family: "Rowdies", sans-serif;
-    font-size: 40px;
+    font-size: 60px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     line-height: 50px;
     text-align: center;
-    text-transform: uppercase;
   }
 }/*# sourceMappingURL=App.css.map */

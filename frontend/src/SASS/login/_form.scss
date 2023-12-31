@@ -7,6 +7,7 @@
 .form-container {
   text-align: center;
   height: 100vh;
+  background-color: variables.$light-red;
 }
 h1 {
   @include title-style;
@@ -21,10 +22,10 @@ form {
     margin-top: 0.5em;
   }
   input::placeholder {
-    color: variables.$gray;
-    background-color: variables.$red;
+    color: variables.$red;
     font-family: variables.$text-font;
   }
+ 
 }
 
 button {

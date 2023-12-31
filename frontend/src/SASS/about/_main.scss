@@ -11,10 +11,12 @@ h1 {
 article {
   h2 {
     @include sub-title-style;
+    position: relative;
     text-align: left;
     text-transform: uppercase;
     padding-left: 0.5em;
     text-transform: uppercase;
+    padding-left: 2em
   }
   p {
     @include text-style;
@@ -22,6 +24,11 @@ article {
     margin: 0.5em;
     text-align: left;
     width: 80%;
+  }
+  svg{
+    position: absolute;
+    top: 2px;
+    left:20px
   }
 }
 
@@ -51,6 +58,6 @@ article {
     max-width: 1100px;
   }
   h1 {
-    @include title-style;
+    @include title-style-desktop;
   }
 }
