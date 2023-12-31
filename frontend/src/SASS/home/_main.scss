@@ -38,9 +38,9 @@ main {
     @include button-hover;
   }
   .bg-burger {
-    width: 400px;
-    height: 400px;
-    // margin-top: 5em;
+    width: 500px;
+    height: 500px;
+    margin-top: 8em;
     background-size: contain;
     background-image: url("/assets/images/bg-burger.png");
     background-repeat: no-repeat;

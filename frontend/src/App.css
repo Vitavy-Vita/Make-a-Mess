@@ -984,8 +984,9 @@ main a:hover {
   transition: 0.3s;
 }
 main .bg-burger {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
+  margin-top: 8em;
   background-size: contain;
   background-image: url("/assets/images/bg-burger.png");
   background-repeat: no-repeat;
