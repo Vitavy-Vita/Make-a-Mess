@@ -9,10 +9,7 @@ export default function Articles(props) {
       </h2>
       <section className="article-section">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel non vitae
-        ipsa, cupiditate, illum quae harum excepturi debitis iure quo quisquam
-        mollitia, perferendis nam quaerat consequuntur dolores accusantium sequi
-        alias dolor itaque accusamus necessitatibus aut nisi temporibus.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum tempora magnam, non quo deserunt itaque unde nostrum culpa consequatur possimus? Soluta, aspernatur odit ratione laboriosam necessitatibus tempora nihil mollitia odio sed aperiam. Id placeat non porro sapiente. Quasi, nesciunt quam quidem illo fugit veniam rerum ad vitae laborum sed, facilis ea. Quaerat sint dignissimos delectus veniam odit ex et nam quidem nostrum saepe odio ducimus blanditiis, architecto vero quod perspiciatis laborum recusandae tenetur in sed nemo error. 
       </p>
       <div
         style={{

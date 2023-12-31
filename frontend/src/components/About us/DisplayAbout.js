@@ -18,6 +18,7 @@ export default function DisplayPage(props) {
         <MobileConnect />
       </div>
       <h1 className="about-title">Who are we</h1>
+      <div className={"article-container"}>
       <Articles
         image={burger}
         title={"Our Story"}
@@ -25,7 +26,6 @@ export default function DisplayPage(props) {
         icon={<CiForkAndKnife />}
         className={"left-article"}
       />
-      <div className={"right-article"}>
       <Articles
         image={dude}
         title={"What we do"}

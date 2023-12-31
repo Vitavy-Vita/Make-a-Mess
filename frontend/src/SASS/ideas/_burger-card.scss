@@ -16,7 +16,6 @@
     @include sub-title-style;
     font-family: variables.$title-font;
     color:variables.$gray;
-    font-weight: 900;
     font-size: 30px;
     margin: 0;
     margin-top:1em;
@@ -29,17 +28,21 @@
     border: 4px solid variables.$gray;
   }
   .burger-description {
+    @include text-style-desktop;
+    color: variables.$gray;
+    text-transform: capitalize;
+    text-align: left;
     margin: 0;
     display: grid;
     grid-template-columns: 3fr 1fr 1fr;
-    color: variables.$gray;
-    font-family: variables.$text-font;
     gap: 1em;
-    text-transform: capitalize;
   }
 }
-@media screen and (min-width:415px) and (max-width: 810px) {
+@media screen and  (min-width: 810px) {
   .burger-card{
     margin: 0.5em;
+    p{
+      line-height: 20px;
+    }
   }
 }

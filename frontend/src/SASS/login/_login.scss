@@ -22,13 +22,6 @@
     padding: 0;
     background-color: variables.$light-red;
     text-align: center;
-    input {
-      @include input-style;
-    }
-    input::placeholder {
-      color: variables.$gray;
-     
-    }
     a {
       position: relative;
       font-family: variables.$text-font;
@@ -55,7 +48,7 @@
       left:-30px;
     }
     button {
-      @include button-style;
+      @include button;
       
     }
     button:hover {
@@ -81,6 +74,8 @@
       font-family: variables.$text-font;
       text-decoration: none;
       color: variables.$gray;
+      font-size: 30px;
+      padding: 0;
     }
     a:hover{
       text-decoration: underline white;
@@ -94,7 +89,7 @@
      margin:1em 2em;
      gap: 1.5em;
     }
-    svg{
+    .form-icon { 
       position: absolute;
       top:2px;
       left:-30px;

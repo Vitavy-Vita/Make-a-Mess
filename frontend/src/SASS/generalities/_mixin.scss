@@ -70,7 +70,7 @@
   padding: 1.2em;
   color: variables.$white;
   background-color: variables.$red;
-  border: 1px solid variables.$brown;
+  border: 1px solid variables.$gray;
   font-family: variables.$text-font;
   font-size: variables.$text-size-mobile;
   font-weight: bold;
@@ -99,18 +99,19 @@
 
 @mixin input-style{
   font-family: variables.$text-font;
-  margin: 0.2em;
   padding: 0.5em;
   border: 2px solid variables.$red;
+  border-radius: 15px;
+  outline-color: variables.$red;
+}
+@mixin input-style-desktop{
+  font-family: variables.$text-font;
+  padding: 1.5em 3em;
+  border: 2px solid variables.$red;
+  border-radius: 15px;
+  outline-color: variables.$red;
 }
 
-@mixin button-style{
-  font-family: variables.$text-font;
-  border: 2px solid variables.$red;
-  color: variables.$gray;
-  background-color: variables.$red;
-  
-}
 @mixin button-style-hover{
   
     font-family: variables.$text-font;

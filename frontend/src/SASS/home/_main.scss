@@ -77,32 +77,36 @@ main {
   }
   @media screen and (min-width: 811px) {
     h1 {
-      width: 40%;
-      font-size: 70px;
-      left: 580px;
-      top: 100px;
+      width: 800px;
+      font-size: 100px;
+      left: 50%;
+      top: 20%;
       line-height: 80px;
     }
     h2 {
-      font-size: 50px;
-      left: 580px;
-      top: 650px;
+      font-size: 60px;
+      left: 50%;
+      top: 70%;
     }
     p {
-      width: 30%;
-      font-size: 40px;
-      left: 650px;
-      top: 450px;
-      line-height: 40px;
+      width: 700px;
+      font-size: 60px;
+      left: 52%;
+      top: 50%;
+      line-height: 50px;
     }
     a {
-      padding: 2em;
-      left: 1100px;
-      top: 660px;
+      font-size: 20px;
+      padding: 1em 3em;
+      left: 72%;
+      top: 70%;
+    }
+    a:hover{
+      font-size: 20px;
     }
     .bg-burger {
-      width: 650px;
-      height: 600px;
+      width: 1050px;
+      height: 1000px;
       margin-top: 7em;
       background-position-x: 0%;
     }

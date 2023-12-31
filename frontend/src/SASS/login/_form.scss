@@ -5,8 +5,9 @@
 /* -------------------------------------------------------------------------- */
 
 .form-container {
+  height: 50vh;
   text-align: center;
-  height: 100vh;
+  border-radius: 15px;
   background-color: variables.$light-red;
 }
 h1 {
@@ -29,13 +30,21 @@ form {
 }
 
 button {
-  @include button-style;
-  padding: 0.5em 1.5em;
-  border-radius: 15px;
+  @include button;
 }
 
 button:hover {
   @include button-style-hover;
+}
+@media screen and (min-width:415px) and (max-width:811px) {
+    .center-container{
+      input{
+        @include input-style-desktop
+      }
+      input::placeholder{
+        font-size: 20px;
+      }
+    }
 }
 @media screen and (min-width: 811px) {
     h1{
@@ -60,5 +69,16 @@ button:hover {
     font-size: 20px;
     margin: 2em;
     padding: 1em 2em;
+  }
+}
+@media screen and (min-width: 811px) {
+  .center-container{
+    flex-direction: column;
+    input{
+      font-size: 25px;
+    }
+    input::placeholder{
+      font-size: 25px;
+    }
   }
 }

@@ -5,9 +5,9 @@ export default function Login() {
       <section className="form-container">
         <form action="create">
           <label htmlFor="Name"></label>
-          <input type="text" placeholder="Name:" />
+          <input type="text" placeholder="Name:" size='25' required/>
           <label htmlFor="Password"></label>
-          <input type="password" placeholder="Password:" />
+          <input type="password" placeholder="Password:" size='25' required/>
         </form>
         <button className={"button-form"}>Validate</button>
       </section>
