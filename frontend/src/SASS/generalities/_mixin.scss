@@ -8,6 +8,14 @@
   line-height: 50px;
   text-align: center;
 }
+@mixin title-style-desktop {
+  color: variables.$brown;
+  font-family: variables.$title-font;
+  font-size: variables.$title-size-desktop;
+  text-shadow: variables.$text-shadow;
+  line-height: 50px;
+  text-align: center;
+}
 @mixin sub-title-style {
   color: variables.$brown;
   font-family: variables.$text-font;
@@ -16,10 +24,26 @@
   line-height: 28px;
   text-align: center;
 }
+@mixin sub-title-style-desktop {
+  color: variables.$brown;
+  font-family: variables.$text-font;
+  font-size: variables.$sub-title-size-desktop;
+  text-shadow: variables.$text-shadow;
+  line-height: 28px;
+  text-align: center;
+}
 @mixin text-style {
   color: variables.$brown;
   font-family: variables.$text-font;
-  font-size: variables.$sub-title-size-mobile;
+  font-size: variables.$text-size-mobile;
+  text-shadow: variables.$text-shadow;
+  line-height: 28px;
+  text-align: center;
+}
+@mixin text-style-desktop {
+  color: variables.$brown;
+  font-family: variables.$text-font;
+  font-size: variables.$text-size-desktop;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
   text-align: center;
@@ -35,7 +59,7 @@
   font-style: variables.$title-font;
   font-size: variables.$sub-title-size-mobile;
   color: variables.$white;
-  line-height: 40px;
+  line-height: 50px;
   display: flex;
   border-bottom: 1px solid variables.$white;
   padding: 0.5em;
