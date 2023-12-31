@@ -195,9 +195,10 @@ nav {
 /* -------------------------------------------------------------------------- */
 .button {
   @include button;
-  border: 1px solid variables.$white;
+  position: absolute;
   z-index: 2;
-  left: 55px;
+  left: 65px;
+  top:550px;
 }
 .button:hover {
   @include button-hover;
