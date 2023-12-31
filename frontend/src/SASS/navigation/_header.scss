@@ -4,6 +4,9 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
+body{
+  position: relative;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                    LOGO                                    */
@@ -61,6 +64,7 @@ nav {
     width: 65%;
     height: 100vh;
     background-color: variables.$red;
+    
   }
   .hidden {
     position: absolute;
@@ -70,6 +74,7 @@ nav {
     height: 100vh;
     background-color: variables.$red;
     transition: ease-in 0.5s;
+    
   }
   .visible {
     transition: ease-out 0.5s;
