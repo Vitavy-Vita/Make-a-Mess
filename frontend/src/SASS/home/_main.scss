@@ -10,25 +10,29 @@ main {
     width: 300px;
     height: 80px;
     left: 60px;
-    top: 150px;
+    top: 80px;
   }
   h2 {
     @include sub-title-style;
     position: absolute;
     left: 145px;
-    top: 480px;
+    top: 400px;
   }
   p {
     @include text-style;
-    font-size:20px;
+    font-size: 20px;
     position: absolute;
     width: 227px;
     height: 209px;
     left: 90px;
-    top: 262px;
+    top: 200px;
   }
   a {
     @include button;
+    position: absolute;
+    width: 120px;
+    left: 160px;
+    top: 490px;
   }
   a:hover {
     @include button-hover;
@@ -36,7 +40,7 @@ main {
   .bg-burger {
     width: 650px;
     height: 600px;
-    margin-top: 12em;
+    margin-top: 5em;
     background-size: contain;
     background-image: url("/assets/images/bg-burger.png");
     background-repeat: no-repeat;

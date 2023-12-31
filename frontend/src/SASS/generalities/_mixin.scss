@@ -66,10 +66,7 @@
 }
 
 @mixin button {
-  position: absolute;
-  width: 120px;
-  left: 153px;
-  top: 560px;
+  
   padding: 1.2em;
   color: variables.$white;
   background-color: variables.$red;
