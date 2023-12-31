@@ -16,10 +16,15 @@ export default function NavBarProvider(props) {
   useEffect(() => {
     const stickNavbar = () => {
       setStickyClass(window.scrollY > 10);
+      console.log('====================================');
+      console.log(window.scrollY );
+      console.log('====================================');
     };
     window.addEventListener("scroll", stickNavbar);
     return () => window.removeEventListener("scroll", stickNavbar);
   }, []);
+
+  
   const onClickToggle = function () {
     if (!toggleBurger) {
       setMoveLogo("move-in");

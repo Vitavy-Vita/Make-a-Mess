@@ -7,9 +7,9 @@ main {
   h1 {
     @include title-style;
     position: absolute;
-    width: 300px;
+    width: 400px;
     height: 80px;
-    left: 60px;
+    left: 10px;
     top: 80px;
   }
   h2 {

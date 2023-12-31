@@ -4,8 +4,9 @@
 /*                                   LAYOUT                                   */
 /* -------------------------------------------------------------------------- */
 
-h1{
- @include title-style 
+h1 {
+  @include title-style;
+  
 }
 article {
   h2 {
@@ -13,7 +14,7 @@ article {
     text-align: left;
     text-transform: uppercase;
     padding-left: 0.5em;
-    
+    text-transform: uppercase;
   }
   p {
     @include text-style;
@@ -23,7 +24,6 @@ article {
     width: 80%;
   }
 }
-
 
 /* -------------------------------------------------------------------------- */
 /*                                 ARTICLE                                */
