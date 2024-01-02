@@ -523,6 +523,8 @@ nav .unclicked:nth-child(3) {
     font-size: 25px;
     border-radius: 15%;
     margin: 0.2em;
+    text-decoration: none;
+    list-style: none;
   }
 }
 @media screen and (min-width: 811px) {

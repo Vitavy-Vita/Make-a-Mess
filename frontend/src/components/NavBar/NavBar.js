@@ -22,10 +22,14 @@ export default function NavBar(props) {
        <Button/>
       </div>
       <ul className={"nav-tablet-desktop"}>
-        <a href= "/" className={"nav-option"}>Home Page</a>
-        <a href="/Ideas" className={"nav-option"}>Need Ideas?</a>
-        <a href="/About" className={"nav-option"}>About Us</a>
-        <a className={"nav-option"}>Contact Us</a>
+        <a href= "/" className={"nav-option"}>
+          <li>Home Page</li></a>
+        <a href="/Ideas" className={"nav-option"}>
+          <li>Need Ideas?</li></a>
+        <a href="/About" className={"nav-option"}>
+          <li>About Us</li></a>
+        <a className={"nav-option"}>
+          <li>Contact Us</li></a>
       </ul>
     </nav>
   );
