@@ -29,7 +29,7 @@ export default function DisplayPage(props) {
       <Articles
         image={dude}
         title={"What we do"}
-        alt={"A man offering a burger in each hands"}
+        alt={"A man offering a burger in both hands"}
         icon={<PiHamburgerLight />}
         className={"right-article"}
         />
