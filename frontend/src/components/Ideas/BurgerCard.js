@@ -17,21 +17,21 @@ export default function BurgerCard(props) {
       ></div>
 
       <h2>{props.name}</h2>
-      <div className="burger-description">
+      <section className="burger-description">
         <p>{props.description}</p>
-        <div>
-          <p>Protein: </p>
-          <p>Carbs: </p>
-          <p>Fat: </p>
-          <p>Calories: </p>
-        </div>
-        <div>
-          <p>{props.protein}</p>
-          <p>{props.carbs}</p>
-          <p>{props.fat}</p>
-          <p>{props.calories}</p>
-        </div>
-      </div>
+        <ul>
+          <li>Protein: </li>
+          <li>Carbs: </li>
+          <li>Fat: </li>
+          <li>Calories: </li>
+        </ul>
+        <ul>
+          <li>{props.protein}</li>
+          <li>{props.carbs}</li>
+          <li>{props.fat}</li>
+          <li>{props.calories}</li>
+        </ul>
+      </section>
     </div>
   );
 }

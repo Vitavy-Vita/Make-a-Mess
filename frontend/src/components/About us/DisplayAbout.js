@@ -13,12 +13,12 @@ export default function DisplayPage(props) {
 
   return (
     <div>
-      <div className={`${value.stickyCLass ? "sticky" : ""}`}>
+      <header className={`${value.stickyCLass ? "sticky" : ""}`}>
         <NavBar />
         <MobileConnect />
-      </div>
+      </header>
       <h1 className="about-title">Who are we</h1>
-      <div className={"article-container"}>
+      <section className={"article-container"}>
       <Articles
         image={burger}
         title={"Our Story"}
@@ -33,7 +33,7 @@ export default function DisplayPage(props) {
         icon={<PiHamburgerLight />}
         className={"right-article"}
         />
-        </div>
+        </section>
     </div>
   );
 }

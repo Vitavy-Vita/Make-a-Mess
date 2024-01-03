@@ -8,12 +8,12 @@ export default function DisplayPage(props) {
   const value = useNavBarProvider();
 
   return (
-    <div>
-      <div className={`${value.stickyCLass ? "sticky" : ""}`}>
+    <section>
+      <header className={`${value.stickyCLass ? "sticky" : ""}`}>
         <NavBar />
         <MobileConnect />
-      </div>
+      </header>
       <HomePage />
-    </div>
+    </section>
   );
 }

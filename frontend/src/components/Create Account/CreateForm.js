@@ -1,6 +1,6 @@
 export default function CreateForm() {
   return (
-    <div className="center-container">
+    <article className="center-container">
       <h1>Create your account:</h1>
       <section className="form-container">
         <form action="create">
@@ -17,6 +17,6 @@ export default function CreateForm() {
         </form>
         <button className={"button-form"}>Validate</button>
       </section>
-    </div>
+    </article>
   );
 }

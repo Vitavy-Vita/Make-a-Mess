@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <motion.div
+    <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
       exit={{ x: window.innerWidth, transition: "0.2s" }}
@@ -12,6 +12,6 @@ export default function About() {
       <NavBarProvider>
         <DisplayPage />
       </NavBarProvider>
-    </motion.div>
+    </motion.main>
   );
 }

@@ -3,7 +3,7 @@
 body {
   background-color: variables.$gray;
 }
-main {
+.home-page {
   h1 {
     @include title-style;
     position: absolute;

@@ -8,10 +8,10 @@ export default function DisplayPage(props) {
 
   return (
     <div>
-      <div className={`${value.stickyCLass ? "sticky" : ""}`}>
+      <header className={`${value.stickyCLass ? "sticky" : ""}`}>
         <NavBar />
         <MobileConnect/>
-      </div>
+      </header>
       <Ideas />
     </div>
   );
