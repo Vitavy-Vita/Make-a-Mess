@@ -7,7 +7,7 @@ export const getAllUsers = async (_, res) => {
   } catch (error) {
     res.status(500).json({
       status: error,
-      message: "Enable to get users list",
+      message: "Unable to get users list",
     });
   }
 };
@@ -41,7 +41,7 @@ export const addUsers = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Enable to create new user",
+      message: "Unable to create new user",
     });
   }
 };
