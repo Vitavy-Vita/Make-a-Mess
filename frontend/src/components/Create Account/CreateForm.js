@@ -1,21 +1,110 @@
+import axios from "axios";
+import React, { useState } from "react";
 export default function CreateForm() {
+  const [inputs, setInputs] = useState({
+    name: "",
+    password: "",
+    passwordConfirm: "",
+    tel: "",
+    email: "",
+  });
+  const [err, setErr] = useState();
+  const [response, setResponse] = useState();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({ ...inputs, [name]: value });
+    setErr("");
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      inputs.name.trim() === "" ||
+      inputs.password.trim() === "" ||
+      inputs.passwordConfirm.trim() === "" ||
+      inputs.tel.trim() === "" ||
+      inputs.email.trim() === ""
+    ) {
+      return setErr("Please provide all informations");
+    }
+    axios
+      .post("http://localhost:9000/user/new", inputs)
+      .then((res) => {
+        setInputs({
+          ...inputs,
+          name: "",
+          password: "",
+          passwordConfirm: "",
+          tel: "",
+          email: "",
+        });
+        setResponse("Your account has been successfully created !");
+      })
+      .catch((err) => {
+        console.log("====================================");
+        console.log(err);
+        console.log("====================================");
+      });
+  };
   return (
     <article className="center-container">
       <h1>Create your account:</h1>
       <section className="form-container">
-        <form action="create">
-          <label htmlFor="Name"></label>
-          <input type="text" placeholder="Name:"size="25" required />
-          <label htmlFor="Password"></label>
-          <input type="password" placeholder="Password:" size="25" required />
-          <label htmlFor="Password"></label>
-          <input type="password" placeholder="Confirm Password:" size="25" required />
-          <label htmlFor="telephone"></label>
-          <input type="tel" placeholder="Phone number:" size="25" required />
-          <label htmlFor="Email"></label>
-          <input type="email" placeholder="Email:"size="25" required />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name:"
+            size="25"
+            value={inputs.name}
+            name="name"
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Password:"
+            size="25"
+            value={inputs.password}
+            name="password"
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Confirm Password:"
+            size="25"
+            value={inputs.passwordConfirm}
+            name="passwordConfirm"
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="tel"
+            placeholder="Phone number:"
+            size="25"
+            value={inputs.tel}
+            name="tel"
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="email"
+            placeholder="Email:"
+            size="25"
+            value={inputs.email}
+            name="email"
+            onChange={handleChange}
+            required
+          />
+          <button className={"button-form"}>Validate</button>
         </form>
-        <button className={"button-form"}>Validate</button>
+        {err && <span>{err}</span>}
+        {response && <span>{response}</span>}
       </section>
     </article>
   );
