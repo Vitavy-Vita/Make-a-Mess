@@ -1,6 +1,5 @@
-import NavBarProvider from "../../context/NavBarContext";
-import DisplayPage from "../Ideas/DisplayIdeas";
 import { motion } from "framer-motion";
+import BurgerGallery from "./BurgerGallery";
 
 export default function Ideas() {
   return (
@@ -9,9 +8,7 @@ export default function Ideas() {
       animate={{ width: "100%" }}
       exit={{ x: window.innerWidth, transition: "0.2s" }}
     >
-      <NavBarProvider>
-        <DisplayPage />
-      </NavBarProvider>
+      <BurgerGallery />
     </motion.div>
   );
 }

@@ -1,7 +1,5 @@
-import NavBarProvider from "../../context/NavBarContext";
-import DisplayPage from "../Login/DisplayLogin";
 import { motion } from "framer-motion";
-
+import LoginForm from "./LoginForm";
 export default function Login() {
   return (
     <motion.div
@@ -9,9 +7,7 @@ export default function Login() {
       animate={{ width: "100%" }}
       exit={{ x: window.innerWidth, transition: "0.2s" }}
     >
-      <NavBarProvider>
-        <DisplayPage />
-      </NavBarProvider>
+      <LoginForm />
     </motion.div>
   );
 }

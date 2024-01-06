@@ -4,11 +4,11 @@ import AnimatedRoutes from "./components/AnimatedRoutes";
 
 function App() {
   return (
-    <body>
+    <main>
       <Router>
         <AnimatedRoutes />
       </Router>
-    </body>
+    </main>
   );
 }
 
