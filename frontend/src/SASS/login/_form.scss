@@ -18,6 +18,7 @@ span {
   display: inline-block;
   color: variables.$gray;
   font-size: 25px;
+  text-transform: none
 }
 form {
   @include display-flex;
