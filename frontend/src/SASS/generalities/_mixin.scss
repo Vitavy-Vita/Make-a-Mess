@@ -24,7 +24,7 @@
   text-shadow: variables.$text-shadow;
   line-height: 28px;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 @mixin sub-title-style-desktop {
   color: variables.$brown;
@@ -33,7 +33,7 @@
   text-shadow: variables.$text-shadow;
   line-height: 28px;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 @mixin text-style {
   color: variables.$brown;
