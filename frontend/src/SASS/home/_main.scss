@@ -50,7 +50,8 @@ body {
     h1 {
       @include title-style-desktop;
       width: 60%;
-      margin-top: 0.5em;
+      margin-top: 1em;
+      margin-left: 2em;
     }
     h2 {
       @include sub-title-style-desktop
@@ -58,8 +59,11 @@ body {
     p {
       width: 50%;
       font-size: 35px;
+      margin-left: 3.5em;
     }
-   
+    section{
+      margin-left: 10em;
+    }
   }
   @media screen and (min-width: 811px) {
     background-position-x: 0;
@@ -86,6 +90,7 @@ body {
     }
     section{
       flex-direction: row;
+      gap: 2em;
     }
   }
 }
