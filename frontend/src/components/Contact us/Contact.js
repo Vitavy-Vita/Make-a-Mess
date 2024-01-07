@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { FaPhoneAlt } from "react-icons/fa";
 export default function Contact() {
   return (
     <motion.main
@@ -9,7 +8,7 @@ export default function Contact() {
     >
       <section className="main-title">
         <h2>Let us know what you</h2>
-        <h1>Think !!</h1>
+        <h1 className="think">Think !!</h1>
       </section>
       <article className="contact-container">
         <section>
@@ -47,15 +46,12 @@ export default function Contact() {
       </article>
       <h2>Where to find us</h2>
       <iframe
-        width="425"
-        height="350"
         src="https://www.openstreetmap.org/export/embed.html?bbox=1.9822973012924197%2C48.7572974655531%2C1.9858378171920779%2C48.758959589700616&amp;layer=mapnik&amp;marker=48.75812853450152%2C1.9840675592422485"
-        style={{ border: "1px solid black" }}
+        
       ></iframe>
-      <br />
       <small>
         <a href="https://www.openstreetmap.org/?mlat=48.75813&amp;mlon=1.98407#map=19/48.75813/1.98407">
-          Afficher une carte plus grande
+          Show a bigger map
         </a>
       </small>
     </motion.main>

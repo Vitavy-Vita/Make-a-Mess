@@ -105,6 +105,7 @@
   border: 2px solid variables.$red;
   border-radius: 15px;
   outline-color: variables.$red;
+  width: 100%;
 }
 @mixin input-style-desktop{
   font-family: variables.$text-font;
