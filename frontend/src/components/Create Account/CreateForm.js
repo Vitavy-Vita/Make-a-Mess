@@ -34,7 +34,8 @@ export default function CreateForm() {
       return setErr("Please provide all informations");
     }
     axios
-      .post("http://localhost:9001/user/new", inputs)
+      .post("http://yohannrousseau.3wa.io:9001",inputs)
+      // .post("http://localhost:9001/user/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
