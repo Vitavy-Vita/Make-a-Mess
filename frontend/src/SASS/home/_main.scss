@@ -13,7 +13,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position-x: -10em;
-  background-position-y: 8em;
+  background-position-y: 6em;
   @include display-flex;
   flex-direction: column;
   h1 {
@@ -21,7 +21,7 @@ body {
   }
   h2 {
     @include sub-title-style;
-    margin-top: 4em;
+   
   }
   p {
     @include text-style;
@@ -30,10 +30,18 @@ body {
   }
   a {
     @include button;
-    margin-bottom: 10em;
+    
   }
   a:hover {
     @include button-hover;
+  }
+  section{
+    @include display-flex;
+    flex-direction: column;
+    margin-top: 4em;
+    margin-bottom: 10em;
+    margin-left: 2em;
+   
   }
 
   @media screen and (min-width: 415px) and (max-width: 810px) {
@@ -62,7 +70,6 @@ body {
       line-height: 80px;
     }
     h2 {
-      margin-top: 2em;
       font-size: 60px;
     }
     p {
@@ -73,10 +80,12 @@ body {
     a {
       font-size: 20px;
       padding: 1em 3em;
-      margin-bottom: 3em;
     }
     a:hover {
       font-size: 20px;
+    }
+    section{
+      flex-direction: row;
     }
   }
 }

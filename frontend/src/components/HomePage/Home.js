@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import bgBurger from "../../assets/images/bg-burger.png";
 export default function Home() {
   return (
     <motion.section
@@ -10,9 +9,10 @@ export default function Home() {
     >
       <h1 className={"main-title"}>Welcome to Make-a-Mess</h1>
       <p>Tired of not knowing what you can or cannot eat ?</p>
-      <h2>Let us help you!</h2>
-      <a href="#">Start Building</a>
-      {/* <img src={bgBurger} alt="image of a burger" className="bg-burger"/> */}
+      <section>
+        <h2>Let us help you!</h2>
+        <a href="#">Start Building</a>
+      </section>
     </motion.section>
   );
 }
