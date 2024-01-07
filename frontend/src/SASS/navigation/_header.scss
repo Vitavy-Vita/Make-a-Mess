@@ -43,6 +43,7 @@ nav {
   background-color: variables.$red;
   width: 100%;
   height: 5em;
+  
   .nav-menu {
     padding: 0;
     position: absolute;
@@ -51,6 +52,7 @@ nav {
     z-index: 2;
     height: 100vh;
     width: 100%;
+    
   }
   .nav-option {
     cursor: pointer;
@@ -68,6 +70,7 @@ nav {
     width: 65%;
     height: 100vh;
     background-color: variables.$red;
+    
   }
   .hidden {
     position: absolute;
@@ -160,8 +163,10 @@ nav {
   }
 }
 @media screen and (min-width: 811px) {
+  
   nav {
     height: 10em;
+    
     img {
       width: 200px;
     }
@@ -182,6 +187,7 @@ nav {
       border-radius: 15%;
       margin: 1em;
       text-decoration: none;
+      list-style: none;
     }
   }
 }

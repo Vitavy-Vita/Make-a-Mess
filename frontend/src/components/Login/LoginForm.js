@@ -1,6 +1,6 @@
 export default function Login() {
   return (
-    <div className="center-container">
+    <article className="center-container">
       <h1>Please login to your account:</h1>
       <section className="form-container">
         <form action="create">
@@ -11,6 +11,6 @@ export default function Login() {
         </form>
         <button className={"button-form"}>Validate</button>
       </section>
-    </div>
+    </article>
   );
 }

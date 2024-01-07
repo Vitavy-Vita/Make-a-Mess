@@ -6,18 +6,18 @@ import { MdOutlineManageAccounts } from "react-icons/md";
 export default function Login() {
   const value = useNavBarProvider();
   return (
-    <div>
+    <aside>
       <FaRegUserCircle className={"react-icon"} onClick={value.onClickSlide} />
-      <section className={"login-area-desktop"}>
-        <div className="buttons login-menu">
+      <article className={"login-area-desktop"}>
+        <section className="buttons">
           <a href="/CreateAccount">
             <MdOutlineManageAccounts className="form-icon" /> New Account
           </a>
           <a href="/Login">
             <IoIosLogIn className="form-icon" /> Login
           </a>
-        </div>
-      </section>
-    </div>
+        </section>
+      </article>
+    </aside>
   );
 }
