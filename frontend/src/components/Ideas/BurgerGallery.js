@@ -3,12 +3,8 @@ import data from "./data";
 
 export default function BurgerGallery() {
   return (
-    <div className="container">
-      <div className="main-title">
-        <h2>Here is a few pre-made</h2>
-        <h1>Burger !!</h1>
-      </div>
-      <div className="burger-gallery-container">
+    <article className="container">
+      <section className="burger-gallery-container">
         {data.map((item) => (
           <BurgerCard
             name={item.name}
@@ -20,7 +16,7 @@ export default function BurgerGallery() {
             calories={item.calories}
           />
         ))}
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }

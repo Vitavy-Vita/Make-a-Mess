@@ -5,6 +5,7 @@ import Home from "./HomePage/Home";
 import Login from "./Login/Login";
 import Ideas from "./Ideas/Ideas";
 import About from "./About us/About";
+import Contact from "./Contact us/Contact";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -16,6 +17,7 @@ export default function AnimatedRoutes() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Ideas" element={<Ideas />} />
         <Route path="/About" element={<About />} />
+        <Route path="/Contact" element={<Contact />} />
       </Routes>
     </AnimatePresence>
   );

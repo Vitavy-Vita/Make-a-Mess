@@ -9,27 +9,39 @@ export default function NavBar(props) {
 
   return (
     <nav className={value.navClass}>
-      <Logo/>
+      <Logo />
       <Burger />
       <Login />
       <section className={value.menuClass}>
         <ul className={value.menuIndex}>
-          <a href="/" className={"nav-option"}><li>Home Page</li></a>
-          <a href="/Ideas" className={"nav-option"}><li>Need Ideas?</li></a>
-          <a href="/About" className={"nav-option"}><li>About Us</li></a>
-          <a className={"nav-option"}><li>Contact Us</li></a>
+          <a href="/" className={"nav-option"}>
+            <li>Home Page</li>
+          </a>
+          <a href="/Ideas" className={"nav-option"}>
+            <li>Need Ideas?</li>
+          </a>
+          <a href="/About" className={"nav-option"}>
+            <li>About Us</li>
+          </a>
+          <a href="/Contact" className={"nav-option"}>
+            <li>Contact Us</li>
+          </a>
         </ul>
-       <Button/>
+        <Button />
       </section>
       <ul className={"nav-tablet-desktop"}>
-        <a href= "/" className={"nav-option"}>
-          <li>Home Page</li></a>
+        <a href="/" className={"nav-option"}>
+          <li>Home Page</li>
+        </a>
         <a href="/Ideas" className={"nav-option"}>
-          <li>Need Ideas?</li></a>
+          <li>Need Ideas?</li>
+        </a>
         <a href="/About" className={"nav-option"}>
-          <li>About Us</li></a>
-        <a className={"nav-option"}>
-          <li>Contact Us</li></a>
+          <li>About Us</li>
+        </a>
+        <a href="/Contact" className={"nav-option"}>
+          <li>Contact Us</li>
+        </a>
       </ul>
     </nav>
   );

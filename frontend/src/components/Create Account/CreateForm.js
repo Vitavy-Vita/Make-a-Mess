@@ -18,7 +18,12 @@ export default function CreateForm() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (inputs.password !== inputs.passwordConfirm) {
+      return setErr("Passwords do not match");
+    }
+    if (inputs.password.length < 8) {
+      return setErr("Password must be at least 8 characters");
+    }
     if (
       inputs.name.trim() === "" ||
       inputs.password.trim() === "" ||
@@ -102,9 +107,9 @@ export default function CreateForm() {
             required
           />
           <button className={"button-form"}>Validate</button>
+          {err && <span>{err}</span>}
+          {response && <span>{response}</span>}
         </form>
-        {err && <span>{err}</span>}
-        {response && <span>{response}</span>}
       </section>
     </article>
   );

@@ -5,17 +5,26 @@
 /* -------------------------------------------------------------------------- */
 
 .form-container {
+  position: relative;
   text-align: center;
   border-radius: 15px;
   background-color: variables.$light-red;
+ 
 }
 h1 {
   @include title-style;
-  
+}
+span {
+  @include sub-title-style;
+  display: inline-block;
+  color: variables.$gray;
+  font-size: 25px;
 }
 form {
   @include display-flex;
   flex-direction: column;
+  padding: 2em;
+  
   input {
     @include input-style;
     margin-top: 0.5em;
@@ -24,30 +33,30 @@ form {
     color: variables.$red;
     font-family: variables.$text-font;
   }
- 
 }
 
 button {
   @include button;
+  margin-top: 2em;
 }
 
 button:hover {
   @include button-style-hover;
 }
-@media screen and (min-width:415px) and (max-width:811px) {
-    .center-container{
-      input{
-        @include input-style-desktop
-      }
-      input::placeholder{
-        font-size: 20px;
-      }
+@media screen and (min-width: 415px) and (max-width: 811px) {
+  .center-container {
+    input {
+      @include input-style-desktop;
     }
+    input::placeholder {
+      font-size: 20px;
+    }
+  }
 }
 @media screen and (min-width: 811px) {
-    h1{
-        color:variables.$gray
-    }
+  h1 {
+    color: variables.$gray;
+  }
   .center-container {
     display: flex;
     justify-content: center;
@@ -59,8 +68,8 @@ button:hover {
     input {
       padding: 1em;
     }
-    input::placeholder{
-        font-size: 20px;
+    input::placeholder {
+      font-size: 20px;
     }
   }
   button {
@@ -70,12 +79,12 @@ button:hover {
   }
 }
 @media screen and (min-width: 811px) {
-  .center-container{
+  .center-container {
     flex-direction: column;
-    input{
+    input {
       font-size: 25px;
     }
-    input::placeholder{
+    input::placeholder {
       font-size: 25px;
     }
   }

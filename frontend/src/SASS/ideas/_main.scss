@@ -30,23 +30,22 @@
   }
 }
 @media screen and (min-width: 415px) and (max-width: 810px) {
-  .main-title{
-    margin:0;
-    h1{
+  .main-title {
+    margin: 0;
+    h1 {
       font-size: 80px;
-      margin-bottom:0.5em;
+      margin-bottom: 0.5em;
       line-height: 60px;
     }
-    h2{
+    h2 {
       font-size: 50px;
       text-align: left;
-      margin-top:0.5em;
+      margin-top: 0.5em;
       margin-left: 1.3em;
       width: 60%;
       line-height: 40px;
-      letter-spacing:2px;
+      letter-spacing: 2px;
     }
-
   }
   .container {
     .main-title {
@@ -55,33 +54,43 @@
     .burger-gallery-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap:10px;
+      gap: 10px;
     }
-    
   }
 }
-@media screen  and (min-width: 811px) {
+@media screen and (min-width: 811px) {
+  .main-title {
+    flex-direction: row;
+    h1 {
+      font-size: 130px;
+      margin-top: 0.4em;
+      padding-right: 1.5em
+    }
+    h2 {
+      font-size: variables.$title-size-desktop;
+      width: 10em;
+      line-height: 50px;
+      text-align: right;
+      
+    }
+  }
   .container {
     @include display-flex;
-    flex-direction: column;
-    .main-title{
-      flex-direction: row;
-      margin-right: 10em;
-    }
-    h2{
+
+    h2 {
       font-size: variables.$title-size-desktop;
-      width:10em;
+      width: 10em;
       line-height: 50px;
       text-align: right;
     }
-    h1{
+    h1 {
       font-size: 130px;
       margin-top: 0.4em;
     }
     .burger-gallery-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:10px;
+      gap: 10px;
       margin: 2em 0;
     }
     .burger-card {
@@ -91,5 +100,5 @@
   }
 }
 
-// 
-// 
+//
+//

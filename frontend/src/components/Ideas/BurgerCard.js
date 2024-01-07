@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BurgerCard(props) {
   return (
-    <div className="burger-card">
+    <article className="burger-card">
       <div
         style={{
           backgroundImage: `url(${props.image})`,
@@ -32,6 +32,6 @@ export default function BurgerCard(props) {
           <li>{props.calories}</li>
         </ul>
       </section>
-    </div>
+    </article>
   );
 }
