@@ -15,6 +15,12 @@ export const getAllUsers = async (_, res) => {
 export const addUsers = async (req, res) => {
   try {
     const { name, password, passwordConfirm, tel, email } = req.body;
+    if(password !== passwordConfirm){
+      return res.status(401).json({
+        status: "error",
+        message: "Please make sure to match your password and password confirmation",
+      });
+    }
     if (
       name.trim() === "" ||
       password.trim() === "" ||
@@ -30,7 +36,6 @@ export const addUsers = async (req, res) => {
     const user = new User({
       name: name,
       password: password,
-      passwordConfirm: passwordConfirm,
       tel: tel,
       email: email,
     });
@@ -40,6 +45,7 @@ export const addUsers = async (req, res) => {
       message: "User created",
     });
   } catch (error) {
+    console.error("Error creating new user:", error);
     res.status(500).json({
       message: "Unable to create new user",
     });
