@@ -7,12 +7,13 @@ html {
 body {
   background-color: variables.$gray;
   height: 100%;
-  
 }
 .home-page {
   background-image: url("../../assets/images/bg-burger.png");
   background-repeat: no-repeat;
   background-size: contain;
+  background-position-x: -10em;
+  background-position-y: 8em;
   @include display-flex;
   flex-direction: column;
   h1 {
@@ -20,47 +21,59 @@ body {
   }
   h2 {
     @include sub-title-style;
+    margin-top: 4em;
   }
   p {
     @include text-style;
+    width: 60%;
     font-size: 20px;
   }
   a {
     @include button;
+    margin-bottom: 10em;
   }
   a:hover {
     @include button-hover;
   }
 
   @media screen and (min-width: 415px) and (max-width: 810px) {
+    background-position-x: -10em;
+    background-position-y: 2em;
     h1 {
       @include title-style-desktop;
+      width: 60%;
+      margin-top: 0.5em;
     }
     h2 {
-      @include sub-title-style-desktop;
+      @include sub-title-style-desktop
     }
     p {
-      @include sub-title-style-desktop;
+      width: 50%;
+      font-size: 35px;
     }
-
+   
   }
   @media screen and (min-width: 811px) {
+    background-position-x: 0;
+    background-position-y: 2em;
     h1 {
-      width: 800px;
+      width: 40%;
       font-size: 100px;
       line-height: 80px;
     }
     h2 {
+      margin-top: 2em;
       font-size: 60px;
     }
     p {
-      width: 700px;
+      width: 40%;
       font-size: 60px;
       line-height: 50px;
     }
     a {
       font-size: 20px;
       padding: 1em 3em;
+      margin-bottom: 3em;
     }
     a:hover {
       font-size: 20px;
