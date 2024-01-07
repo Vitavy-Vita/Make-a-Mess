@@ -23,11 +23,12 @@ span {
 form {
   @include display-flex;
   flex-direction: column;
-  padding: 2em;
+  padding: 2em 0;
   
   input {
     @include input-style;
     margin-top: 0.5em;
+    width: 60%;
   }
   input::placeholder {
     color: variables.$red;
@@ -45,8 +46,10 @@ button:hover {
 }
 @media screen and (min-width: 415px) and (max-width: 811px) {
   .center-container {
+    
     input {
       @include input-style-desktop;
+      
     }
     input::placeholder {
       font-size: 20px;

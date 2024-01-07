@@ -103,9 +103,9 @@
   font-family: variables.$text-font;
   padding: 0.5em;
   border: 2px solid variables.$red;
-  border-radius: 15px;
+  border-radius: 10px;
   outline-color: variables.$red;
-  width: 100%;
+  width: 90%;
 }
 @mixin input-style-desktop{
   font-family: variables.$text-font;

@@ -101,7 +101,7 @@ nav {
     @include burger-style;
   }
   .clicked:nth-child(1) {
-    transform: rotate(45deg) translate(-0.25em, 0.25em);
+    transform: rotate(45deg) translate(0.15em, 0.15em);
     transition: ease-out 0.5s;
   }
   .clicked:nth-child(2) {
@@ -109,7 +109,7 @@ nav {
     transition: ease-out 0.5s;
   }
   .clicked:nth-child(3) {
-    transform: rotate(135deg) translate(-0.5em, 1em);
+    transform: rotate(135deg) translate(-0.35em, 0.35em);
     transition: ease-out 0.5s;
   }
   .unclicked:nth-child(1) {

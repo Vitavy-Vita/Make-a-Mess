@@ -39,12 +39,12 @@ export default function Contact() {
             id=""
             cols="25"
             rows="10"
-            placeholder="Your Message"
+            placeholder="Your Message:"
           ></textarea>
           <button>Send</button>
         </form>
       </article>
-      <h2>Where to find us</h2>
+      <h2 className="sub-title-contact">Where to find us</h2>
       <iframe
         src="https://www.openstreetmap.org/export/embed.html?bbox=1.9822973012924197%2C48.7572974655531%2C1.9858378171920779%2C48.758959589700616&amp;layer=mapnik&amp;marker=48.75812853450152%2C1.9840675592422485"
         
