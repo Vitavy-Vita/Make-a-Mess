@@ -996,6 +996,7 @@ body {
   line-height: 28px;
   text-align: center;
   text-transform: uppercase;
+  text-transform: none;
 }
 .home-page p {
   color: #825b56;

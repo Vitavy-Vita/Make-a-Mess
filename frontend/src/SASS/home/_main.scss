@@ -21,7 +21,7 @@ body {
   }
   h2 {
     @include sub-title-style;
-   
+    text-transform: none;
   }
   p {
     @include text-style;
@@ -30,18 +30,16 @@ body {
   }
   a {
     @include button;
-    
   }
   a:hover {
     @include button-hover;
   }
-  section{
+  section {
     @include display-flex;
     flex-direction: column;
     margin-top: 4em;
     margin-bottom: 10em;
     margin-left: 2em;
-   
   }
 
   @media screen and (min-width: 415px) and (max-width: 810px) {
@@ -54,14 +52,14 @@ body {
       margin-left: 2em;
     }
     h2 {
-      @include sub-title-style-desktop
+      @include sub-title-style-desktop;
     }
     p {
       width: 50%;
       font-size: 35px;
       margin-left: 3.5em;
     }
-    section{
+    section {
       margin-left: 10em;
     }
   }
@@ -88,7 +86,7 @@ body {
     a:hover {
       font-size: 20px;
     }
-    section{
+    section {
       flex-direction: row;
       gap: 2em;
     }
