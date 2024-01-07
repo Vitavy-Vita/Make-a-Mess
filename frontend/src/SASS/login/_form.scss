@@ -9,7 +9,6 @@
   text-align: center;
   border-radius: 15px;
   background-color: variables.$light-red;
- 
 }
 h1 {
   @include title-style;
@@ -24,7 +23,7 @@ form {
   @include display-flex;
   flex-direction: column;
   padding: 2em 0;
-  
+
   input {
     @include input-style;
     margin-top: 0.5em;
@@ -46,10 +45,8 @@ button:hover {
 }
 @media screen and (min-width: 415px) and (max-width: 811px) {
   .center-container {
-    
     input {
       @include input-style-desktop;
-      
     }
     input::placeholder {
       font-size: 20px;
