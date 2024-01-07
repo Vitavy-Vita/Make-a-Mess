@@ -5,7 +5,6 @@
 /* -------------------------------------------------------------------------- */
 
 .form-container {
-  height: 50vh;
   text-align: center;
   border-radius: 15px;
   background-color: variables.$light-red;
@@ -17,7 +16,6 @@ h1 {
 form {
   @include display-flex;
   flex-direction: column;
-  height: 40vh;
   input {
     @include input-style;
     margin-top: 0.5em;

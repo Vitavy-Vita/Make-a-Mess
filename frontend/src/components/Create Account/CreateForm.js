@@ -29,7 +29,7 @@ export default function CreateForm() {
       return setErr("Please provide all informations");
     }
     axios
-      .post("http://localhost:9000/user/new", inputs)
+      .post("http://localhost:9001/user/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
