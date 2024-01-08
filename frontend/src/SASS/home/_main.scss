@@ -22,6 +22,7 @@ body {
   h2 {
     @include sub-title-style;
     text-transform: none;
+
   }
   p {
     @include text-style;
@@ -53,6 +54,7 @@ body {
     }
     h2 {
       @include sub-title-style-desktop;
+      text-transform: none;
     }
     p {
       width: 50%;
