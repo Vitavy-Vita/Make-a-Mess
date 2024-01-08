@@ -22,9 +22,11 @@ iframe {
   border-radius: 10px;
 }
 small {
+ 
   text-align: left;
   a {
-    padding: 2em;
+    display: inline-block;
+    padding-bottom: 2em;
     text-decoration: none;
     color: variables.$brown;
   }
