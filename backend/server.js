@@ -20,7 +20,9 @@ dotenv.config();
 connectDb();
 
 app.use(userRouter);
-
+app.get("/",(req,res)=>{
+  res.send('Hello')
+})
 app.listen(process.env.PORT, () => {
   console.log(`Server is working on port: ${process.env.BASE_URL}`);
 });
