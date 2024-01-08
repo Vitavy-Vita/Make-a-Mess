@@ -3,7 +3,7 @@ import Login from "./Login";
 import Burger from "./Burger";
 import Logo from "./Logo";
 import Button from "./Button";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 export default function NavBar(props) {
   const value = useNavBarProvider();
@@ -22,51 +22,49 @@ export default function NavBar(props) {
           </li>
 
           <li>
-            <a href="/Ideas" className={"nav-option"}>
+            <NavLink href="/Ideas" className={"nav-option"}>
               Need Ideas?
-            </a>
+            </NavLink>
           </li>
 
           <li>
-            <a href="/About" className={"nav-option"}>
-              About Us{" "}
-            </a>
+            <NavLink href="/About" className={"nav-option"}>
+              About Us
+            </NavLink>
           </li>
 
           <li>
-            <a href="/Contact" className={"nav-option"}>
-              Contact Us{" "}
-            </a>
+            <NavLink href="/Contact" className={"nav-option"}>
+              Contact Us
+            </NavLink>
           </li>
         </ul>
         <Button />
       </section>
       <ul className={"nav-tablet-desktop"}>
         <li>
-          {" "}
-          <a href="/" className={"nav-option"}>
+          <NavLink href="/" className={"nav-option"}>
             Home Page
-          </a>
+          </NavLink>
         </li>
 
         <li>
           {" "}
-          <a href="/Ideas" className={"nav-option"}>
+          <NavLink href="/Ideas" className={"nav-option"}>
             Need Ideas?
-          </a>
+          </NavLink>
         </li>
 
         <li>
-          {" "}
-          <a href="/About" className={"nav-option"}>
-            About Us{" "}
-          </a>
+          <NavLink href="/About" className={"nav-option"}>
+            About Us
+          </NavLink>
         </li>
 
         <li>
-          <a href="/Contact" className={"nav-option"}>
+          <NavLink href="/Contact" className={"nav-option"}>
             Contact Us
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>
