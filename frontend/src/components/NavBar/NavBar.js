@@ -3,6 +3,7 @@ import Login from "./Login";
 import Burger from "./Burger";
 import Logo from "./Logo";
 import Button from "./Button";
+import {NavLink} from "react-router-dom"
 
 export default function NavBar(props) {
   const value = useNavBarProvider();
@@ -15,9 +16,9 @@ export default function NavBar(props) {
       <section className={value.menuClass}>
         <ul className={value.menuIndex}>
           <li>
-            <a href="/" className={"nav-option"}>
+            <NavLink to={"/"} className={"nav-option"}>
               Home Page
-            </a>
+            </NavLink>
           </li>
 
           <li>
