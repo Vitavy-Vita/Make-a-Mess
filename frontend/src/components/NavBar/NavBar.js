@@ -22,19 +22,19 @@ export default function NavBar(props) {
           </li>
 
           <li>
-            <NavLink href="/Ideas" className={"nav-option"}>
+            <NavLink to={"/Ideas"} className={"nav-option"}>
               Need Ideas?
             </NavLink>
           </li>
 
           <li>
-            <NavLink href="/About" className={"nav-option"}>
+            <NavLink to={"/About"} className={"nav-option"}>
               About Us
             </NavLink>
           </li>
 
           <li>
-            <NavLink href="/Contact" className={"nav-option"}>
+            <NavLink to={"/Contact"} className={"nav-option"}>
               Contact Us
             </NavLink>
           </li>
@@ -43,26 +43,26 @@ export default function NavBar(props) {
       </section>
       <ul className={"nav-tablet-desktop"}>
         <li>
-          <NavLink href="/" className={"nav-option"}>
+          <NavLink to={"/"} className={"nav-option"}>
             Home Page
           </NavLink>
         </li>
 
         <li>
           {" "}
-          <NavLink href="/Ideas" className={"nav-option"}>
+          <NavLink to={"/Ideas"} className={"nav-option"}>
             Need Ideas?
           </NavLink>
         </li>
 
         <li>
-          <NavLink href="/About" className={"nav-option"}>
+          <NavLink to={"/About"} className={"nav-option"}>
             About Us
           </NavLink>
         </li>
 
         <li>
-          <NavLink href="/Contact" className={"nav-option"}>
+          <NavLink to={"/Contact"} className={"nav-option"}>
             Contact Us
           </NavLink>
         </li>
