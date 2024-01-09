@@ -7,6 +7,7 @@ export default function Ideas() {
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
       exit={{ x: window.innerWidth, transition: "0.2s" }}
+      className="ideas-main"
     >
       <section className="main-title">
         <h2>Here is a few pre-made</h2>

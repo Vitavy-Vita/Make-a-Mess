@@ -16,12 +16,7 @@ body {
 /*                                    LOGO                                    */
 /* -------------------------------------------------------------------------- */
 
-img {
-  position: absolute;
-  width: 110px;
-  left: 20px;
-  cursor: pointer;
-}
+
 .move-in {
   z-index: 1;
   left: 300px;
@@ -45,6 +40,12 @@ nav {
   height: 5em;
   ul {
     list-style: none;
+  }
+  img {
+    position: absolute;
+    width: 110px;
+    left: 20px;
+    cursor: pointer;
   }
   .nav-menu {
     padding: 0;

@@ -1,30 +1,12 @@
 import mongoose from "mongoose";
 
 const burgerSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  protein: {
-    type: Number,
-    required: true,
-  },
-  carbs: {
-    type: Number,
-    required: true,
-  },
-  fat: {
-    type: Number,
-    required: true,
-  },
-  calories: {
-    type: Number,
-    required: true,
-  },
+  name: String,
+  description: String,
+  protein: Number,
+  carbs: Number,
+  fat: Number,
+  calories: Number,
   image: {
     src: String,
     alt: String,
