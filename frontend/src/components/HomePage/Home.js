@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 export default function Home() {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: "1sec" }}
-      exit={{ opacity: 0 }}
+    initial={{ width: 0 }}
+    animate={{ width: "100%" }}
+    exit={{  y: window.innerWidth, transition: "1s" }}
       className="home-page"
     >
       <h1 className={"main-title"}>Welcome to Make-a-Mess</h1>

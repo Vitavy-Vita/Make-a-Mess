@@ -10,7 +10,7 @@ export default function About() {
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ x: window.innerWidth, transition: "0.2s" }}
+      exit={{  y: window.innerWidth, transition: "1s"}}
     >
       <h1 className="about-title">Who are we</h1>
       <section className={"article-container"}>

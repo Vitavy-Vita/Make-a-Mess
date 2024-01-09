@@ -6,7 +6,7 @@ export default function Ideas() {
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ x: window.innerWidth, transition: "0.2s" }}
+      exit={{ y: window.innerWidth, transition: "1s"}}
       className="ideas-main"
     >
       <section className="main-title">
