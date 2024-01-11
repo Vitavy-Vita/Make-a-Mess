@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import token from "../../context/token";
 export default function Login() {
   const [inputs, setInputs] = useState({
     email: "",
@@ -21,11 +22,8 @@ export default function Login() {
       return setErr("Please provide all informations");
     }
     axios
-      .post("http://localhost:9001/login", inputs)
+      .post("http://localhost:9001/users/login", inputs, { headers: token() })
       .then((res) => {
-        console.log("====================================");
-        console.log(res.data.token);
-        console.log("====================================");
         if (res.data.token) {
           auth.login(res.data);
           navigate("/");
@@ -37,7 +35,9 @@ export default function Login() {
         });
       })
       .catch((res) => {
-       
+        console.log("====================================");
+        console.log(res);
+        console.log("====================================");
         setErr(res.data);
       });
   };

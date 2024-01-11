@@ -1,4 +1,4 @@
-export const token = () => {
+const token = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   if (user && user.token) {
     return {
@@ -8,3 +8,4 @@ export const token = () => {
     return {};
   }
 };
+export default token;
