@@ -3,9 +3,9 @@ export default function Login() {
     <article className="center-container">
       <h1>Please login to your account:</h1>
       <section className="form-container">
-        <form action="create">
-          <label htmlFor="Name"></label>
-          <input type="text" placeholder="Name:" size='25' required/>
+        <form >
+          <label htmlFor="email"></label>
+          <input type="email" placeholder="Email:" size='25' required/>
           <label htmlFor="Password"></label>
           <input type="password" placeholder="Password:" size='25' required/>
         </form>
