@@ -35,7 +35,7 @@ export default function CreateForm() {
     }
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/user/new", inputs)
+      .post("http://localhost:9001/user/register", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
