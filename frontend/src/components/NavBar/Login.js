@@ -17,6 +17,7 @@ export default function Login() {
           <NavLink to={"/Login"}>
             <IoIosLogIn className="form-icon" /> Login
           </NavLink>
+          <NavLink to={"/Settings/Admin"}>Settings</NavLink>
         </section>
       </article>
     </aside>

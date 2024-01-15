@@ -48,9 +48,9 @@ export default function Login() {
       animate={{ width: "100%" }}
       exit={{ y: window.innerWidth, transition: "1s" }}
     >
-      <article className="center-container">
+      <section className="center-container">
         <h1>Please login to your account:</h1>
-        <section className="form-container">
+        <article className="form-container">
           <form onSubmit={handleSubmit}>
             <label htmlFor="email"></label>
             <input
@@ -75,8 +75,8 @@ export default function Login() {
             <button className={"button-form"}>Validate</button>
           </form>
           {err && <span>{err}</span>}
-        </section>
-      </article>
+        </article>
+      </section>
     </motion.main>
   );
 }

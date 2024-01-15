@@ -14,6 +14,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: [8, "Password must be 8 characters minimum"],
+    validate: {
+      validator: (password) => {
+        return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/.test(
+          password
+        );
+      },
+      message: "Invalid password.",
+    },
   },
   tel: {
     type: String,
@@ -55,12 +63,11 @@ userSchema.pre("save", async function (next) {
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-    next()
+    next();
   } catch (error) {
-    next(error)
+    next(error);
   }
 });
-
 
 const User = mongoose.model("User", userSchema);
 
