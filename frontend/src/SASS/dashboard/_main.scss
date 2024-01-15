@@ -1,29 +1,34 @@
 @use "../generalities/variables";
 
-.main-dashboard{
-    text-align: center;
-    h2{
-        text-align: left;
-        margin-left: 1em;
-    }
+.main-dashboard {
+  text-align: center;
+  h2 {
+    text-align: left;
+    margin-left: 2em;
+  }
 }
 
-.database-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1em;
-    padding: 1em;
-    a{
-        @include button
-    }
-    a:hover{
-        @include button-hover
-    }
+.database-container {
+  background-color: variables.$light-red;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+  padding: 1em;
+  a {
+    @include button;
+  }
+  a:hover {
+    @include button-hover;
+  }
 }
 
 @media screen and (min-width: 811px) {
-    .database-container{
-        width: 50%;
+  .database-container {
+    border-radius: 15px;
+    margin-left: 2em;
+    width: 50%;
+    a {
+      width: 50%;
     }
-    
+  }
 }
