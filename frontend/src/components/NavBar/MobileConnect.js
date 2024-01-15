@@ -7,9 +7,9 @@ export default function MobileConnect() {
     <aside className={"mobile-connect"}>
       <section className={value.connectSlide}>
         <article className="buttons">
-          <NavLink to={"/CreateAccount"}>New Account</NavLink>
-          <NavLink to={"/Login"}>Login</NavLink>
-          <NavLink to={"/Settings/Admin"}>Settings</NavLink>
+          <NavLink to={"/CreateAccount"} onClick={value.onClickSlide}>New Account</NavLink>
+          <NavLink to={"/Login"} onClick={value.onClickSlide}>Login</NavLink>
+          <NavLink to={"/Settings/Admin"} onClick={value.onClickSlide}>Settings</NavLink>
           </article>
       </section>
     </aside>

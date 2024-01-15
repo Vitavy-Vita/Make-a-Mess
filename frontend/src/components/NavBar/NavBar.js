@@ -16,25 +16,41 @@ export default function NavBar(props) {
       <section className={value.menuClass}>
         <ul className={value.menuIndex}>
           <li>
-            <NavLink to={"/"} className={"nav-option"}>
+            <NavLink
+              to={"/"}
+              className={"nav-option"}
+              onClick={value.onClickToggle}
+            >
               Home Page
             </NavLink>
           </li>
 
           <li>
-            <NavLink to={"/Ideas"} className={"nav-option"}>
+            <NavLink
+              to={"/Ideas"}
+              className={"nav-option"}
+              onClick={value.onClickToggle}
+            >
               Need Ideas?
             </NavLink>
           </li>
 
           <li>
-            <NavLink to={"/About"} className={"nav-option"}>
+            <NavLink
+              to={"/About"}
+              className={"nav-option"}
+              onClick={value.onClickToggle}
+            >
               About Us
             </NavLink>
           </li>
 
           <li>
-            <NavLink to={"/Contact"} className={"nav-option"}>
+            <NavLink
+              to={"/Contact"}
+              className={"nav-option"}
+              onClick={value.onClickToggle}
+            >
               Contact Us
             </NavLink>
           </li>
