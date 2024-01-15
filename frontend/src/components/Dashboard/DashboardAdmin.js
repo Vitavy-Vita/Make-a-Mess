@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const DashboardAdmin = () => {
   return (
-    <main>
+    <main className="main-dashboard">
       <h1>Dashboard</h1>
       <h2>Databases:</h2>
       <section className="database-container">

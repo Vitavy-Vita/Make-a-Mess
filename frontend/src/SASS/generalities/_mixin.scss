@@ -6,7 +6,6 @@
   font-size: variables.$title-size-mobile;
   text-shadow: variables.$text-shadow;
   line-height: 50px;
-  text-align: center;
   text-transform: uppercase;
 }
 @mixin title-style-desktop {
@@ -15,7 +14,7 @@
   font-size: variables.$title-size-desktop;
   text-shadow: variables.$text-shadow;
   line-height: 50px;
-  text-align: center;
+
 }
 @mixin sub-title-style {
   color: variables.$brown;
@@ -23,7 +22,6 @@
   font-size: variables.$sub-title-size-mobile;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
-  text-align: center;
   text-transform: uppercase;
 }
 @mixin sub-title-style-desktop {
@@ -32,7 +30,6 @@
   font-size: variables.$sub-title-size-desktop;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
-  text-align: center;
   text-transform: uppercase;
 }
 @mixin text-style {
@@ -41,7 +38,7 @@
   font-size: variables.$text-size-mobile;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
-  text-align: center;
+
 }
 @mixin text-style-desktop {
   color: variables.$brown;
@@ -49,7 +46,7 @@
   font-size: variables.$text-size-desktop;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
-  text-align: center;
+
 }
 @mixin burger-style {
   margin: 3px;

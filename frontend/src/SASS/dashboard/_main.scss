@@ -1,5 +1,13 @@
 @use "../generalities/variables";
 
+.main-dashboard{
+    text-align: center;
+    h2{
+        text-align: left;
+        margin-left: 1em;
+    }
+}
+
 .database-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -13,7 +21,7 @@
     }
 }
 
-@media screen and (min-width: 810px) {
+@media screen and (min-width: 811px) {
     .database-container{
         width: 50%;
     }
