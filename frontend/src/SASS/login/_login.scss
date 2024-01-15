@@ -7,12 +7,12 @@
   display: none;
 }
 
-@media screen and (min-width: 415px) {
+@media screen and (min-width: 811px) {
   .mobile-connect {
     display: none;
   }
   .login-area-desktop {
-    width: 40%;
+    width: 20%;
     display: block;
     height: 10em;
     position: absolute;
@@ -55,35 +55,7 @@
     }
   }
 }
-@media screen and (min-width: 811px) {
-  .login-area-desktop {
-    width: 20%;
-    text-align: center;
 
-    input {
-      font-family: variables.$text-font;
-      border: 2px solid variables.$red;
-    }
-    input::placeholder {
-      color: variables.$gray;
-    }
-    a {
-      position: relative;
-      font-family: variables.$text-font;
-      text-decoration: none;
-      color: variables.$gray;
-      font-size: 30px;
-      padding: 0;
-    }
-    a:hover {
-      text-decoration: underline white;
-    }
-    .form-icon {
-      top: 2px;
-      left: -35px;
-    }
-  }
-}
 /* -------------------------------------------------------------------------- */
 /*                               MOBILE CONNECT                               */
 /* -------------------------------------------------------------------------- */
@@ -113,7 +85,7 @@ button {
   .slide-in {
     position: absolute;
     z-index: 2;
-    top: 82px;
+    top: 0px;
     left: 250px;
     transition: ease-out 0.5s;
   }
@@ -123,5 +95,23 @@ button {
     top: -300px;
     right: 0;
     transition: ease-out 0.5s;
+  }
+  @media screen and (min-width:415px) and (max-width:810px){
+    .buttons{
+      display: inline-block;
+      border-radius: 15px;
+      a{
+        margin: 1em;
+      }
+    }
+    .slide-in{
+      top:-135px;
+      left: 250px;
+    }
+    .slide-out{
+      top: -160px;
+      left: -1500px;
+    }
+    
   }
 }
