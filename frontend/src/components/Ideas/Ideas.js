@@ -11,7 +11,7 @@ export default function Ideas() {
     >
       <section className="main-title">
         <h2>Here is a few pre-made</h2>
-        <h1>Burger !!</h1>
+        <h1>Burgers !!</h1>
       </section>
       <BurgerGallery />
     </motion.main>

@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 
-const UpdateCheese = () => {
+const UpdateMeat = () => {
+  const [meats, setMeats] = useState();
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -10,9 +12,20 @@ const UpdateCheese = () => {
     calories: 0,
   });
 
+  const { id } = useParams();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9001/custom/meat`)
+      .then((res) => {
+        setMeats(res.data);
+      })
+      .catch((res) => {
+        setErr(res.data);
+      });
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -33,7 +46,7 @@ const UpdateCheese = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/cheese/new", inputs)
+      .post("http://localhost:9001/custom/meat/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
@@ -51,7 +64,7 @@ const UpdateCheese = () => {
   };
   return (
     <article>
-      <h2>Create new Cheese</h2>
+      <h2>Create new Meat</h2>
       <form onSubmit={handleSubmit}>
         <input
           value={inputs.name}
@@ -62,7 +75,7 @@ const UpdateCheese = () => {
           onChange={handleChange}
           required
         />
-        
+
         <input
           value={inputs.protein}
           onChange={handleChange}
@@ -106,8 +119,25 @@ const UpdateCheese = () => {
       </form>
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
+      <h2>Existing Meat</h2>
+      {meats && (
+        <section>
+          {meats.map((oneMeat) => (
+            <article className="user-article-dashboard">
+              <NavLink
+                to={`/custom/meat/${oneMeat._id}`}
+                className="user-dashboard"
+              >
+                {oneMeat.name}
+              </NavLink>
+              <button>Update</button>
+              <button>Delete</button>
+            </article>
+          ))}
+        </section>
+      )}
     </article>
   );
 };
 
-export default UpdateCheese;
+export default UpdateMeat;

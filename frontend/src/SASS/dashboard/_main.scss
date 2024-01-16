@@ -1,5 +1,9 @@
 @use "../generalities/variables";
 
+
+/* -------------------------------------------------------------------------- */
+/*                                  DATABASES                                 */
+/* -------------------------------------------------------------------------- */
 .main-dashboard {
   text-align: center;
   h2 {
@@ -23,12 +27,53 @@
 }
 
 @media screen and (min-width: 811px) {
+  .article-container{
+    @include display-flex;
+    justify-content: space-around;
+    margin:0;
+  }
   .database-container {
     border-radius: 15px;
-    margin-left: 2em;
-    width: 50%;
-    a {
-      width: 50%;
+    width: 40%;
+    margin-left: 0;
+    a{
+      width: auto;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    USERS                                    */
+/* -------------------------------------------------------------------------- */
+
+.user-article-dashboard{
+  @include display-flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid variables.$red;
+  margin-top: 1em;
+  padding: 1em;
+  width: 90%;
+  .user-dashboard{
+    font-family: "Roboto";
+    font-size: 1.5em;
+    text-decoration: none;
+    color:variables.$brown;
+    width: 100%;
+    text-align: start;
+  }
+  .user-dashboard:hover{
+    text-decoration: underline;
+  }
+  button{
+    margin: 0;
+    border: none;
+  }
+}
+@media screen and (min-width:811px) {
+  .user-article-dashboard{
+    a{
+      padding: 1em;
     }
   }
 }

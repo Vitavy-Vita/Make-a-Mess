@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 
-const UpdateBread = () => {
+const UpdateCheese = () => {
+  const [cheeses, setCheeses] = useState()
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -9,9 +11,22 @@ const UpdateBread = () => {
     fat: 0,
     calories: 0,
   });
-
+  const { id } = useParams();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9001/custom/cheese`)
+      .then((res) => {
+        
+        setCheeses(res.data);
+      })
+      .catch((res) => {
+        
+        setErr(res.data);
+      });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +48,7 @@ const UpdateBread = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/bread/new", inputs)
+      .post("http://localhost:9001/custom/cheese/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
@@ -46,12 +61,12 @@ const UpdateBread = () => {
         setResponse(res.data.message);
       })
       .catch((err) => {
-        setErr(err.message);
+        setErr(err);
       });
   };
   return (
     <article>
-      <h2>Create new Bread</h2>
+      <h2>Create new Cheese</h2>
       <form onSubmit={handleSubmit}>
         <input
           value={inputs.name}
@@ -106,8 +121,22 @@ const UpdateBread = () => {
       </form>
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
+      <h2>Existing Cheese</h2>
+      {cheeses && (
+                <section>
+                {cheeses.map((oneCheese) => (
+                  <article className="user-article-dashboard">
+                    <NavLink to={`/custom/cheese/${oneCheese._id}`} className="user-dashboard">
+                      {oneCheese.name}
+                    </NavLink>
+                    <button>Update</button>
+                    <button>Delete</button>
+                  </article>
+                ))}
+              </section>
+      )}
     </article>
   );
 };
 
-export default UpdateBread;
+export default UpdateCheese;

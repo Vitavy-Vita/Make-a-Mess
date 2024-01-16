@@ -7,9 +7,9 @@
   @include display-flex;
   flex-direction: column;
   h1 {
-    @include title-style-desktop;
+    @include title-style;
+    font-size:2.5em;
     margin: 0;
-    font-size: 50px;
     text-transform: uppercase;
     letter-spacing: -0.03em;
     line-height: 36px;
@@ -18,8 +18,7 @@
     margin: 0;
     @include sub-title-style;
     font-family: variables.$title-font;
-    font-size: 35px;
-    width: 70%;
+    width: 60%;
     margin-top: 1em;
     text-align: left;
     font-style: bold;

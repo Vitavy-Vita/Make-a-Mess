@@ -1,0 +1,17 @@
+@use "../generalities/variables";
+
+.user-card-container{
+    @include display-flex;
+    .user-card{
+        background-color: variables.$light-red;
+        margin:2em;
+        padding: 2em;
+        border-radius: 15px;
+    }
+    h2 {
+        font-size: 2.5em;
+    }
+    p{
+        width: 100%;
+    }
+}

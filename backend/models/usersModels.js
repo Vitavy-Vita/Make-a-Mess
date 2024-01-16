@@ -1,14 +1,17 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-const validateEmail = (email) => {
-  const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email);
-};
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    maxLength: [10, "Nickname must be 10 characters maximum"],
+    validate: {
+      validator: (name) =>{
+        return /^[a-zA-Z0-9_]{4,10}$/.test(name)
+      }
+    }
   },
   password: {
     type: String,
@@ -41,7 +44,12 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
     required: true,
-    validate: [validateEmail, "Please fill a valid email address"],
+    validate: {
+      validator: (email) =>{
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+      },
+      message:"Please fill a valid email address",
+    },
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       "Please fill a valid email address",

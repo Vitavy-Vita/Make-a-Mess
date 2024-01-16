@@ -11,9 +11,9 @@ body {
 .home-page {
   background-image: url("../../assets/images/bg-burger.png");
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position-x: -10em;
-  background-position-y: 6em;
+  background-size: 100%;
+  background-position-x: -11em;
+  background-position-y: 3em;
   @include display-flex;
   flex-direction: column;
   h1 {
@@ -46,8 +46,9 @@ body {
   @media screen and (min-width: 415px) and (max-width: 810px) {
     background-position-x: -10em;
     background-position-y: 2em;
+    background-size: 60%;
     h1 {
-      @include title-style-desktop;
+      font-size: 3.5rem;
       width: 60%;
       margin-top: 1em;
       margin-left: 2em;
@@ -55,6 +56,7 @@ body {
     h2 {
       @include sub-title-style-desktop;
       text-transform: none;
+      
     }
     p {
       width: 50%;
@@ -68,21 +70,22 @@ body {
   @media screen and (min-width: 811px) {
     background-position-x: 0;
     background-position-y: 0;
+    background-size: 30%;
     h1 {
-      width: 50%;
-      font-size: 100px;
+      width: 40%;
+      font-size: variables.$title-size-desktop;
       line-height: 80px;
       margin-left: 5em;
     }
     h2 {
-      font-size: 60px;
+      font-size: variables.$sub-title-size-desktop;
       margin-left: 8em;
     }
     p {
-      width: 40%;
-      font-size: 60px;
+      width: 30%;
+      font-size: variables.$text-size-desktop;
       line-height: 50px;
-      margin-left: 8em;
+      margin-left: 10em;
     }
     a {
       font-size: 20px;

@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
-import BurgerGallery from "../../Ideas/BurgerGallery.js"
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 
-const UpdateBurgerGallery = () => {
+const UpdateSauce = () => {
+  const [sauces, setSauces] = useState();
   const [inputs, setInputs] = useState({
     name: "",
-    description: "",
     protein: 0,
     carbs: 0,
     fat: 0,
@@ -15,13 +15,20 @@ const UpdateBurgerGallery = () => {
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9001/custom/sauce`)
+      .then((res) => {
+        setSauces(res.data);
+      })
+      .catch((res) => {
+        setErr(res.data);
+      });
+  }, []);
+
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "image") {
-      setInputs({ ...inputs, image: files[0] });
-    } else {
-      setInputs({ ...inputs, [name]: value });
-    }
+    const { name, value } = e.target;
+    setInputs({ ...inputs, [name]: value });
     setErr("");
   };
 
@@ -29,7 +36,6 @@ const UpdateBurgerGallery = () => {
     e.preventDefault();
     if (
       inputs.name.trim() === "" ||
-      inputs.description.trim() === "" ||
       inputs.protein <= 0 ||
       inputs.carbs <= 0 ||
       inputs.fat <= 0 ||
@@ -37,23 +43,14 @@ const UpdateBurgerGallery = () => {
     ) {
       return setErr("Please provide all informations");
     }
-    const formData = new FormData();
 
-    formData.append("name", inputs.name);
-    formData.append("description", inputs.description);
-    formData.append("protein", inputs.protein);
-    formData.append("carbs", inputs.carbs);
-    formData.append("fat", inputs.fat);
-    formData.append("calories", inputs.calories);
-    formData.append("image", inputs.image);
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/burgers/new", formData)
+      .post("http://localhost:9001/custom/sauce/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
           name: "",
-          description: "",
           protein: 0,
           carbs: 0,
           fat: 0,
@@ -67,9 +64,8 @@ const UpdateBurgerGallery = () => {
   };
   return (
     <article>
-      <h2>Create new Burger</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input type="file" name="image" id="image" onChange={handleChange} />
+      <h2>Create new Sauce</h2>
+      <form onSubmit={handleSubmit}>
         <input
           value={inputs.name}
           type="text"
@@ -77,16 +73,6 @@ const UpdateBurgerGallery = () => {
           size="25"
           name="name"
           onChange={handleChange}
-          required
-        />
-        <textarea
-          value={inputs.description}
-          onChange={handleChange}
-          name="description"
-          id="description"
-          cols="30"
-          rows="10"
-          placeholder="Description:"
           required
         />
 
@@ -133,10 +119,22 @@ const UpdateBurgerGallery = () => {
       </form>
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
-      <h2>Existing Burgers:</h2>
-      <BurgerGallery/>
+      <h2>Existing Sauces</h2>
+      {sauces && (
+                <section>
+                {sauces.map((oneSauce) => (
+                  <article className="user-article-dashboard">
+                    <NavLink to={`/custom/sauce/${oneSauce._id}`} className="user-dashboard">
+                      {oneSauce.name}
+                    </NavLink>
+                    <button>Update</button>
+                    <button>Delete</button>
+                  </article>
+                ))}
+              </section>
+      )}
     </article>
   );
 };
 
-export default UpdateBurgerGallery;
+export default UpdateSauce;

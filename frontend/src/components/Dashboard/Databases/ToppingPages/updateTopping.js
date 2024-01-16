@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 
-const UpdateSauce = () => {
+const UpdateTopping = () => {
+  const [toppings, setToppings] = useState()
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -9,9 +11,22 @@ const UpdateSauce = () => {
     fat: 0,
     calories: 0,
   });
-
+  const { id } = useParams();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9001/custom/topping`)
+      .then((res) => {
+        
+        setToppings(res.data);
+      })
+      .catch((res) => {
+        
+        setErr(res.data);
+      });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +48,7 @@ const UpdateSauce = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/sauce/new", inputs)
+      .post("http://localhost:9001/custom/topping/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
@@ -51,7 +66,7 @@ const UpdateSauce = () => {
   };
   return (
     <article>
-      <h2>Create new Sauce</h2>
+      <h2>Create new Topping</h2>
       <form onSubmit={handleSubmit}>
         <input
           value={inputs.name}
@@ -106,8 +121,22 @@ const UpdateSauce = () => {
       </form>
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
+      <h2>Existing Toppings</h2>
+      {toppings && (
+                <section>
+                {toppings.map((oneTopping) => (
+                  <article className="user-article-dashboard">
+                    <NavLink to={`/custom/topping/${oneTopping._id}`} className="user-dashboard">
+                      {oneTopping.name}
+                    </NavLink>
+                    <button>Update</button>
+                    <button>Delete</button>
+                  </article>
+                ))}
+              </section>
+      )}
     </article>
   );
 };
 
-export default UpdateSauce;
+export default UpdateTopping;

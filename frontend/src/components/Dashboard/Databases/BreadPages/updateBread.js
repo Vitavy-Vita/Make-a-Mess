@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
 
-const UpdateTopping = () => {
+const UpdateBread = () => {
+  const [breads, setBreads] = useState();
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -9,10 +11,22 @@ const UpdateTopping = () => {
     fat: 0,
     calories: 0,
   });
-
+  const { id } = useParams();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9001/custom/bread`)
+      .then((res) => {
+        
+        setBreads(res.data);
+      })
+      .catch((res) => {
+        
+        setErr(res.data);
+      });
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -33,7 +47,7 @@ const UpdateTopping = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/topping/new", inputs)
+      .post("http://localhost:9001/custom/bread/new", inputs)
       .then((res) => {
         setInputs({
           ...inputs,
@@ -46,12 +60,12 @@ const UpdateTopping = () => {
         setResponse(res.data.message);
       })
       .catch((err) => {
-        setErr(err);
+        setErr(err.message);
       });
   };
   return (
     <article>
-      <h2>Create new Topping</h2>
+      <h2>Create new Bread</h2>
       <form onSubmit={handleSubmit}>
         <input
           value={inputs.name}
@@ -62,7 +76,7 @@ const UpdateTopping = () => {
           onChange={handleChange}
           required
         />
-        
+
         <input
           value={inputs.protein}
           onChange={handleChange}
@@ -106,8 +120,22 @@ const UpdateTopping = () => {
       </form>
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
+          <h2>Existing Bread</h2>
+      {breads && (
+        <section>
+          {breads.map((oneBread) => (
+            <article className="user-article-dashboard">
+              <NavLink to={`/custom/bread/${oneBread._id}`} className="user-dashboard">
+                {oneBread.name}
+              </NavLink>
+              <button>Update</button>
+              <button>Delete</button>
+            </article>
+          ))}
+        </section>
+      )}
     </article>
   );
 };
 
-export default UpdateTopping;
+export default UpdateBread;

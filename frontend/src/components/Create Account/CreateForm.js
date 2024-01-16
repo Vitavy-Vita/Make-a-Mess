@@ -47,10 +47,9 @@ export default function CreateForm() {
         });
         setResponse("Your account has been successfully created !");
       })
-      .catch((err) => {
-        console.log("====================================");
-        console.log(err);
-        console.log("====================================");
+      .catch((res) => {
+        console.log(res);
+       setErr(res.response.data.message)
       });
   };
   return (
@@ -64,6 +63,7 @@ export default function CreateForm() {
             size="25"
             value={inputs.name}
             name="name"
+            max={"10"}
             onChange={handleChange}
             required
           />

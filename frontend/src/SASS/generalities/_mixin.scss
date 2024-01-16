@@ -62,9 +62,11 @@
   line-height: 50px;
   display: flex;
   border-bottom: 1px solid variables.$white;
+  border-right: 1px solid variables.$white;
   padding: 0.5em;
   list-style: none;
   text-decoration: none;
+ 
 }
 
 @mixin button {

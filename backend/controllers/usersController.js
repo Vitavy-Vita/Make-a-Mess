@@ -42,6 +42,7 @@ export const register = async (req, res) => {
   try {
     const checkPwd =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+    const checkName = /^[a-zA-Z0-9_]{4,10}$/
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -67,6 +68,11 @@ export const register = async (req, res) => {
     if (!checkPwd.test(password)) {
       return res.status(401).json({
         message: "Password incorrect",
+      });
+    }
+    if (!checkName.test(name)) {
+      return res.status(401).json({
+        message: "Name must be 10 characters maximum",
       });
     }
     if (password !== passwordConfirm) {

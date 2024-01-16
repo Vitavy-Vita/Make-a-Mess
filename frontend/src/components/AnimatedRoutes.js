@@ -7,13 +7,20 @@ import Ideas from "./Ideas/Ideas";
 import About from "./About us/About";
 import Contact from "./Contact us/Contact";
 import DashboardAdmin from "./Dashboard/DashboardAdmin";
-import UpdateBurgerGallery from "./Dashboard/Databases/updatePreMade";
-import UpdateBread from "./Dashboard/Databases/updateBread";
-import UpdateCheese from "./Dashboard/Databases/updateCheese";
-import UpdateMeat from "./Dashboard/Databases/updateMeat";
-import UpdateSauce from "./Dashboard/Databases/updateSauce";
-import UpdateTopping from "./Dashboard/Databases/updateTopping";
-import UsersList from "./Dashboard/UsersList";
+import UpdateBurgerGallery from "./Dashboard/Databases/PreMadePages/updatePreMade";
+import UpdateBread from "./Dashboard/Databases/BreadPages/updateBread";
+import UpdateCheese from "./Dashboard/Databases/CheesePages/updateCheese";
+import UpdateMeat from "./Dashboard/Databases/MeatPages/updateMeat";
+import UpdateSauce from "./Dashboard/Databases/SaucePages/updateSauce";
+import UpdateTopping from "./Dashboard/Databases/ToppingPages/updateTopping";
+import UserPage from "./Dashboard/UserPage";
+import BreadCard from "./Dashboard/Databases/BreadPages/BreadCard";
+import CheeseCard from "./Dashboard/Databases/CheesePages/CheeseCard";
+import MeatCard from "./Dashboard/Databases/MeatPages/MeatCard";
+import PreMadeCard from "./Dashboard/Databases/PreMadePages/PreMadeCard";
+import SauceCard from "./Dashboard/Databases/SaucePages/SauceCard";
+import ToppingCard from "./Dashboard/Databases/ToppingPages/ToppingCard";
+
 
 
 export default function AnimatedRoutes() {
@@ -31,13 +38,24 @@ export default function AnimatedRoutes() {
         <Route path="/Settings/Admin" element={<DashboardAdmin />} />
 
         <Route path="/burgers/new" element={<UpdateBurgerGallery />} />
+        <Route path="/burgers/:id" element={<PreMadeCard />} />
 
         <Route path="/update/bread" element={<UpdateBread />} />
+        <Route path="/custom/bread/:id" element={<BreadCard />} />
+
         <Route path="/update/cheese" element={<UpdateCheese />} />
+        <Route path="/custom/cheese/:id" element={<CheeseCard/>} />
+
         <Route path="/update/meat" element={<UpdateMeat />} />
+        <Route path="/custom/meat/:id" element={<MeatCard />} />
+
         <Route path="/update/sauce" element={<UpdateSauce />} />
+        <Route path="/custom/sauce/:id" element={<SauceCard />} />
+
         <Route path="/update/topping" element={<UpdateTopping />} />
-        <Route path="/users" element={<UsersList/>} />
+        <Route path="/custom/topping/:id" element={<ToppingCard />} />
+        
+        <Route path="/users/:id" element={<UserPage/>}/>
 
 
       </Routes>
