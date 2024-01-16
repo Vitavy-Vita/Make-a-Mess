@@ -19,9 +19,9 @@ const DashboardAdmin = () => {
   return (
     <main className="main-dashboard">
       <h1>Dashboard</h1>
-      <h2>Databases:</h2>
       <section className="article-container">
         <article className="database-container">
+          <h2>Databases:</h2>
           <NavLink to={"/update/bread"}>Bread</NavLink>
           <NavLink to={"/update/cheese"}>Cheese</NavLink>
           <NavLink to={"/update/meat"}>Meat</NavLink>

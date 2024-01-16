@@ -54,8 +54,8 @@ export default function NavBar(props) {
               Contact Us
             </NavLink>
           </li>
+        <Button/>
         </ul>
-        <Button />
       </section>
       <ul className={"nav-tablet-desktop"}>
         <li>

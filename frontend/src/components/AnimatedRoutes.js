@@ -20,6 +20,7 @@ import MeatCard from "./Dashboard/Databases/MeatPages/MeatCard";
 import PreMadeCard from "./Dashboard/Databases/PreMadePages/PreMadeCard";
 import SauceCard from "./Dashboard/Databases/SaucePages/SauceCard";
 import ToppingCard from "./Dashboard/Databases/ToppingPages/ToppingCard";
+import CustomBurgers from "./BurgerBuilding/CustomBurgers";
 
 
 
@@ -32,6 +33,7 @@ export default function AnimatedRoutes() {
         <Route path="/Ideas" element={<Ideas />} />
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/CustomBurger" element={<CustomBurgers />} />
 
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/Login" element={<Login />} />

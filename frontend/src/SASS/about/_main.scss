@@ -15,13 +15,7 @@ article {
     padding: 2em;
     margin-bottom: 2em;
   }
-  h2 {
-    @include sub-title-style;
-    position: relative;
-    text-align: left;
-    padding-left: 0.5em;
-    padding-left: 2em;
-  }
+
   p {
     @include text-style;
     color: variables.$gray;
@@ -40,9 +34,6 @@ article {
     @include title-style-desktop;
   }
   article {
-    h2 {
-      font-size: 30px;
-    }
     p {
       @include text-style-desktop;
       color: variables.$gray;

@@ -1,8 +1,9 @@
+import { NavLink } from "react-router-dom";
 
 export default function Button(){
     return(
-        <a className={"button"} href="#">
-        Start Building
-      </a>
+        <NavLink to={"/CustomBurger"}>
+        <button>Start building</button>
+      </NavLink>
     )
 }

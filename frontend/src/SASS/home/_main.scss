@@ -29,12 +29,7 @@ body {
     width: 60%;
     font-size: 20px;
   }
-  a {
-    @include button;
-  }
-  a:hover {
-    @include button-hover;
-  }
+ 
   section {
     @include display-flex;
     flex-direction: column;
@@ -86,13 +81,6 @@ body {
       font-size: variables.$text-size-desktop;
       line-height: 50px;
       margin-left: 10em;
-    }
-    a {
-      font-size: 20px;
-      padding: 1em 3em;
-    }
-    a:hover {
-      font-size: 20px;
     }
     section {
       flex-direction: row;

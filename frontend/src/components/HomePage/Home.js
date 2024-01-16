@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Button from "../NavBar/Button";
 export default function Home() {
   return (
     <motion.section
@@ -11,7 +12,7 @@ export default function Home() {
       <p>Tired of not knowing what you can or cannot eat ?</p>
       <section>
         <h2>Let us help you!</h2>
-        <a href="#">Start Building</a>
+        <Button/>
       </section>
     </motion.section>
   );

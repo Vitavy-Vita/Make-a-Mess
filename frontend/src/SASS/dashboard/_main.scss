@@ -1,25 +1,24 @@
 @use "../generalities/variables";
 
-
 /* -------------------------------------------------------------------------- */
 /*                                  DATABASES                                 */
 /* -------------------------------------------------------------------------- */
 .main-dashboard {
   text-align: center;
-  h2 {
-    text-align: left;
-    margin-left: 2em;
-  }
 }
 
 .database-container {
   background-color: variables.$light-red;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
-  padding: 1em;
+  @include display-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-bottom: 1em;
+  h2 {
+    color: variables.$gray;
+  }
   a {
     @include button;
+    width: 50%;
   }
   a:hover {
     @include button-hover;
@@ -27,17 +26,16 @@
 }
 
 @media screen and (min-width: 811px) {
-  .article-container{
-    @include display-flex;
-    justify-content: space-around;
-    margin:0;
+  .main-dashboard {
+    h1 {
+      font-size: 4rem;
+    }
   }
-  .database-container {
-    border-radius: 15px;
-    width: 40%;
-    margin-left: 0;
-    a{
-      width: auto;
+  .article-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    a {
+      margin: 1em;
     }
   }
 }
@@ -46,35 +44,31 @@
 /*                                    USERS                                    */
 /* -------------------------------------------------------------------------- */
 
-.user-article-dashboard{
+.user-article-dashboard {
   @include display-flex;
-  justify-content: space-around;
-  align-items: center;
   border: 2px solid variables.$red;
-  margin-top: 1em;
-  margin-left: 0.5em;
+  margin: 1em;
   padding: 1em;
-  width: 90%;
-  .user-dashboard{
-    font-family: "Roboto";
-    font-size: 1.5em;
+  .user-dashboard {
+    @include text-style;
     text-decoration: none;
-    color:variables.$brown;
     width: 100%;
     text-align: start;
   }
-  .user-dashboard:hover{
+  .user-dashboard:hover {
     text-decoration: underline;
   }
-  button{
+  button {
     margin: 0.5em;
     border: none;
   }
 }
-@media screen and (min-width:811px) {
-  .user-article-dashboard{
-    a{
-      padding: 1em;
+@media screen and (min-width: 415px) and (max-width: 810px) {
+}
+@media screen and (min-width: 811px) {
+  .user-article-dashboard {
+    .user-dashboard {
+      font-size: 1.5em;
     }
   }
 }
