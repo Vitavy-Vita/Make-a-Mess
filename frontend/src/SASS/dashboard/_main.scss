@@ -52,6 +52,7 @@
   align-items: center;
   border: 2px solid variables.$red;
   margin-top: 1em;
+  margin-left: 0.5em;
   padding: 1em;
   width: 90%;
   .user-dashboard{
@@ -66,7 +67,7 @@
     text-decoration: underline;
   }
   button{
-    margin: 0;
+    margin: 0.5em;
     border: none;
   }
 }

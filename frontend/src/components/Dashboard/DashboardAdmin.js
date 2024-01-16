@@ -20,7 +20,6 @@ const DashboardAdmin = () => {
     <main className="main-dashboard">
       <h1>Dashboard</h1>
       <h2>Databases:</h2>
-
       <section className="article-container">
         <article className="database-container">
           <NavLink to={"/update/bread"}>Bread</NavLink>
@@ -30,7 +29,7 @@ const DashboardAdmin = () => {
           <NavLink to={"/update/topping"}>Topping</NavLink>
           <NavLink to={"/burgers/new"}>Pre-Made</NavLink>
         </article>
-        <section>
+        <article>
           <h2>Users:</h2>
           {users.map((oneUser) => (
             <article className="user-article-dashboard">
@@ -42,7 +41,7 @@ const DashboardAdmin = () => {
               <button>Delete</button>
             </article>
           ))}
-        </section>
+        </article>
       </section>
     </main>
   );
