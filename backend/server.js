@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import connectDb from "./config/database.js";
 import userRouter from "./routes/userRouter.js";
 import burgerRouter from "./routes/burgerRouter.js";
-import {customBurgers, customCheese, customMeat, customSauce, customTopping} from "./routes/customBurgersRouter.js";
+import {allIngredients, customBurgers, customCheese, customMeat, customSauce, customTopping} from "./routes/customBurgersRouter.js";
 import cors from "cors";
 const app = express();
 
@@ -28,6 +28,7 @@ app.use(customSauce);
 app.use(customCheese);
 app.use(customMeat);
 app.use(customTopping);
+app.use(allIngredients);
 
 app.get("/", (req, res) => {
   res.send("Hello");

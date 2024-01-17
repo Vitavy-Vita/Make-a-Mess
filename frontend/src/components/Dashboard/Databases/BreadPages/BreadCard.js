@@ -25,7 +25,7 @@ const BreadCard = () => {
           <p>Carbs: {bread.carbs}</p>
           <p>Fat: {bread.fat}</p>
           <p>Calories: {bread.calories}</p>
-          <NavLink to={"/Settings/Admin"}>
+          <NavLink to={"/update/bread"}>
             <button>Go Back</button>
           </NavLink>
         </article>

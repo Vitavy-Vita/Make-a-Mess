@@ -12,7 +12,7 @@ export default function Contact() {
       </section>
       <article className="contact-container">
         <section>
-          <h2>Get in touch with our team !</h2>
+          <h2>Get in touch with our team </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Voluptatem, veritatis necessitatibus! Laborum dicta maiores odit

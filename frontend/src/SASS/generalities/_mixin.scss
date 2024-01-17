@@ -81,12 +81,12 @@
   text-decoration: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
+  padding: 1em 2em;
 }
 
 @mixin button-hover {
   color: variables.$red;
   background-color: variables.$white;
-  border: 1px solid variables.$red;
   font-family: variables.$text-font;
   font-size: variables.$text-size-mobile;
   scale: 1.1;

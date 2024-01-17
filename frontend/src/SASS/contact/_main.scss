@@ -67,9 +67,6 @@ form {
     @include input-style;
     margin-top: 0.5em;
   }
-  button {
-    padding: 1em 2em;
-  }
 }
 
 textarea::placeholder {

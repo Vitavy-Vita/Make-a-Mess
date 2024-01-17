@@ -7,6 +7,7 @@ import {
   addTopping,
   getAllBread,
   getAllCheese,
+  getAllIngredients,
   getAllMeat,
   getAllSauce,
   getAllTopping,
@@ -47,4 +48,15 @@ customTopping.route("/custom/topping/new").post(addTopping);
 customTopping.route("/custom/topping").get(getAllTopping);
 customTopping.route("/custom/topping/:id").get(getOneTopping);
 
-export { customBurgers, customMeat, customCheese, customTopping, customSauce };
+const allIngredients = express.Router();
+
+allIngredients.route("/ingredients").get(getAllIngredients);
+
+export {
+  customBurgers,
+  customMeat,
+  customCheese,
+  customTopping,
+  customSauce,
+  allIngredients,
+};

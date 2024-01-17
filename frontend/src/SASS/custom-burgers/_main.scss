@@ -1,32 +1,19 @@
 @use "../generalities/variables";
 .custom-main {
   @include display-flex;
+  flex-direction: column;
 }
 
 .custom-container {
-  text-align: start;
+  text-align: center;
   h2 {
     position: relative;
-    .cross-plus {
-      position: absolute;
-      top: 3px;
-      left: -20px;
-      background-color: variables.$brown;
-      width: 3px;
-      height: 20px;
-    }
-    .cross-minus {
-      position: absolute;
-      background-color: variables.$brown;
-      width: 20px;
-      height: 3px;
-      top: 11px;
-      left: -28px;
-    }
-    .emoji {
-      position: absolute;
-      top: -2px;
-      left: 320px;
-    }
+  }
+  h2::before {
+    content: "+";
+  }
+  .emoji {
+    position: absolute;
+    top: -3px;
   }
 }

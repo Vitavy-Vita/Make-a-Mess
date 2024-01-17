@@ -8,17 +8,16 @@
 }
 
 .database-container {
-  background-color: variables.$light-red;
+ 
   @include display-flex;
   flex-direction: column;
   flex-wrap: wrap;
   padding-bottom: 1em;
-  h2 {
-    color: variables.$gray;
-  }
+  
   a {
     @include button;
     width: 50%;
+    margin-bottom: 1em;
   }
   a:hover {
     @include button-hover;

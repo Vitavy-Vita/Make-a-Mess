@@ -19,11 +19,9 @@ const UpdateBread = () => {
     axios
       .get(`http://localhost:9001/custom/bread`)
       .then((res) => {
-        
         setBreads(res.data);
       })
       .catch((res) => {
-        
         setErr(res.data);
       });
   }, []);
@@ -64,77 +62,85 @@ const UpdateBread = () => {
       });
   };
   return (
-    <article>
-      <h2>Create new Bread</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={inputs.name}
-          type="text"
-          placeholder="Name:"
-          size="25"
-          name="name"
-          onChange={handleChange}
-          required
-        />
+    <section className="bread-container">
+      <article className="bread-wrapper">
+        <h2>Create new Bread</h2>
+        <form onSubmit={handleSubmit} className="bread-form">
+          <input
+            value={inputs.name}
+            type="text"
+            placeholder="Name:"
+            size="25"
+            name="name"
+            onChange={handleChange}
+            required
+          />
 
-        <input
-          value={inputs.protein}
-          onChange={handleChange}
-          type="number"
-          placeholder="Protein:"
-          size="25"
-          name="protein"
-          required
-        />
+          <input
+            value={inputs.protein}
+            onChange={handleChange}
+            type="number"
+            placeholder="Protein:"
+            size="25"
+            name="protein"
+            required
+          />
 
-        <input
-          value={inputs.carbs}
-          onChange={handleChange}
-          type="number"
-          placeholder="Carbs:"
-          size="25"
-          name="carbs"
-          required
-        />
+          <input
+            value={inputs.carbs}
+            onChange={handleChange}
+            type="number"
+            placeholder="Carbs:"
+            size="25"
+            name="carbs"
+            required
+          />
 
-        <input
-          value={inputs.fat}
-          onChange={handleChange}
-          type="number"
-          placeholder="Fat:"
-          size="25"
-          name="fat"
-          required
-        />
+          <input
+            value={inputs.fat}
+            onChange={handleChange}
+            type="number"
+            placeholder="Fat:"
+            size="25"
+            name="fat"
+            required
+          />
 
-        <input
-          value={inputs.calories}
-          onChange={handleChange}
-          type="number"
-          placeholder="Calories:"
-          size="25"
-          name="calories"
-          required
-        />
-        <button className={"button-form"}>Validate</button>
-      </form>
-      {err && <span>{err}</span>}
-      {response && <span>{response}</span>}
-          <h2>Existing Bread</h2>
+          <input
+            value={inputs.calories}
+            onChange={handleChange}
+            type="number"
+            placeholder="Calories:"
+            size="25"
+            name="calories"
+            required
+          />
+          <button className={"button-form"}>Validate</button>
+        </form>
+        {err && <span>{err}</span>}
+        {response && <span>{response}</span>}
+      </article>
       {breads && (
-        <section>
+        <article className="bread-wrapper">
+          <h2>Existing Bread</h2>
           {breads.map((oneBread) => (
             <article className="user-article-dashboard">
-              <NavLink to={`/custom/bread/${oneBread._id}`} className="user-dashboard">
+              <NavLink
+                to={`/custom/bread/${oneBread._id}`}
+                className="user-dashboard"
+              >
                 {oneBread.name}
               </NavLink>
               <button>Update</button>
               <button>Delete</button>
             </article>
           ))}
-        </section>
+        </article>
       )}
-    </article>
+      <NavLink to={"/Settings/Admin"}>
+        <button>Go Back</button>
+      </NavLink>
+    </section>
   );
 };
 

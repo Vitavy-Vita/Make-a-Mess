@@ -1,0 +1,42 @@
+@use "../generalities//variables";
+
+.ingredient-card {
+  @include display-flex;
+  border: 2px solid variables.$red;
+  border-radius: 15px;
+  margin-bottom: 0.5em;
+  padding: 0 1em;
+  p {
+    color: variables.$brown;
+  }
+  h3 {
+    @include sub-title-style;
+  }
+  .ingredient-list {
+    @include text-style;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: start;
+    li {
+      width: 100%;
+      padding: 0 0.5em;
+    }
+  }
+}
+.ingredient-total {
+  @include display-flex;
+  flex-direction: column;
+  border: 2px solid variables.$red;
+  border-radius: 15px;
+  margin: 2em 0.5em;
+  padding: 1em;
+  .ingredient-list {
+    @include sub-title-style;
+    text-align: start;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+}
