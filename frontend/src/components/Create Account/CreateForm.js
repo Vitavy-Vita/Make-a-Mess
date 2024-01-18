@@ -53,7 +53,7 @@ export default function CreateForm() {
       });
   };
   return (
-    <article className="center-container">
+    <main className="center-container">
       <h1>Create your account:</h1>
       <section className="form-container">
         <form onSubmit={handleSubmit}>
@@ -112,6 +112,6 @@ export default function CreateForm() {
           {response && <span>{response}</span>}
         </form>
       </section>
-    </article>
+    </main>
   );
 }

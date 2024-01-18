@@ -24,7 +24,7 @@ const UpdateSauce = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
+  }, [sauces]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +61,22 @@ const UpdateSauce = () => {
       .catch((err) => {
         setErr(err);
       });
+  };
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this sauce ?"
+    );
+    if (confirmBox === true) {
+    axios
+      .delete(`http://localhost:9001/custom/sauce/${id}`)
+      .then((res) => {
+        setSauces((allSauce) => allSauce.filter((sauce) => sauce.id !== id));
+      })
+      .catch((res) => {
+        console.log(res.data);
+        setErr("Not working");
+      });
+    }
   };
   return (
     <article>
@@ -128,7 +144,7 @@ const UpdateSauce = () => {
                       {oneSauce.name}
                     </NavLink>
                     <button>Update</button>
-                    <button>Delete</button>
+                    <button onClick={()=>handleRemove(oneSauce._id)}>Delete</button>
                   </article>
                 ))}
               </section>

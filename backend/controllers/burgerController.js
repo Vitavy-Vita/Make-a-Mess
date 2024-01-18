@@ -88,3 +88,20 @@ export const addBurger = async (req, res) => {
     });
   }
 };
+
+export const deleteBurger = async (req, res) => {
+  try {
+    await Burger.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};

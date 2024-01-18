@@ -25,7 +25,7 @@ const UpdateMeat = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
+  }, [meats]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -61,6 +61,22 @@ const UpdateMeat = () => {
       .catch((err) => {
         setErr(err);
       });
+  };
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this meat ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:9001/custom/meat/${id}`)
+        .then((res) => {
+          setMeats((allMeats) => allMeats.filter((meat) => meat.id !== id));
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
+    }
   };
   return (
     <article>
@@ -131,7 +147,7 @@ const UpdateMeat = () => {
                 {oneMeat.name}
               </NavLink>
               <button>Update</button>
-              <button>Delete</button>
+              <button onClick={() => handleRemove(oneMeat._id)}>Delete</button>
             </article>
           ))}
         </section>

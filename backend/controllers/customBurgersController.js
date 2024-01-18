@@ -68,6 +68,24 @@ export const addBread = async (req, res) => {
     });
   }
 };
+
+export const deleteBread = async (req, res) => {
+  try {
+    await Bread.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};
+
 export const getAllMeat = async (req, res) => {
   try {
     const meat = await Meat.find();
@@ -131,6 +149,24 @@ export const addMeat = async (req, res) => {
     });
   }
 };
+
+export const deleteMeat = async (req, res) => {
+  try {
+    await Meat.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};
+
 export const getAllCheese = async (req, res) => {
   try {
     const cheese = await Cheese.find();
@@ -194,6 +230,24 @@ export const addCheese = async (req, res) => {
     });
   }
 };
+
+export const deleteCheese = async (req, res) => {
+  try {
+    await Cheese.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};
+
 export const getAllSauce = async (req, res) => {
   try {
     const sauce = await Sauce.find();
@@ -257,6 +311,24 @@ export const addSauce = async (req, res) => {
     });
   }
 };
+
+export const deleteSauce = async (req, res) => {
+  try {
+    await Sauce.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};
+
 export const getAllTopping = async (req, res) => {
   try {
     const topping = await Topping.find();
@@ -321,6 +393,22 @@ export const addTopping = async (req, res) => {
   }
 };
 
+export const deleteTopping = async (req, res) => {
+  try {
+    await Topping.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    })
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};
 export const getAllIngredients = async (req, res) => {
   try {
     const topping = await Topping.find();

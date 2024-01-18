@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
-const UserPage = () => {
+const UserCard = () => {
   const [user, setUser] = useState();
   const [err, setErr] = useState();
   const { id } = useParams();
@@ -35,4 +35,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default UserCard;

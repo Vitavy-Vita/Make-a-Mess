@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-
 const UpdateBurgerGallery = () => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -12,7 +11,7 @@ const UpdateBurgerGallery = () => {
     fat: 0,
     calories: 0,
   });
-  const [preMade, setPreMade] = useState()
+  const [preMade, setPreMade] = useState();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
@@ -20,14 +19,12 @@ const UpdateBurgerGallery = () => {
     axios
       .get(`http://localhost:9001/burgers`)
       .then((res) => {
-        
         setPreMade(res.data);
       })
       .catch((res) => {
-        
         setErr(res.data);
       });
-  }, []);
+  }, [preMade]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -78,6 +75,24 @@ const UpdateBurgerGallery = () => {
       .catch((err) => {
         setErr(err);
       });
+  };
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this burger ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:9001/burgers/${id}`)
+        .then((res) => {
+          setPreMade((allPreMade) =>
+            allPreMade.filter((preMade) => preMade.id !== id)
+          );
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
+    }
   };
   return (
     <article>
@@ -149,17 +164,22 @@ const UpdateBurgerGallery = () => {
       {response && <span>{response}</span>}
       <h2>Existing Burgers:</h2>
       {preMade && (
-                <section>
-                {preMade.map((onePreMade) => (
-                  <article className="user-article-dashboard">
-                    <NavLink to={`/burgers/${onePreMade._id}`} className="user-dashboard">
-                      {onePreMade.name}
-                    </NavLink>
-                    <button>Update</button>
-                    <button>Delete</button>
-                  </article>
-                ))}
-              </section>
+        <section>
+          {preMade.map((onePreMade) => (
+            <article className="user-article-dashboard">
+              <NavLink
+                to={`/burgers/${onePreMade._id}`}
+                className="user-dashboard"
+              >
+                {onePreMade.name}
+              </NavLink>
+              <button>Update</button>
+              <button onClick={() => handleRemove(onePreMade._id)}>
+                Delete
+              </button>
+            </article>
+          ))}
+        </section>
       )}
     </article>
   );

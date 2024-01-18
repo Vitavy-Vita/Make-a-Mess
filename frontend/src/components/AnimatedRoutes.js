@@ -13,7 +13,7 @@ import UpdateCheese from "./Dashboard/Databases/CheesePages/updateCheese";
 import UpdateMeat from "./Dashboard/Databases/MeatPages/updateMeat";
 import UpdateSauce from "./Dashboard/Databases/SaucePages/updateSauce";
 import UpdateTopping from "./Dashboard/Databases/ToppingPages/updateTopping";
-import UserPage from "./Dashboard/UserPage";
+import UserPage from "./Dashboard/Databases/UserPages/UserCard";
 import BreadCard from "./Dashboard/Databases/BreadPages/BreadCard";
 import CheeseCard from "./Dashboard/Databases/CheesePages/CheeseCard";
 import MeatCard from "./Dashboard/Databases/MeatPages/MeatCard";
@@ -21,8 +21,8 @@ import PreMadeCard from "./Dashboard/Databases/PreMadePages/PreMadeCard";
 import SauceCard from "./Dashboard/Databases/SaucePages/SauceCard";
 import ToppingCard from "./Dashboard/Databases/ToppingPages/ToppingCard";
 import CustomBurgers from "./BurgerBuilding/CustomBurgers";
-
-
+import UserCard from "./Dashboard/Databases/UserPages/UserCard";
+import UpdateUserForm from "./Dashboard/Databases/UserPages/UpdateUserForm";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -46,7 +46,7 @@ export default function AnimatedRoutes() {
         <Route path="/custom/bread/:id" element={<BreadCard />} />
 
         <Route path="/update/cheese" element={<UpdateCheese />} />
-        <Route path="/custom/cheese/:id" element={<CheeseCard/>} />
+        <Route path="/custom/cheese/:id" element={<CheeseCard />} />
 
         <Route path="/update/meat" element={<UpdateMeat />} />
         <Route path="/custom/meat/:id" element={<MeatCard />} />
@@ -56,9 +56,10 @@ export default function AnimatedRoutes() {
 
         <Route path="/update/topping" element={<UpdateTopping />} />
         <Route path="/custom/topping/:id" element={<ToppingCard />} />
-        
-        <Route path="/users/:id" element={<UserPage/>}/>
 
+        <Route path="/users/:id" element={<UserCard />} />
+        <Route path="/users/:id/update" element={<UpdateUserForm />} />
+       
 
       </Routes>
     </AnimatePresence>

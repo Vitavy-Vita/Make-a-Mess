@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [err, setErr] = useState();
+  const id = useParams();
 
   useEffect(() => {
     axios
@@ -13,9 +14,27 @@ const DashboardAdmin = () => {
         setUsers(res.data);
       })
       .catch((err) => {
-        setErr("Impossible de charger les données");
+        setErr("Cannot access data");
       });
-  }, []);
+  }, [users]);
+
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this user ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:9001/users/${id}`)
+        .then((res) => {
+          setUsers((allUsers) => allUsers.filter((user) => user.id !== id));
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
+    }
+  };
+
   return (
     <main className="main-dashboard">
       <h1>Dashboard</h1>
@@ -36,9 +55,11 @@ const DashboardAdmin = () => {
               <NavLink to={`/users/${oneUser._id}`} className="user-dashboard">
                 {oneUser.name}
               </NavLink>
+              <NavLink to={`/users/${oneUser._id}/update`}>
+                <button>Update</button>
+              </NavLink>
 
-              <button>Update</button>
-              <button>Delete</button>
+              <button onClick={() => handleRemove(oneUser._id)}>Delete</button>
             </article>
           ))}
         </article>

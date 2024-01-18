@@ -24,7 +24,7 @@ const UpdateBread = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
+  }, [breads]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -60,6 +60,25 @@ const UpdateBread = () => {
       .catch((err) => {
         setErr(err.message);
       });
+  };
+
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this bread ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:9001/custom/bread/${id}`)
+        .then((res) => {
+          setBreads((allBreads) =>
+            allBreads.filter((bread) => bread.id !== id)
+          );
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
+    }
   };
   return (
     <section className="bread-container">
@@ -132,7 +151,7 @@ const UpdateBread = () => {
                 {oneBread.name}
               </NavLink>
               <button>Update</button>
-              <button>Delete</button>
+              <button onClick={() => handleRemove(oneBread._id)}>Delete</button>
             </article>
           ))}
         </article>

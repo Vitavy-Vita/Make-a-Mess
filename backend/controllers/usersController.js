@@ -42,7 +42,7 @@ export const register = async (req, res) => {
   try {
     const checkPwd =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
-    const checkName = /^[a-zA-Z0-9_]{4,10}$/
+    const checkName = /^[a-zA-Z0-9_]{4,10}$/;
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -137,8 +137,46 @@ export const login = async (req, res) => {
       token: token,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: "Cant login",
+    });
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id).then((res) => {
+      res.status(204).json({
+        status: "success",
+        data: null,
+      });
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: "Delete not working",
+    });
+  }
+};
+
+export const updateUser = async (req, res) => {
+  try {
+    const user = req.body;
+    const updateUser = {
+      name: user.name,
+      password: user.password,
+      tel: user.tel,
+      email: user.email,
+    };
+    await User.findByIdAndUpdate(req.params.id, updateUser);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
     });
   }
 };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
 const UpdateTopping = () => {
-  const [toppings, setToppings] = useState()
+  const [toppings, setToppings] = useState();
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -19,14 +19,12 @@ const UpdateTopping = () => {
     axios
       .get(`http://localhost:9001/custom/topping`)
       .then((res) => {
-        
         setToppings(res.data);
       })
       .catch((res) => {
-        
         setErr(res.data);
       });
-  }, []);
+  }, [toppings]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,6 +62,24 @@ const UpdateTopping = () => {
         setErr(err);
       });
   };
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this topping ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:9001/custom/topping/${id}`)
+        .then((res) => {
+          setToppings((allTopping) =>
+            allTopping.filter((topping) => topping.id !== id)
+          );
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
+    }
+  };
   return (
     <article>
       <h2>Create new Topping</h2>
@@ -77,7 +93,7 @@ const UpdateTopping = () => {
           onChange={handleChange}
           required
         />
-        
+
         <input
           value={inputs.protein}
           onChange={handleChange}
@@ -123,17 +139,23 @@ const UpdateTopping = () => {
       {response && <span>{response}</span>}
       <h2>Existing Toppings</h2>
       {toppings && (
-                <section>
-                {toppings.map((oneTopping) => (
-                  <article className="user-article-dashboard">
-                    <NavLink to={`/custom/topping/${oneTopping._id}`} className="user-dashboard">
-                      {oneTopping.name}
-                    </NavLink>
-                    <button>Update</button>
-                    <button>Delete</button>
-                  </article>
-                ))}
-              </section>
+        <section>
+          {toppings.map((oneTopping) => (
+            <article className="user-article-dashboard">
+              <NavLink
+                to={`/custom/topping/${oneTopping._id}`}
+                className="user-dashboard"
+              >
+                {oneTopping.name}
+              </NavLink>
+              <button>Update</button>
+              <button onClick={() => handleRemove(oneTopping._id)}>
+                Delete
+              </button>
+            </article>
+          ))}
+          ;
+        </section>
       )}
     </article>
   );

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
 const UpdateCheese = () => {
-  const [cheeses, setCheeses] = useState()
+  const [cheeses, setCheeses] = useState();
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -19,14 +19,12 @@ const UpdateCheese = () => {
     axios
       .get(`http://localhost:9001/custom/cheese`)
       .then((res) => {
-        
         setCheeses(res.data);
       })
       .catch((res) => {
-        
         setErr(res.data);
       });
-  }, []);
+  }, [cheeses]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,6 +62,24 @@ const UpdateCheese = () => {
         setErr(err);
       });
   };
+  const handleRemove = (id) => {
+    const confirmBox = window.confirm(
+      "Do you really want to delete this cheese ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:9001/custom/cheese/${id}`)
+        .then((res) => {
+          setCheeses((allCheeses) =>
+            allCheeses.filter((cheese) => cheese.id !== id)
+          );
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
+    }
+  };
   return (
     <article>
       <h2>Create new Cheese</h2>
@@ -77,7 +93,7 @@ const UpdateCheese = () => {
           onChange={handleChange}
           required
         />
-        
+
         <input
           value={inputs.protein}
           onChange={handleChange}
@@ -123,17 +139,22 @@ const UpdateCheese = () => {
       {response && <span>{response}</span>}
       <h2>Existing Cheese</h2>
       {cheeses && (
-                <section>
-                {cheeses.map((oneCheese) => (
-                  <article className="user-article-dashboard">
-                    <NavLink to={`/custom/cheese/${oneCheese._id}`} className="user-dashboard">
-                      {oneCheese.name}
-                    </NavLink>
-                    <button>Update</button>
-                    <button>Delete</button>
-                  </article>
-                ))}
-              </section>
+        <section>
+          {cheeses.map((oneCheese) => (
+            <article className="user-article-dashboard">
+              <NavLink
+                to={`/custom/cheese/${oneCheese._id}`}
+                className="user-dashboard"
+              >
+                {oneCheese.name}
+              </NavLink>
+              <button>Update</button>
+              <button onClick={() => handleRemove(oneCheese._id)}>
+                Delete
+              </button>
+            </article>
+          ))}
+        </section>
       )}
     </article>
   );
