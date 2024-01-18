@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const CustomBurgers = () => {
   const [ingredients, setIngredients] = useState([]);
+  const [toggle, setToggle] = useState(false)
   const [err, setErr] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [totalMacros, setTotalMacros] = useState({
@@ -13,7 +14,7 @@ const CustomBurgers = () => {
   });
   useEffect(() => {
     calculateTotal();
-
+    // deleteIngredient();
     axios
       .get(`http://localhost:9001/ingredients`)
       .then((res) => {
@@ -22,9 +23,14 @@ const CustomBurgers = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, [selectedIngredient]);
+  }, [toggle]);
+  
   const handleClick = (i, name) => {
     setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
+    console.log(selectedIngredient);
+    const newI = ingredients[name].filter(ing => ing._id == selectedIngredient[i]._id)
+
+    setIngredients({...ingredients,[name]: newI});
     calculateTotal();
   };
 
@@ -48,11 +54,23 @@ const CustomBurgers = () => {
     setTotalMacros(newTotalCombine);
   };
   const handleDelete = (i, name) => {
-    const newArray = [...selectedIngredient[name][i]];
-    newArray.splice(i, 1);
-    setSelectedIngredient(newArray);
-    deleteIngredient();
-    console.log(newArray);
+   
+    // const newArray = [...selectedIngredient[i]];
+    selectedIngredient.splice(i,1)
+    console.log(ingredients);
+    setToggle(true)
+     console.log(selectedIngredient);
+     console.log("ingredients:" + ingredients[name][i]);
+
+      // ingredients[name].splice(i,1)
+    //  console.log( );
+
+    //  setIngredients({bread: newIng})
+     calculateTotal();
+
+    // setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
+    // deleteIngredient();
+    
   };
   const deleteIngredient = () => {
     const newTotalCombine = selectedIngredient.reduce(
