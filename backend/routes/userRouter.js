@@ -7,13 +7,17 @@ import {
   deleteUser,
   updateUser,
 } from "../controllers/usersController.js";
+import upload from "../middlewares/multer.js";
 
 const userRouter = express.Router();
 
 userRouter.route("/users").get(getAllUsers);
-userRouter.route("/users/:id").get(getOneUser).delete(deleteUser);
-userRouter.route("/users/:id/update").put(updateUser);
-userRouter.route("/users/register").post(register);
+userRouter
+  .route("/users/:id")
+  .get(upload.single("image"), getOneUser)
+  .delete(deleteUser);
+userRouter.route("/users/:id/update").put(upload.single("image"), updateUser);
+userRouter.route("/users/register").post(upload.single("image"), register);
 userRouter.route("/users/login").post(login);
 
 export default userRouter;

@@ -69,15 +69,37 @@ export const addBread = async (req, res) => {
   }
 };
 
+export const updateBread = async (req, res) => {
+  try {
+    const bread = req.body;
+    const updateBread = {
+      
+      name: bread.name,
+      protein: bread.protein,
+      carbs: bread.carbs,
+      fat: bread.fat,
+      calories: bread.calories,
+    };
+    await Bread.findByIdAndUpdate(req.params.id, updateBread);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
+    });
+  }
+};
+
 export const deleteBread = async (req, res) => {
   try {
-    await Bread.findByIdAndDelete(req.params.id)
-    .then(() => {
+    await Bread.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).json({
         status: "success",
         data: null,
       });
-    })
+    });
   } catch (error) {
     res.status(500).json({
       status: "fail",
@@ -150,15 +172,35 @@ export const addMeat = async (req, res) => {
   }
 };
 
+export const updateMeat = async (req, res) => {
+  try {
+    const meat = req.body;
+    const updateMeat = {
+      name: meat.name,
+      password: meat.password,
+      tel: meat.tel,
+      email: meat.email,
+    };
+    await Meat.findByIdAndUpdate(req.params.id, updateMeat);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
+    });
+  }
+};
+
 export const deleteMeat = async (req, res) => {
   try {
-    await Meat.findByIdAndDelete(req.params.id)
-    .then(() => {
+    await Meat.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).json({
         status: "success",
         data: null,
       });
-    })
+    });
   } catch (error) {
     res.status(500).json({
       status: "fail",
@@ -231,15 +273,35 @@ export const addCheese = async (req, res) => {
   }
 };
 
+export const updateCheese = async (req, res) => {
+  try {
+    const cheese = req.body;
+    const updateCheese = {
+      name: cheese.name,
+      password: cheese.password,
+      tel: cheese.tel,
+      email: cheese.email,
+    };
+    await Cheese.findByIdAndUpdate(req.params.id, updateCheese);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
+    });
+  }
+};
+
 export const deleteCheese = async (req, res) => {
   try {
-    await Cheese.findByIdAndDelete(req.params.id)
-    .then(() => {
+    await Cheese.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).json({
         status: "success",
         data: null,
       });
-    })
+    });
   } catch (error) {
     res.status(500).json({
       status: "fail",
@@ -312,15 +374,35 @@ export const addSauce = async (req, res) => {
   }
 };
 
+export const updateSauce = async (req, res) => {
+  try {
+    const sauce = req.body;
+    const updateSauce = {
+      name: sauce.name,
+      password: sauce.password,
+      tel: sauce.tel,
+      email: sauce.email,
+    };
+    await Sauce.findByIdAndUpdate(req.params.id, updateSauce);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
+    });
+  }
+};
+
 export const deleteSauce = async (req, res) => {
   try {
-    await Sauce.findByIdAndDelete(req.params.id)
-    .then(() => {
+    await Sauce.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).json({
         status: "success",
         data: null,
       });
-    })
+    });
   } catch (error) {
     res.status(500).json({
       status: "fail",
@@ -393,15 +475,35 @@ export const addTopping = async (req, res) => {
   }
 };
 
+export const updateTopping = async (req, res) => {
+  try {
+    const topping = req.body;
+    const updateTopping = {
+      name: topping.name,
+      password: topping.password,
+      tel: topping.tel,
+      email: topping.email,
+    };
+    await Sauce.findByIdAndUpdate(req.params.id, updateTopping);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
+    });
+  }
+};
+
 export const deleteTopping = async (req, res) => {
   try {
-    await Topping.findByIdAndDelete(req.params.id)
-    .then(() => {
+    await Topping.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).json({
         status: "success",
         data: null,
       });
-    })
+    });
   } catch (error) {
     res.status(500).json({
       status: "fail",
@@ -416,7 +518,7 @@ export const getAllIngredients = async (req, res) => {
     const cheese = await Cheese.find();
     const bread = await Bread.find();
     const sauce = await Sauce.find();
-    res.status(200).json({topping, meat, cheese, sauce, bread});
+    res.status(200).json({ topping, meat, cheese, sauce, bread });
   } catch (error) {
     res.status(500).json({
       status: error,

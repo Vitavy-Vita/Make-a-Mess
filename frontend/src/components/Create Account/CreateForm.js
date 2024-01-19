@@ -13,8 +13,13 @@ export default function CreateForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
+    if (name === "image") {
+      setInputs({ ...inputs, image: e.target.files[0] });
+    } else {
+      setInputs({ ...inputs, [name]: value });
+    }
     setErr("");
+    setResponse("")
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,9 +38,17 @@ export default function CreateForm() {
     ) {
       return setErr("Please provide all informations");
     }
+    const formData = new FormData()
+
+    formData.append("name", inputs.name);
+    formData.append("password", inputs.password);
+    formData.append("passwordConfirm", inputs.passwordConfirm);
+    formData.append("tel", inputs.tel);
+    formData.append("email", inputs.email);
+
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/users/register", inputs)
+      .post("http://localhost:9001/users/register", formData)
       .then((res) => {
         setInputs({
           ...inputs,
@@ -44,6 +57,7 @@ export default function CreateForm() {
           passwordConfirm: "",
           tel: "",
           email: "",
+          image:null,
         });
         setResponse("Your account has been successfully created !");
       })
@@ -56,7 +70,7 @@ export default function CreateForm() {
     <main className="center-container">
       <h1>Create your account:</h1>
       <section className="form-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input
             type="text"
             placeholder="Name:"
@@ -107,6 +121,7 @@ export default function CreateForm() {
             onChange={handleChange}
             required
           />
+          <input type="file" name="image" id="image" onChange={handleChange} />
           <button className={"button-form"}>Validate</button>
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}

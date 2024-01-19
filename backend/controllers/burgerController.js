@@ -89,15 +89,57 @@ export const addBurger = async (req, res) => {
   }
 };
 
+export const updateBurger = async (req, res) => {
+  try {
+    const burger = req.body;
+    let updateBurger;
+    if (!req.file) {
+      updateBurger = {
+        image: {
+          src: "",
+          alt: "",
+        },
+        name: burger.name,
+        description: burger.description,
+        protein: burger.protein,
+        carbs: burger.carbs,
+        fat: burger.fat,
+        calories: burger.calories,
+      };
+    } else {
+      updateBurger = {
+        image: {
+          src: req.file.filename,
+          alt: req.file.originalname,
+        },
+        name: burger.name,
+        description: burger.description,
+        protein: burger.protein,
+        carbs: burger.carbs,
+        fat: burger.fat,
+        calories: burger.calories,
+      };
+    }
+    await Burger.findByIdAndUpdate(req.params.id, updateBurger);
+    res.status(201).json({
+      message: "Updated successfully!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Could not update",
+    });
+  }
+};
+
 export const deleteBurger = async (req, res) => {
   try {
-    await Burger.findByIdAndDelete(req.params.id)
-    .then(() => {
+    await Burger.findByIdAndDelete(req.params.id).then(() => {
       res.status(204).json({
         status: "success",
         data: null,
       });
-    })
+    });
   } catch (error) {
     res.status(500).json({
       status: "fail",

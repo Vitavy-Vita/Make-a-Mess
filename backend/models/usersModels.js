@@ -7,9 +7,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     maxLength: [10, "Nickname must be 10 characters maximum"],
     validate: {
-      validator: (name) => {
-        return /^[a-zA-Z0-9_]{4,10}$/.test(name);
+      validator: (specialChar) => {
+        return /^[a-zA-Z0-9_]*$/.test(specialChar);
       },
+      validator: (length) =>{
+        return /^.{1,10}$/.test(length)
+      }
     },
   },
   password: {
@@ -53,6 +56,10 @@ const userSchema = new mongoose.Schema({
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       "Please fill a valid email address",
     ],
+  },
+  image: {
+    src: String,
+    alt: String,
   },
   role: {
     type: String,

@@ -42,7 +42,8 @@ export const register = async (req, res) => {
   try {
     const checkPwd =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
-    const checkName = /^[a-zA-Z0-9_]{4,10}$/;
+    const checkNameLength = /^.{1,10}$/;
+    const checkSpecialCharacters =/^[a-zA-Z0-9_]*$/ ;
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -70,26 +71,49 @@ export const register = async (req, res) => {
         message: "Password incorrect",
       });
     }
-    if (!checkName.test(name)) {
+    if (!checkNameLength.test(name)) {
       return res.status(401).json({
         message: "Name must be 10 characters maximum",
       });
+    }
+    if (!checkSpecialCharacters.test(name)){
+      return res.status(401).json({
+        message:'Name must not include special characters'
+      })
     }
     if (password !== passwordConfirm) {
       return res.status(401).json({
         status: "error",
         message:
-          "Please make sure to match your password and password confirmation",
+          "Passwords do not match",
       });
     }
-
-    const user = new User({
-      name: name,
-      password: password,
-      passwordConfirm: passwordConfirm,
-      tel: tel,
-      email: email,
-    });
+let user;
+if(!req.file){
+  user = new User({
+   name: name,
+   password: password,
+   passwordConfirm: passwordConfirm,
+   tel: tel,
+   email: email,
+   image:{
+    src:"",
+    alt:"",
+   } 
+ }) 
+} else {
+  user = new User({
+   name: name,
+   password: password,
+   passwordConfirm: passwordConfirm,
+   tel: tel,
+   email: email,
+   image:{
+    src:req.file.filename,
+    alt:req.file.originalname,
+   } 
+ }) 
+}
 
     await user.save();
     res.status(200).json({

@@ -22,6 +22,10 @@ const UserCard = () => {
     <main className="user-card-container">
       {user && (
         <article className="user-card">
+          <img
+            src={`http://localhost:9001/assets/img/${user.image.src}`}
+            alt={user.image.alt}
+          />
           <h2>{user.name}</h2>
           <p>Phone Number: {user.tel}</p>
           <p>Email: {user.email}</p>
