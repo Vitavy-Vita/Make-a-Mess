@@ -67,15 +67,15 @@ const UpdateSauce = () => {
       "Do you really want to delete this sauce ?"
     );
     if (confirmBox === true) {
-    axios
-      .delete(`http://localhost:9001/custom/sauce/${id}`)
-      .then((res) => {
-        setSauces((allSauce) => allSauce.filter((sauce) => sauce.id !== id));
-      })
-      .catch((res) => {
-        console.log(res.data);
-        setErr("Not working");
-      });
+      axios
+        .delete(`http://localhost:9001/custom/sauce/${id}`)
+        .then((res) => {
+          setSauces((allSauce) => allSauce.filter((sauce) => sauce.id !== id));
+        })
+        .catch((res) => {
+          console.log(res.data);
+          setErr("Not working");
+        });
     }
   };
   return (
@@ -137,17 +137,22 @@ const UpdateSauce = () => {
       {response && <span>{response}</span>}
       <h2>Existing Sauces</h2>
       {sauces && (
-                <section>
-                {sauces.map((oneSauce) => (
-                  <article className="user-article-dashboard">
-                    <NavLink to={`/custom/sauce/${oneSauce._id}`} className="user-dashboard">
-                      {oneSauce.name}
-                    </NavLink>
-                    <button>Update</button>
-                    <button onClick={()=>handleRemove(oneSauce._id)}>Delete</button>
-                  </article>
-                ))}
-              </section>
+        <section>
+          {sauces.map((oneSauce) => (
+            <article className="user-article-dashboard">
+              <NavLink
+                to={`/custom/sauce/${oneSauce._id}`}
+                className="user-dashboard"
+              >
+                {oneSauce.name}
+              </NavLink>
+              <NavLink to={`/custom/sauce/${oneSauce._id}/update`}>
+                <button>Update</button>
+              </NavLink>
+              <button onClick={() => handleRemove(oneSauce._id)}>Delete</button>
+            </article>
+          ))}
+        </section>
       )}
     </article>
   );

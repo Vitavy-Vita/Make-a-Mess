@@ -116,9 +116,7 @@
 }
 
 @mixin button-style-hover{
-  
     font-family: variables.$text-font;
-    border: 2px solid variables.$red;
     color: variables.$red;
     background-color: variables.$gray;
   

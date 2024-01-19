@@ -98,7 +98,6 @@ const UpdateBurgerGallery = () => {
     <article>
       <h2>Create new Burger</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input type="file" name="image" id="image" onChange={handleChange} />
         <input
           value={inputs.name}
           type="text"
@@ -158,6 +157,7 @@ const UpdateBurgerGallery = () => {
           name="calories"
           required
         />
+        <input type="file" name="image" id="image" onChange={handleChange} />
         <button className={"button-form"}>Validate</button>
       </form>
       {err && <span>{err}</span>}
@@ -173,7 +173,9 @@ const UpdateBurgerGallery = () => {
               >
                 {onePreMade.name}
               </NavLink>
-              <button>Update</button>
+              <NavLink to={`/burgers/${onePreMade._id}/update`}>
+                <button>Update</button>
+              </NavLink>
               <button onClick={() => handleRemove(onePreMade._id)}>
                 Delete
               </button>

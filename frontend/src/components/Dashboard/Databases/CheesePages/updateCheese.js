@@ -148,7 +148,11 @@ const UpdateCheese = () => {
               >
                 {oneCheese.name}
               </NavLink>
-              <button>Update</button>
+              <NavLink to={`/custom/cheese/${oneCheese._id}/update`}>
+               
+                <button>Update</button>
+              </NavLink>
+
               <button onClick={() => handleRemove(oneCheese._id)}>
                 Delete
               </button>

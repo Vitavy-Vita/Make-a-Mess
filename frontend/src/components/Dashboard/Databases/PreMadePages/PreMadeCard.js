@@ -23,6 +23,7 @@ const PreMadeCard = () => {
           <img
             src={`http://localhost:9001/assets/img/${preMade.image.src}`}
             alt={preMade.image.alt}
+            className="premade-card-img"
           />
           <h2>{preMade.name}</h2>
           <p>Description: {preMade.description}</p>

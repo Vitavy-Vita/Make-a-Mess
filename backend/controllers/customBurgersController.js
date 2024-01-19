@@ -6,7 +6,7 @@ import {
   Cheese,
 } from "../models/customBurgersModels.js";
 
-export const getAllBread = async (req, res) => {
+export const getAllBread = async (_, res) => {
   try {
     const bread = await Bread.find();
     res.status(200).json(bread);
@@ -49,14 +49,16 @@ export const addBread = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "Please provide all fields" });
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     const bread = new Bread({
       name: name,
-      protein: protein,
-      carbs: carbs,
-      fat: fat,
-      calories: calories,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     });
     await bread.save();
     res.status(200).json({
@@ -71,14 +73,24 @@ export const addBread = async (req, res) => {
 
 export const updateBread = async (req, res) => {
   try {
-    const bread = req.body;
+    const { name, protein, carbs, fat, calories } = req.body;
+    if (
+      name.trim() === "" ||
+      protein <= 0 ||
+      carbs <= 0 ||
+      fat <= 0 ||
+      calories <= 0
+    ) {
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
+    }
     const updateBread = {
-      
-      name: bread.name,
-      protein: bread.protein,
-      carbs: bread.carbs,
-      fat: bread.fat,
-      calories: bread.calories,
+      name: name,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     };
     await Bread.findByIdAndUpdate(req.params.id, updateBread);
     res.status(201).json({
@@ -108,7 +120,7 @@ export const deleteBread = async (req, res) => {
   }
 };
 
-export const getAllMeat = async (req, res) => {
+export const getAllMeat = async (_, res) => {
   try {
     const meat = await Meat.find();
     res.status(200).json(meat);
@@ -151,14 +163,16 @@ export const addMeat = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "Please provide all fields" });
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     const meat = new Meat({
       name: name,
-      protein: protein,
-      carbs: carbs,
-      fat: fat,
-      calories: calories,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     });
     await meat.save();
     res.status(200).json({
@@ -174,12 +188,24 @@ export const addMeat = async (req, res) => {
 
 export const updateMeat = async (req, res) => {
   try {
-    const meat = req.body;
+    const { name, protein, carbs, fat, calories } = req.body;
+    if (
+      name.trim() === "" ||
+      protein <= 0 ||
+      carbs <= 0 ||
+      fat <= 0 ||
+      calories <= 0
+    ) {
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
+    }
     const updateMeat = {
-      name: meat.name,
-      password: meat.password,
-      tel: meat.tel,
-      email: meat.email,
+      name: name,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     };
     await Meat.findByIdAndUpdate(req.params.id, updateMeat);
     res.status(201).json({
@@ -209,7 +235,7 @@ export const deleteMeat = async (req, res) => {
   }
 };
 
-export const getAllCheese = async (req, res) => {
+export const getAllCheese = async (_, res) => {
   try {
     const cheese = await Cheese.find();
     res.status(200).json(cheese);
@@ -252,14 +278,16 @@ export const addCheese = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "Please provide all fields" });
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     const cheese = new Cheese({
       name: name,
-      protein: protein,
-      carbs: carbs,
-      fat: fat,
-      calories: calories,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     });
     await cheese.save();
     res.status(200).json({
@@ -275,12 +303,24 @@ export const addCheese = async (req, res) => {
 
 export const updateCheese = async (req, res) => {
   try {
-    const cheese = req.body;
+    const { name, protein, carbs, fat, calories } = req.body;
+    if (
+      name.trim() === "" ||
+      protein <= 0 ||
+      carbs <= 0 ||
+      fat <= 0 ||
+      calories <= 0
+    ) {
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
+    }
     const updateCheese = {
-      name: cheese.name,
-      password: cheese.password,
-      tel: cheese.tel,
-      email: cheese.email,
+      name: name,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     };
     await Cheese.findByIdAndUpdate(req.params.id, updateCheese);
     res.status(201).json({
@@ -310,7 +350,7 @@ export const deleteCheese = async (req, res) => {
   }
 };
 
-export const getAllSauce = async (req, res) => {
+export const getAllSauce = async (_, res) => {
   try {
     const sauce = await Sauce.find();
     res.status(200).json(sauce);
@@ -353,14 +393,16 @@ export const addSauce = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "Please provide all fields" });
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     const sauce = new Sauce({
       name: name,
-      protein: protein,
-      carbs: carbs,
-      fat: fat,
-      calories: calories,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     });
     await sauce.save();
     res.status(200).json({
@@ -376,12 +418,24 @@ export const addSauce = async (req, res) => {
 
 export const updateSauce = async (req, res) => {
   try {
-    const sauce = req.body;
+    const { name, protein, carbs, fat, calories } = req.body;
+    if (
+      name.trim() === "" ||
+      protein <= 0 ||
+      carbs <= 0 ||
+      fat <= 0 ||
+      calories <= 0
+    ) {
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
+    }
     const updateSauce = {
-      name: sauce.name,
-      password: sauce.password,
-      tel: sauce.tel,
-      email: sauce.email,
+      name: name,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     };
     await Sauce.findByIdAndUpdate(req.params.id, updateSauce);
     res.status(201).json({
@@ -411,7 +465,7 @@ export const deleteSauce = async (req, res) => {
   }
 };
 
-export const getAllTopping = async (req, res) => {
+export const getAllTopping = async (_, res) => {
   try {
     const topping = await Topping.find();
     res.status(200).json(topping);
@@ -454,14 +508,16 @@ export const addTopping = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "Please provide all fields" });
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     const topping = new Topping({
       name: name,
-      protein: protein,
-      carbs: carbs,
-      fat: fat,
-      calories: calories,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     });
     await topping.save();
     res.status(200).json({
@@ -477,14 +533,26 @@ export const addTopping = async (req, res) => {
 
 export const updateTopping = async (req, res) => {
   try {
-    const topping = req.body;
+    const { name, protein, carbs, fat, calories } = req.body;
+    if (
+      name.trim() === "" ||
+      protein <= 0 ||
+      carbs <= 0 ||
+      fat <= 0 ||
+      calories <= 0
+    ) {
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
+    }
     const updateTopping = {
-      name: topping.name,
-      password: topping.password,
-      tel: topping.tel,
-      email: topping.email,
+      name: name,
+      protein: parseFloat(protein),
+      carbs: parseFloat(carbs),
+      fat: parseFloat(fat),
+      calories: parseFloat(calories),
     };
-    await Sauce.findByIdAndUpdate(req.params.id, updateTopping);
+    await Topping.findByIdAndUpdate(req.params.id, updateTopping);
     res.status(201).json({
       message: "Updated successfully!",
     });
@@ -511,7 +579,7 @@ export const deleteTopping = async (req, res) => {
     });
   }
 };
-export const getAllIngredients = async (req, res) => {
+export const getAllIngredients = async (_, res) => {
   try {
     const topping = await Topping.find();
     const meat = await Meat.find();

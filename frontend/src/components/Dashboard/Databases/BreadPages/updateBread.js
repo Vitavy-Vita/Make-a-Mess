@@ -150,7 +150,10 @@ const UpdateBread = () => {
               >
                 {oneBread.name}
               </NavLink>
-              <button>Update</button>
+              <NavLink to={`/custom/bread/${oneBread._id}/update`}>
+                <button>Update</button>
+              </NavLink>
+
               <button onClick={() => handleRemove(oneBread._id)}>Delete</button>
             </article>
           ))}

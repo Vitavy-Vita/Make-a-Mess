@@ -15,8 +15,9 @@ userRouter.route("/users").get(getAllUsers);
 userRouter
   .route("/users/:id")
   .get(upload.single("image"), getOneUser)
-  .delete(deleteUser);
-userRouter.route("/users/:id/update").put(upload.single("image"), updateUser);
+  .delete(deleteUser)
+  .put(upload.single("image"), updateUser);
+
 userRouter.route("/users/register").post(upload.single("image"), register);
 userRouter.route("/users/login").post(login);
 

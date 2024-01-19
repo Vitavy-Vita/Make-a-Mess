@@ -8,12 +8,11 @@
 }
 
 .database-container {
- 
   @include display-flex;
   flex-direction: column;
   flex-wrap: wrap;
   padding-bottom: 1em;
-  
+
   a {
     @include button;
     width: 50%;
@@ -37,37 +36,12 @@
       margin: 1em;
     }
   }
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                    USERS                                    */
-/* -------------------------------------------------------------------------- */
-
-.user-article-dashboard {
-  @include display-flex;
-  border: 2px solid variables.$red;
-  margin: 1em;
-  padding: 1em;
-  .user-dashboard {
-    @include text-style;
-    text-decoration: none;
-    width: 100%;
-    text-align: start;
-  }
-  .user-dashboard:hover {
-    text-decoration: underline;
-  }
-  button {
-    margin: 0.5em;
-    border: none;
-  }
-}
-@media screen and (min-width: 415px) and (max-width: 810px) {
-}
-@media screen and (min-width: 811px) {
-  .user-article-dashboard {
-    .user-dashboard {
-      font-size: 1.5em;
+  .bread-container {
+    @include display-flex;
+    .bread-wrapper {
+      @include display-flex;
+      flex-direction: column;
+      margin: 2em;
     }
   }
 }

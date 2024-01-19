@@ -44,17 +44,17 @@ export const addBurger = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "Please provide all fields" });
+      return res.status(401).json({ message: "It seems you forgot a blank space somewhere !" });
     }
     let burger;
     if (!req.file) {
       burger = new Burger({
         name: name,
         description: description,
-        protein: protein,
-        carbs: carbs,
-        fat: fat,
-        calories: calories,
+        protein: parseFloat(protein),
+        carbs: parseFloat(carbs),
+        fat: parseFloat(fat),
+        calories: parseFloat(calories),
         image: {
           src: "",
           alt: "",
@@ -64,10 +64,10 @@ export const addBurger = async (req, res) => {
       burger = new Burger({
         name: name,
         description: description,
-        protein: protein,
-        carbs: carbs,
-        fat: fat,
-        calories: calories,
+        protein: parseFloat(protein),
+        carbs: parseFloat(carbs),
+        fat: parseFloat(fat),
+        calories: parseFloat(calories),
         image: {
           src: req.file.filename,
           alt: req.file.originalname,
@@ -80,9 +80,6 @@ export const addBurger = async (req, res) => {
       message: "Burger created",
     });
   } catch (error) {
-    console.log("====================================");
-    console.log(error);
-    console.log("====================================");
     res.status(500).json({
       message: "Unable to create a new burger",
     });
@@ -91,7 +88,18 @@ export const addBurger = async (req, res) => {
 
 export const updateBurger = async (req, res) => {
   try {
-    const burger = req.body;
+    const { name, description, protein, carbs, fat, calories } =
+      req.body;
+    if (
+      name.trim() === "" ||
+      description.trim() === "" ||
+      protein <= 0 ||
+      carbs <= 0 ||
+      fat <= 0 ||
+      calories <= 0
+    ) {
+      return res.status(401).json({ message: "Please provide all fields" });
+    }
     let updateBurger;
     if (!req.file) {
       updateBurger = {
@@ -99,12 +107,12 @@ export const updateBurger = async (req, res) => {
           src: "",
           alt: "",
         },
-        name: burger.name,
-        description: burger.description,
-        protein: burger.protein,
-        carbs: burger.carbs,
-        fat: burger.fat,
-        calories: burger.calories,
+        name: name,
+        description: description,
+        protein: parseFloat(protein),
+        carbs:parseFloat(carbs),
+        fat: parseFloat(fat),
+        calories: parseFloat(calories),
       };
     } else {
       updateBurger = {
@@ -112,12 +120,12 @@ export const updateBurger = async (req, res) => {
           src: req.file.filename,
           alt: req.file.originalname,
         },
-        name: burger.name,
-        description: burger.description,
-        protein: burger.protein,
-        carbs: burger.carbs,
-        fat: burger.fat,
-        calories: burger.calories,
+        name: name,
+        description: description,
+        protein: parseFloat(protein),
+        carbs: parseFloat(carbs),
+        fat: parseFloat(fat),
+        calories: parseFloat(calories),
       };
     }
     await Burger.findByIdAndUpdate(req.params.id, updateBurger);

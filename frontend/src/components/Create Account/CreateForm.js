@@ -45,7 +45,7 @@ export default function CreateForm() {
     formData.append("passwordConfirm", inputs.passwordConfirm);
     formData.append("tel", inputs.tel);
     formData.append("email", inputs.email);
-
+    formData.append("image", inputs.image)
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
       .post("http://localhost:9001/users/register", formData)

@@ -148,7 +148,10 @@ const UpdateTopping = () => {
               >
                 {oneTopping.name}
               </NavLink>
-              <button>Update</button>
+              <NavLink to={`/custom/topping/${oneTopping._id}/update`}>
+                <button>Update</button>
+              </NavLink>
+              
               <button onClick={() => handleRemove(oneTopping._id)}>
                 Delete
               </button>

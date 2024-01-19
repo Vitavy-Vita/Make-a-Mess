@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [err, setErr] = useState();
-  const id = useParams();
-
+  const { id } = useParams();
+  const [open, setOpen] = useState(false);
+  const [role, setRole] = useState();
+  const navigate = useNavigate();
+  const [response, setResponse] = useState();
   useEffect(() => {
     axios
       .get("http://localhost:9001/users")
@@ -34,6 +37,29 @@ const DashboardAdmin = () => {
         });
     }
   };
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setOpen(!open);
+  };
+  const handleMenu = (e, id) => {
+    const formData = new FormData();
+
+    formData.append("role", e.target.value);
+    const confirmBox = window.confirm(
+      "Are you sure you wish to make these changes ?"
+    );
+    if (confirmBox === true) {
+      axios
+        .put(`http://localhost:9001/users/${id}`, formData)
+        .then((res) => {
+          setResponse("Role modified");
+        })
+        .catch((res) => {
+          setErr(res.data);
+        });
+      setOpen(false);
+    }
+  };
 
   return (
     <main className="main-dashboard">
@@ -55,13 +81,34 @@ const DashboardAdmin = () => {
               <NavLink to={`/users/${oneUser._id}`} className="user-dashboard">
                 {oneUser.name}
               </NavLink>
-              <NavLink to={`/users/${oneUser._id}/update`}>
-                <button>Update</button>
-              </NavLink>
 
+              <form className="dropdown" encType="multipart/form-data">
+                <button onClick={handleOpen}>Role:</button>
+                {open ? (
+                  <ul className="drowpdown-menu">
+                    <li>
+                      <button
+                        onClick={(e) => handleMenu(e, oneUser._id)}
+                        value="user"
+                      >
+                        User
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={(e) => handleMenu(e, oneUser._id)}
+                        value="admin"
+                      >
+                        Admin
+                      </button>
+                    </li>
+                  </ul>
+                ) : null}
+              </form>
               <button onClick={() => handleRemove(oneUser._id)}>Delete</button>
             </article>
           ))}
+          {response && <span>{response}</span>}
         </article>
       </section>
     </main>

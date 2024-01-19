@@ -43,7 +43,7 @@ export const register = async (req, res) => {
     const checkPwd =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
     const checkNameLength = /^.{1,10}$/;
-    const checkSpecialCharacters =/^[a-zA-Z0-9_]*$/ ;
+    const checkSpecialCharacters = /^[a-zA-Z0-9_]*$/;
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -76,44 +76,43 @@ export const register = async (req, res) => {
         message: "Name must be 10 characters maximum",
       });
     }
-    if (!checkSpecialCharacters.test(name)){
+    if (!checkSpecialCharacters.test(name)) {
       return res.status(401).json({
-        message:'Name must not include special characters'
-      })
+        message: "Name must not include special characters",
+      });
     }
     if (password !== passwordConfirm) {
       return res.status(401).json({
         status: "error",
-        message:
-          "Passwords do not match",
+        message: "Passwords do not match",
       });
     }
-let user;
-if(!req.file){
-  user = new User({
-   name: name,
-   password: password,
-   passwordConfirm: passwordConfirm,
-   tel: tel,
-   email: email,
-   image:{
-    src:"",
-    alt:"",
-   } 
- }) 
-} else {
-  user = new User({
-   name: name,
-   password: password,
-   passwordConfirm: passwordConfirm,
-   tel: tel,
-   email: email,
-   image:{
-    src:req.file.filename,
-    alt:req.file.originalname,
-   } 
- }) 
-}
+    let user;
+    if (!req.file) {
+      user = new User({
+        name: name,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        tel: tel,
+        email: email,
+        image: {
+          src: "",
+          alt: "",
+        },
+      });
+    } else {
+      user = new User({
+        name: name,
+        password: password,
+        passwordConfirm: passwordConfirm,
+        tel: tel,
+        email: email,
+        image: {
+          src: req.file.filename,
+          alt: req.file.originalname,
+        },
+      });
+    }
 
     await user.save();
     res.status(200).json({
@@ -187,12 +186,35 @@ export const deleteUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const user = req.body;
-    const updateUser = {
-      name: user.name,
-      password: user.password,
-      tel: user.tel,
-      email: user.email,
-    };
+    let updateUser;
+    if (user.role) {
+      updateUser = {
+        role: user.role,
+      };
+    } else if (!req.file) {
+      updateUser = {
+        name: user.name,
+        password: user.password,
+        tel: user.tel,
+        email: user.email,
+        image: {
+          src: "",
+          alt: "",
+        },
+      };
+    } else {
+      updateUser = {
+        name: user.name,
+        password: user.password,
+        tel: user.tel,
+        email: user.email,
+        image: {
+          src: req.file.filename,
+          alt: req.file.originalname,
+        },
+      };
+    }
+
     await User.findByIdAndUpdate(req.params.id, updateUser);
     res.status(201).json({
       message: "Updated successfully!",

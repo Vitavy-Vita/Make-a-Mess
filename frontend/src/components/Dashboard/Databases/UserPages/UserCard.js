@@ -10,11 +10,9 @@ const UserCard = () => {
     axios
       .get(`http://localhost:9001/users/${id}`)
       .then((res) => {
-        console.log(res.data.message);
         setUser(res.data);
       })
       .catch((res) => {
-        console.log(res.data.message);
         setErr(res.data);
       });
   }, []);
@@ -25,6 +23,7 @@ const UserCard = () => {
           <img
             src={`http://localhost:9001/assets/img/${user.image.src}`}
             alt={user.image.alt}
+            className="premade-card-img"
           />
           <h2>{user.name}</h2>
           <p>Phone Number: {user.tel}</p>
