@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const CustomBurgers = () => {
   const [ingredients, setIngredients] = useState([]);
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
   const [err, setErr] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [totalMacros, setTotalMacros] = useState({
@@ -12,6 +13,7 @@ const CustomBurgers = () => {
     fat: 0,
     calories: 0,
   });
+
   useEffect(() => {
     calculateTotal();
     // deleteIngredient();
@@ -24,13 +26,15 @@ const CustomBurgers = () => {
         setErr(res.data);
       });
   }, [toggle]);
-  
+
   const handleClick = (i, name) => {
     setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
     console.log(selectedIngredient);
-    const newI = ingredients[name].filter(ing => ing._id == selectedIngredient[i]._id)
+    const newI = ingredients[name].filter(
+      (ing) => ing._id == selectedIngredient[i]._id
+    );
 
-    setIngredients({...ingredients,[name]: newI});
+    setIngredients({ ...ingredients, [name]: newI });
     calculateTotal();
   };
 
@@ -54,23 +58,21 @@ const CustomBurgers = () => {
     setTotalMacros(newTotalCombine);
   };
   const handleDelete = (i, name) => {
-   
     // const newArray = [...selectedIngredient[i]];
-    selectedIngredient.splice(i,1)
+    selectedIngredient.splice(i, 1);
     console.log(ingredients);
-    setToggle(true)
-     console.log(selectedIngredient);
-     console.log("ingredients:" + ingredients[name][i]);
+    setToggle(true);
+    console.log(selectedIngredient);
+    console.log("ingredients:" + ingredients[name][i]);
 
-      // ingredients[name].splice(i,1)
+    // ingredients[name].splice(i,1)
     //  console.log( );
 
     //  setIngredients({bread: newIng})
-     calculateTotal();
+    calculateTotal();
 
     // setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
     // deleteIngredient();
-    
   };
   const deleteIngredient = () => {
     const newTotalCombine = selectedIngredient.reduce(
@@ -91,17 +93,33 @@ const CustomBurgers = () => {
 
     setTotalMacros(newTotalCombine);
   };
+
+  const [breadToOpen, setBreadToOpen] = useState(false);
+  const [meatToOpen, setMeatToOpen] = useState(false);
+  const [cheeseToOpen, setCheeseToOpen] = useState(false);
+  const [sauceToOpen, setSauceToOpen] = useState(false);
+  const [toppingToOpen, setToppingToOpen] = useState(false);
   return (
     <main className="custom-main">
       <section className="custom-container">
-        <h2>
-          <span className={"cross-plus"}></span>{" "}
-          <span className={"cross-minus"}></span>Select your bread{" "}
+        <h2 onClick={() => setBreadToOpen(!breadToOpen)}>
+          <span className={"cross-plus"}></span>
+          <span className={"cross-minus"}></span>Select your bread
           <span className={"emoji"}>🍔</span>
         </h2>
-        <section>
+        <motion.section
+          initial={false}
+          animate={{
+            height: breadToOpen ? "auto" : 0,
+          }}
+        >
           {ingredients.bread && (
-            <article>
+            <motion.article
+              initial={false}
+              animate={{
+                opacity: breadToOpen ? 1 : 0,
+              }}
+            >
               {ingredients.bread.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "bread")}>
@@ -120,17 +138,27 @@ const CustomBurgers = () => {
                   </ul>
                 </aside>
               ))}
-            </article>
+            </motion.article>
           )}
-        </section>
-        <h2>
+        </motion.section>
+        <h2 onClick={() => setMeatToOpen(!meatToOpen)}>
           <span className={"cross-plus"}></span>{" "}
           <span className={"cross-minus"}></span>Select your protein{" "}
           <span className={"emoji"}>🥩</span>
         </h2>
-        <section>
+        <motion.section
+          initial={false}
+          animate={{
+            height: meatToOpen ? "auto" : 0,
+          }}
+        >
           {ingredients.meat && (
-            <article>
+            <motion.article
+              initial={false}
+              animate={{
+                opacity: meatToOpen ? 1 : 0,
+              }}
+            >
               {ingredients.meat.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "meat")}>
@@ -149,17 +177,27 @@ const CustomBurgers = () => {
                   </ul>
                 </aside>
               ))}
-            </article>
+            </motion.article>
           )}
-        </section>
-        <h2>
+        </motion.section>
+        <h2 onClick={() => setCheeseToOpen(!cheeseToOpen)}>
           <span className={"cross-plus"}></span>{" "}
           <span className={"cross-minus"}></span>Select your Cheese{" "}
           <span className={"emoji"}>🧀</span>
         </h2>
-        <section>
+        <motion.section
+          initial={false}
+          animate={{
+            height: cheeseToOpen ? "auto" : 0,
+          }}
+        >
           {ingredients.cheese && (
-            <article>
+            <motion.article
+              initial={false}
+              animate={{
+                opacity: cheeseToOpen ? 1 : 0,
+              }}
+            >
               {ingredients.cheese.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "cheese")}>
@@ -178,17 +216,27 @@ const CustomBurgers = () => {
                   </ul>
                 </aside>
               ))}
-            </article>
+            </motion.article>
           )}
-        </section>
-        <h2>
+        </motion.section>
+        <h2 onClick={() => setToppingToOpen(!toppingToOpen)}>
           <span className={"cross-plus"}></span>{" "}
           <span className={"cross-minus"}></span>Select your topping{" "}
           <span className={"emoji"}>🥗</span>
         </h2>
-        <section>
+        <motion.section
+          initial={false}
+          animate={{
+            height: toppingToOpen ? "auto" : 0,
+          }}
+        >
           {ingredients.topping && (
-            <article>
+            <motion.article
+              initial={false}
+              animate={{
+                opacity: toppingToOpen ? 1 : 0,
+              }}
+            >
               {ingredients.topping.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "topping")}>
@@ -207,17 +255,27 @@ const CustomBurgers = () => {
                   </ul>
                 </aside>
               ))}
-            </article>
+            </motion.article>
           )}
-        </section>
-        <h2>
-          <span className={"cross-plus"}></span>{" "}
-          <span className={"cross-minus"}></span>Select your sauce{" "}
+        </motion.section>
+        <h2 onClick={()=>setSauceToOpen(!sauceToOpen)}>
+          <span className={"cross-plus"}></span>
+          <span className={"cross-minus"}></span>Select your sauce
           <span className={"emoji"}>🥫</span>
         </h2>
-        <section>
+        <motion.section
+          initial={false}
+          animate={{
+            height: sauceToOpen ? "auto" : 0
+          }}
+        >
           {ingredients.sauce && (
-            <article>
+            <motion.article
+            initial={false}
+            animate={{
+              opacity: sauceToOpen ? 1 : 0
+            }}
+            >
               {ingredients.sauce.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "sauce")}>
@@ -236,9 +294,9 @@ const CustomBurgers = () => {
                   </ul>
                 </aside>
               ))}
-            </article>
+            </motion.article>
           )}
-        </section>
+        </motion.section>
       </section>
       <section className="ingredient-total">
         <h2>Thats a great burger you just made !</h2>
