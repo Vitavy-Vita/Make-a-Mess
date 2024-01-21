@@ -5,13 +5,11 @@
 /* -------------------------------------------------------------------------- */
 html,
 body {
-  box-sizing: border-box;
   max-width: 100%;
-  
+  overflow: hidden;
 }
 body {
   position: relative;
-  overflow: clip;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -129,7 +127,7 @@ nav {
   .burger-bar {
     @include burger-style;
   }
-  
+
   @media screen and (min-width: 415px) and (max-width: 810px) {
     .burger-menu {
       top: 45px;
@@ -153,11 +151,10 @@ nav {
   nav {
     height: 10em;
     img {
-    
       display: block;
       width: 30%;
     }
-    .nav-menu{
+    .nav-menu {
       top: 80px;
     }
     .nav-option {
@@ -232,5 +229,3 @@ nav {
 .button:hover {
   @include button-hover;
 }
-
-
