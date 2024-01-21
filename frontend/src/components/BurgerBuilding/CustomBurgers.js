@@ -8,6 +8,7 @@ const CustomBurgers = () => {
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
+  
   const [toggle, setToggle] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState([]);
