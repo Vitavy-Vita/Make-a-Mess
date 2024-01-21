@@ -8,7 +8,7 @@ const CustomBurgers = () => {
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
-  
+
   const [toggle, setToggle] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState([]);
@@ -103,8 +103,20 @@ const CustomBurgers = () => {
   return (
     <main className="custom-main">
       <section className="custom-container">
-        <h2 onClick={() => setBreadToOpen(!breadToOpen)}>
-          <span className={"cross-minus"}></span>
+        <motion.h2
+          initial={false}
+          animate={{
+            color: breadToOpen ? "#c85a44" : "#825b56",
+          }}
+          onClick={() => setBreadToOpen(!breadToOpen)}
+        >
+          <motion.span
+            initial={false}
+            animate={{
+              backgroundColor: breadToOpen ? "#c85a44" : "#825b56",
+            }}
+            className={"cross-minus"}
+          ></motion.span>
           <motion.span
             initial={false}
             animate={{
@@ -114,7 +126,7 @@ const CustomBurgers = () => {
           ></motion.span>
           Select your bread
           <span className={"emoji"}>🍔</span>
-        </h2>
+        </motion.h2>
         <motion.section
           initial={false}
           animate={{
@@ -149,8 +161,20 @@ const CustomBurgers = () => {
             </motion.article>
           )}
         </motion.section>
-        <h2 onClick={() => setMeatToOpen(!meatToOpen)}>
-          <span className={"cross-minus"}></span>{" "}
+        <motion.h2
+          initial={false}
+          animate={{
+            color: meatToOpen ? "#c85a44" : "#825b56",
+          }}
+          onClick={() => setMeatToOpen(!meatToOpen)}
+        >
+          <motion.span
+            initial={false}
+            animate={{
+              backgroundColor: meatToOpen ? "#c85a44" : "#825b56",
+            }}
+            className={"cross-minus"}
+          ></motion.span>{" "}
           <motion.span
             className={"cross-plus"}
             initial={false}
@@ -159,7 +183,7 @@ const CustomBurgers = () => {
             }}
           ></motion.span>
           Select your protein <span className={"emoji"}>🥩</span>
-        </h2>
+        </motion.h2>
         <motion.section
           initial={false}
           animate={{
@@ -194,8 +218,19 @@ const CustomBurgers = () => {
             </motion.article>
           )}
         </motion.section>
-        <h2 onClick={() => setCheeseToOpen(!cheeseToOpen)}>
-          <span className={"cross-minus"}></span>{" "}
+        <motion.h2
+          initial={false}
+          animate={{
+            color: cheeseToOpen ? "#c85a44" : "#825b56",
+          }}
+          onClick={() => setCheeseToOpen(!cheeseToOpen)}
+        >
+          <motion.span 
+          initial={false}
+          animate={{
+            backgroundColor: cheeseToOpen ? "#c85a44" : "#825b56",
+          }}
+          className={"cross-minus"}></motion.span>{" "}
           <motion.span
             className={"cross-plus"}
             initial={false}
@@ -204,7 +239,7 @@ const CustomBurgers = () => {
             }}
           ></motion.span>
           Select your Cheese <span className={"emoji"}>🧀</span>
-        </h2>
+        </motion.h2>
         <motion.section
           initial={false}
           animate={{
@@ -239,8 +274,18 @@ const CustomBurgers = () => {
             </motion.article>
           )}
         </motion.section>
-        <h2 onClick={() => setToppingToOpen(!toppingToOpen)}>
-          <span className={"cross-minus"}></span>{" "}
+        <motion.h2
+         initial={false}
+         animate={{
+           color: toppingToOpen ? "#c85a44" : "#825b56",
+         }}
+         onClick={() => setToppingToOpen(!toppingToOpen)}>
+          <motion.span 
+            initial={false}
+            animate={{
+              backgroundColor: toppingToOpen ? "#c85a44" : "#825b56",
+            }}
+          className={"cross-minus"}></motion.span>{" "}
           <motion.span
             className={"cross-plus"}
             initial={false}
@@ -249,7 +294,7 @@ const CustomBurgers = () => {
             }}
           ></motion.span>
           Select your topping <span className={"emoji"}>🥗</span>
-        </h2>
+        </motion.h2>
         <motion.section
           initial={false}
           animate={{
@@ -284,8 +329,18 @@ const CustomBurgers = () => {
             </motion.article>
           )}
         </motion.section>
-        <h2 onClick={() => setSauceToOpen(!sauceToOpen)}>
-          <span className={"cross-minus"}></span>
+        <motion.h2
+         initial={false}
+         animate={{
+           color: sauceToOpen ? "#c85a44" : "#825b56",
+         }}
+         onClick={() => setSauceToOpen(!sauceToOpen)}>
+          <motion.span 
+           initial={false}
+           animate={{
+             backgroundColor: sauceToOpen ? "#c85a44" : "#825b56",
+           }}
+          className={"cross-minus"}></motion.span>
           <motion.span
             className={"cross-plus"}
             initial={false}
@@ -295,7 +350,7 @@ const CustomBurgers = () => {
           ></motion.span>
           Select your sauce
           <span className={"emoji"}>🥫</span>
-        </h2>
+        </motion.h2>
         <motion.section
           initial={false}
           animate={{
