@@ -33,15 +33,17 @@ export default function NavBar() {
         boxShadow: state.navClass ? "none" : "0px 4px 4px rgba(0, 0, 0, 0.25)",
       }}
     >
-      <motion.img
-        src={logo}
-        alt="logo du site Make-a-Mess"
-        className={state.hideLogo}
-        initial={false}
-        animate={{
-          opacity: state.hideLogo ? 0 : 1,
-        }}
-      />
+      <NavLink to={"/"}>
+        <motion.img
+          src={logo}
+          alt="logo du site Make-a-Mess"
+          className={state.hideLogo}
+          initial={false}
+          animate={{
+            opacity: state.hideLogo ? 0 : 1,
+          }}
+        />
+      </NavLink>
       <section className={"burger-menu"} onClick={onClickToggle}>
         <motion.span
           className={"burger-bar"}
@@ -113,7 +115,7 @@ export default function NavBar() {
               Contact Us
             </NavLink>
           </li>
-          <Button />
+          <Button onClickToggle={onClickToggle} />
         </ul>
       </section>
       <motion.ul className={"nav-tablet-desktop"}>

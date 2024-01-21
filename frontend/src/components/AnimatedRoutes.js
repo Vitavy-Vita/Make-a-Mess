@@ -38,7 +38,7 @@ export default function AnimatedRoutes() {
         <Route path="/Ideas" element={<Ideas />} />
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/CustomBurger" element={<CustomBurgers />} />
+        <Route path="/custom-burger" element={<CustomBurgers />} />
 
         <Route path="/CreateAccount" element={<CreateAccount />} />
         <Route path="/Login" element={<Login />} />

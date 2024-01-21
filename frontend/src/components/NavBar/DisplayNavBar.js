@@ -2,9 +2,10 @@ import React from "react";
 import NavBar from "./NavBar";
 import MobileConnect from "./MobileConnect";
 
-export default function DisplayPage(props) {
+export default function DisplayPage() {
 
   return (
+    
     <header>
       <NavBar />
       <MobileConnect />
