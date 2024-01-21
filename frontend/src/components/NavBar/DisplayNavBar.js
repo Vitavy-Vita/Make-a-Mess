@@ -1,13 +1,11 @@
 import React from "react";
-import { useNavBarProvider } from "../../context/NavBarContext";
 import NavBar from "./NavBar";
 import MobileConnect from "./MobileConnect";
 
 export default function DisplayPage(props) {
-  const value = useNavBarProvider();
 
   return (
-    <header className={`${value.stickyCLass ? "sticky" : ""}`}>
+    <header>
       <NavBar />
       <MobileConnect />
     </header>

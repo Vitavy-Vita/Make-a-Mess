@@ -72,12 +72,7 @@ nav {
     box-shadow: -4px 0px 0px rgba(0, 0, 0, 0.25);
   }
   .hidden {
-    position: absolute;
-    z-index: 1;
     right: -300px;
-    width: 65%;
-    height: 100vh;
-    background-color: variables.$red;
     transition: ease-in 0.5s;
   }
   .visible {
@@ -94,7 +89,7 @@ nav {
       right: 0px;
       top: 0px;
       width: 100%;
-      height: 45%;
+      height: 50%;
       transition: ease-out 0.5s;
       padding-top: 3em;
     }
@@ -177,8 +172,12 @@ nav {
   nav {
     height: 10em;
     img {
+    
       display: block;
       width: 30%;
+    }
+    .nav-menu{
+      top: 80px;
     }
     .nav-option {
       justify-content: center;
@@ -218,25 +217,22 @@ nav {
 /* -------------------------------------------------------------------------- */
 /*                                 REACT ICON                                 */
 /* -------------------------------------------------------------------------- */
-aside {
-  position: relative;
-  .react-icon {
-    position: absolute;
-    top: 20px;
-    right: 120px;
-    color: variables.$gray;
-    z-index: 2;
-    cursor: pointer;
-    font-size: 40px;
-  }
+
+.react-icon {
+  position: absolute;
+  top: 20px;
+  right: 120px;
+  color: variables.$gray;
+  z-index: 2;
+  cursor: pointer;
+  font-size: 40px;
 }
+
 @media screen and (min-width: 415px) and (max-width: 810px) {
-  aside {
-    .react-icon {
-      font-size: 50px;
-      top: 30px;
-      right: 130px;
-    }
+  .react-icon {
+    font-size: 50px;
+    top: 30px;
+    right: 130px;
   }
 }
 @media screen and (min-width: 811px) {
@@ -256,22 +252,4 @@ aside {
   @include button-hover;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                  ANIMATION                                 */
-/* -------------------------------------------------------------------------- */
-.red {
-  background-color: variables.$red;
-  transition: ease-out 0.5s;
-}
-.gray {
-  box-shadow: none;
-  background-color: transparent;
-  transition: ease-out 0.5s;
-}
 
-.sticky {
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 50;
-}

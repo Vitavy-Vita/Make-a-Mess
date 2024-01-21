@@ -87,13 +87,13 @@ button {
   .slide-in {
     position: absolute;
     z-index: 2;
-    top: 0px;
-    left: 250px;
+    top: 80px;
+    right: 0px;
     transition: ease-out 0.5s;
   }
   .slide-out {
-    z-index: 2;
     position: absolute;
+    z-index: 2;
     top: -300px;
     right: 0;
     transition: ease-out 0.5s;
@@ -107,12 +107,12 @@ button {
       }
     }
     .slide-in {
-      top: -135px;
-      left: 250px;
+      top: 30px;
+      right: 200px;
     }
     .slide-out {
-      top: -160px;
-      left: -1500px;
+      top: -200px;
+      right: 200px;
     }
   }
 }
