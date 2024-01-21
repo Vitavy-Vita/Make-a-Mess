@@ -3,6 +3,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const CustomBurgers = () => {
+  const [breadToOpen, setBreadToOpen] = useState(false);
+  const [meatToOpen, setMeatToOpen] = useState(false);
+  const [cheeseToOpen, setCheeseToOpen] = useState(false);
+  const [sauceToOpen, setSauceToOpen] = useState(false);
+  const [toppingToOpen, setToppingToOpen] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [err, setErr] = useState([]);
@@ -94,17 +99,19 @@ const CustomBurgers = () => {
     setTotalMacros(newTotalCombine);
   };
 
-  const [breadToOpen, setBreadToOpen] = useState(false);
-  const [meatToOpen, setMeatToOpen] = useState(false);
-  const [cheeseToOpen, setCheeseToOpen] = useState(false);
-  const [sauceToOpen, setSauceToOpen] = useState(false);
-  const [toppingToOpen, setToppingToOpen] = useState(false);
   return (
     <main className="custom-main">
       <section className="custom-container">
         <h2 onClick={() => setBreadToOpen(!breadToOpen)}>
-          <span className={"cross-plus"}></span>
-          <span className={"cross-minus"}></span>Select your bread
+          <span className={"cross-minus"}></span>
+          <motion.span
+            initial={false}
+            animate={{
+              opacity: breadToOpen ? 0 : 1,
+            }}
+            className={"cross-plus"}
+          ></motion.span>
+          Select your bread
           <span className={"emoji"}>🍔</span>
         </h2>
         <motion.section
@@ -142,9 +149,15 @@ const CustomBurgers = () => {
           )}
         </motion.section>
         <h2 onClick={() => setMeatToOpen(!meatToOpen)}>
-          <span className={"cross-plus"}></span>{" "}
-          <span className={"cross-minus"}></span>Select your protein{" "}
-          <span className={"emoji"}>🥩</span>
+          <span className={"cross-minus"}></span>{" "}
+          <motion.span
+            className={"cross-plus"}
+            initial={false}
+            animate={{
+              opacity: meatToOpen ? 0 : 1,
+            }}
+          ></motion.span>
+          Select your protein <span className={"emoji"}>🥩</span>
         </h2>
         <motion.section
           initial={false}
@@ -181,9 +194,15 @@ const CustomBurgers = () => {
           )}
         </motion.section>
         <h2 onClick={() => setCheeseToOpen(!cheeseToOpen)}>
-          <span className={"cross-plus"}></span>{" "}
-          <span className={"cross-minus"}></span>Select your Cheese{" "}
-          <span className={"emoji"}>🧀</span>
+          <span className={"cross-minus"}></span>{" "}
+          <motion.span
+            className={"cross-plus"}
+            initial={false}
+            animate={{
+              opacity: cheeseToOpen ? 0 : 1,
+            }}
+          ></motion.span>
+          Select your Cheese <span className={"emoji"}>🧀</span>
         </h2>
         <motion.section
           initial={false}
@@ -220,9 +239,15 @@ const CustomBurgers = () => {
           )}
         </motion.section>
         <h2 onClick={() => setToppingToOpen(!toppingToOpen)}>
-          <span className={"cross-plus"}></span>{" "}
-          <span className={"cross-minus"}></span>Select your topping{" "}
-          <span className={"emoji"}>🥗</span>
+          <span className={"cross-minus"}></span>{" "}
+          <motion.span
+            className={"cross-plus"}
+            initial={false}
+            animate={{
+              opacity: toppingToOpen ? 0 : 1,
+            }}
+          ></motion.span>
+          Select your topping <span className={"emoji"}>🥗</span>
         </h2>
         <motion.section
           initial={false}
@@ -258,23 +283,30 @@ const CustomBurgers = () => {
             </motion.article>
           )}
         </motion.section>
-        <h2 onClick={()=>setSauceToOpen(!sauceToOpen)}>
-          <span className={"cross-plus"}></span>
-          <span className={"cross-minus"}></span>Select your sauce
+        <h2 onClick={() => setSauceToOpen(!sauceToOpen)}>
+          <span className={"cross-minus"}></span>
+          <motion.span
+            className={"cross-plus"}
+            initial={false}
+            animate={{
+              opacity: sauceToOpen ? 0 : 1,
+            }}
+          ></motion.span>
+          Select your sauce
           <span className={"emoji"}>🥫</span>
         </h2>
         <motion.section
           initial={false}
           animate={{
-            height: sauceToOpen ? "auto" : 0
+            height: sauceToOpen ? "auto" : 0,
           }}
         >
           {ingredients.sauce && (
             <motion.article
-            initial={false}
-            animate={{
-              opacity: sauceToOpen ? 1 : 0
-            }}
+              initial={false}
+              animate={{
+                opacity: sauceToOpen ? 1 : 0,
+              }}
             >
               {ingredients.sauce.map((ingredient, i) => (
                 <aside className="ingredient-card">

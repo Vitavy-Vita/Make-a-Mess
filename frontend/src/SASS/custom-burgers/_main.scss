@@ -3,17 +3,30 @@
   @include display-flex;
   flex-direction: column;
 }
-
+.cross-minus {
+  position: absolute;
+  top: 12px;
+  left: 70px;
+  background-color: variables.$brown;
+  width: 20px;
+  height: 3px;
+}
+.cross-plus {
+  position: absolute;
+  top: 4px;
+  left: 78px;
+  background-color: variables.$brown;
+  width: 3px;
+  height: 20px;
+}
 .custom-container {
-  text-align: center;
   h2 {
     position: relative;
   }
-  h2::before {
-    content: "+";
-  }
+
   .emoji {
     position: absolute;
     top: -3px;
+    right: 50px;
   }
 }
