@@ -1,14 +1,11 @@
-import { FaRegUserCircle } from "react-icons/fa";
 import { IoIosLogIn } from "react-icons/io";
 import { IoIosSettings } from "react-icons/io";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-export default function Login(props) {
-
+export default function Login() {
   return (
     <aside>
-     
       <section className={"login-area-desktop"}>
         <article className="buttons">
           <NavLink to={"/CreateAccount"}>

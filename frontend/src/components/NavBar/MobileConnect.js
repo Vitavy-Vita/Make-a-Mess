@@ -13,8 +13,6 @@ export default function MobileConnect() {
     if (!toggleConnect) {
       setConnectMenu(!connectMenu);
       setToggleConnect(toggleConnect);
-    } else {
-      setToggleConnect(!toggleConnect);
     }
   };
   return (
