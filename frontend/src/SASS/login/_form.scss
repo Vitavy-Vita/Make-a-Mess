@@ -24,7 +24,6 @@ form {
   @include display-flex;
   flex-direction: column;
   padding: 2em 0;
-
   input {
     @include input-style;
     margin-top: 0.5em;

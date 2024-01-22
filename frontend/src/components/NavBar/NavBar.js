@@ -88,7 +88,7 @@ export default function NavBar() {
 
           <li>
             <NavLink
-              to={"/Ideas"}
+              to={"/ideas"}
               className={"nav-option"}
               onClick={onClickToggle}
             >
@@ -98,7 +98,7 @@ export default function NavBar() {
 
           <li>
             <NavLink
-              to={"/About"}
+              to={"/about"}
               className={"nav-option"}
               onClick={onClickToggle}
             >
@@ -108,7 +108,7 @@ export default function NavBar() {
 
           <li>
             <NavLink
-              to={"/Contact"}
+              to={"/contact"}
               className={"nav-option"}
               onClick={onClickToggle}
             >
@@ -127,19 +127,19 @@ export default function NavBar() {
 
         <li>
           {" "}
-          <NavLink to={"/Ideas"} className={"nav-option"}>
+          <NavLink to={"/ideas"} className={"nav-option"}>
             Need Ideas?
           </NavLink>
         </li>
 
         <li>
-          <NavLink to={"/About"} className={"nav-option"}>
+          <NavLink to={"/about"} className={"nav-option"}>
             About Us
           </NavLink>
         </li>
 
         <li>
-          <NavLink to={"/Contact"} className={"nav-option"}>
+          <NavLink to={"/contact"} className={"nav-option"}>
             Contact Us
           </NavLink>
         </li>

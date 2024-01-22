@@ -28,6 +28,7 @@
       text-decoration: none;
       color: variables.$gray;
       padding: .5em;
+      cursor: pointer;
     }
     a:hover {
       text-decoration: underline white;
@@ -67,6 +68,7 @@ button {
     color: variables.$gray;
     text-decoration: none;
     margin: 0.5em 0.5em;
+    cursor: pointer;
   }
   a:hover {
     text-decoration: underline;

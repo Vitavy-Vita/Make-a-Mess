@@ -12,10 +12,12 @@ export default function Login() {
   const [err, setErr] = useState();
   const auth = useAuth();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputs.email.trim() === "" || inputs.password.trim() === "") {
@@ -25,6 +27,9 @@ export default function Login() {
       .post("http://localhost:9001/users/login", inputs, { headers: token() })
       .then((res) => {
         if (res.data.token) {
+          console.log("====================================");
+          console.log(res);
+          console.log("====================================");
           auth.login(res.data);
           navigate("/");
         }
@@ -35,9 +40,6 @@ export default function Login() {
         });
       })
       .catch((res) => {
-        console.log("====================================");
-        console.log(res);
-        console.log("====================================");
         setErr(res.data);
       });
   };

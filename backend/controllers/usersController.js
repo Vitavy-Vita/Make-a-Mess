@@ -159,6 +159,7 @@ export const login = async (req, res) => {
       role: user.role,
       token: token,
     });
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({

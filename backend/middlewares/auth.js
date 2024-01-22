@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import User from "../models/userModel.js";
+import User from "../models/usersModels.js";
 
 dotenv.config();
 
@@ -8,7 +8,6 @@ export const isLogged = (req, res, next) => {
   let authToken = req.headers.authorization;
   console.log(authToken);
 
-  // extrait le token du headers de la requète
   let token = authToken && authToken.split(" ")[1];
   if (!token) {
     res.status(401).json({
