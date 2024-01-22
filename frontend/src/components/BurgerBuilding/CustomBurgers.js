@@ -22,7 +22,6 @@ const CustomBurgers = () => {
 
   useEffect(() => {
     calculateTotal();
-    // deleteIngredient();
     axios
       .get(`http://localhost:9001/ingredients`)
       .then((res) => {
@@ -35,12 +34,13 @@ const CustomBurgers = () => {
 
   const handleClick = (i, name) => {
     setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
-    console.log(selectedIngredient);
-    const newI = ingredients[name].filter(
-      (ing) => ing._id == selectedIngredient[i]._id
-    );
-
-    setIngredients({ ...ingredients, [name]: newI });
+    const newI = {
+      ...ingredients,
+      [name]: ingredients[name].filter(
+        (ing) => ing._id === ingredients[name][i]._id
+      ),
+    };
+    setIngredients(newI);
     calculateTotal();
   };
 
@@ -63,41 +63,12 @@ const CustomBurgers = () => {
 
     setTotalMacros(newTotalCombine);
   };
+
   const handleDelete = (i, name) => {
-    // const newArray = [...selectedIngredient[i]];
-    selectedIngredient.splice(i, 1);
-    console.log(ingredients);
-    setToggle(true);
-    console.log(selectedIngredient);
-    console.log("ingredients:" + ingredients[name][i]);
-
-    // ingredients[name].splice(i,1)
-    //  console.log( );
-
-    //  setIngredients({bread: newIng})
+    const removeIng = selectedIngredient.filter((ing, index) => index !== i);
+    setSelectedIngredient(removeIng);
     calculateTotal();
-
-    // setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
-    // deleteIngredient();
-  };
-  const deleteIngredient = () => {
-    const newTotalCombine = selectedIngredient.reduce(
-      (acc, macros) => {
-        acc.protein -= macros.protein;
-        acc.carbs -= macros.carbs;
-        acc.fat -= macros.fat;
-        acc.calories -= macros.calories;
-        return acc;
-      },
-      {
-        protein: 0,
-        carbs: 0,
-        fat: 0,
-        calories: 0,
-      }
-    );
-
-    setTotalMacros(newTotalCombine);
+    setToggle(!toggle);
   };
 
   return (
@@ -133,7 +104,7 @@ const CustomBurgers = () => {
             height: breadToOpen ? "auto" : 0,
           }}
         >
-          {ingredients.bread && (
+          {ingredients.bread && Array.isArray(ingredients.bread) && (
             <motion.article
               initial={false}
               animate={{
@@ -225,12 +196,13 @@ const CustomBurgers = () => {
           }}
           onClick={() => setCheeseToOpen(!cheeseToOpen)}
         >
-          <motion.span 
-          initial={false}
-          animate={{
-            backgroundColor: cheeseToOpen ? "#c85a44" : "#825b56",
-          }}
-          className={"cross-minus"}></motion.span>{" "}
+          <motion.span
+            initial={false}
+            animate={{
+              backgroundColor: cheeseToOpen ? "#c85a44" : "#825b56",
+            }}
+            className={"cross-minus"}
+          ></motion.span>{" "}
           <motion.span
             className={"cross-plus"}
             initial={false}
@@ -275,17 +247,19 @@ const CustomBurgers = () => {
           )}
         </motion.section>
         <motion.h2
-         initial={false}
-         animate={{
-           color: toppingToOpen ? "#c85a44" : "#825b56",
-         }}
-         onClick={() => setToppingToOpen(!toppingToOpen)}>
-          <motion.span 
+          initial={false}
+          animate={{
+            color: toppingToOpen ? "#c85a44" : "#825b56",
+          }}
+          onClick={() => setToppingToOpen(!toppingToOpen)}
+        >
+          <motion.span
             initial={false}
             animate={{
               backgroundColor: toppingToOpen ? "#c85a44" : "#825b56",
             }}
-          className={"cross-minus"}></motion.span>{" "}
+            className={"cross-minus"}
+          ></motion.span>{" "}
           <motion.span
             className={"cross-plus"}
             initial={false}
@@ -330,17 +304,19 @@ const CustomBurgers = () => {
           )}
         </motion.section>
         <motion.h2
-         initial={false}
-         animate={{
-           color: sauceToOpen ? "#c85a44" : "#825b56",
-         }}
-         onClick={() => setSauceToOpen(!sauceToOpen)}>
-          <motion.span 
-           initial={false}
-           animate={{
-             backgroundColor: sauceToOpen ? "#c85a44" : "#825b56",
-           }}
-          className={"cross-minus"}></motion.span>
+          initial={false}
+          animate={{
+            color: sauceToOpen ? "#c85a44" : "#825b56",
+          }}
+          onClick={() => setSauceToOpen(!sauceToOpen)}
+        >
+          <motion.span
+            initial={false}
+            animate={{
+              backgroundColor: sauceToOpen ? "#c85a44" : "#825b56",
+            }}
+            className={"cross-minus"}
+          ></motion.span>
           <motion.span
             className={"cross-plus"}
             initial={false}

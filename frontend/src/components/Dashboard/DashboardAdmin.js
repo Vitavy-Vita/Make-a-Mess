@@ -1,15 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-
+import token from "../../context/token";
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [err, setErr] = useState();
   const { id } = useParams();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(null);
   const [role, setRole] = useState();
   const navigate = useNavigate();
   const [response, setResponse] = useState();
+  const [search, setSearch] = useState({
+    name: "",
+  });
   useEffect(() => {
     axios
       .get("http://localhost:9001/users")
@@ -27,7 +30,7 @@ const DashboardAdmin = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/users/${id}`)
+        .delete(`http://localhost:9001/users/${id}`, { headers: token() })
         .then((res) => {
           setUsers((allUsers) => allUsers.filter((user) => user.id !== id));
         })
@@ -37,10 +40,15 @@ const DashboardAdmin = () => {
         });
     }
   };
-  const handleOpen = (e) => {
+  const handleOpen = (e, id) => {
     e.preventDefault();
-    setOpen(!open);
+    if (open === id) {
+      setOpen(null);
+    } else {
+      setOpen(id)
+    }
   };
+
   const handleMenu = (e, id) => {
     const formData = new FormData();
 
@@ -50,14 +58,14 @@ const DashboardAdmin = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/users/${id}`, formData)
+        .put(`http://localhost:9001/users/${id}`, formData, {headers: token()})
         .then((res) => {
           setResponse("Role modified");
         })
         .catch((res) => {
           setErr(res.data);
         });
-      setOpen(false);
+      setOpen(null);
     }
   };
 
@@ -76,15 +84,22 @@ const DashboardAdmin = () => {
         </article>
         <article>
           <h2>Users:</h2>
-          {users.map((oneUser) => (
-            <article className="user-article-dashboard">
+          <form>
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
+          {users.map((oneUser, i) => (
+            <article className="user-article-dashboard" key={oneUser._id}>
               <NavLink to={`/users/${oneUser._id}`} className="user-dashboard">
                 {oneUser.name}
               </NavLink>
 
               <form className="dropdown" encType="multipart/form-data">
-                <button onClick={handleOpen}>Role:</button>
-                {open ? (
+                <button onClick={(e)=>handleOpen(e,oneUser._id)}>Role:</button>
+                {open === oneUser._id ? (
                   <ul className="drowpdown-menu">
                     <li>
                       <button

@@ -2,6 +2,9 @@ import User from "../models/usersModels.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import fs from "fs";
+import { log } from "console";
+import path from "path";
 
 dotenv.config();
 
@@ -159,7 +162,6 @@ export const login = async (req, res) => {
       role: user.role,
       token: token,
     });
-    
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -169,6 +171,7 @@ export const login = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
+
   try {
     await User.findByIdAndDelete(req.params.id).then((res) => {
       res.status(204).json({
@@ -176,6 +179,17 @@ export const deleteUser = async (req, res) => {
         data: null,
       });
     });
+
+    fs.unlink(`./public/assets/img/${Date.now()}-${file.originalname.split(" ").join("_")}`, (error) => {
+
+      if (error) {
+        console.log("====================================");
+        console.log(error);
+        console.log("====================================");
+        return;
+      }
+    });
+    
   } catch (error) {
     res.status(500).json({
       status: "fail",

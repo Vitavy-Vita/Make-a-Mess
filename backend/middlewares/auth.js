@@ -34,7 +34,6 @@ export const isAuthorized = (roles) => {
         message: "User not found",
       });
     }
-    // gestion des différents roles d'une application
     if (!roles.includes(user.role)) {
       return res.status(403).json({
         message: "Unauthorized access",

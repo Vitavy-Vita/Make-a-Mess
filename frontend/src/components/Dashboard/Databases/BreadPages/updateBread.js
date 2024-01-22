@@ -4,6 +4,9 @@ import { NavLink, useParams } from "react-router-dom";
 
 const UpdateBread = () => {
   const [breads, setBreads] = useState();
+  const [search, setSearch] = useState({
+    name:""
+  })
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -142,7 +145,23 @@ const UpdateBread = () => {
       {breads && (
         <article className="bread-wrapper">
           <h2>Existing Bread</h2>
-          {breads.map((oneBread) => (
+          <form>
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </form>
+
+          {breads
+          .filter((oneBread)=>{
+            if(search === ""){
+              return oneBread
+            } else if(oneBread.name.toLowerCase().includes(search)){
+              return oneBread
+            }
+          })
+          .map((oneBread) => (
             <article className="user-article-dashboard">
               <NavLink
                 to={`/custom/bread/${oneBread._id}`}

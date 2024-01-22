@@ -1,11 +1,11 @@
 import multer from "multer";
 import path from "path";
 
-const maxSize = 5242880; // Environ 5 MO
+const maxSize = 5242880;
 
 const storageEngine = multer.diskStorage({
   destination: "./public/assets/img",
-  filename: (req, file, cb) => {
+  filename: (_, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname.split(" ").join("_")}`);
   },
 });
@@ -15,24 +15,15 @@ const upload = multer({
   limits: {
     fileSize: maxSize,
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (_, file, cb) => {
     checkFileType(file, cb);
   },
 });
 
-/**
- *
- * @param {*} file
- * @param {*} cb
- * @returns
- * Fonction qui retourne et qui va vérifier le type des fichiers autorisés
- */
 const checkFileType = (file, cb) => {
-  // Autorisation des fichiers img
 
   const fileTypes = /jpg|png|jpeg|gif|webp|svg/;
 
-  // Vérification des extensions de fichiers
   const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
   const mimeType = fileTypes.test(file.mimetype);
 
