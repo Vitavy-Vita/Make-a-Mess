@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import token from "../../../../context/token"
 const UpdateBreadForm = () => {
   const [bread, setBread] = useState();
   const [err, setErr] = useState();
@@ -16,7 +16,7 @@ const UpdateBreadForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/bread/${id}`)
+      .get(`http://localhost:9001/custom/bread/${id}`, {headers:token()})
       .then((res) => {
         setBread(res.data);
         setInputs(res.data);

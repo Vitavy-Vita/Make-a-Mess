@@ -62,6 +62,7 @@ export default function NavBar() {
           animate={{
             opacity: state.burgerClass ? 0 : 1,
           }}
+          
         ></motion.span>
         <motion.span
           className={`burger-bar ${
