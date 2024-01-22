@@ -7,7 +7,6 @@ const DashboardAdmin = () => {
   const [err, setErr] = useState();
   const { id } = useParams();
   const [open, setOpen] = useState(null);
-  const [role, setRole] = useState();
   const navigate = useNavigate();
   const [response, setResponse] = useState();
   const [search, setSearch] = useState({
@@ -45,7 +44,7 @@ const DashboardAdmin = () => {
     if (open === id) {
       setOpen(null);
     } else {
-      setOpen(id)
+      setOpen(id);
     }
   };
 
@@ -58,7 +57,9 @@ const DashboardAdmin = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/users/${id}`, formData, {headers: token()})
+        .put(`http://localhost:9001/users/${id}`, formData, {
+          headers: token(),
+        })
         .then((res) => {
           setResponse("Role modified");
         })
@@ -68,7 +69,11 @@ const DashboardAdmin = () => {
       setOpen(null);
     }
   };
+  const handleSearch = (e) => {
+    const inputValue = e.target.value;
+    setSearch(inputValue)
 
+  };
   return (
     <main className="main-dashboard">
       <h1>Dashboard</h1>
@@ -88,7 +93,7 @@ const DashboardAdmin = () => {
             <input
               type="text"
               placeholder="Search..."
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={handleSearch}
             />
           </form>
           {users.map((oneUser, i) => (
@@ -98,7 +103,9 @@ const DashboardAdmin = () => {
               </NavLink>
 
               <form className="dropdown" encType="multipart/form-data">
-                <button onClick={(e)=>handleOpen(e,oneUser._id)}>Role:</button>
+                <button onClick={(e) => handleOpen(e, oneUser._id)}>
+                  Role:
+                </button>
                 {open === oneUser._id ? (
                   <ul className="drowpdown-menu">
                     <li>
