@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import token from "../../../../context/token";
 
 const UpdateBread = () => {
   const [breads, setBreads] = useState();
@@ -48,7 +49,7 @@ const UpdateBread = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/bread/new", inputs)
+      .post("http://localhost:9001/custom/bread/new", inputs, {headers: token()})
       .then((res) => {
         setInputs({
           ...inputs,
@@ -71,7 +72,7 @@ const UpdateBread = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/bread/${id}`)
+        .delete(`http://localhost:9001/custom/bread/${id}`, {headers: token()})
         .then((res) => {
           setBreads((allBreads) =>
             allBreads.filter((bread) => bread.id !== id)

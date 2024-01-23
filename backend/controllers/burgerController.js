@@ -1,5 +1,5 @@
 import Burger from "../models/burgerModels.js";
-
+import fs from "fs";
 export const getAllBurgers = async (req, res) => {
   try {
     const burgers = await Burger.find();
@@ -44,7 +44,9 @@ export const addBurger = async (req, res) => {
       fat <= 0 ||
       calories <= 0
     ) {
-      return res.status(401).json({ message: "It seems you forgot a blank space somewhere !" });
+      return res
+        .status(401)
+        .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     let burger;
     if (!req.file) {
@@ -88,8 +90,7 @@ export const addBurger = async (req, res) => {
 
 export const updateBurger = async (req, res) => {
   try {
-    const { name, description, protein, carbs, fat, calories } =
-      req.body;
+    const { name, description, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
       description.trim() === "" ||
@@ -110,7 +111,7 @@ export const updateBurger = async (req, res) => {
         name: name,
         description: description,
         protein: parseFloat(protein),
-        carbs:parseFloat(carbs),
+        carbs: parseFloat(carbs),
         fat: parseFloat(fat),
         calories: parseFloat(calories),
       };
@@ -142,11 +143,17 @@ export const updateBurger = async (req, res) => {
 
 export const deleteBurger = async (req, res) => {
   try {
-    await Burger.findByIdAndDelete(req.params.id).then(() => {
-      res.status(204).json({
-        status: "success",
-        data: null,
-      });
+    const deletedBurger = await Burger.findByIdAndDelete(req.params.id);
+    fs.unlink(`./public/assets/img/${deletedBurger.image.src}`, (error) => {
+      if (error) {
+        res.status(500).json({
+          status: "fail",
+          message: "Error deleting file",
+        });
+      }
+    });
+    res.status(204).json({
+      status: "success",
     });
   } catch (error) {
     res.status(500).json({

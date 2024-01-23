@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import token from "../../../../context/token"
 const UpdateBurgerGallery = () => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -59,7 +59,7 @@ const UpdateBurgerGallery = () => {
     formData.append("image", inputs.image);
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/burgers/new", formData)
+      .post("http://localhost:9001/burgers/new", formData, {headers: token()})
       .then((res) => {
         setInputs({
           ...inputs,
@@ -82,7 +82,7 @@ const UpdateBurgerGallery = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/burgers/${id}`)
+        .delete(`http://localhost:9001/burgers/${id}`, {headers: token()})
         .then((res) => {
           setPreMade((allPreMade) =>
             allPreMade.filter((preMade) => preMade.id !== id)

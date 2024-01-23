@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import token from "../../../../context/token";
 
 const UpdateSauce = () => {
   const [sauces, setSauces] = useState();
@@ -46,7 +47,7 @@ const UpdateSauce = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/sauce/new", inputs)
+      .post("http://localhost:9001/custom/sauce/new", inputs, {headers: token()})
       .then((res) => {
         setInputs({
           ...inputs,
@@ -68,7 +69,7 @@ const UpdateSauce = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/sauce/${id}`)
+        .delete(`http://localhost:9001/custom/sauce/${id}`, {headers: token()})
         .then((res) => {
           setSauces((allSauce) => allSauce.filter((sauce) => sauce.id !== id));
         })

@@ -34,7 +34,6 @@ const DashboardAdmin = () => {
           setUsers((allUsers) => allUsers.filter((user) => user.id !== id));
         })
         .catch((res) => {
-          console.log(res.data);
           setErr("Not working");
         });
     }
@@ -72,7 +71,7 @@ const DashboardAdmin = () => {
   const handleSearch = (e) => {
     const inputValue = e.target.value;
     setSearch(inputValue)
-
+    
   };
   return (
     <main className="main-dashboard">

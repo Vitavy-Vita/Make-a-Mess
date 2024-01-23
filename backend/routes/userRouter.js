@@ -16,8 +16,13 @@ userRouter.route("/users").get(getAllUsers);
 userRouter
   .route("/users/:id")
   .get(upload.single("image"), getOneUser)
-  .delete(isLogged, isAuthorized(["admin"]),deleteUser)
-  .put(isLogged, isAuthorized(["admin", "user"]),upload.single("image"), updateUser);
+  .delete(isLogged, isAuthorized(["admin"]), deleteUser)
+  .put(
+    isLogged,
+    isAuthorized(["admin", "user"]),
+    upload.single("image"),
+    updateUser
+  );
 
 userRouter.route("/users/register").post(upload.single("image"), register);
 userRouter.route("/users/login").post(login);

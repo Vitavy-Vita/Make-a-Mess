@@ -3,8 +3,6 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import fs from "fs";
-import { log } from "console";
-import path from "path";
 
 dotenv.config();
 
@@ -137,14 +135,14 @@ export const login = async (req, res) => {
       email,
     });
     if (!email) {
-      return res.status(404).json({
+      res.status(404).json({
         message: "User not found",
       });
     }
     const isValidPwd = bcrypt.compareSync(password, user.password);
 
     if (!isValidPwd) {
-      return res.status(401).json({
+      res.status(401).json({
         message: "Wrong password",
       });
     }
@@ -163,7 +161,6 @@ export const login = async (req, res) => {
       token: token,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: "Cant login",
     });
@@ -171,28 +168,29 @@ export const login = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-
   try {
-    await User.findByIdAndDelete(req.params.id).then((res) => {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    if (!deletedUser) {
+      res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    fs.unlink(`./public/assets/img/${deletedUser.image.src}`, (error) => {
+      if (error) {
+        res.status(500).json({
+          status: "fail",
+          message: "Error deleting file",
+        });
+      }
+
       res.status(204).json({
-        status: "success",
-        data: null,
+        message: "Account deleted",
       });
     });
-
-    fs.unlink(`./public/assets/img/${Date.now()}-${file.originalname.split(" ").join("_")}`, (error) => {
-
-      if (error) {
-        console.log("====================================");
-        console.log(error);
-        console.log("====================================");
-        return;
-      }
-    });
-    
   } catch (error) {
+    console.log("Error deleting user:", error);
     res.status(500).json({
-      status: "fail",
       message: "Delete not working",
     });
   }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import token from "../../../../context/token";
 
 const UpdateTopping = () => {
   const [toppings, setToppings] = useState();
@@ -46,7 +47,7 @@ const UpdateTopping = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/topping/new", inputs)
+      .post("http://localhost:9001/custom/topping/new", inputs, {headers: token()})
       .then((res) => {
         setInputs({
           ...inputs,
@@ -68,7 +69,7 @@ const UpdateTopping = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/topping/${id}`)
+        .delete(`http://localhost:9001/custom/topping/${id}`, {headers: token()})
         .then((res) => {
           setToppings((allTopping) =>
             allTopping.filter((topping) => topping.id !== id)

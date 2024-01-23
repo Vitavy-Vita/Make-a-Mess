@@ -29,9 +29,6 @@ export default function Login() {
       .post("http://localhost:9001/users/login", inputs, { headers: token() })
       .then((res) => {
         if (res.data.token) {
-          console.log("====================================");
-          console.log(res);
-          console.log("====================================");
           auth.login(res.data);
           navigate("/");
         }
