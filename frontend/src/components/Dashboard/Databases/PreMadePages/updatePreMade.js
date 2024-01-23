@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import token from "../../../../context/token"
+import token from "../../../../context/token";
 const UpdateBurgerGallery = () => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -11,7 +11,8 @@ const UpdateBurgerGallery = () => {
     fat: 0,
     calories: 0,
   });
-  const [preMade, setPreMade] = useState();
+  const [preMade, setPreMade] = useState([]);
+  const [filteredPreMade, setFilteredPreMade] = useState([]);
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
@@ -20,11 +21,12 @@ const UpdateBurgerGallery = () => {
       .get(`http://localhost:9001/burgers`)
       .then((res) => {
         setPreMade(res.data);
+        setFilteredPreMade(res.data);
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, [preMade]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -59,7 +61,7 @@ const UpdateBurgerGallery = () => {
     formData.append("image", inputs.image);
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/burgers/new", formData, {headers: token()})
+      .post("http://localhost:9001/burgers/new", formData, { headers: token() })
       .then((res) => {
         setInputs({
           ...inputs,
@@ -82,17 +84,23 @@ const UpdateBurgerGallery = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/burgers/${id}`, {headers: token()})
+        .delete(`http://localhost:9001/burgers/${id}`, { headers: token() })
         .then((res) => {
           setPreMade((allPreMade) =>
             allPreMade.filter((preMade) => preMade.id !== id)
           );
         })
         .catch((res) => {
-          console.log(res.data);
           setErr("Not working");
         });
     }
+  };
+  const handleSearch = (value) => {
+    const searchResult = filteredPreMade.filter((preMade) =>
+      preMade.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setPreMade(searchResult);
+
   };
   return (
     <article>
@@ -163,6 +171,13 @@ const UpdateBurgerGallery = () => {
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
       <h2>Existing Burgers:</h2>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </form>
       {preMade && (
         <section>
           {preMade.map((onePreMade) => (
@@ -183,6 +198,9 @@ const UpdateBurgerGallery = () => {
           ))}
         </section>
       )}
+      <NavLink to={"/Settings/Admin"}>
+        <button>Go Back</button>
+      </NavLink>
     </article>
   );
 };

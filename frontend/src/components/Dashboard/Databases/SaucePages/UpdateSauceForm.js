@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import token from "../../../../context/token"
 const UpdateSauceForm = () => {
     const [sauce, setSauce] = useState();
     const [err, setErr] = useState();
@@ -36,7 +36,9 @@ const UpdateSauceForm = () => {
       );
       if (confirmBox === true) {
         axios
-          .put(`http://localhost:9001/custom/sauce/${id}`, inputs)
+          .put(`http://localhost:9001/custom/sauce/${id}`, inputs, {
+            headers: token(),
+          })
           .then(() => {
             navigate(`/custom/sauce/${id}`);
           })

@@ -1,21 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import token from "../../../../context/token";
 
 const UpdateBread = () => {
-  const [breads, setBreads] = useState();
-  const [search, setSearch] = useState({
-    name:""
-  })
+  const [breads, setBreads] = useState([]);
+  const [filteredBread, setFilteredBread] = useState([]);
+
   const [inputs, setInputs] = useState({
     name: "",
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    calories: 0,
+    protein: "",
+    carbs: "",
+    fat: "",
+    calories: "",
   });
-  const { id } = useParams();
+
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
@@ -24,11 +23,14 @@ const UpdateBread = () => {
       .get(`http://localhost:9001/custom/bread`)
       .then((res) => {
         setBreads(res.data);
+        setFilteredBread(res.data);
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, [breads]);
+  }, []);
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -49,7 +51,9 @@ const UpdateBread = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/bread/new", inputs, {headers: token()})
+      .post("http://localhost:9001/custom/bread/new", inputs, {
+        headers: token(),
+      })
       .then((res) => {
         setInputs({
           ...inputs,
@@ -72,7 +76,9 @@ const UpdateBread = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/bread/${id}`, {headers: token()})
+        .delete(`http://localhost:9001/custom/bread/${id}`, {
+          headers: token(),
+        })
         .then((res) => {
           setBreads((allBreads) =>
             allBreads.filter((bread) => bread.id !== id)
@@ -84,6 +90,15 @@ const UpdateBread = () => {
         });
     }
   };
+
+  const handleSearch = (value) => {
+    const searchResult = filteredBread.filter((bread) =>
+      bread.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setBreads(searchResult);
+
+  };
+
   return (
     <section className="bread-container">
       <article className="bread-wrapper">
@@ -150,19 +165,11 @@ const UpdateBread = () => {
             <input
               type="text"
               placeholder="Search..."
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
             />
           </form>
 
-          {breads
-          .filter((oneBread)=>{
-            if(search === ""){
-              return oneBread
-            } else if(oneBread.name.toLowerCase().includes(search)){
-              return oneBread
-            }
-          })
-          .map((oneBread) => (
+          {breads.map((oneBread) => (
             <article className="user-article-dashboard">
               <NavLink
                 to={`/custom/bread/${oneBread._id}`}

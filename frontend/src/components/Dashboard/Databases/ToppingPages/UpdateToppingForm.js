@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import token from "../../../../context/token"
 const UpdateToppingForm = () => {
   const [topping, setTopping] = useState();
   const [err, setErr] = useState();
@@ -36,7 +36,9 @@ const UpdateToppingForm = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/custom/topping/${id}`, inputs)
+        .put(`http://localhost:9001/custom/topping/${id}`, inputs, {
+          headers: token(),
+        })
         .then(() => {
           navigate(`/custom/topping/${id}`);
         })

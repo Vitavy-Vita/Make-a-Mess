@@ -36,7 +36,9 @@ const UpdateBreadForm = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/custom/bread/${id}`, inputs)
+        .put(`http://localhost:9001/custom/bread/${id}`, inputs, {
+          headers: token(),
+        })
         .then(() => {
           navigate(`/custom/bread/${id}`);
         })

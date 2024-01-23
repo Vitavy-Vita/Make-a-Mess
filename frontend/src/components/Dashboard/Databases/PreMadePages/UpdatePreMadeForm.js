@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import token from "../../../../context/token"
 const UpdatePreMadeForm = () => {
   const [preMade, setPreMade] = useState();
   const [err, setErr] = useState();
@@ -50,7 +50,9 @@ const UpdatePreMadeForm = () => {
       formData.append("calories", inputs.calories);
       formData.append("image", inputs.image);
       axios
-        .put(`http://localhost:9001/burgers/${id}`, formData)
+        .put(`http://localhost:9001/burgers/${id}`, formData, {
+          headers: token(),
+        })
         .then(() => {
           navigate(`/burgers/${id}`);
         })

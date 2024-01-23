@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import token from "../../../../context/token"
 const UpdateCheeseForm = () => {
-    const [cheese, setCheese] = useState();
+    const [cheese, setCheese] = useState([]);
+
   const [err, setErr] = useState();
   const [inputs, setInputs] = useState({
     name: "",
@@ -36,7 +37,9 @@ const UpdateCheeseForm = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/custom/cheese/${id}`, inputs)
+        .put(`http://localhost:9001/custom/cheese/${id}`, inputs, {
+          headers: token(),
+        })
         .then(() => {
           navigate(`/custom/cheese/${id}`);
         })

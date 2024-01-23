@@ -4,24 +4,22 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import token from "../../context/token";
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
+  const [filteredUser, setFilteredUser] = useState([]);
   const [err, setErr] = useState();
-  const { id } = useParams();
   const [open, setOpen] = useState(null);
-  const navigate = useNavigate();
   const [response, setResponse] = useState();
-  const [search, setSearch] = useState({
-    name: "",
-  });
+
   useEffect(() => {
     axios
       .get("http://localhost:9001/users")
       .then((res) => {
         setUsers(res.data);
+        setFilteredUser(res.data);
       })
       .catch((err) => {
         setErr("Cannot access data");
       });
-  }, [users]);
+  }, []);
 
   const handleRemove = (id) => {
     const confirmBox = window.confirm(
@@ -68,11 +66,14 @@ const DashboardAdmin = () => {
       setOpen(null);
     }
   };
-  const handleSearch = (e) => {
-    const inputValue = e.target.value;
-    setSearch(inputValue)
-    
+
+  const handleSearch = (value) => {
+    const searchResult = filteredUser.filter((user) =>
+      user.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setUsers(searchResult);
   };
+
   return (
     <main className="main-dashboard">
       <h1>Dashboard</h1>
@@ -92,7 +93,7 @@ const DashboardAdmin = () => {
             <input
               type="text"
               placeholder="Search..."
-              onChange={handleSearch}
+              onChange={(e) => handleSearch(e.target.value)}
             />
           </form>
           {users.map((oneUser, i) => (
@@ -129,6 +130,7 @@ const DashboardAdmin = () => {
               <button onClick={() => handleRemove(oneUser._id)}>Delete</button>
             </article>
           ))}
+
           {response && <span>{response}</span>}
         </article>
       </section>

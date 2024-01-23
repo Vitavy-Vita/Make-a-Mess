@@ -4,7 +4,8 @@ import { NavLink, useParams } from "react-router-dom";
 import token from "../../../../context/token";
 
 const UpdateCheese = () => {
-  const [cheeses, setCheeses] = useState();
+  const [cheeses, setCheeses] = useState([]);
+  const [filteredCheese, setfilteredCheese] = useState([]);
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -21,11 +22,12 @@ const UpdateCheese = () => {
       .get(`http://localhost:9001/custom/cheese`)
       .then((res) => {
         setCheeses(res.data);
+        setfilteredCheese(res.data);
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, [cheeses]);
+  }, [inputs]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,6 +67,7 @@ const UpdateCheese = () => {
         setErr(err);
       });
   };
+
   const handleRemove = (id) => {
     const confirmBox = window.confirm(
       "Do you really want to delete this cheese ?"
@@ -85,6 +88,15 @@ const UpdateCheese = () => {
         });
     }
   };
+
+  const handleSearch = (value) => {
+    const searchResult = filteredCheese.filter((cheese) => 
+      cheese.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setCheeses(searchResult);
+
+  };
+
   return (
     <article>
       <h2>Create new Cheese</h2>
@@ -143,6 +155,13 @@ const UpdateCheese = () => {
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
       <h2>Existing Cheese</h2>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </form>
       {cheeses && (
         <section>
           {cheeses.map((oneCheese) => (
@@ -164,6 +183,9 @@ const UpdateCheese = () => {
           ))}
         </section>
       )}
+        <NavLink to={"/Settings/Admin"}>
+        <button>Go Back</button>
+      </NavLink>
     </article>
   );
 };

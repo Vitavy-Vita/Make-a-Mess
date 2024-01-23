@@ -6,7 +6,6 @@ dotenv.config();
 
 export const isLogged = (req, res, next) => {
   let authToken = req.headers.authorization;
-  console.log(authToken);
 
   let token = authToken && authToken.split(" ")[1];
   if (!token) {

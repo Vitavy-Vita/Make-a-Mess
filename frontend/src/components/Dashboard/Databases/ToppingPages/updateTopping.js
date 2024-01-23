@@ -4,7 +4,8 @@ import { NavLink, useParams } from "react-router-dom";
 import token from "../../../../context/token";
 
 const UpdateTopping = () => {
-  const [toppings, setToppings] = useState();
+  const [toppings, setToppings] = useState([]);
+  const [filteredTopping, setFilteredTopping]= useState([])
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -21,11 +22,12 @@ const UpdateTopping = () => {
       .get(`http://localhost:9001/custom/topping`)
       .then((res) => {
         setToppings(res.data);
+        setFilteredTopping(res.data)
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, [toppings]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +49,9 @@ const UpdateTopping = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/topping/new", inputs, {headers: token()})
+      .post("http://localhost:9001/custom/topping/new", inputs, {
+        headers: token(),
+      })
       .then((res) => {
         setInputs({
           ...inputs,
@@ -69,7 +73,9 @@ const UpdateTopping = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/topping/${id}`, {headers: token()})
+        .delete(`http://localhost:9001/custom/topping/${id}`, {
+          headers: token(),
+        })
         .then((res) => {
           setToppings((allTopping) =>
             allTopping.filter((topping) => topping.id !== id)
@@ -80,6 +86,12 @@ const UpdateTopping = () => {
           setErr("Not working");
         });
     }
+  };
+  const handleSearch = (value) => {
+    const searchResult = filteredTopping.filter((topping) =>
+      topping.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setToppings(searchResult);
   };
   return (
     <article>
@@ -139,6 +151,9 @@ const UpdateTopping = () => {
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
       <h2>Existing Toppings</h2>
+      <form >
+        <input type="text" placeholder="Search..." onChange={(e)=>handleSearch(e.target.value)}/>
+      </form>
       {toppings && (
         <section>
           {toppings.map((oneTopping) => (
@@ -152,7 +167,7 @@ const UpdateTopping = () => {
               <NavLink to={`/custom/topping/${oneTopping._id}/update`}>
                 <button>Update</button>
               </NavLink>
-              
+
               <button onClick={() => handleRemove(oneTopping._id)}>
                 Delete
               </button>
@@ -161,6 +176,9 @@ const UpdateTopping = () => {
           ;
         </section>
       )}
+      <NavLink to={"/Settings/Admin"}>
+        <button>Go Back</button>
+      </NavLink>
     </article>
   );
 };

@@ -5,6 +5,7 @@ import token from "../../../../context/token";
 
 const UpdateMeat = () => {
   const [meats, setMeats] = useState();
+  const [filteredMeat, setFilteredMeat] = useState([]);
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -13,7 +14,6 @@ const UpdateMeat = () => {
     calories: 0,
   });
 
-  const { id } = useParams();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
@@ -22,11 +22,12 @@ const UpdateMeat = () => {
       .get(`http://localhost:9001/custom/meat`)
       .then((res) => {
         setMeats(res.data);
+        setFilteredMeat(res.data);
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, [meats]);
+  }, [inputs]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -47,7 +48,9 @@ const UpdateMeat = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/meat/new", inputs, {headers: token()})
+      .post("http://localhost:9001/custom/meat/new", inputs, {
+        headers: token(),
+      })
       .then((res) => {
         setInputs({
           ...inputs,
@@ -69,7 +72,7 @@ const UpdateMeat = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/meat/${id}`, {headers: token()})
+        .delete(`http://localhost:9001/custom/meat/${id}`, { headers: token() })
         .then((res) => {
           setMeats((allMeats) => allMeats.filter((meat) => meat.id !== id));
         })
@@ -78,6 +81,14 @@ const UpdateMeat = () => {
           setErr("Not working");
         });
     }
+  };
+
+  const handleSearch = (value) => {
+    const searchResult = filteredMeat.filter((meat) =>
+      meat.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setMeats(searchResult);
+
   };
   return (
     <article>
@@ -137,6 +148,13 @@ const UpdateMeat = () => {
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
       <h2>Existing Meat</h2>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </form>
       {meats && (
         <section>
           {meats.map((oneMeat) => (
@@ -155,6 +173,9 @@ const UpdateMeat = () => {
           ))}
         </section>
       )}
+      <NavLink to={"/Settings/Admin"}>
+        <button>Go Back</button>
+      </NavLink>
     </article>
   );
 };

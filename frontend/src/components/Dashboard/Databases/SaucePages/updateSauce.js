@@ -5,6 +5,7 @@ import token from "../../../../context/token";
 
 const UpdateSauce = () => {
   const [sauces, setSauces] = useState();
+  const [filteredSauce, setFilteredSauce] = useState([]);
   const [inputs, setInputs] = useState({
     name: "",
     protein: 0,
@@ -21,11 +22,12 @@ const UpdateSauce = () => {
       .get(`http://localhost:9001/custom/sauce`)
       .then((res) => {
         setSauces(res.data);
+        setFilteredSauce(res.data);
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, [sauces]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +49,9 @@ const UpdateSauce = () => {
 
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/sauce/new", inputs, {headers: token()})
+      .post("http://localhost:9001/custom/sauce/new", inputs, {
+        headers: token(),
+      })
       .then((res) => {
         setInputs({
           ...inputs,
@@ -69,7 +73,9 @@ const UpdateSauce = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/sauce/${id}`, {headers: token()})
+        .delete(`http://localhost:9001/custom/sauce/${id}`, {
+          headers: token(),
+        })
         .then((res) => {
           setSauces((allSauce) => allSauce.filter((sauce) => sauce.id !== id));
         })
@@ -79,6 +85,14 @@ const UpdateSauce = () => {
         });
     }
   };
+  const handleSearch = (value) => {
+    const searchResult = filteredSauce.filter((sauce) =>
+      sauce.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setSauces(searchResult);
+
+  };
+
   return (
     <article>
       <h2>Create new Sauce</h2>
@@ -137,6 +151,13 @@ const UpdateSauce = () => {
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
       <h2>Existing Sauces</h2>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+      </form>
       {sauces && (
         <section>
           {sauces.map((oneSauce) => (
@@ -155,6 +176,9 @@ const UpdateSauce = () => {
           ))}
         </section>
       )}
+      <NavLink to={"/Settings/Admin"}>
+        <button>Go Back</button>
+      </NavLink>
     </article>
   );
 };
