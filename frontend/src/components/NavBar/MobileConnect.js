@@ -39,12 +39,12 @@ export default function MobileConnect() {
                 Logout
               </a>
               {auth.user.role === "admin" ? (
-                <NavLink to={"/settings/admin"}>
+                <NavLink to={"/settings/admin"} onClick={onClickSlide}>
                   <IoIosSettings className="form-icon" />
                   Settings
                 </NavLink>
               ) : (
-                <NavLink to={"/settings/user"}>
+                <NavLink to={"/settings/user"} onClick={onClickSlide}>
                   <IoIosSettings className="form-icon" />
                   Settings
                 </NavLink>

@@ -57,10 +57,6 @@ export const addBurger = async (req, res) => {
         carbs: parseFloat(carbs),
         fat: parseFloat(fat),
         calories: parseFloat(calories),
-        image: {
-          src: "",
-          alt: "",
-        },
       });
     } else {
       burger = new Burger({
@@ -144,9 +140,14 @@ export const updateBurger = async (req, res) => {
 export const deleteBurger = async (req, res) => {
   try {
     const deletedBurger = await Burger.findByIdAndDelete(req.params.id);
+    if (!deletedBurger) {
+      return res.status(404).json({
+        message: "Burger not found",
+      });
+    }
     fs.unlink(`./public/assets/img/${deletedBurger.image.src}`, (error) => {
       if (error) {
-        res.status(500).json({
+        return res.status(500).json({
           status: "fail",
           message: "Error deleting file",
         });

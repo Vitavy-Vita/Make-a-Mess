@@ -6,12 +6,13 @@ import token from "../../../../context/token";
 const UpdateMeat = () => {
   const [meats, setMeats] = useState();
   const [filteredMeat, setFilteredMeat] = useState([]);
+  const [reload, setReload] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    calories: 0,
+    protein: "",
+    carbs: "",
+    fat: "",
+    calories: "",
   });
 
   const [err, setErr] = useState("");
@@ -27,7 +28,7 @@ const UpdateMeat = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, [inputs]);
+  }, [reload]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -52,13 +53,14 @@ const UpdateMeat = () => {
         headers: token(),
       })
       .then((res) => {
+        setReload(!reload);
         setInputs({
           ...inputs,
           name: "",
-          protein: 0,
-          carbs: 0,
-          fat: 0,
-          calories: 0,
+          protein: "",
+          carbs: "",
+          fat: "",
+          calories: "",
         });
         setResponse(res.data.message);
       })
@@ -74,6 +76,7 @@ const UpdateMeat = () => {
       axios
         .delete(`http://localhost:9001/custom/meat/${id}`, { headers: token() })
         .then((res) => {
+          setReload(!reload);
           setMeats((allMeats) => allMeats.filter((meat) => meat.id !== id));
         })
         .catch((res) => {
@@ -88,7 +91,6 @@ const UpdateMeat = () => {
       meat.name.toLowerCase().includes(value.toLowerCase())
     );
     setMeats(searchResult);
-
   };
   return (
     <article>

@@ -6,7 +6,7 @@ import token from "../../../../context/token";
 const UpdateBread = () => {
   const [breads, setBreads] = useState([]);
   const [filteredBread, setFilteredBread] = useState([]);
-
+  const [reload, setReload] = useState(false)
   const [inputs, setInputs] = useState({
     name: "",
     protein: "",
@@ -24,12 +24,12 @@ const UpdateBread = () => {
       .then((res) => {
         setBreads(res.data);
         setFilteredBread(res.data);
+     
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
-
+  }, [reload]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,13 +55,14 @@ const UpdateBread = () => {
         headers: token(),
       })
       .then((res) => {
+        setReload(!reload)
         setInputs({
           ...inputs,
           name: "",
-          protein: 0,
-          carbs: 0,
-          fat: 0,
-          calories: 0,
+          protein: "",
+          carbs: "",
+          fat: "",
+          calories: "",
         });
         setResponse(res.data.message);
       })
@@ -80,6 +81,7 @@ const UpdateBread = () => {
           headers: token(),
         })
         .then((res) => {
+          setReload(!reload)
           setBreads((allBreads) =>
             allBreads.filter((bread) => bread.id !== id)
           );

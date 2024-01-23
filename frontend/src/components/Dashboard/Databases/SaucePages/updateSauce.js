@@ -6,12 +6,13 @@ import token from "../../../../context/token";
 const UpdateSauce = () => {
   const [sauces, setSauces] = useState();
   const [filteredSauce, setFilteredSauce] = useState([]);
+  const [reload, setReload] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    calories: 0,
+    protein: "",
+    carbs: "",
+    fat: "",
+    calories: "",
   });
 
   const [err, setErr] = useState("");
@@ -27,7 +28,7 @@ const UpdateSauce = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
+  }, [reload]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,13 +54,14 @@ const UpdateSauce = () => {
         headers: token(),
       })
       .then((res) => {
+        setReload(!reload);
         setInputs({
           ...inputs,
           name: "",
-          protein: 0,
-          carbs: 0,
-          fat: 0,
-          calories: 0,
+          protein: "",
+          carbs: "",
+          fat: "",
+          calories: "",
         });
         setResponse(res.data.message);
       })
@@ -77,6 +79,7 @@ const UpdateSauce = () => {
           headers: token(),
         })
         .then((res) => {
+          setReload(!reload);
           setSauces((allSauce) => allSauce.filter((sauce) => sauce.id !== id));
         })
         .catch((res) => {
@@ -90,7 +93,6 @@ const UpdateSauce = () => {
       sauce.name.toLowerCase().includes(value.toLowerCase())
     );
     setSauces(searchResult);
-
   };
 
   return (

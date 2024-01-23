@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 
 
 const userSchema = new mongoose.Schema({
+  
   name: {
     type: String,
     required: true,
@@ -11,9 +12,9 @@ const userSchema = new mongoose.Schema({
       validator: (specialChar) => {
         return /^[a-zA-Z0-9_]*$/.test(specialChar);
       },
-      validator: (length) =>{
-        return /^.{1,10}$/.test(length)
-      }
+      validator: (length) => {
+        return /^.{1,10}$/.test(length);
+      },
     },
   },
   password: {
@@ -59,8 +60,17 @@ const userSchema = new mongoose.Schema({
     ],
   },
   image: {
-    src: String,
-    alt: String,
+    src: {
+      type: String,
+      default: "default-user.png",
+      required: true,
+
+    },
+    alt: {
+      type: String,
+      default: "default user",
+      required: true,
+    },
   },
   role: {
     type: String,

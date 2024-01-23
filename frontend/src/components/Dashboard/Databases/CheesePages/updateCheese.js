@@ -6,12 +6,13 @@ import token from "../../../../context/token";
 const UpdateCheese = () => {
   const [cheeses, setCheeses] = useState([]);
   const [filteredCheese, setfilteredCheese] = useState([]);
+  const [reload, setReload] = useState(false)
   const [inputs, setInputs] = useState({
     name: "",
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    calories: 0,
+    protein: "",
+    carbs: "",
+    fat: "",
+    calories: "",
   });
   const { id } = useParams();
   const [err, setErr] = useState("");
@@ -27,7 +28,7 @@ const UpdateCheese = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, [inputs]);
+  }, [reload]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +38,7 @@ const UpdateCheese = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (
       inputs.name.trim() === "" ||
       inputs.protein <= 0 ||
@@ -53,13 +55,14 @@ const UpdateCheese = () => {
         headers: token(),
       })
       .then((res) => {
+        setReload(!reload)
         setInputs({
           ...inputs,
           name: "",
-          protein: 0,
-          carbs: 0,
-          fat: 0,
-          calories: 0,
+          protein: "",
+          carbs: "",
+          fat: "",
+          calories: "",
         });
         setResponse(res.data.message);
       })
@@ -78,6 +81,7 @@ const UpdateCheese = () => {
           headers: token(),
         })
         .then((res) => {
+          setReload(!reload)
           setCheeses((allCheeses) =>
             allCheeses.filter((cheese) => cheese.id !== id)
           );

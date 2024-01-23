@@ -8,8 +8,17 @@ const burgerSchema = new mongoose.Schema({
   fat: Number,
   calories: Number,
   image: {
-    src: String,
-    alt: String,
+    src: {
+      type: String,
+      default: "default-burger.png",
+      required: true,
+
+    },
+    alt: {
+      type: String,
+      default: "default user",
+      required: true,
+    },
   },
 });
 

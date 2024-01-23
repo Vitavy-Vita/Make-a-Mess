@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import fs from "fs";
+import nodemailer from "nodemailer";
 
 dotenv.config();
 
@@ -88,6 +89,7 @@ export const register = async (req, res) => {
         message: "Passwords do not match",
       });
     }
+
     let user;
     if (!req.file) {
       user = new User({
@@ -96,10 +98,7 @@ export const register = async (req, res) => {
         passwordConfirm: passwordConfirm,
         tel: tel,
         email: email,
-        image: {
-          src: "",
-          alt: "",
-        },
+
       });
     } else {
       user = new User({
@@ -171,14 +170,14 @@ export const deleteUser = async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
     if (!deletedUser) {
-      res.status(404).json({
+     return res.status(404).json({
         message: "User not found",
       });
     }
 
     fs.unlink(`./public/assets/img/${deletedUser.image.src}`, (error) => {
       if (error) {
-        res.status(500).json({
+       return res.status(500).json({
           status: "fail",
           message: "Error deleting file",
         });
@@ -239,3 +238,5 @@ export const updateUser = async (req, res) => {
     });
   }
 };
+
+// export const nodemailer =

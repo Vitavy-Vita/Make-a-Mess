@@ -3,19 +3,20 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import token from "../../../../context/token";
 const UpdateBurgerGallery = () => {
+  const [preMade, setPreMade] = useState([]);
+  const [filteredPreMade, setFilteredPreMade] = useState([]);
+  const [reload, setReload] = useState(false)
+  const [err, setErr] = useState("");
+  const [response, setResponse] = useState("");
   const [inputs, setInputs] = useState({
     name: "",
     description: "",
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    calories: 0,
+    protein: "",
+    carbs: "",
+    fat: "",
+    calories: "",
   });
-  const [preMade, setPreMade] = useState([]);
-  const [filteredPreMade, setFilteredPreMade] = useState([]);
-  const [err, setErr] = useState("");
-  const [response, setResponse] = useState("");
-
+  
   useEffect(() => {
     axios
       .get(`http://localhost:9001/burgers`)
@@ -26,7 +27,7 @@ const UpdateBurgerGallery = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
+  }, [reload]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -63,14 +64,15 @@ const UpdateBurgerGallery = () => {
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
       .post("http://localhost:9001/burgers/new", formData, { headers: token() })
       .then((res) => {
+        setReload(!reload)
         setInputs({
           ...inputs,
           name: "",
           description: "",
-          protein: 0,
-          carbs: 0,
-          fat: 0,
-          calories: 0,
+          protein: "",
+          carbs: "",
+          fat: "",
+          calories: "",
         });
         setResponse(res.data.message);
       })
@@ -86,6 +88,7 @@ const UpdateBurgerGallery = () => {
       axios
         .delete(`http://localhost:9001/burgers/${id}`, { headers: token() })
         .then((res) => {
+          setReload(!reload)
           setPreMade((allPreMade) =>
             allPreMade.filter((preMade) => preMade.id !== id)
           );

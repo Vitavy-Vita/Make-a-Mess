@@ -5,13 +5,14 @@ import token from "../../../../context/token";
 
 const UpdateTopping = () => {
   const [toppings, setToppings] = useState([]);
-  const [filteredTopping, setFilteredTopping]= useState([])
+  const [filteredTopping, setFilteredTopping] = useState([]);
+  const [reload, setReload] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    calories: 0,
+    protein: "",
+    carbs: "",
+    fat: "",
+    calories: "",
   });
   const { id } = useParams();
   const [err, setErr] = useState("");
@@ -22,12 +23,12 @@ const UpdateTopping = () => {
       .get(`http://localhost:9001/custom/topping`)
       .then((res) => {
         setToppings(res.data);
-        setFilteredTopping(res.data)
+        setFilteredTopping(res.data);
       })
       .catch((res) => {
         setErr(res.data);
       });
-  }, []);
+  }, [reload]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,13 +54,14 @@ const UpdateTopping = () => {
         headers: token(),
       })
       .then((res) => {
+        setReload(!reload);
         setInputs({
           ...inputs,
           name: "",
-          protein: 0,
-          carbs: 0,
-          fat: 0,
-          calories: 0,
+          protein: "",
+          carbs: "",
+          fat: "",
+          calories: "",
         });
         setResponse(res.data.message);
       })
@@ -67,6 +69,7 @@ const UpdateTopping = () => {
         setErr(err);
       });
   };
+
   const handleRemove = (id) => {
     const confirmBox = window.confirm(
       "Do you really want to delete this topping ?"
@@ -77,6 +80,7 @@ const UpdateTopping = () => {
           headers: token(),
         })
         .then((res) => {
+          setReload(!reload);
           setToppings((allTopping) =>
             allTopping.filter((topping) => topping.id !== id)
           );
@@ -87,12 +91,14 @@ const UpdateTopping = () => {
         });
     }
   };
+
   const handleSearch = (value) => {
     const searchResult = filteredTopping.filter((topping) =>
       topping.name.toLowerCase().includes(value.toLowerCase())
     );
     setToppings(searchResult);
   };
+
   return (
     <article>
       <h2>Create new Topping</h2>
@@ -151,8 +157,12 @@ const UpdateTopping = () => {
       {err && <span>{err}</span>}
       {response && <span>{response}</span>}
       <h2>Existing Toppings</h2>
-      <form >
-        <input type="text" placeholder="Search..." onChange={(e)=>handleSearch(e.target.value)}/>
+      <form>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
       </form>
       {toppings && (
         <section>

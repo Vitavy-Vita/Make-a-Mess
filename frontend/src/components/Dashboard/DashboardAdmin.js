@@ -5,6 +5,7 @@ import token from "../../context/token";
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
+  const [reload, setReload] = useState(false)
   const [err, setErr] = useState();
   const [open, setOpen] = useState(null);
   const [response, setResponse] = useState();
@@ -19,7 +20,7 @@ const DashboardAdmin = () => {
       .catch((err) => {
         setErr("Cannot access data");
       });
-  }, []);
+  }, [reload]);
 
   const handleRemove = (id) => {
     const confirmBox = window.confirm(
@@ -29,6 +30,7 @@ const DashboardAdmin = () => {
       axios
         .delete(`http://localhost:9001/users/${id}`, { headers: token() })
         .then((res) => {
+          setReload(!reload)
           setUsers((allUsers) => allUsers.filter((user) => user.id !== id));
         })
         .catch((res) => {
