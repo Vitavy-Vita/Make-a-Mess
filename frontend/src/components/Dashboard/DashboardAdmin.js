@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import token from "../../context/token";
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
-  const [reload, setReload] = useState(false)
+  const [reload, setReload] = useState(false);
   const [err, setErr] = useState();
   const [open, setOpen] = useState(null);
   const [response, setResponse] = useState();
@@ -30,10 +30,11 @@ const DashboardAdmin = () => {
       axios
         .delete(`http://localhost:9001/users/${id}`, { headers: token() })
         .then((res) => {
-          setReload(!reload)
+          setReload(!reload);
           setUsers((allUsers) => allUsers.filter((user) => user.id !== id));
         })
         .catch((res) => {
+          setReload(!reload);
           setErr("Not working");
         });
     }

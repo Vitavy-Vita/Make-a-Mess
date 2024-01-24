@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import fs from "fs";
-import nodemailer from "nodemailer";
 
 dotenv.config();
 
@@ -45,7 +44,10 @@ export const register = async (req, res) => {
     const checkPwd =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
     const checkNameLength = /^.{1,10}$/;
-    const checkSpecialCharacters = /^[a-zA-Z0-9_]*$/;
+    const checkSpecialCharacters =
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+    const checkEmail =
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -68,9 +70,20 @@ export const register = async (req, res) => {
         message: "This email is already taken",
       });
     }
+    if (!checkEmail.test(email)) {
+      return res.status(401).json({
+        message: "Email format incorrect",
+      });
+    }
     if (!checkPwd.test(password)) {
       return res.status(401).json({
         message: "Password incorrect",
+      });
+    }
+    if (password !== passwordConfirm) {
+      return res.status(401).json({
+        status: "error",
+        message: "Passwords do not match",
       });
     }
     if (!checkNameLength.test(name)) {
@@ -83,12 +96,6 @@ export const register = async (req, res) => {
         message: "Name must not include special characters",
       });
     }
-    if (password !== passwordConfirm) {
-      return res.status(401).json({
-        status: "error",
-        message: "Passwords do not match",
-      });
-    }
 
     let user;
     if (!req.file) {
@@ -98,7 +105,6 @@ export const register = async (req, res) => {
         passwordConfirm: passwordConfirm,
         tel: tel,
         email: email,
-
       });
     } else {
       user = new User({
@@ -133,11 +139,13 @@ export const login = async (req, res) => {
     const user = await User.findOne({
       email,
     });
+
     if (!email) {
       res.status(404).json({
         message: "User not found",
       });
     }
+
     const isValidPwd = bcrypt.compareSync(password, user.password);
 
     if (!isValidPwd) {
@@ -169,23 +177,26 @@ export const login = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
+    
     if (!deletedUser) {
-     return res.status(404).json({
+      return res.status(404).json({
         message: "User not found",
       });
     }
 
-    fs.unlink(`./public/assets/img/${deletedUser.image.src}`, (error) => {
-      if (error) {
-       return res.status(500).json({
-          status: "fail",
-          message: "Error deleting file",
-        });
-      }
-
-      res.status(204).json({
-        message: "Account deleted",
+    if (deletedUser.image.src !== "default-user.png") {
+      fs.unlink(`./public/assets/img/${deletedUser.image.src}`, (error) => {
+        if (error) {
+          return res.status(500).json({
+            status: "fail",
+            message: "Error deleting file",
+          });
+        }
       });
+    }
+
+    res.status(204).json({
+      message: "Account deleted",
     });
   } catch (error) {
     console.log("Error deleting user:", error);
@@ -226,7 +237,19 @@ export const updateUser = async (req, res) => {
         },
       };
     }
+    // const getOldFile = await User.findById(req.params.id);
+    // fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (error) => {
+    //   if (error) {
+    //     return res.status(500).json({
+    //       status: "fail",
+    //       message: "Error deleting file",
+    //     });
+    //   }
 
+    //   res.status(204).json({
+    //     message: "Account deleted",
+    //   });
+    // });
     await User.findByIdAndUpdate(req.params.id, updateUser);
     res.status(201).json({
       message: "Updated successfully!",
@@ -238,5 +261,3 @@ export const updateUser = async (req, res) => {
     });
   }
 };
-
-// export const nodemailer =

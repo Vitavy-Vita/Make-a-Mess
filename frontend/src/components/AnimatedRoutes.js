@@ -21,7 +21,6 @@ import SauceCard from "./Dashboard/Databases/SaucePages/SauceCard";
 import ToppingCard from "./Dashboard/Databases/ToppingPages/ToppingCard";
 import CustomBurgers from "./BurgerBuilding/CustomBurgers";
 import UserCard from "./Dashboard/Databases/UserPages/UserCard";
-import UpdateUserForm from "./Dashboard/Databases/UserPages/UpdateUserForm";
 import UpdateBreadForm from "./Dashboard/Databases/BreadPages/UpdateBreadForm";
 import UpdateCheeseForm from "./Dashboard/Databases/CheesePages/UpdateCheeseForm";
 import UpdateMeatForm from "./Dashboard/Databases/MeatPages/UpdateMeatForm";
@@ -29,6 +28,8 @@ import UpdateSauceForm from "./Dashboard/Databases/SaucePages/UpdateSauceForm";
 import UpdateToppingForm from "./Dashboard/Databases/ToppingPages/UpdateToppingForm";
 import UpdatePreMadeForm from "./Dashboard/Databases/PreMadePages/UpdatePreMadeForm";
 import PrivateRoutes from "./PrivateRoutes";
+import ProfilPage from "./Profil/ProfilPage";
+import DashboardUser from "./Dashboard/DashboardUser";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -46,6 +47,8 @@ export default function AnimatedRoutes() {
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />
           <Route path="/settings/admin" element={<DashboardAdmin />} />
+          <Route path="/settings/user" element={<DashboardUser/>} />
+          <Route path="/my-profil" element={<ProfilPage />} />
         </Route>
         <Route path="/" element={<PrivateRoutes roles={["admin"]} />}>
           <Route path="/burgers/new" element={<UpdateBurgerGallery />} />
@@ -85,7 +88,7 @@ export default function AnimatedRoutes() {
           />
 
           <Route path="/users/:id" element={<UserCard />} />
-          <Route path="/users/:id/update" element={<UpdateUserForm />} />
+         
         </Route>
       </Routes>
     </AnimatePresence>

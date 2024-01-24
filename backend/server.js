@@ -3,7 +3,16 @@ import dotenv from "dotenv";
 import connectDb from "./config/database.js";
 import userRouter from "./routes/userRouter.js";
 import burgerRouter from "./routes/burgerRouter.js";
-import {allIngredients, customBurgers, customCheese, customMeat, customSauce, customTopping} from "./routes/customBurgersRouter.js";
+import {
+  allIngredientsRouter,
+  customBurgersRouter,
+  customCheeseRouter,
+  customMeatRouter,
+  customSauceRouter,
+  customToppingRouter,
+} from "./routes/customBurgersRouter.js";
+import emailRouter from "./routes/emailRouter.js";
+
 import cors from "cors";
 const app = express();
 
@@ -23,12 +32,13 @@ connectDb();
 
 app.use(userRouter);
 app.use(burgerRouter);
-app.use(customBurgers);
-app.use(customSauce);
-app.use(customCheese);
-app.use(customMeat);
-app.use(customTopping);
-app.use(allIngredients);
+app.use(emailRouter);
+app.use(customBurgersRouter);
+app.use(customSauceRouter);
+app.use(customCheeseRouter);
+app.use(customMeatRouter);
+app.use(customToppingRouter);
+app.use(allIngredientsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello");

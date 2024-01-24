@@ -29,7 +29,7 @@ article {
     left: 20px;
   }
 }
-@media screen and (min-width: 415px) and (max-width: 810px) {
+@media screen and (min-width: 480px) and (max-width: 900px) {
   h1 {
     @include title-style-desktop;
   }
@@ -44,7 +44,7 @@ article {
   }
 }
 
-@media screen and (min-width: 811px) {
+@media screen and (min-width: 901px) {
   .article-container {
     margin: 5em;
     gap: 15px;

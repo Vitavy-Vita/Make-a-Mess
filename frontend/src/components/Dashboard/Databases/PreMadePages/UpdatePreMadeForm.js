@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import token from "../../../../context/token"
+
 const UpdatePreMadeForm = () => {
   const [preMade, setPreMade] = useState();
   const [err, setErr] = useState();
@@ -66,7 +67,7 @@ const UpdatePreMadeForm = () => {
       <h1>Update this Burger:</h1>
 
       <section className="form-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input
             value={inputs.name}
             type="text"

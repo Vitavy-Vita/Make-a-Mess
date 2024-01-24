@@ -139,23 +139,30 @@ export const updateBurger = async (req, res) => {
 
 export const deleteBurger = async (req, res) => {
   try {
+
     const deletedBurger = await Burger.findByIdAndDelete(req.params.id);
+    
     if (!deletedBurger) {
       return res.status(404).json({
         message: "Burger not found",
       });
     }
-    fs.unlink(`./public/assets/img/${deletedBurger.image.src}`, (error) => {
-      if (error) {
-        return res.status(500).json({
-          status: "fail",
-          message: "Error deleting file",
-        });
-      }
-    });
+
+    if (deletedBurger.image.src !== "default-burger.png") {
+      fs.unlink(`./public/assets/img/${deletedBurger.image.src}`, (error) => {
+        if (error) {
+          return res.status(500).json({
+            status: "fail",
+            message: "Error deleting file",
+          });
+        }
+      });
+    }
+
     res.status(204).json({
       status: "success",
     });
+
   } catch (error) {
     res.status(500).json({
       status: "fail",

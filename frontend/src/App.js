@@ -6,14 +6,12 @@ import AuthProvider from "./context/authContext";
 
 function App() {
   return (
-    <main>
-      <Router>
-        <AuthProvider>
-          <DisplayPage />
-          <AnimatedRoutes />
-        </AuthProvider>
-      </Router>
-    </main>
+    <Router>
+      <AuthProvider>
+        <DisplayPage />
+        <AnimatedRoutes />
+      </AuthProvider>
+    </Router>
   );
 }
 

@@ -17,8 +17,10 @@ body {
   background-position-y: 3em;
   @include display-flex;
   flex-direction: column;
+  text-align: center;
   h1 {
     @include title-style;
+    width: 90%
   }
   h2 {
     @include sub-title-style;
@@ -27,8 +29,9 @@ body {
   }
   p {
     @include text-style;
-    width: 60%;
+    width: 65%;
     font-size: 20px;
+    margin-left: 2em;
   }
  
   section {
@@ -36,10 +39,10 @@ body {
     flex-direction: column;
     margin-top: 4em;
     margin-bottom: 10em;
-    margin-left: 2em;
+    margin-left: 6em;
   }
 
-  @media screen and (min-width: 415px) and (max-width: 810px) {
+  @media screen and (min-width: 480px) and (max-width: 900px) {
     background-position-x: -10em;
     background-position-y: 2em;
     background-size: 60%;
@@ -63,7 +66,7 @@ body {
       margin-left: 10em;
     }
   }
-  @media screen and (min-width: 811px) {
+  @media screen and (min-width: 901px) {
     background-position-x: 0;
     background-position-y: 0;
     background-size: 30%;

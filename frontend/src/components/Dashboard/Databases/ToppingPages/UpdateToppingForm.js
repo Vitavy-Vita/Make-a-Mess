@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import token from "../../../../context/token"
+
+
 const UpdateToppingForm = () => {
   const [topping, setTopping] = useState();
   const [err, setErr] = useState();
@@ -12,6 +14,7 @@ const UpdateToppingForm = () => {
     fat: "",
     calories: "",
   });
+  
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {

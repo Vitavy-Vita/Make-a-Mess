@@ -29,75 +29,75 @@ import {
 } from "../controllers/customBurgersController.js";
 import { isAuthorized, isLogged } from "../middlewares/auth.js";
 
-const customBurgers = express.Router();
+const customBurgersRouter = express.Router();
 
-customBurgers
+customBurgersRouter
   .route("/custom/bread/new")
   .post(isLogged, isAuthorized(["admin"]), addBread);
-customBurgers.route("/custom/bread").get(getAllBread);
-customBurgers
+customBurgersRouter.route("/custom/bread").get(getAllBread);
+customBurgersRouter
   .route("/custom/bread/:id")
   .get(getOneBread)
   .delete(isLogged, isAuthorized(["admin"]), deleteBread)
   .put(isLogged, isAuthorized(["admin"]), updateBread);
 
-const customMeat = express.Router();
+const customMeatRouter = express.Router();
 
-customMeat
+customMeatRouter
   .route("/custom/meat/new")
   .post(isLogged, isAuthorized(["admin"]), addMeat);
-customMeat.route("/custom/meat").get(getAllMeat);
-customMeat
+customMeatRouter.route("/custom/meat").get(getAllMeat);
+customMeatRouter
   .route("/custom/meat/:id")
   .get(getOneMeat)
   .delete(isLogged, isAuthorized(["admin"]), deleteMeat)
   .put(isLogged, isAuthorized(["admin"]), updateMeat);
 
-const customCheese = express.Router();
+const customCheeseRouter = express.Router();
 
-customCheese
+customCheeseRouter
   .route("/custom/cheese/new")
   .post(isLogged, isAuthorized(["admin"]), addCheese);
-customCheese.route("/custom/cheese").get(getAllCheese);
-customCheese
+customCheeseRouter.route("/custom/cheese").get(getAllCheese);
+customCheeseRouter
   .route("/custom/cheese/:id")
   .get(getOneCheese)
   .delete(isLogged, isAuthorized(["admin"]), deleteCheese)
   .put(isLogged, isAuthorized(["admin"]), updateCheese);
 
-const customSauce = express.Router();
+const customSauceRouter = express.Router();
 
-customSauce
+customSauceRouter
   .route("/custom/sauce/new")
   .post(isLogged, isAuthorized(["admin"]), addSauce);
-customSauce.route("/custom/sauce").get(getAllSauce);
-customSauce
+customSauceRouter.route("/custom/sauce").get(getAllSauce);
+customSauceRouter
   .route("/custom/sauce/:id")
   .get(getOneSauce)
   .delete(isLogged, isAuthorized(["admin"]), deleteSauce)
   .put(isLogged, isAuthorized(["admin"]), updateSauce);
 
-const customTopping = express.Router();
+const customToppingRouter = express.Router();
 
-customTopping
+customToppingRouter
   .route("/custom/topping/new")
   .post(isLogged, isAuthorized(["admin"]), addTopping);
-customTopping.route("/custom/topping").get(getAllTopping);
-customTopping
+customToppingRouter.route("/custom/topping").get(getAllTopping);
+customToppingRouter
   .route("/custom/topping/:id")
   .get(getOneTopping)
   .delete(isLogged, isAuthorized(["admin"]), deleteTopping)
   .put(isLogged, isAuthorized(["admin"]), updateTopping);
 
-const allIngredients = express.Router();
+const allIngredientsRouter = express.Router();
 
-allIngredients.route("/ingredients").get(getAllIngredients);
+allIngredientsRouter.route("/ingredients").get(getAllIngredients);
 
 export {
-  customBurgers,
-  customMeat,
-  customCheese,
-  customTopping,
-  customSauce,
-  allIngredients,
+  customBurgersRouter,
+  customMeatRouter,
+  customCheeseRouter,
+  customToppingRouter,
+  customSauceRouter,
+  allIngredientsRouter,
 };

@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-
 const userSchema = new mongoose.Schema({
-  
   name: {
     type: String,
     required: true,
@@ -50,12 +48,14 @@ const userSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (email) => {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+        return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(
+          email
+        );
       },
       message: "Please fill a valid email address",
     },
     match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
       "Please fill a valid email address",
     ],
   },
@@ -64,7 +64,6 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: "default-user.png",
       required: true,
-
     },
     alt: {
       type: String,
