@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import token from "../../context/token";
 
 
@@ -73,6 +73,7 @@ export default function Login() {
               required
               onChange={handleChange}
             />
+            <NavLink href="#">Forgot password ?</NavLink>
             <button className={"button-form"}>Validate</button>
           </form>
           {err && <span>{err}</span>}

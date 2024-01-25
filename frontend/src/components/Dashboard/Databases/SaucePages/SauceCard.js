@@ -26,7 +26,7 @@ const SauceCard = () => {
             <p>Carbs: {sauce.carbs}</p>
             <p>Fat: {sauce.fat}</p>
             <p>Calories: {sauce.calories}</p>
-            <NavLink to={"/Settings/Admin"}>
+            <NavLink to={"/update/sauce"}>
               <button>Go Back</button>
             </NavLink>
           </article>

@@ -36,4 +36,17 @@ const EmailSender = ({ fullname, email, message }) => {
   Email(options);
 };
 
-export default EmailSender;
+
+const ForgotPassword = ({userEmail, OTP})=>{
+  const options = {
+    from: `Make-a-Mess 🍔<${process.env.EMAIL}`,
+    to: userEmail,
+    subject: "Forgot password ?",
+    text: "This is a test message",
+    html: `<h1>New message received</h1>
+    <p>Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes</p>
+    <h2>${OTP}</h2>`,
+  };
+  Email(options);
+}
+export  {EmailSender, ForgotPassword};

@@ -14,6 +14,7 @@ const DashboardUser = () => {
     tel: "",
     email: "",
   });
+
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -22,7 +23,7 @@ const DashboardUser = () => {
         setUser(res.data);
       })
       .catch((res) => {
-        setErr(res.data);
+        setErr(res.response.message);
       });
   }, []);
 
@@ -33,25 +34,18 @@ const DashboardUser = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      inputs.name.trim() === "" ||
-      inputs.password.trim() === "" ||
-      inputs.tel.trim() === "" ||
-      inputs.email.trim() === ""
-    ) {
-      return setErr("Please provide all informations");
-    }
+    
     const confirmBox = window.confirm(
       "Are you sure you wish to make these changes ?"
     );
-    
+
     if (confirmBox === true) {
       const formData = new FormData();
 
       formData.append("name", inputs.name);
-      formData.append("tel", inputs.password);
-      formData.append("email", inputs.tel);
-      formData.append("carbs", inputs.email);
+      formData.append("password", inputs.password);
+      formData.append("tel", inputs.tel);
+      formData.append("email", inputs.email);
       formData.append("image", inputs.image);
       axios
         .put(`http://localhost:9001/users/${auth.user.id}`, formData, {
@@ -108,6 +102,7 @@ const DashboardUser = () => {
             onChange={handleChange}
           />
           <input type="file" name="image" id="image" onChange={handleChange} />
+          {err && <span>{err}</span>}
           <article className="button-update-user">
             <button onClick={handleSubmit}>Update</button>
 

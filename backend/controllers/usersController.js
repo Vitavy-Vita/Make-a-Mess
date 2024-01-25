@@ -48,6 +48,7 @@ export const register = async (req, res) => {
       /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
     const checkEmail =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    const checkTel = /^06\d{8}$/;
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -96,7 +97,11 @@ export const register = async (req, res) => {
         message: "Name must not include special characters",
       });
     }
-
+    if (!checkTel.test(tel)) {
+      return res.status(401).json({
+        message: "Please use the correct phone number format",
+      });
+    }
     let user;
     if (!req.file) {
       user = new User({
@@ -177,7 +182,7 @@ export const login = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
-    
+
     if (!deletedUser) {
       return res.status(404).json({
         message: "User not found",
@@ -208,6 +213,50 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
+    const checkPwd =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+    const checkNameLength = /^.{1,10}$/;
+    const checkSpecialCharacters =
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+    const checkEmail =
+      /[a-z0-9!#$%&'*+/=?^_`{|}~\s-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    const checkTel = /^06\d{8}$/;
+
+    const { name, password, tel, email } = req.body;
+
+    const verifEmail = await User.findOne({
+      email,
+    });
+    if (verifEmail) {
+      return res.status(401).json({
+        message: "This email is already taken",
+      });
+    }
+    if (!checkEmail.test(email)) {
+      return res.status(401).json({
+        message: "Email format incorrect",
+      });
+    }
+    if (!checkPwd.test(password)) {
+      return res.status(401).json({
+        message: "Password format incorrect",
+      });
+    }
+    if (!checkNameLength.test(name)) {
+      return res.status(401).json({
+        message: "Name must be 10 characters maximum",
+      });
+    }
+    if (!checkSpecialCharacters.test(name)) {
+      return res.status(401).json({
+        message: "Name must not include special characters",
+      });
+    }
+    if (!checkTel.test(tel)) {
+      return res.status(401).json({
+        message: "Please use the correct phone number format",
+      });
+    }
     const user = req.body;
     let updateUser;
     if (user.role) {
@@ -216,25 +265,26 @@ export const updateUser = async (req, res) => {
       };
     } else if (!req.file) {
       updateUser = {
-        name: user.name,
-        password: user.password,
-        tel: user.tel,
-        email: user.email,
         image: {
           src: "",
           alt: "",
         },
-      };
-    } else {
-      updateUser = {
         name: user.name,
         password: user.password,
         tel: user.tel,
         email: user.email,
+      };
+      
+    } else {
+      updateUser = {
         image: {
           src: req.file.filename,
           alt: req.file.originalname,
         },
+        name: user.name,
+        password: user.password,
+        tel: user.tel,
+        email: user.email,
       };
     }
     // const getOldFile = await User.findById(req.params.id);

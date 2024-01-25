@@ -25,7 +25,7 @@ const ToppingCard = () => {
             <p>Carbs: {topping.carbs}</p>
             <p>Fat: {topping.fat}</p>
             <p>Calories: {topping.calories}</p>
-            <NavLink to={"/Settings/Admin"}>
+            <NavLink to={"/update/topping"}>
               <button>Go Back</button>
             </NavLink>
           </article>

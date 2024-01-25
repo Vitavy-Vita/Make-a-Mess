@@ -64,7 +64,7 @@ const UpdateBread = () => {
           fat: "",
           calories: "",
         });
-        setResponse(res.data.message);
+        setResponse(res.response.message);
       })
       .catch((err) => {
         setErr(err.message);

@@ -80,13 +80,24 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-  // si le mot de passe n'a pas été modifié
   if (!this.isModified("password")) {
     return next();
   }
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+userSchema.pre("findOneAndUpdate", async function (next) {
+  try {
+    const userToUpdate = await User.findOne(this.getQuery());
+    const salt = await bcrypt.genSalt(10);
+    let newPassword = await bcrypt.hash(userToUpdate.password, salt);
+    this.set({ password: newPassword });
     next();
   } catch (error) {
     next(error);

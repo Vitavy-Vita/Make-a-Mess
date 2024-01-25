@@ -1,8 +1,8 @@
 import express from "express";
-import { email } from "../controllers/emailController.js";
+import { email, passwordRecovery } from "../controllers/emailController.js";
 
 const emailRouter = express.Router();
 
 emailRouter.route("/send").post(email);
-
+emailRouter.route("/send/recovery-email").post(passwordRecovery)
 export default emailRouter;

@@ -31,7 +31,7 @@ const PreMadeCard = () => {
           <p>Carbs: {preMade.carbs}</p>
           <p>Fat: {preMade.fat}</p>
           <p>Calories: {preMade.calories}</p>
-          <NavLink to={"/Settings/Admin"}>
+          <NavLink to={"/burgers/new"}>
             <button>Go Back</button>
           </NavLink>
         </article>

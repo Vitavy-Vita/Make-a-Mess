@@ -1,4 +1,4 @@
-import EmailSender from "../config/sendEmail.js";
+import {EmailSender, ForgotPassword} from "../config/sendEmail.js";
 
 export const email = async (req, res) => {
   try {
@@ -46,6 +46,19 @@ export const email = async (req, res) => {
 
     EmailSender({ fullname, email, message });
 
+    res.status(200).json({
+      message: "Message sent",
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: "Message not found",
+    });
+  }
+};
+
+export const passwordRecovery = async (req, res) => {
+  try {
+    ForgotPassword(req.body);
     res.status(200).json({
       message: "Message sent",
     });
