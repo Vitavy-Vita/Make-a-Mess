@@ -32,6 +32,10 @@ const CustomBurgers = () => {
       });
   }, [toggle]);
 
+  useEffect(() => {
+    calculateTotal();
+  }, [selectedIngredient]);
+  
   const handleClick = (i, name) => {
     setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
     const newI = {
