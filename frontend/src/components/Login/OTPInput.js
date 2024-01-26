@@ -10,9 +10,9 @@ const OTPInput = () => {
   const [err, setErr] = useState();
   const [timerCount, setTimerCount] = useState(60);
   const [disable, setDisable] = useState(false);
-  const [otpInputs, setOtpInputs] = useState([0, 0, 0, 0]);
+  const [otpInputs, setOtpInputs] = useState(["", "", "", ""]);
   const navigate = useNavigate();
-
+  const inputs = [];
   useEffect(() => {
     let interval = setInterval(() => {
       setTimerCount((lastTimerCount) => {
@@ -32,6 +32,7 @@ const OTPInput = () => {
       navigate("/send/recovery-email/reset");
     } else {
       setErr("You've entered an incorrect code, try again or re-send a code");
+      setOtpInputs(["","","",""])
     }
   };
 
@@ -57,7 +58,14 @@ const OTPInput = () => {
     {
     }
   };
-
+  const handleOtpChange = (value, index) => {
+    const newOtp = [...otpInputs];
+    newOtp[index] = value;
+    setOtpInputs(newOtp);    
+    if (value && index < newOtp.length - 1) {
+      inputs[index + 1].focus();
+    }
+  };
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -69,66 +77,20 @@ const OTPInput = () => {
         <form>
           <p>We sent a One-Time-Password to : {recovery.inputs.email}</p>
           <article>
-            <input
-              className="recovery-input"
-              name="num1"
-              type="text"
-              maxLength={1}
-              required
-              onChange={(e) =>
-                setOtpInputs([
-                  e.target.value,
-                  otpInputs[1],
-                  otpInputs[2],
-                  otpInputs[3],
-                ])
-              }
-            />
-            <input
-              className="recovery-input"
-              name="num2"
-              type="text"
-              maxLength={1}
-              required
-              onChange={(e) =>
-                setOtpInputs([
-                  otpInputs[0],
-                  e.target.value,
-                  otpInputs[2],
-                  otpInputs[3],
-                ])
-              }
-            />
-            <input
-              className="recovery-input"
-              name="num2"
-              type="text"
-              maxLength={1}
-              required
-              onChange={(e) =>
-                setOtpInputs([
-                  otpInputs[0],
-                  otpInputs[1],
-                  e.target.value,
-                  otpInputs[3],
-                ])
-              }
-            />
-            <input
-              className="recovery-input"
-              name="num2"
-              type="text"
-              maxLength={1}
-              required
-              onChange={(e) =>
-                setOtpInputs([
-                  otpInputs[0],
-                  otpInputs[1],
-                  otpInputs[2],
-                  e.target.value,
-                ])
-              }
-            />
+            {otpInputs.map((digit, index) => (
+              <input
+                className="recovery-input"
+                key={index}
+                type="text"
+                maxLength={1}
+                required
+                onChange={(e) => handleOtpChange(e.target.value, index)}
+                value={digit}
+                ref={(input) => {
+                  inputs[index] = input;
+                }}
+              />
+            ))}
           </article>
           <article>
             <small>Didn't receive code ?</small>
