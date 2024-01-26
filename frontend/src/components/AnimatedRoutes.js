@@ -30,9 +30,13 @@ import UpdatePreMadeForm from "./Dashboard/Databases/PreMadePages/UpdatePreMadeF
 import PrivateRoutes from "./PrivateRoutes";
 import ProfilPage from "./Profil/ProfilPage";
 import DashboardUser from "./Dashboard/DashboardUser";
+import OTPInput from "./Login/OTPInput";
+import { createContext, useState } from "react";
+import ResetPassword from "./Login/ResetPassword";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
+
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
@@ -42,12 +46,15 @@ export default function AnimatedRoutes() {
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/create-account" element={<CreateAccount />} />
+
         <Route path="/login" element={<Login />} />
+        <Route path="/send/recovery-email/otp" element={<OTPInput />} />
+        <Route path="/send/recovery-email/reset" element={<ResetPassword/>} />
 
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />
           <Route path="/settings/admin" element={<DashboardAdmin />} />
-          <Route path="/settings/user" element={<DashboardUser/>} />
+          <Route path="/settings/user" element={<DashboardUser />} />
           <Route path="/my-profil" element={<ProfilPage />} />
         </Route>
         <Route path="/" element={<PrivateRoutes roles={["admin"]} />}>
@@ -88,7 +95,6 @@ export default function AnimatedRoutes() {
           />
 
           <Route path="/users/:id" element={<UserCard />} />
-         
         </Route>
       </Routes>
     </AnimatePresence>

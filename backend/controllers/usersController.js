@@ -21,7 +21,7 @@ export const getAllUsers = async (_, res) => {
 export const getOneUser = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id).select("-password");
 
     if (!user) {
       return res.status(404).json({
@@ -227,21 +227,18 @@ export const updateUser = async (req, res) => {
     const verifEmail = await User.findOne({
       email,
     });
-    if (verifEmail) {
+    if (verifEmail.email !== email) {
       return res.status(401).json({
         message: "This email is already taken",
       });
     }
+
     if (!checkEmail.test(email)) {
       return res.status(401).json({
         message: "Email format incorrect",
       });
     }
-    if (!checkPwd.test(password)) {
-      return res.status(401).json({
-        message: "Password format incorrect",
-      });
-    }
+
     if (!checkNameLength.test(name)) {
       return res.status(401).json({
         message: "Name must be 10 characters maximum",
@@ -259,10 +256,14 @@ export const updateUser = async (req, res) => {
     }
     const user = req.body;
     let updateUser;
+    console.log('====================================');
+    console.log(req.file);
+    console.log('====================================');
     if (user.role) {
       updateUser = {
         role: user.role,
       };
+   
     } else if (!req.file) {
       updateUser = {
         image: {
@@ -270,11 +271,9 @@ export const updateUser = async (req, res) => {
           alt: "",
         },
         name: user.name,
-        password: user.password,
         tel: user.tel,
         email: user.email,
       };
-      
     } else {
       updateUser = {
         image: {
@@ -282,10 +281,22 @@ export const updateUser = async (req, res) => {
           alt: req.file.originalname,
         },
         name: user.name,
-        password: user.password,
         tel: user.tel,
         email: user.email,
       };
+    }
+
+    if (user.password !== "undefined") {
+      
+      console.log("====================================");
+      console.log(user.password.length);
+      console.log("====================================");
+      if (!checkPwd.test(password)) {
+        return res.status(401).json({
+          message: "Password format incorrect",
+        });
+      }
+      updateUser.password = password;
     }
     // const getOldFile = await User.findById(req.params.id);
     // fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (error) => {

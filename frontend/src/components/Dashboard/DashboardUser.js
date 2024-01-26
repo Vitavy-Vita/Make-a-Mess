@@ -21,6 +21,7 @@ const DashboardUser = () => {
       .get(`http://localhost:9001/users/${auth.user.id}`)
       .then((res) => {
         setUser(res.data);
+        setInputs(res.data);
       })
       .catch((res) => {
         setErr(res.response.message);
@@ -28,13 +29,18 @@ const DashboardUser = () => {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
+    const { name, value, files } = e.target;
+    if (name === "image") {
+      setInputs({ ...inputs, image: files[0] });
+    } else {
+      setInputs({ ...inputs, [name]: value });
+    }
     setErr("");
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const confirmBox = window.confirm(
       "Are you sure you wish to make these changes ?"
     );
