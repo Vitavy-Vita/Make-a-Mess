@@ -256,14 +256,10 @@ export const updateUser = async (req, res) => {
     }
     const user = req.body;
     let updateUser;
-    console.log('====================================');
-    console.log(req.file);
-    console.log('====================================');
     if (user.role) {
       updateUser = {
         role: user.role,
       };
-   
     } else if (!req.file) {
       updateUser = {
         image: {
@@ -287,10 +283,6 @@ export const updateUser = async (req, res) => {
     }
 
     if (user.password !== "undefined") {
-      
-      console.log("====================================");
-      console.log(user.password.length);
-      console.log("====================================");
       if (!checkPwd.test(password)) {
         return res.status(401).json({
           message: "Password format incorrect",
@@ -298,19 +290,21 @@ export const updateUser = async (req, res) => {
       }
       updateUser.password = password;
     }
-    // const getOldFile = await User.findById(req.params.id);
-    // fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (error) => {
-    //   if (error) {
-    //     return res.status(500).json({
-    //       status: "fail",
-    //       message: "Error deleting file",
-    //     });
-    //   }
-
-    //   res.status(204).json({
-    //     message: "Account deleted",
-    //   });
-    // });
+    if (req.file) {
+      const getOldFile = await User.findById(req.params.id);
+      if (getOldFile.image.src) {
+        fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (error) => {
+          if (error) {
+            console.error(error);
+            return res.status(500).json({
+              message: 'Error deleting old image file',
+            });
+          }
+          console.log('Old image file deleted');
+        });
+      }
+    }
+    
     await User.findByIdAndUpdate(req.params.id, updateUser);
     res.status(201).json({
       message: "Updated successfully!",
@@ -319,6 +313,38 @@ export const updateUser = async (req, res) => {
     console.log(error);
     res.status(500).json({
       message: "Could not update",
+    });
+  }
+};
+
+export const resetPassword = async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+  const isValidPwd = bcrypt.compareSync({ password });
+
+  try {
+    const user = await User.findById({ id });
+    if (!user) {
+      return res.status(404).json({
+        message: "Invalid or expired token.",
+      });
+    }
+
+    if (!isValidPwd) {
+      res.status(401).json({
+        message: "Wrong password",
+      });
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Password reset successful.",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal Server Error",
     });
   }
 };

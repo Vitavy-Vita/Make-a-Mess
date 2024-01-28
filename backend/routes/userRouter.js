@@ -6,6 +6,7 @@ import {
   getOneUser,
   deleteUser,
   updateUser,
+  resetPassword,
 } from "../controllers/usersController.js";
 import upload from "../middlewares/multer.js";
 import { isAuthorized, isLogged } from "../middlewares/auth.js";
@@ -26,5 +27,6 @@ userRouter
 
 userRouter.route("/users/register").post(upload.single("image"), register);
 userRouter.route("/users/login").post(login);
+userRouter.route("/send/recovery-email/reset/:token").put(resetPassword);
 
 export default userRouter;

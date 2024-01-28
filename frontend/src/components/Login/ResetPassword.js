@@ -2,24 +2,26 @@ import React, { useState } from "react";
 import { useRecovery } from "../../context/recoveryContext";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ResetPassword = () => {
   const [err, setErr] = useState();
   const recovery = useRecovery();
-  const auth = useAuth();
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const handlePwdChange = (e) => {
     e.preventDefault();
 
     if (recovery.inputs.password === recovery.inputs.passwordConfirm) {
       axios
-        .put(`http://localhost:9001/users/${auth.user.id}`, recovery.inputs, {
-          headers: token(),
-        })
+        .put(
+          `http://localhost:9001/send/recovery-email/reset/${id}`,
+          recovery.inputs,
+          {
+            headers: token(),
+          }
+        )
         .then(() => {
           navigate(`/login`);
         })

@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import token from "../../context/token";
 import { useAuth } from "../../context/authContext";
+import { CiLocationOn } from "react-icons/ci";
+import { CiMail } from "react-icons/ci";
+import { CiPhone } from "react-icons/ci";
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Contact() {
   const auth = useAuth();
@@ -52,32 +58,25 @@ export default function Contact() {
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
       exit={{ y: window.innerWidth, transition: "1s" }}
+      className="main-contact-wrapper"
     >
       <section className="main-title">
         <h2>Let us know what you</h2>
-        <h1 className="think">Think !!</h1>
+        <h1>Think !!</h1>
       </section>
       <section className="contact-container">
         <article>
           <h2>Get in touch with our team </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatem, veritatis necessitatibus! Laborum dicta maiores odit
-            porro voluptatem deserunt, sapiente voluptatibus illo eveniet sunt
-            ratione ut aperiam hic, sequi deleniti dolorem officia ullam quam
-            quia qui. Nulla, ipsa placeat tenetur error officiis magnam minus
-            vitae reprehenderit. Porro eligendi quos earum iure?
+            Our team will always be available to hear anything you have to say !
           </p>
-          <h2>Business info</h2>
-          <address>
-            <span>
-              1701, South Catalina Avenue, Redondo Beach, Los Angeles County,
-              Californie, 90277, États-Unis d'Amérique
-            </span>
-            <span>MakeaMess.burgers@gmail.com</span>
-            <span>06 03 27 01 57</span>
-          </address>
+          <p>
+            We have at your disposal (users only, make sure to be logged in) a
+            form you can use to send us a direct email, we will respond to you
+            in no time !
+          </p>
         </article>
+
         {auth.user && (
           <form onSubmit={handleSubmit}>
             <label htmlFor="Name" />
@@ -116,14 +115,89 @@ export default function Contact() {
           </form>
         )}
       </section>
-      <h2 className="sub-title-contact">Where to find us</h2>
-      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"></iframe>
-      <br />
-      <small>
-        <a href="https://www.openstreetmap.org/?mlat=33.81900&amp;mlon=-118.38838#map=19/33.81900/-118.38838">
-          Show a bigger map
-        </a>
-      </small>
+      <section className="business-wrapper">
+        <article className="business">
+          <h2>Business info</h2>
+          <ul>
+            <li>
+              <motion.a
+                href="https://www.openstreetmap.org/?mlat=33.81900&amp;mlon=-118.38838#map=19/33.81900/-118.38838"
+                whileHover={{
+                  color: "#c85a44",
+                  textDecoration: "underline",
+                }}
+              >
+                <CiLocationOn />
+                1701, South Catalina Avenue, Redondo Beach, Los Angeles County,
+                Californie, 90277, États-Unis d'Amérique
+              </motion.a>
+            </li>
+            <li>
+              <motion.a
+                href="mailto:MakeaMess.burgers@gmail.com"
+                whileHover={{
+                  color: "#c85a44",
+                  textDecoration: "underline",
+                }}
+              >
+                <CiMail />
+                MakeaMess.burgers@gmail.com
+              </motion.a>
+            </li>
+            <li>
+              <motion.a
+                href="tel:+33603270157"
+                whileHover={{
+                  color: "#c85a44",
+                  textDecoration: "underline",
+                }}
+              >
+                <CiPhone />
+                06 03 27 01 57
+              </motion.a>
+            </li>
+          </ul>
+        </article>
+        <article className="icon-container-contact">
+          <motion.a
+            href="https://www.facebook.com/?locale=fr_FR"
+            target="_blank"
+            className="facebook-icon"
+            whileHover={{
+              rotate: 360,
+              scale: 1.5,
+            }}
+          >
+            <FaFacebook />
+          </motion.a>
+          <motion.a
+            href="https://www.instagram.com/"
+            target="_blank"
+            className="insta-icon"
+            whileHover={{
+              rotate: 360,
+              scale: 1.5,
+            }}
+          >
+            <FaInstagramSquare />
+          </motion.a>
+          <motion.a
+            href="https://twitter.com/home?lang=fr"
+            target="_blank"
+            className="twitter-icon"
+            whileHover={{
+              rotate: 360,
+              scale: 1.2,
+            }}
+          >
+            <FaXTwitter />
+          </motion.a>
+        </article>
+      </section>
+      <section className="where-to-wrapper">
+        <h2 className="sub-title-contact">Where to find us</h2>
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"></iframe>
+      </section>
     </motion.main>
   );
 }

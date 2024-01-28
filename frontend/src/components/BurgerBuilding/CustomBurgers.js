@@ -367,7 +367,7 @@ const CustomBurgers = () => {
         </motion.section>
       </section>
       <section className="ingredient-total">
-        <h2>Thats a great burger you just made !</h2>
+        <h2>Great burger you just made !</h2>
         <ul className="ingredient-list">
           <li>Protein:</li>
           <li>{totalMacros.protein}</li>
@@ -378,6 +378,7 @@ const CustomBurgers = () => {
           <li>Calories:</li>
           <li>{totalMacros.calories}</li>
         </ul>
+        <button>Add to favorites</button>
       </section>
     </main>
   );

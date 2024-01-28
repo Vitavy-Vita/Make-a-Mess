@@ -7,86 +7,111 @@ main {
   padding-left: 0.5em;
 }
 .main-title {
-  .think {
-    font-size: 60px;
-    line-height: 42px;
+  h1 {
+    font-size: 80px;
+    line-height: 60px;
   }
   h2 {
-    margin-left: 1em;
+    font-size: 45px;
+    width: 80%;
+    line-height: 36px;
   }
 }
-iframe {
-  width: 95%;
-  height: 250px;
-  border: 3px solid variables.$red;
-  border-radius: 10px;
-}
-small {
- 
-  text-align: left;
-  a {
-    display: inline-block;
-    padding-bottom: 2em;
-    text-decoration: none;
-    color: variables.$brown;
-  }
-}
+
 .contact-container {
   @include display-flex;
   flex-direction: column;
-
-  section {
-    @include display-flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 1em;
-  }
-
-  p,
-  span {
+  p {
     width: 100%;
     @include text-style;
     text-align: left;
-   
+    padding: 0 1em;
   }
 
   h2 {
+    @include sub-title-style;
     padding-left: 0;
   }
-}
-h2 {
-  @include sub-title-style;
 
-}
-form {
-  width: 100%;
-  input {
-    @include input-style;
-  }
-  textarea {
-    @include input-style;
-    margin-top: 0.5em;
+  form {
+    width: 100%;
+    input {
+      @include input-style;
+    }
+    textarea {
+      @include input-style;
+      margin-top: 0.5em;
+    }
   }
 }
+.business-wrapper {
+  .business {
+    margin-bottom: 2em;
+  }
+  h2 {
+    @include sub-title-style;
+  }
+  a {
+    color: variables.$brown;
+    text-decoration: none;
+  }
+  svg {
+    position: relative;
+    top: 2px;
+    left: -3px;
+  }
 
+  ul {
+    @include text-style;
+    text-align: start;
+    list-style: none;
+   
+  }
+}
+.icon-container-contact {
+  @include display-flex;
+  justify-content: space-around;
+  font-size: 50px;
+  .facebook-icon {
+    color: #316ff6;
+  }
+  .insta-icon {
+    color: #8a3ab9;
+  }
+  .twitter-icon {
+    color: black;
+  }
+}
 textarea::placeholder {
   color: variables.$red;
 }
-
+.where-to-wrapper {
+  h2 {
+    @include sub-title-style;
+  }
+  iframe {
+    width: 95%;
+    height: 250px;
+    border: 3px solid variables.$red;
+    border-radius: 10px;
+  }
+}
 @media screen and (min-width: 480px) and (max-width: 900px) {
   .main-title {
-    .think {
+    h1 {
       font-size: 94px;
       line-height: 64px;
       padding-right: 0.3em;
+    }
+    h2 {
+      width: 60%;
     }
   }
   .contact-container {
     h2 {
       @include sub-title-style-desktop;
     }
-    p,
-    span {
+    p {
       @include text-style-desktop;
       text-align: left;
     }
@@ -102,59 +127,79 @@ textarea::placeholder {
       font-size: 20px;
     }
   }
-  .sub-title-contact {
-    @include sub-title-style-desktop;
-    text-align: left;
-  }
-  small {
+  .business-wrapper {
+    h2 {
+      @include sub-title-style-desktop;
+    }
     a {
-      font-size: 16px;
+      @include text-style-desktop;
+    }
+  }
+  .icon-container-contact {
+    font-size: 70px;
+  }
+  .where-to-wrapper {
+    h2 {
+      @include sub-title-style-desktop;
     }
   }
 }
 @media screen and (min-width: 901px) {
-  .contact-container {
-    flex-direction: row;
-    align-items: start;
-
-    h2 {
-      @include sub-title-style-desktop;
-      margin-top: 2em;
-    }
-    section,
-    form {
-      width: 50%;
-    }
-    p,
-    span {
-      @include text-style-desktop;
-      text-align: left;
-    }
-    form {
-      margin-top: 4em;
-      input,
-      textarea {
-        font-size: 20px;
+  .main-contact-wrapper {
+    .main-title {
+      flex-direction: row;
+      grid-area: "title";
+      h1 {
+        font-size: 130px;
+        margin-top: 0.5em;
+        padding-right: 1.5em;
+      }
+      h2 {
+        font-size: variables.$title-size-desktop;
+        width: 10em;
+        line-height: 50px;
+        text-align: right;
       }
     }
-  }
-  .main-title {
-    .think {
-      font-size: 130px;
-    }
-  }
-  .sub-title-contact {
-    @include sub-title-style-desktop;
-    text-align: left;
-    padding-left: 0.5em;
-  }
+    .contact-container {
+      flex-direction: row;
+      align-items: start;
 
-  iframe{
-    height:400px;
-  }
-  small {
-    a {
-      font-size: 16px;
+      h2 {
+        @include sub-title-style-desktop;
+        margin-top: 2em;
+      }
+      section,
+      form {
+        width: 50%;
+      }
+      p {
+        @include text-style-desktop;
+        text-align: left;
+      }
+      form {
+        margin-top: 4em;
+        input,
+        textarea {
+          font-size: 20px;
+        }
+      }
+    }
+    .where-to-wrapper {
+      h2 {
+        @include sub-title-style-desktop;
+      }
+    }
+    .business-wrapper {
+      position: absolute;
+      top: 580px;
+      width: 50%;
+      h2 {
+        @include sub-title-style-desktop;
+      }
+      a {
+        font-size: variables.$text-size-desktop;
+      }
     }
   }
 }

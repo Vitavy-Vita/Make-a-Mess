@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useRecovery } from "../../context/recoveryContext";
 import axios from "axios";
 import token from "../../context/token";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const OTPInput = () => {
   const recovery = useRecovery();
@@ -12,6 +12,7 @@ const OTPInput = () => {
   const [disable, setDisable] = useState(false);
   const [otpInputs, setOtpInputs] = useState(["", "", "", ""]);
   const navigate = useNavigate();
+  const { resetToken } = useParams();
   const inputs = [];
   useEffect(() => {
     let interval = setInterval(() => {
@@ -29,10 +30,10 @@ const OTPInput = () => {
   const verifyOtp = (e) => {
     e.preventDefault();
     if (parseInt(otpInputs.join("")) === recovery.otp) {
-      navigate("/send/recovery-email/reset");
+      navigate(`/send/recovery-email/reset/${resetToken}`);
     } else {
       setErr("You've entered an incorrect code, try again or re-send a code");
-      setOtpInputs(["","","",""])
+      setOtpInputs(["", "", "", ""]);
     }
   };
 
@@ -61,7 +62,7 @@ const OTPInput = () => {
   const handleOtpChange = (value, index) => {
     const newOtp = [...otpInputs];
     newOtp[index] = value;
-    setOtpInputs(newOtp);    
+    setOtpInputs(newOtp);
     if (value && index < newOtp.length - 1) {
       inputs[index + 1].focus();
     }

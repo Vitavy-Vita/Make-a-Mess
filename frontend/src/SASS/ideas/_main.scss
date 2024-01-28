@@ -55,21 +55,6 @@
     @include display-flex;
     flex-direction: column;
   }
-  .main-title {
-    flex-direction: row;
-    h1 {
-      font-size: 130px;
-      margin-top: 0.4em;
-      padding-right: 1.5em;
-    }
-    h2 {
-      font-size: variables.$title-size-desktop;
-      width: 10em;
-      line-height: 50px;
-      text-align: right;
-    }
-  }
-
 
   h1 {
     font-size: 130px;

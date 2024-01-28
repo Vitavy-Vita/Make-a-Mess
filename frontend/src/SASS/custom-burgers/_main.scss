@@ -21,6 +21,7 @@
 }
 .custom-container {
   h2 {
+    @include sub-title-style;
     position: relative;
     cursor: pointer;
   }
@@ -32,5 +33,10 @@
     position: absolute;
     top: -3px;
     right: 50px;
+  }
+}
+.ingredient-total {
+  h2 {
+    @include sub-title-style;
   }
 }

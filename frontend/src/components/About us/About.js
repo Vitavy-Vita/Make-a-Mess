@@ -1,33 +1,50 @@
-import Articles from "./Articles";
 import { motion } from "framer-motion";
-import burger from "./images/burger.png";
-import dude from "./images/dude.avif";
-import { CiForkAndKnife } from "react-icons/ci";
-import { PiHamburgerLight } from "react-icons/pi";
-
+import Button from "../NavBar/Button";
+import { NavLink } from "react-router-dom";
 export default function About() {
   return (
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{  y: window.innerWidth, transition: "1s"}}
+      exit={{ y: window.innerWidth }}
+      className="about-wrapper"
     >
-      <h1 className="about-title">Who are we</h1>
-      <section className={"article-container"}>
-        <Articles
-          image={burger}
-          title={"Our Story"}
-          alt={"image of a burger in broken down view"}
-          icon={<CiForkAndKnife />}
-          className={"left-article"}
-        />
-        <Articles
-          image={dude}
-          title={"What we do"}
-          alt={"A man offering a burger in both hands"}
-          icon={<PiHamburgerLight />}
-          className={"right-article"}
-        />
+      <section className={"about-container"}>
+        <article>
+          <h2>What we do</h2>
+          <motion.iframe
+            src="https://www.youtube.com/embed/ulhRORJpuBM?si=Uub0j2n_zNA09Jos"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            whileHover={{
+              scale:1.2
+            }}
+          ></motion.iframe>
+        </article>
+        <article>
+          <h2>Who are we</h2>
+          <ul className="article-section">
+            <li>
+              At Make-a-Mess, we care for your craving of good
+              <strong> burgers</strong> just as much as your health!
+            </li>
+            <li>
+              Thats why we propose to you the options to check for your macros
+              before getting that juicy burger!
+            </li>
+            <li>
+              You can check-out our selection of premade&nbsp;
+              <NavLink to={"/ideas"}>
+                <strong>burgers</strong>
+              </NavLink>{" "}
+              and even make your own if you choose to join us and create your
+              account!
+            </li>
+            <Button />
+          </ul>
+        </article>
       </section>
     </motion.main>
   );
