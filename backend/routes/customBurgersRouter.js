@@ -2,22 +2,26 @@ import express from "express";
 import {
   addBread,
   addCheese,
+  addFavorite,
   addMeat,
   addSauce,
   addTopping,
   deleteBread,
   deleteCheese,
+  deleteFavorite,
   deleteMeat,
   deleteSauce,
   deleteTopping,
   getAllBread,
   getAllCheese,
+  getAllFavorites,
   getAllIngredients,
   getAllMeat,
   getAllSauce,
   getAllTopping,
   getOneBread,
   getOneCheese,
+  getOneFavorite,
   getOneMeat,
   getOneSauce,
   getOneTopping,
@@ -28,6 +32,18 @@ import {
   updateTopping,
 } from "../controllers/customBurgersController.js";
 import { isAuthorized, isLogged } from "../middlewares/auth.js";
+
+const favoriteRouter = express.Router();
+
+favoriteRouter
+  .route("/favorites")
+  .get(isLogged, isAuthorized(["admin", "user"]), getAllFavorites)
+  .post(isLogged, isAuthorized(["admin"]), addFavorite);
+
+favoriteRouter
+  .route("/favorites/:id")
+  .get(isLogged, isAuthorized(["admin", "user"]), getOneFavorite)
+  .delete(isLogged, isAuthorized(["admin", "user"]), deleteFavorite);
 
 const customBurgersRouter = express.Router();
 
@@ -94,6 +110,7 @@ const allIngredientsRouter = express.Router();
 allIngredientsRouter.route("/ingredients").get(getAllIngredients);
 
 export {
+  favoriteRouter,
   customBurgersRouter,
   customMeatRouter,
   customCheeseRouter,

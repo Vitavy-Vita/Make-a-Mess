@@ -4,6 +4,7 @@ import connectDb from "./config/database.js";
 import userRouter from "./routes/userRouter.js";
 import burgerRouter from "./routes/burgerRouter.js";
 import {
+  favoriteRouter,
   allIngredientsRouter,
   customBurgersRouter,
   customCheeseRouter,
@@ -39,6 +40,7 @@ app.use(customCheeseRouter);
 app.use(customMeatRouter);
 app.use(customToppingRouter);
 app.use(allIngredientsRouter);
+app.use(favoriteRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello");
