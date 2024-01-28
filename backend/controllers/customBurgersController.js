@@ -7,9 +7,13 @@ import {
   Favorites,
 } from "../models/customBurgersModels.js";
 
-export const getAllFavorites = async (_, res) => {
+export const getAllFavorites = async (req, res) => {
   try {
-    const favorite = await Favorites.find();
+    const userId = req.user.id;
+    console.log('====================================');
+    console.log(req.user.id);
+    console.log('====================================');
+    const favorite = await Favorites.find({ user: userId });
     res.status(200).json(favorite);
   } catch (error) {
     res.status(500).json({
@@ -42,20 +46,14 @@ export const getOneFavorite = async (_, res) => {
 
 export const addFavorite = async (req, res) => {
   try {
-    const { name, protein, carbs, fat, calories } = req.body;
-    if (
-      name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
-    ) {
+    const {userId, protein, carbs, fat, calories } = req.body;
+    if (protein <= 0 || carbs <= 0 || fat <= 0 || calories <= 0) {
       return res
         .status(401)
         .json({ message: "It seems you forgot a blank space somewhere !" });
     }
     const favorite = new Favorites({
-      name: name,
+      user: userId,
       protein: parseFloat(protein),
       carbs: parseFloat(carbs),
       fat: parseFloat(fat),

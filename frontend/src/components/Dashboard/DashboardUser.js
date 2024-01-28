@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import token from "../../context/token";
 
 const DashboardUser = () => {
@@ -14,6 +14,7 @@ const DashboardUser = () => {
     tel: "",
     email: "",
   });
+
 
   const navigate = useNavigate();
   useEffect(() => {

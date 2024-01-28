@@ -51,6 +51,10 @@ const meatSchema = new mongoose.Schema({
 const Meat = mongoose.model("Meat", meatSchema);
 
 const favoritesSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   name: String,
   protein: Number,
   carbs: Number,

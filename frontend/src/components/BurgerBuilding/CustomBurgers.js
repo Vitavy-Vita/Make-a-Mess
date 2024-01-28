@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import token from "../../context/token";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 
 const CustomBurgers = () => {
   const [breadToOpen, setBreadToOpen] = useState(false);
@@ -8,7 +11,7 @@ const CustomBurgers = () => {
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
-
+  const auth = useAuth();
   const [toggle, setToggle] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState([]);
@@ -19,7 +22,11 @@ const CustomBurgers = () => {
     fat: 0,
     calories: 0,
   });
+  const [userLogged, setUserLogged] = useState({
+    userId: auth.user.id,
+  });
 
+  const navigate = useNavigate();
   useEffect(() => {
     calculateTotal();
     axios
@@ -35,7 +42,7 @@ const CustomBurgers = () => {
   useEffect(() => {
     calculateTotal();
   }, [selectedIngredient]);
-  
+
   const handleClick = (i, name) => {
     setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
     const newI = {
@@ -73,6 +80,28 @@ const CustomBurgers = () => {
     setSelectedIngredient(removeIng);
     calculateTotal();
     setToggle(!toggle);
+  };
+
+  const addToFavorites = () => {
+    if (
+      totalMacros.protein <= 0 ||
+      totalMacros.carbs <= 0 ||
+      totalMacros.fat <= 0 ||
+      totalMacros.calories <= 0
+    ) {
+      return setErr("Please provide all informations");
+    }
+
+    axios
+      .post("http://localhost:9001/favorites", {totalMacros, userLogged}, {
+        headers: token(),
+      })
+      .then((res) => {
+        navigate("/my-profil");
+      })
+      .catch((err) => {
+        setErr(err.message);
+      });
   };
 
   return (
@@ -378,7 +407,7 @@ const CustomBurgers = () => {
           <li>Calories:</li>
           <li>{totalMacros.calories}</li>
         </ul>
-        <button>Add to favorites</button>
+        <button onClick={addToFavorites}>Add to favorites</button>
       </section>
     </main>
   );

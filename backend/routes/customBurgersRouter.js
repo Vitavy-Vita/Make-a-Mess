@@ -38,8 +38,8 @@ const favoriteRouter = express.Router();
 favoriteRouter
   .route("/favorites")
   .get(isLogged, isAuthorized(["admin", "user"]), getAllFavorites)
-  .post(isLogged, isAuthorized(["admin"]), addFavorite);
-
+  .post(isLogged, isAuthorized(["admin", "user"]), addFavorite)
+  .delete(isLogged, isAuthorized(["admin", "user"]), deleteFavorite);
 favoriteRouter
   .route("/favorites/:id")
   .get(isLogged, isAuthorized(["admin", "user"]), getOneFavorite)
