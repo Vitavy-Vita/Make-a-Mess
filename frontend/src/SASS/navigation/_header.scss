@@ -40,8 +40,9 @@ nav {
   }
   img {
     position: absolute;
-    width: 110px;
+    width: 100px;
     left: 20px;
+    top: 5px;
     cursor: pointer;
   }
   .nav-menu {
@@ -80,6 +81,12 @@ nav {
     transition: ease-out 0.5s;
   }
   @media screen and (min-width: 480px) and (max-width: 900px) {
+    img {
+      width: 200px;
+      left: 20px;
+      top: 5px;
+    }
+
     .hidden {
       right: 0px;
       top: -1100px;
@@ -131,8 +138,12 @@ nav {
 
   @media screen and (min-width: 480px) and (max-width: 900px) {
     .burger-menu {
-      top: 45px;
+      top: 65px;
       right: 50px;
+    }
+    .react-icon {
+      top: 40px;
+      font-size: 70px;
     }
   }
   @media screen and (min-width: 901px) {
@@ -151,10 +162,6 @@ nav {
 @media screen and (min-width: 480px) and (max-width: 900px) {
   nav {
     height: 10em;
-    img {
-      display: block;
-      width: 30%;
-    }
     .nav-menu {
       top: 80px;
     }

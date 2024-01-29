@@ -70,7 +70,7 @@ export default function Login() {
       exit={{ y: window.innerWidth }}
     >
       <section className="center-container">
-        <h1>Please login to your account:</h1>
+        <h2>Please login to your account:</h2>
         <article className="form-container">
           <form onSubmit={handleSubmit}>
             <label htmlFor="email"></label>

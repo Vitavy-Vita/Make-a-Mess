@@ -75,7 +75,7 @@ export default function CreateAccount() {
       exit={{ y: window.innerWidth, transition: "1s" }}
       className="center-container"
     >
-      <h1>Create your account:</h1>
+      <h2>Create your account:</h2>
       <section className="form-container">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input

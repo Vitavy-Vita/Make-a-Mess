@@ -38,6 +38,8 @@ const OTPInput = () => {
   };
 
   const resendOtp = () => {
+    if (!recovery.email) return;
+
     if (disable) return;
     axios
       .post(
@@ -72,8 +74,10 @@ const OTPInput = () => {
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
       exit={{ y: window.innerWidth }}
+      className="otp-wrapper"
     >
       <h2>Email verification</h2>
+
       <section className="recovery-form-container">
         <form>
           <p>We sent a One-Time-Password to : {recovery.inputs.email}</p>
@@ -98,16 +102,20 @@ const OTPInput = () => {
             {disable ? (
               <small>Resend code in {timerCount}</small>
             ) : (
-              <small
+              <motion.small
                 style={{
                   color: "#825b56",
                   cursor: "pointer",
                   textDecoration: "underline",
                 }}
                 onClick={resendOtp}
+                whileHover={{
+                  color: "#faf6f6",
+                  scale: 1.2
+                }}
               >
                 Resend code
-              </small>
+              </motion.small>
             )}
           </article>
           {err && <span>{err}</span>}

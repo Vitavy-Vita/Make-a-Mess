@@ -8,6 +8,7 @@
     margin: 2em;
     padding: 2em;
     border-radius: 15px;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
     .premade-card-img {
       width: 250px;
       height: 150px;
@@ -16,9 +17,12 @@
     }
   }
   h2 {
+    @include sub-title-style;
     font-size: 2.5em;
   }
   p {
+    @include text-style;
+    color: variables.$gray;
     width: 100%;
   }
 }
