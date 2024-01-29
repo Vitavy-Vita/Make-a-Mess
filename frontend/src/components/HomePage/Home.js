@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Button from "../NavBar/Button";
 export default function Home() {
   return (
-    <motion.section
+    <motion.main
     initial={{ width: 0 }}
     animate={{ width: "100%" }}
     exit={{  y: window.innerWidth, transition: "1s" }}
@@ -14,6 +14,6 @@ export default function Home() {
         <h2>Let us help you!</h2>
         <Button/>
       </section>
-    </motion.section>
+    </motion.main>
   );
 }
