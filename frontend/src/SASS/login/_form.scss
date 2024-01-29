@@ -20,6 +20,11 @@ span {
   font-size: 25px;
   text-transform: none;
 }
+.center-container {
+  h2 {
+    @include sub-title-style;
+  }
+}
 form {
   @include display-flex;
   flex-direction: column;
@@ -45,6 +50,10 @@ button:hover {
 }
 @media screen and (min-width: 480px) and (max-width: 900px) {
   .center-container {
+    h2 {
+      @include sub-title-style-desktop;
+    }
+
     input {
       @include input-style-desktop;
     }
@@ -76,9 +85,6 @@ button:hover {
 }
 @media screen and (min-width: 901px) {
   .center-container {
-    h2 {
-      @include sub-title-style-desktop;
-    }
     flex-direction: column;
     input {
       font-size: 25px;

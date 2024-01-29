@@ -90,7 +90,7 @@ const DashboardAdmin = () => {
           <NavLink to={"/update/topping"}>Topping</NavLink>
           <NavLink to={"/burgers/new"}>Pre-Made</NavLink>
         </article>
-        <article>
+        <article className="users-container">
           <h2>Users:</h2>
           <form>
             <input

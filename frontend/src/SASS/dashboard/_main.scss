@@ -12,7 +12,9 @@
   flex-direction: column;
   flex-wrap: wrap;
   padding-bottom: 1em;
-
+  h2 {
+    @include sub-title-style;
+  }
   a {
     @include button;
     width: 50%;
@@ -24,6 +26,7 @@
 }
 
 @media screen and (min-width: 901px) {
+
   .main-dashboard {
     h1 {
       font-size: 4rem;
@@ -43,5 +46,14 @@
       flex-direction: column;
       margin: 2em;
     }
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                                    USERS                                   */
+/* -------------------------------------------------------------------------- */
+
+.users-container{
+  h2{
+    @include sub-title-style
   }
 }
