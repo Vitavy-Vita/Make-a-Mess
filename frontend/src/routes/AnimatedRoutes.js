@@ -1,38 +1,39 @@
-import CreateAccount from "./Create Account/CreateAccount";
+import CreateAccount from "../components/Create Account/CreateAccount";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Home from "./HomePage/Home";
-import Login from "./Login/Login";
-import Ideas from "./Ideas/Ideas";
-import About from "./About us/About";
-import Contact from "./Contact us/Contact";
-import DashboardAdmin from "./Dashboard/DashboardAdmin";
-import UpdateBurgerGallery from "./Dashboard/Databases/PreMadePages/UpdatePreMade";
-import UpdateBread from "./Dashboard/Databases/BreadPages/UpdateBread";
-import UpdateCheese from "./Dashboard/Databases/CheesePages/UpdateCheese";
-import UpdateMeat from "./Dashboard/Databases/MeatPages/UpdateMeat";
-import UpdateSauce from "./Dashboard/Databases/SaucePages/UpdateSauce";
-import UpdateTopping from "./Dashboard/Databases/ToppingPages/UpdateTopping";
-import BreadCard from "./Dashboard/Databases/BreadPages/BreadCard";
-import CheeseCard from "./Dashboard/Databases/CheesePages/CheeseCard";
-import MeatCard from "./Dashboard/Databases/MeatPages/MeatCard";
-import PreMadeCard from "./Dashboard/Databases/PreMadePages/PreMadeCard";
-import SauceCard from "./Dashboard/Databases/SaucePages/SauceCard";
-import ToppingCard from "./Dashboard/Databases/ToppingPages/ToppingCard";
-import CustomBurgers from "./BurgerBuilding/CustomBurgers";
-import UserCard from "./Dashboard/Databases/UserPages/UserCard";
-import UpdateBreadForm from "./Dashboard/Databases/BreadPages/UpdateBreadForm";
-import UpdateCheeseForm from "./Dashboard/Databases/CheesePages/UpdateCheeseForm";
-import UpdateMeatForm from "./Dashboard/Databases/MeatPages/UpdateMeatForm";
-import UpdateSauceForm from "./Dashboard/Databases/SaucePages/UpdateSauceForm";
-import UpdateToppingForm from "./Dashboard/Databases/ToppingPages/UpdateToppingForm";
-import UpdatePreMadeForm from "./Dashboard/Databases/PreMadePages/UpdatePreMadeForm";
+import Home from "../components/HomePage/Home";
+import Login from "../components/Login/Login";
+import Ideas from "../components/Ideas/Ideas";
+import About from "../components/About us/About";
+import Contact from "../components/Contact us/Contact";
+import DashboardAdmin from "../components/Dashboard/DashboardAdmin";
+import UpdateBurgerGallery from "../components/Dashboard/Databases/PreMadePages/UpdatePreMade";
+import UpdateBread from "../components/Dashboard/Databases/BreadPages/UpdateBread";
+import UpdateCheese from "../components/Dashboard/Databases/CheesePages/UpdateCheese";
+import UpdateMeat from "../components/Dashboard/Databases/MeatPages/UpdateMeat";
+import UpdateSauce from "../components/Dashboard/Databases/SaucePages/UpdateSauce";
+import UpdateTopping from "../components/Dashboard/Databases/ToppingPages/UpdateTopping";
+import BreadCard from "../components/Dashboard/Databases/BreadPages/BreadCard";
+import CheeseCard from "../components/Dashboard/Databases/CheesePages/CheeseCard";
+import MeatCard from "../components/Dashboard/Databases/MeatPages/MeatCard";
+import PreMadeCard from "../components/Dashboard/Databases/PreMadePages/PreMadeCard";
+import SauceCard from "../components/Dashboard/Databases/SaucePages/SauceCard";
+import ToppingCard from "../components/Dashboard/Databases/ToppingPages/ToppingCard";
+import CustomBurgers from "../components/BurgerBuilding/CustomBurgers";
+import UserCard from "../components/Dashboard/Databases/UserPages/UserCard";
+import UpdateBreadForm from "../components/Dashboard/Databases/BreadPages/UpdateBreadForm";
+import UpdateCheeseForm from "../components/Dashboard/Databases/CheesePages/UpdateCheeseForm";
+import UpdateMeatForm from "../components/Dashboard/Databases/MeatPages/UpdateMeatForm";
+import UpdateSauceForm from "../components/Dashboard/Databases/SaucePages/UpdateSauceForm";
+import UpdateToppingForm from "../components/Dashboard/Databases/ToppingPages/UpdateToppingForm";
+import UpdatePreMadeForm from "../components/Dashboard/Databases/PreMadePages/UpdatePreMadeForm";
+
+import ProfilPage from "../components/Profil/ProfilPage";
+import DashboardUser from "../components/Dashboard/DashboardUser";
+import OTPInput from "../components/Login/OTPInput";
+import ResetPassword from "../components/Login/ResetPassword";
 import PrivateRoutes from "./PrivateRoutes";
-import ProfilPage from "./Profil/ProfilPage";
-import DashboardUser from "./Dashboard/DashboardUser";
-import OTPInput from "./Login/OTPInput";
-import { createContext, useState } from "react";
-import ResetPassword from "./Login/ResetPassword";
+import NotFoundRoute from "./NotFoundRoute";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -49,8 +50,12 @@ export default function AnimatedRoutes() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/send/recovery-email/otp" element={<OTPInput />} />
-        <Route path="/send/recovery-email/reset/:email" element={<ResetPassword/>} />
-
+        <Route
+          path="/send/recovery-email/reset/:email"
+          element={<ResetPassword />}
+        />
+        <Route path="*" element={<NotFoundRoute />} />
+        
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />
           <Route path="/settings/admin" element={<DashboardAdmin />} />

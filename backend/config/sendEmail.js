@@ -43,7 +43,7 @@ const ForgotPassword = ({userEmail, OTP})=>{
     to: userEmail,
     subject: "Forgot password ?",
     text: "This is a test message",
-    html: `<h1>New message received</h1>
+    html: `<h1>Password Recovery Procedure</h1>
     <p>Use the following OTP to complete your Password Recovery Procedure. OTP is valid for 5 minutes</p>
     <h2>${OTP}</h2>`,
   };

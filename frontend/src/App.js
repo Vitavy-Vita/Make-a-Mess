@@ -1,9 +1,10 @@
 import "./App.scss";
-import { BrowserRouter as Router } from "react-router-dom";
-import AnimatedRoutes from "./components/AnimatedRoutes";
+import {  BrowserRouter as Router } from "react-router-dom";
 import Menu from "./components/NavBar/NavBar";
 import AuthProvider from "./context/authContext";
 import RecoveryProvider from "./context/recoveryContext";
+import AnimatedRoutes from "./routes/AnimatedRoutes";
+
 
 function App() {
   return (
