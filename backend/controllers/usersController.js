@@ -146,7 +146,7 @@ export const login = async (req, res) => {
     });
 
     if (!email) {
-      res.status(404).json({
+      return res.status(404).json({
         message: "User not found",
       });
     }
@@ -154,7 +154,7 @@ export const login = async (req, res) => {
     const isValidPwd = bcrypt.compareSync(password, user.password);
 
     if (!isValidPwd) {
-      res.status(401).json({
+      return res.status(401).json({
         message: "Wrong password",
       });
     }
@@ -297,14 +297,14 @@ export const updateUser = async (req, res) => {
           if (error) {
             console.error(error);
             return res.status(500).json({
-              message: 'Error deleting old image file',
+              message: "Error deleting old image file",
             });
           }
-          console.log('Old image file deleted');
+          console.log("Old image file deleted");
         });
       }
     }
-    
+
     await User.findByIdAndUpdate(req.params.id, updateUser);
     res.status(201).json({
       message: "Updated successfully!",
@@ -318,31 +318,28 @@ export const updateUser = async (req, res) => {
 };
 
 export const resetPassword = async (req, res) => {
-  const { id } = req.params;
+  const { email } = req.params;
   const { password } = req.body;
-
-  const isValidPwd = bcrypt.compareSync({ password });
-
+  console.log("====================================");
+  console.log(email);
+  console.log("====================================");
   try {
-    const user = await User.findById({ id });
+    const newPassword = await bcrypt.hash(password, 10);
+    const user = await User.updateOne({ email }, { password: newPassword });
+
     if (!user) {
       return res.status(404).json({
         message: "Invalid or expired token.",
       });
     }
 
-    if (!isValidPwd) {
-      res.status(401).json({
-        message: "Wrong password",
-      });
-    }
-
-    await user.save();
-
     res.status(200).json({
       message: "Password reset successful.",
     });
   } catch (error) {
+    console.log("====================================");
+    console.log(error);
+    console.log("====================================");
     res.status(500).json({
       message: "Internal Server Error",
     });

@@ -6,27 +6,26 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 
 const CustomBurgers = () => {
+  const auth = useAuth();
+  const navigate = useNavigate();
+
   const [breadToOpen, setBreadToOpen] = useState(false);
   const [meatToOpen, setMeatToOpen] = useState(false);
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
-  const auth = useAuth();
   const [toggle, setToggle] = useState(false);
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [totalMacros, setTotalMacros] = useState({
+    userId: auth.user.id,
     protein: 0,
     carbs: 0,
     fat: 0,
     calories: 0,
   });
-  const [userLogged, setUserLogged] = useState({
-    userId: auth.user.id,
-  });
 
-  const navigate = useNavigate();
   useEffect(() => {
     calculateTotal();
     axios
@@ -44,15 +43,21 @@ const CustomBurgers = () => {
   }, [selectedIngredient]);
 
   const handleClick = (i, name) => {
-    setSelectedIngredient([...selectedIngredient, ingredients[name][i]]);
-    const newI = {
-      ...ingredients,
-      [name]: ingredients[name].filter(
-        (ing) => ing._id === ingredients[name][i]._id
-      ),
-    };
-    setIngredients(newI);
-    calculateTotal();
+    const choosenIngredient = ingredients[name][i];
+
+    const isAlreadySelected = selectedIngredient.find(
+      (ing) => ing._id === choosenIngredient._id
+    );
+
+    if (!isAlreadySelected) {
+      setSelectedIngredient([...selectedIngredient, choosenIngredient]);
+      const newI = {
+        ...ingredients,
+        [name]: ingredients[name].filter((ing) => ing._id === choosenIngredient._id),
+      };
+      setIngredients(newI);
+      calculateTotal();
+    }
   };
 
   const calculateTotal = () => {
@@ -82,7 +87,7 @@ const CustomBurgers = () => {
     setToggle(!toggle);
   };
 
-  const addToFavorites = () => {
+  const addToFavorites = (i, name) => {
     if (
       totalMacros.protein <= 0 ||
       totalMacros.carbs <= 0 ||
@@ -92,8 +97,18 @@ const CustomBurgers = () => {
       return setErr("Please provide all informations");
     }
 
+    // const selectedName = selectedIngredient
+    // .filter((ing) => ing.name)
+    // .map((ing) => ing.name)[0];
+
+  console.log("====================================");
+  console.log(totalMacros);
+  // console.log(selectedName);
+  console.log("====================================");
+
+
     axios
-      .post("http://localhost:9001/favorites", {totalMacros, userLogged}, {
+      .post("http://localhost:9001/favorites", totalMacros, {
         headers: token(),
       })
       .then((res) => {
@@ -211,7 +226,7 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li>❌</li>
+                    <li onClick={() => handleDelete(i, "meat")}>❌</li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -268,7 +283,7 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li>❌</li>
+                    <li onClick={() => handleDelete(i, "cheese")}>❌</li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -325,7 +340,7 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li>❌</li>
+                    <li onClick={() => handleDelete(i, "topping")}>❌</li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -383,7 +398,7 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li>❌</li>
+                    <li onClick={() => handleDelete(i, "sauce")}>❌</li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -408,6 +423,7 @@ const CustomBurgers = () => {
           <li>{totalMacros.calories}</li>
         </ul>
         <button onClick={addToFavorites}>Add to favorites</button>
+        {err && <span>{err}</span>}
       </section>
     </main>
   );

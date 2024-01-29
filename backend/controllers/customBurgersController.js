@@ -9,13 +9,23 @@ import {
 
 export const getAllFavorites = async (req, res) => {
   try {
-    const userId = req.user.id;
-    console.log('====================================');
-    console.log(req.user.id);
-    console.log('====================================');
+    console.log("====================================");
+    console.log(req.userId);
+    console.log("====================================");
+    if (!req.userId ) {
+      return res.status(401).json({
+        status: 'error',
+        message: 'User not authenticated',
+      });
+    }
+
+    const userId = req.userId;
     const favorite = await Favorites.find({ user: userId });
     res.status(200).json(favorite);
   } catch (error) {
+    console.log('====================================');
+    console.log(error);
+    console.log('====================================');
     res.status(500).json({
       status: error,
       message: "Unable to get favorite list",
@@ -46,14 +56,17 @@ export const getOneFavorite = async (_, res) => {
 
 export const addFavorite = async (req, res) => {
   try {
-    const {userId, protein, carbs, fat, calories } = req.body;
+    const { protein, carbs, fat, calories } = req.body;
+    const {bread } = req.body
     if (protein <= 0 || carbs <= 0 || fat <= 0 || calories <= 0) {
       return res
         .status(401)
         .json({ message: "It seems you forgot a blank space somewhere !" });
     }
+
     const favorite = new Favorites({
-      user: userId,
+      user: req.userId,
+      bread,
       protein: parseFloat(protein),
       carbs: parseFloat(carbs),
       fat: parseFloat(fat),
@@ -64,6 +77,9 @@ export const addFavorite = async (req, res) => {
       message: "Favorite saved",
     });
   } catch (error) {
+    console.log('====================================');
+    console.log(error);
+    console.log('====================================');
     res.status(500).json({
       message: "Unable to save to favorites",
     });

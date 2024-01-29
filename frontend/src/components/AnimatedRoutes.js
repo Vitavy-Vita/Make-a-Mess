@@ -49,7 +49,7 @@ export default function AnimatedRoutes() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/send/recovery-email/otp" element={<OTPInput />} />
-        <Route path="/send/recovery-email/reset/:token" element={<ResetPassword/>} />
+        <Route path="/send/recovery-email/reset/:email" element={<ResetPassword/>} />
 
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />

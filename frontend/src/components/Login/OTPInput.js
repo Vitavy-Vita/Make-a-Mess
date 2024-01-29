@@ -12,7 +12,7 @@ const OTPInput = () => {
   const [disable, setDisable] = useState(false);
   const [otpInputs, setOtpInputs] = useState(["", "", "", ""]);
   const navigate = useNavigate();
-  const { resetToken } = useParams();
+
   const inputs = [];
   useEffect(() => {
     let interval = setInterval(() => {
@@ -30,7 +30,7 @@ const OTPInput = () => {
   const verifyOtp = (e) => {
     e.preventDefault();
     if (parseInt(otpInputs.join("")) === recovery.otp) {
-      navigate(`/send/recovery-email/reset/${resetToken}`);
+      navigate(`/send/recovery-email/reset/${recovery.inputs.email}`);
     } else {
       setErr("You've entered an incorrect code, try again or re-send a code");
       setOtpInputs(["", "", "", ""]);

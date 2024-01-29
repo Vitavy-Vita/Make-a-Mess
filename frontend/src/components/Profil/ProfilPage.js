@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
 
@@ -30,7 +30,7 @@ const ProfilPage = () => {
       .catch((res) => {
         setErr(res.data);
       });
-  }, [favorites]);
+  }, []);
 
   const handleRemove = (id) => {
     const confirmBox = window.confirm(
@@ -44,7 +44,7 @@ const ProfilPage = () => {
         .then((res) => {
           
           setFavorites((allFav) =>
-          allFav.filter((fav) => fav.id !== id)
+          allFav.filter((fav) => fav._id !== id)
           );
         })
         .catch((res) => {

@@ -9,14 +9,14 @@ const ResetPassword = () => {
   const [err, setErr] = useState();
   const recovery = useRecovery();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { email } = useParams();
   const handlePwdChange = (e) => {
     e.preventDefault();
 
     if (recovery.inputs.password === recovery.inputs.passwordConfirm) {
       axios
         .put(
-          `http://localhost:9001/send/recovery-email/reset/${id}`,
+          `http://localhost:9001/send/recovery-email/reset/${email}`,
           recovery.inputs,
           {
             headers: token(),
@@ -45,17 +45,16 @@ const ResetPassword = () => {
             <input
               value={recovery.inputs.password}
               name="password"
-              type="text"
+              type="password"
               placeholder="Password :"
               size="25"
               required
               onChange={recovery.handleChange}
             />
-            <label htmlFor="Password"></label>
             <input
-              value={recovery.inputs.passwordConfirm}
+           
               name="passwordConfirm"
-              type="text"
+              type="password"
               placeholder="Password confirmation:"
               size="25"
               required

@@ -27,6 +27,6 @@ userRouter
 
 userRouter.route("/users/register").post(upload.single("image"), register);
 userRouter.route("/users/login").post(login);
-userRouter.route("/send/recovery-email/reset/:token").put(resetPassword);
+userRouter.route("/send/recovery-email/reset/:email").put(resetPassword);
 
 export default userRouter;

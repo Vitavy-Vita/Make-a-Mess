@@ -20,6 +20,7 @@ export const isLogged = (req, res, next) => {
         message: "Invalid token",
       });
     }
+    
     req.userId = decoded.id;
     next();
   });
