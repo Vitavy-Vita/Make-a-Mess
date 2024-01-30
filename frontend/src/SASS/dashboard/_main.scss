@@ -5,6 +5,9 @@
 /* -------------------------------------------------------------------------- */
 .main-dashboard {
   text-align: center;
+  h2 {
+    @include sub-title-style;
+  }
 }
 
 .database-container {
@@ -26,34 +29,144 @@
 }
 
 @media screen and (min-width: 901px) {
-
+  .database-container {
+    justify-content: start;
+    form {
+      padding: 0;
+    }
+  }
   .main-dashboard {
     h1 {
       font-size: 4rem;
+    }
+    h2 {
+      @include sub-title-style-desktop;
     }
   }
   .article-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
     a {
-      margin: 1em;
+      @include text-style-desktop;
+      color: variables.$gray;
     }
-  }
-  .bread-container {
-    @include display-flex;
-    .bread-wrapper {
-      @include display-flex;
-      flex-direction: column;
-      margin: 2em;
+    a:hover {
+      font-size: variables.$text-size-desktop;
     }
   }
 }
 /* -------------------------------------------------------------------------- */
 /*                                    USERS                                   */
 /* -------------------------------------------------------------------------- */
+.article-list-scroll {
+  overflow: scroll;
+  height: 43vh;
+  scrollbar-color: variables.$red variables.$light-red;
+  scrollbar-width: thin;
+  margin: 0 1em;
+}
+.user-card-container {
+  @include display-flex;
+  flex-direction: column;
+  .user-card {
+    background-color: variables.$light-red;
+    margin: 2em;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+    .premade-card-img {
+      width: 250px;
+      height: 150px;
+      border-radius: 25%;
+      border: 4px solid variables.$gray;
+    }
+  }
+  h2 {
+    @include sub-title-style;
+    font-size: 2.5em;
+  }
+  p {
+    @include text-style;
+    color: variables.$gray;
+    width: 100%;
+  }
+}
+form {
+  .button-update-user {
+    @include display-flex;
+  }
+}
+.database-card {
+  @include display-flex;
+  justify-content: space-around;
+  border: 2px solid variables.$red;
+  margin: 1em 0;
+  padding: 1em;
+  height: 10em;
+ 
+  .user-dashboard {
+    @include text-style;
+    text-transform: capitalize;
+    background-color: transparent;
+    box-shadow: none;
+    width: 100%;
+    text-align: start;
+    text-decoration: none;
+  }
 
-.users-container{
-  h2{
-    @include sub-title-style
+  .user-dashboard:hover {
+    text-decoration: underline;
+    color: variables.$red;
+  }
+  button {
+    margin: 0.5em;
+    border: none;
+  }
+}
+.dropdown {
+  position: relative;
+}
+.drowpdown-menu {
+  position: absolute;
+  list-style: none;
+  margin: 5px 0;
+  left: -30px;
+  top: 85px;
+  li {
+    margin: 0;
+    button {
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 0.5em 1.5em;
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 900px) {
+  .users-container {
+    .user-dashboard {
+      font-size: variables.$text-size-desktop;
+    }
+    input, textarea {
+      font-size: variables.$text-size-desktop;
+    }
+  }
+}
+@media screen and (min-width: 901px) {
+  .users-container {
+    .user-dashboard {
+      font-size: variables.$text-size-desktop;
+    }
+    input, textarea {
+      font-size: variables.$text-size-desktop;
+    }
+  }
+  .user-card-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

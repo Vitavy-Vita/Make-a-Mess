@@ -27,6 +27,7 @@ export default function NavBar() {
       });
     }
   };
+ 
   return (
     <motion.header>
       <motion.nav
@@ -129,26 +130,25 @@ export default function NavBar() {
         </section>
         <motion.ul className={"nav-tablet-desktop"}>
           <li>
-            <NavLink to={"/"} className={"nav-option"}>
+            <NavLink to={"/"} className={"nav-option-desktop"}>
               Home Page
             </NavLink>
           </li>
 
           <li>
-            {" "}
-            <NavLink to={"/ideas"} className={"nav-option"}>
+            <NavLink to={"/ideas"} className={"nav-option-desktop"}>
               Need Ideas?
             </NavLink>
           </li>
 
           <li>
-            <NavLink to={"/about"} className={"nav-option"}>
+            <NavLink to={"/about"} className={"nav-option-desktop"}>
               About Us
             </NavLink>
           </li>
 
           <li>
-            <NavLink to={"/contact"} className={"nav-option"}>
+            <NavLink to={"/contact"} className={"nav-option-desktop"}>
               Contact Us
             </NavLink>
           </li>

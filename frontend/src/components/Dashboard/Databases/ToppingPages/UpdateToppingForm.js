@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import token from "../../../../context/token"
-
+import token from "../../../../context/token";
+import { motion } from "framer-motion";
 
 const UpdateToppingForm = () => {
   const [topping, setTopping] = useState();
@@ -14,7 +14,7 @@ const UpdateToppingForm = () => {
     fat: "",
     calories: "",
   });
-  
+
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
@@ -51,7 +51,17 @@ const UpdateToppingForm = () => {
     }
   };
   return (
-    <main className="center-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="center-container"
+    >
       <h1>Update this Topping:</h1>
 
       <section className="form-container">
@@ -101,7 +111,7 @@ const UpdateToppingForm = () => {
           <button className={"button-form"}>Validate</button>
         </form>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

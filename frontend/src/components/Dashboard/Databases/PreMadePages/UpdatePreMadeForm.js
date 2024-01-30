@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import token from "../../../../context/token"
-
+import token from "../../../../context/token";
+import { motion } from "framer-motion";
 const UpdatePreMadeForm = () => {
   const [preMade, setPreMade] = useState();
   const [err, setErr] = useState();
@@ -23,7 +23,7 @@ const UpdatePreMadeForm = () => {
         setInputs(res.data);
       })
       .catch((res) => {
-        setErr("error")
+        setErr("error");
       });
   }, []);
   const handleChange = (e) => {
@@ -58,12 +58,22 @@ const UpdatePreMadeForm = () => {
           navigate(`/burgers/${id}`);
         })
         .catch((res) => {
-          setErr(res.response.data.message)
+          setErr(res.response.data.message);
         });
     }
   };
   return (
-    <main className="center-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="center-container"
+    >
       <h1>Update this Burger:</h1>
 
       <section className="form-container">
@@ -115,7 +125,7 @@ const UpdatePreMadeForm = () => {
         </form>
         {err && <span>{err}</span>}
       </section>
-    </main>
+    </motion.main>
   );
 };
 

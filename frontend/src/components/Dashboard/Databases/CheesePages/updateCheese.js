@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import token from "../../../../context/token";
-
+import { motion } from "framer-motion";
 const UpdateCheese = () => {
   const [cheeses, setCheeses] = useState([]);
   const [filteredCheese, setfilteredCheese] = useState([]);
-  const [reload, setReload] = useState(false)
+  const [reload, setReload] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
     protein: "",
@@ -41,10 +41,10 @@ const UpdateCheese = () => {
 
     if (
       inputs.name.trim() === "" ||
-      inputs.protein <= 0 ||
-      inputs.carbs <= 0 ||
-      inputs.fat <= 0 ||
-      inputs.calories <= 0
+      inputs.protein < 0 ||
+      inputs.carbs < 0 ||
+      inputs.fat < 0 ||
+      inputs.calories < 0
     ) {
       return setErr("Please provide all informations");
     }
@@ -55,7 +55,7 @@ const UpdateCheese = () => {
         headers: token(),
       })
       .then((res) => {
-        setReload(!reload)
+        setReload(!reload);
         setInputs({
           ...inputs,
           name: "",
@@ -81,7 +81,7 @@ const UpdateCheese = () => {
           headers: token(),
         })
         .then((res) => {
-          setReload(!reload)
+          setReload(!reload);
           setCheeses((allCheeses) =>
             allCheeses.filter((cheese) => cheese.id !== id)
           );
@@ -94,103 +94,117 @@ const UpdateCheese = () => {
   };
 
   const handleSearch = (value) => {
-    const searchResult = filteredCheese.filter((cheese) => 
+    const searchResult = filteredCheese.filter((cheese) =>
       cheese.name.toLowerCase().includes(value.toLowerCase())
     );
     setCheeses(searchResult);
-
   };
 
   return (
-    <article>
-      <h2>Create new Cheese</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={inputs.name}
-          type="text"
-          placeholder="Name:"
-          size="25"
-          name="name"
-          onChange={handleChange}
-          required
-        />
+    <motion.section
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="ingredient-container"
+    >
+      <article>
+        <h2>Create new Cheese</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            value={inputs.name}
+            type="text"
+            placeholder="Name:"
+            size="25"
+            name="name"
+            onChange={handleChange}
+            required
+          />
 
-        <input
-          value={inputs.protein}
-          onChange={handleChange}
-          type="number"
-          placeholder="Protein:"
-          size="25"
-          name="protein"
-          required
-        />
+          <input
+            value={inputs.protein}
+            onChange={handleChange}
+            type="number"
+            placeholder="Protein:"
+            size="25"
+            name="protein"
+            required
+          />
 
-        <input
-          value={inputs.carbs}
-          onChange={handleChange}
-          type="number"
-          placeholder="Carbs:"
-          size="25"
-          name="carbs"
-          required
-        />
+          <input
+            value={inputs.carbs}
+            onChange={handleChange}
+            type="number"
+            placeholder="Carbs:"
+            size="25"
+            name="carbs"
+            required
+          />
 
-        <input
-          value={inputs.fat}
-          onChange={handleChange}
-          type="number"
-          placeholder="Fat:"
-          size="25"
-          name="fat"
-          required
-        />
+          <input
+            value={inputs.fat}
+            onChange={handleChange}
+            type="number"
+            placeholder="Fat:"
+            size="25"
+            name="fat"
+            required
+          />
 
-        <input
-          value={inputs.calories}
-          onChange={handleChange}
-          type="number"
-          placeholder="Calories:"
-          size="25"
-          name="calories"
-          required
-        />
-        <button className={"button-form"}>Validate</button>
-      </form>
-      {err && <span>{err}</span>}
-      {response && <span>{response}</span>}
-      <h2>Existing Cheese</h2>
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => handleSearch(e.target.value)}
-        />
-      </form>
+          <input
+            value={inputs.calories}
+            onChange={handleChange}
+            type="number"
+            placeholder="Calories:"
+            size="25"
+            name="calories"
+            required
+          />
+          <button>Validate</button>
+        </form>
+        {err && <span>{err}</span>}
+        {response && <span>{response}</span>}
+      </article>
       {cheeses && (
-        <section>
-          {cheeses.map((oneCheese) => (
-            <article className="user-article-dashboard">
-              <NavLink
-                to={`/custom/cheese/${oneCheese._id}`}
-                className="user-dashboard"
-              >
-                {oneCheese.name}
-              </NavLink>
-              <NavLink to={`/custom/cheese/${oneCheese._id}/update`}>
-                <button>Update</button>
-              </NavLink>
+        <article className="ingredient-wrapper">
+          <h2>Existing cheese</h2>
+          <form>
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          </form>
+          <aside className="article-list-scroll">
+            {cheeses.map((onecheese) => (
+              <article className="database-card">
+                <NavLink
+                  to={`/custom/cheese/${onecheese._id}`}
+                  className="ingredient-name"
+                >
+                  {onecheese.name}
+                </NavLink>
+                <NavLink to={`/custom/cheese/${onecheese._id}/update`}>
+                  <button> Update</button>
+                </NavLink>
 
-              <button onClick={() => handleRemove(oneCheese._id)}>
-                Delete
-              </button>
-            </article>
-          ))}
-        </section>
+                <button onClick={() => handleRemove(onecheese._id)}>
+                  Delete
+                </button>
+              </article>
+            ))}
+          </aside>
+        </article>
       )}
-        <NavLink to={"/Settings/Admin"}>
-        <button>Go Back</button>
+
+      <NavLink to={"/Settings/Admin"} className={"go-back-button "}>
+        <button> Go Back</button>
       </NavLink>
-    </article>
+    </motion.section>
   );
 };
 

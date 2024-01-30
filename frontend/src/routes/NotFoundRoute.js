@@ -1,9 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+
 const NotFoundRoute = () => {
   return (
-    <main className="not-found-wrapper">
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 2,
+      }}
+      className="not-found-wrapper"
+    >
       <motion.figure
         animate={{
           x: [-160, 0],
@@ -24,7 +32,7 @@ const NotFoundRoute = () => {
       <motion.figure
         animate={{
           x: [160, 0],
-          rotate: 180,
+          rotate: -180,
         }}
         transition={{
           type: "spring",
@@ -33,7 +41,7 @@ const NotFoundRoute = () => {
           damping: 0,
         }}
       ></motion.figure>
-    </main>
+    </motion.main>
   );
 };
 

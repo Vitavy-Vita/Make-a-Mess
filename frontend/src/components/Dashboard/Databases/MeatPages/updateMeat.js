@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import token from "../../../../context/token";
+import { motion } from "framer-motion";
 
 const UpdateMeat = () => {
   const [meats, setMeats] = useState();
@@ -39,10 +40,10 @@ const UpdateMeat = () => {
     e.preventDefault();
     if (
       inputs.name.trim() === "" ||
-      inputs.protein <= 0 ||
-      inputs.carbs <= 0 ||
-      inputs.fat <= 0 ||
-      inputs.calories <= 0
+      inputs.protein < 0 ||
+      inputs.carbs < 0 ||
+      inputs.fat < 0 ||
+      inputs.calories < 0
     ) {
       return setErr("Please provide all informations");
     }
@@ -93,92 +94,110 @@ const UpdateMeat = () => {
     setMeats(searchResult);
   };
   return (
-    <article>
-      <h2>Create new Meat</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={inputs.name}
-          type="text"
-          placeholder="Name:"
-          size="25"
-          name="name"
-          onChange={handleChange}
-          required
-        />
+    <motion.section
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="ingredient-container"
+    >
+      <article>
+        <h2>Create new meat</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            value={inputs.name}
+            type="text"
+            placeholder="Name:"
+            size="25"
+            name="name"
+            onChange={handleChange}
+            required
+          />
 
-        <input
-          value={inputs.protein}
-          onChange={handleChange}
-          type="number"
-          placeholder="Protein:"
-          size="25"
-          name="protein"
-          required
-        />
+          <input
+            value={inputs.protein}
+            onChange={handleChange}
+            type="number"
+            placeholder="Protein:"
+            size="25"
+            name="protein"
+            required
+          />
 
-        <input
-          value={inputs.carbs}
-          onChange={handleChange}
-          type="number"
-          placeholder="Carbs:"
-          size="25"
-          name="carbs"
-          required
-        />
+          <input
+            value={inputs.carbs}
+            onChange={handleChange}
+            type="number"
+            placeholder="Carbs:"
+            size="25"
+            name="carbs"
+            required
+          />
 
-        <input
-          value={inputs.fat}
-          onChange={handleChange}
-          type="number"
-          placeholder="Fat:"
-          size="25"
-          name="fat"
-          required
-        />
+          <input
+            value={inputs.fat}
+            onChange={handleChange}
+            type="number"
+            placeholder="Fat:"
+            size="25"
+            name="fat"
+            required
+          />
 
-        <input
-          value={inputs.calories}
-          onChange={handleChange}
-          type="number"
-          placeholder="Calories:"
-          size="25"
-          name="calories"
-          required
-        />
-        <button className={"button-form"}>Validate</button>
-      </form>
-      {err && <span>{err}</span>}
-      {response && <span>{response}</span>}
-      <h2>Existing Meat</h2>
-      <form>
-        <input
-          type="text"
-          placeholder="Search..."
-          onChange={(e) => handleSearch(e.target.value)}
-        />
-      </form>
+          <input
+            value={inputs.calories}
+            onChange={handleChange}
+            type="number"
+            placeholder="Calories:"
+            size="25"
+            name="calories"
+            required
+          />
+          <button>Validate</button>
+        </form>
+        {err && <span>{err}</span>}
+        {response && <span>{response}</span>}
+      </article>
       {meats && (
-        <section>
-          {meats.map((oneMeat) => (
-            <article className="user-article-dashboard">
-              <NavLink
-                to={`/custom/meat/${oneMeat._id}`}
-                className="user-dashboard"
-              >
-                {oneMeat.name}
-              </NavLink>
-              <NavLink to={`/custom/meat/${oneMeat._id}/update`}>
-                <button>Update</button>
-              </NavLink>
-              <button onClick={() => handleRemove(oneMeat._id)}>Delete</button>
-            </article>
-          ))}
-        </section>
+        <article className="ingredient-wrapper">
+          <h2>Existing meat</h2>
+          <form>
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          </form>
+          <aside className="article-list-scroll">
+            {meats.map((onemeat) => (
+              <article className="database-card">
+                <NavLink
+                  to={`/custom/meat/${onemeat._id}`}
+                  className="ingredient-name"
+                >
+                  {onemeat.name}
+                </NavLink>
+                <NavLink to={`/custom/meat/${onemeat._id}/update`}>
+                  <button> Update</button>
+                </NavLink>
+
+                <button onClick={() => handleRemove(onemeat._id)}>
+                  Delete
+                </button>
+              </article>
+            ))}
+          </aside>
+        </article>
       )}
-      <NavLink to={"/Settings/Admin"}>
-        <button>Go Back</button>
+
+      <NavLink to={"/Settings/Admin"} className={"go-back-button "}>
+        <button> Go Back</button>
       </NavLink>
-    </article>
+    </motion.section>
   );
 };
 

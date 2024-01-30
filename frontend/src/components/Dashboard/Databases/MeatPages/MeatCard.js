@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-
+import { motion } from "framer-motion";
 
 const MeatCard = () => {
-    const [meat, setMeat] = useState();
+  const [meat, setMeat] = useState();
   const [err, setErr] = useState();
   const { id } = useParams();
   useEffect(() => {
@@ -17,8 +17,18 @@ const MeatCard = () => {
         setErr(res.data);
       });
   }, []);
-    return (
-        <main className="user-card-container">
+  return (
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="user-card-container"
+    >
       {meat && (
         <article className="user-card">
           <h2>{meat.name}</h2>
@@ -31,8 +41,8 @@ const MeatCard = () => {
           </NavLink>
         </article>
       )}
-    </main>
-    );
+    </motion.main>
+  );
 };
 
 export default MeatCard;

@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+
 export default function CreateForm() {
   const [inputs, setInputs] = useState({
     name: "",
@@ -19,7 +21,7 @@ export default function CreateForm() {
       setInputs({ ...inputs, [name]: value });
     }
     setErr("");
-    setResponse("")
+    setResponse("");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,14 +40,14 @@ export default function CreateForm() {
     ) {
       return setErr("Please provide all informations");
     }
-    const formData = new FormData()
+    const formData = new FormData();
 
     formData.append("name", inputs.name);
     formData.append("password", inputs.password);
     formData.append("passwordConfirm", inputs.passwordConfirm);
     formData.append("tel", inputs.tel);
     formData.append("email", inputs.email);
-    formData.append("image", inputs.image)
+    formData.append("image", inputs.image);
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
       .post("http://localhost:9001/users/register", formData)
@@ -57,17 +59,27 @@ export default function CreateForm() {
           passwordConfirm: "",
           tel: "",
           email: "",
-          image:null,
+          image: null,
         });
         setResponse("Your account has been successfully created !");
       })
       .catch((res) => {
         console.log(res);
-       setErr(res.response.data.message)
+        setErr(res.response.data.message);
       });
   };
   return (
-    <main className="center-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="center-container"
+    >
       <h1>Create your account:</h1>
       <section className="form-container">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -127,6 +139,6 @@ export default function CreateForm() {
           {response && <span>{response}</span>}
         </form>
       </section>
-    </main>
+    </motion.main>
   );
 }

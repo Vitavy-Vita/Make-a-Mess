@@ -39,10 +39,10 @@ export const addBurger = async (req, res) => {
     if (
       name.trim() === "" ||
       description.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -90,10 +90,10 @@ export const updateBurger = async (req, res) => {
     if (
       name.trim() === "" ||
       description.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res.status(401).json({ message: "Please provide all fields" });
     }

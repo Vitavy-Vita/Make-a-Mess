@@ -6,17 +6,6 @@ main {
 .sub-title-contact {
   padding-left: 0.5em;
 }
-.main-title {
-  h1 {
-    font-size: 80px;
-    line-height: 60px;
-  }
-  h2 {
-    font-size: 45px;
-    width: 80%;
-    line-height: 36px;
-  }
-}
 
 .contact-container {
   @include display-flex;
@@ -115,16 +104,16 @@ textarea::placeholder {
       @include text-style-desktop;
       text-align: left;
     }
-  }
-  form {
-    input {
-      font-size: 20px;
-    }
-    textarea {
-      font-size: 20px;
-    }
-    button {
-      font-size: 20px;
+    form {
+      input {
+        font-size: 20px;
+      }
+      textarea {
+        font-size: 20px;
+      }
+      button {
+        font-size: 20px;
+      }
     }
   }
   .business-wrapper {
@@ -146,9 +135,10 @@ textarea::placeholder {
 }
 @media screen and (min-width: 901px) {
   .main-contact-wrapper {
+    text-align: start;
+    padding-left: 1em;
     .main-title {
       flex-direction: row;
-      grid-area: "title";
       h1 {
         font-size: 130px;
         margin-top: 0.5em;
@@ -159,6 +149,7 @@ textarea::placeholder {
         width: 10em;
         line-height: 50px;
         text-align: right;
+      
       }
     }
     .contact-container {
@@ -178,7 +169,7 @@ textarea::placeholder {
         text-align: left;
       }
       form {
-        margin-top: 4em;
+        margin: 4em 1em;
         input,
         textarea {
           font-size: 20px;
@@ -186,16 +177,20 @@ textarea::placeholder {
       }
     }
     .where-to-wrapper {
+      text-align: center;
       h2 {
         @include sub-title-style-desktop;
+    
       }
     }
     .business-wrapper {
       position: absolute;
       top: 580px;
+      left: 0;
       width: 50%;
       h2 {
         @include sub-title-style-desktop;
+        padding-left: 0.5em;
       }
       a {
         font-size: variables.$text-size-desktop;

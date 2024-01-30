@@ -23,9 +23,7 @@ export const getAllFavorites = async (req, res) => {
     const favorite = await Favorites.find({ user: userId });
     res.status(200).json(favorite);
   } catch (error) {
-    console.log('====================================');
-    console.log(error);
-    console.log('====================================');
+
     res.status(500).json({
       status: error,
       message: "Unable to get favorite list",
@@ -77,9 +75,7 @@ export const addFavorite = async (req, res) => {
       message: "Favorite saved",
     });
   } catch (error) {
-    console.log('====================================');
-    console.log(error);
-    console.log('====================================');
+
     res.status(500).json({
       message: "Unable to save to favorites",
     });
@@ -140,10 +136,10 @@ export const addBread = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -172,10 +168,10 @@ export const updateBread = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -254,10 +250,10 @@ export const addMeat = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -287,10 +283,10 @@ export const updateMeat = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -369,10 +365,10 @@ export const addCheese = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -402,10 +398,10 @@ export const updateCheese = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -484,10 +480,10 @@ export const addSauce = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -517,10 +513,10 @@ export const updateSauce = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -599,10 +595,10 @@ export const addTopping = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)
@@ -632,10 +628,10 @@ export const updateTopping = async (req, res) => {
     const { name, protein, carbs, fat, calories } = req.body;
     if (
       name.trim() === "" ||
-      protein <= 0 ||
-      carbs <= 0 ||
-      fat <= 0 ||
-      calories <= 0
+      protein < 0 ||
+      carbs < 0 ||
+      fat < 0 ||
+      calories < 0
     ) {
       return res
         .status(401)

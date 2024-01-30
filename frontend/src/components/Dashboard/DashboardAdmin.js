@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import token from "../../context/token";
+import { motion } from "framer-motion";
+
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
@@ -78,7 +80,17 @@ const DashboardAdmin = () => {
   };
 
   return (
-    <main className="main-dashboard">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="main-dashboard"
+    >
       <h1>Dashboard</h1>
       <section className="article-container">
         <article className="database-container">
@@ -99,45 +111,51 @@ const DashboardAdmin = () => {
               onChange={(e) => handleSearch(e.target.value)}
             />
           </form>
-          {users.map((oneUser, i) => (
-            <article className="user-article-dashboard" key={oneUser._id}>
-              <NavLink to={`/users/${oneUser._id}`} className="user-dashboard">
-                {oneUser.name}
-              </NavLink>
+          <aside className="article-list-scroll">
+            {users.map((oneUser, i) => (
+              <article className="database-card" key={oneUser._id}>
+                <NavLink
+                  to={`/users/${oneUser._id}`}
+                  className="user-dashboard"
+                >
+                  {oneUser.name}
+                </NavLink>
 
-              <form className="dropdown" encType="multipart/form-data">
-                <button onClick={(e) => handleOpen(e, oneUser._id)}>
-                  Role:
+                <form className="dropdown" encType="multipart/form-data">
+                  <button onClick={(e) => handleOpen(e, oneUser._id)}>
+                    Role:
+                  </button>
+                  {open === oneUser._id ? (
+                    <ul className="drowpdown-menu">
+                      <li>
+                        <button
+                          onClick={(e) => handleMenu(e, oneUser._id)}
+                          value="user"
+                        >
+                          User
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={(e) => handleMenu(e, oneUser._id)}
+                          value="admin"
+                        >
+                          Admin
+                        </button>
+                      </li>
+                    </ul>
+                  ) : null}
+                </form>
+                <button onClick={() => handleRemove(oneUser._id)}>
+                  Delete
                 </button>
-                {open === oneUser._id ? (
-                  <ul className="drowpdown-menu">
-                    <li>
-                      <button
-                        onClick={(e) => handleMenu(e, oneUser._id)}
-                        value="user"
-                      >
-                        User
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        onClick={(e) => handleMenu(e, oneUser._id)}
-                        value="admin"
-                      >
-                        Admin
-                      </button>
-                    </li>
-                  </ul>
-                ) : null}
-              </form>
-              <button onClick={() => handleRemove(oneUser._id)}>Delete</button>
-            </article>
-          ))}
-
+              </article>
+            ))}
+          </aside>
           {response && <span>{response}</span>}
         </article>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

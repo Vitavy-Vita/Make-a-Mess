@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import token from "../../context/token";
+import { motion } from "framer-motion";
 
 const DashboardUser = () => {
   const [user, setUser] = useState([]);
@@ -14,7 +15,6 @@ const DashboardUser = () => {
     tel: "",
     email: "",
   });
-
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -38,7 +38,7 @@ const DashboardUser = () => {
     }
     setErr("");
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -67,7 +67,17 @@ const DashboardUser = () => {
     }
   };
   return (
-    <main className="center-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="center-container"
+    >
       <h1>{user.name}</h1>
       <h2>Update your account:</h2>
       <section className="form-container">
@@ -120,7 +130,7 @@ const DashboardUser = () => {
           </NavLink>
         </form>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

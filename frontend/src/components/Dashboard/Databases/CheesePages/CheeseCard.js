@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const CheeseCard = () => {
   const [cheese, setCheese] = useState();
   const [err, setErr] = useState();
@@ -17,7 +17,17 @@ const CheeseCard = () => {
       });
   }, []);
   return (
-    <main className="user-card-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="user-card-container"
+    >
       {cheese && (
         <article className="user-card">
           <h2>{cheese.name}</h2>
@@ -30,7 +40,7 @@ const CheeseCard = () => {
           </NavLink>
         </article>
       )}
-    </main>
+    </motion.main>
   );
 };
 

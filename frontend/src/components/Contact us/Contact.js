@@ -57,7 +57,12 @@ export default function Contact() {
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ y: window.innerWidth, transition: "1s" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
       className="main-contact-wrapper"
     >
       <section className="main-title">

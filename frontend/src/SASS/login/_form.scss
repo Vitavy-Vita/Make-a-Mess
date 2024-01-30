@@ -29,7 +29,7 @@ form {
   @include display-flex;
   flex-direction: column;
   padding: 2em 0;
-  input {
+  input, textarea {
     @include input-style;
     margin-top: 0.5em;
     width: 60%;
@@ -38,11 +38,12 @@ form {
     color: variables.$red;
     font-family: variables.$text-font;
   }
+ 
 }
 
 button {
   @include button;
-  margin-top: 2em;
+  margin: 2em;
 }
 
 button:hover {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const BreadCard = () => {
   const [bread, setBread] = useState();
@@ -17,7 +18,17 @@ const BreadCard = () => {
       });
   }, []);
   return (
-    <main className="user-card-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="user-card-container"
+    >
       {bread && (
         <article className="user-card">
           <h2>{bread.name}</h2>
@@ -30,7 +41,7 @@ const BreadCard = () => {
           </NavLink>
         </article>
       )}
-    </main>
+    </motion.main>
   );
 };
 

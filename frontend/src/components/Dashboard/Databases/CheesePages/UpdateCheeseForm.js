@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import token from "../../../../context/token"
+import token from "../../../../context/token";
+import { motion } from "framer-motion";
+
 const UpdateCheeseForm = () => {
-    const [cheese, setCheese] = useState([]);
+  const [cheese, setCheese] = useState([]);
 
   const [err, setErr] = useState();
   const [inputs, setInputs] = useState({
@@ -46,61 +48,71 @@ const UpdateCheeseForm = () => {
         .catch((res) => {
           setErr(res.data);
         });
-    };
+    }
   };
-    return (
-        <main className="center-container">
-        <h1>Update this cheese:</h1>
-  
-        <section className="form-container">
-          <form onSubmit={handleSubmit}>
-            <input
-              value={inputs.name}
-              type="text"
-              placeholder={`${cheese ? cheese.name : "not working"}`}
-              name="name"
-              onChange={handleChange}
-            />
-  
-            <input
-              value={inputs.protein}
-              type="number"
-              placeholder={`${cheese ? cheese.protein : "not working"}`}
-              size="25"
-              name="protein"
-              onChange={handleChange}
-            />
-  
-            <input
-              value={inputs.carbs}
-              type="number"
-              size="25"
-              name="carbs"
-              placeholder={`${cheese ? cheese.carbs : "not working"}`}
-              onChange={handleChange}
-            />
-            <input
-              value={inputs.fat}
-              type="number"
-              size="25"
-              name="fat"
-              placeholder={`${cheese ? cheese.fat : "not working"}`}
-              onChange={handleChange}
-            />
-  
-            <input
-              value={inputs.calories}
-              type="number"
-              size="25"
-              name="calories"
-              placeholder={`${cheese ? cheese.calories : "not working"}`}
-              onChange={handleChange}
-            />
-            <button className={"button-form"}>Validate</button>
-          </form>
-        </section>
-      </main>
-    );
+  return (
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="center-container"
+    >
+      <h1>Update this cheese:</h1>
+
+      <section className="form-container">
+        <form onSubmit={handleSubmit}>
+          <input
+            value={inputs.name}
+            type="text"
+            placeholder={`${cheese ? cheese.name : "not working"}`}
+            name="name"
+            onChange={handleChange}
+          />
+
+          <input
+            value={inputs.protein}
+            type="number"
+            placeholder={`${cheese ? cheese.protein : "not working"}`}
+            size="25"
+            name="protein"
+            onChange={handleChange}
+          />
+
+          <input
+            value={inputs.carbs}
+            type="number"
+            size="25"
+            name="carbs"
+            placeholder={`${cheese ? cheese.carbs : "not working"}`}
+            onChange={handleChange}
+          />
+          <input
+            value={inputs.fat}
+            type="number"
+            size="25"
+            name="fat"
+            placeholder={`${cheese ? cheese.fat : "not working"}`}
+            onChange={handleChange}
+          />
+
+          <input
+            value={inputs.calories}
+            type="number"
+            size="25"
+            name="calories"
+            placeholder={`${cheese ? cheese.calories : "not working"}`}
+            onChange={handleChange}
+          />
+          <button className={"button-form"}>Validate</button>
+        </form>
+      </section>
+    </motion.main>
+  );
 };
 
 export default UpdateCheeseForm;

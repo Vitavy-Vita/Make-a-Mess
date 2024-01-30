@@ -1,0 +1,53 @@
+@use "../generalities/variables";
+
+.ingredient-container {
+  text-align: center;
+  h2 {
+    @include sub-title-style;
+  }
+  .ingredient-name {
+    @include text-style;
+    text-transform: capitalize;
+    width: 100%;
+    text-align: start;
+    text-decoration: none;
+  }
+  .ingredient-name:hover {
+    text-decoration: underline;
+    color: variables.$red;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 900px) {
+  .ingredient-container {
+    .ingredient-name {
+      font-size: 20px;
+    }
+    h2 {
+      @include sub-title-style-desktop;
+    }
+    input, textarea {
+      font-size: variables.$text-size-desktop;
+    }
+  }
+}
+@media screen and (min-width: 901px) {
+  .ingredient-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    .ingredient-name {
+      font-size: variables.$text-size-desktop;
+    }
+    h2 {
+      @include sub-title-style-desktop;
+    }
+    input, textarea {
+      font-size: variables.$text-size-desktop;
+    }
+  }
+  .go-back-button {
+    position: absolute;
+    top: 80vh;
+    left: 45vw;
+  }
+}

@@ -36,7 +36,12 @@ const ResetPassword = () => {
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ y: window.innerWidth }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
     >
       <section className="center-container">
         <h1>Reset your password:</h1>
@@ -52,7 +57,6 @@ const ResetPassword = () => {
               onChange={recovery.handleChange}
             />
             <input
-           
               name="passwordConfirm"
               type="password"
               placeholder="Password confirmation:"

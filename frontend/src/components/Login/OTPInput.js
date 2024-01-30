@@ -73,7 +73,12 @@ const OTPInput = () => {
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ y: window.innerWidth }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
       className="otp-wrapper"
     >
       <h2>Email verification</h2>
@@ -111,7 +116,7 @@ const OTPInput = () => {
                 onClick={resendOtp}
                 whileHover={{
                   color: "#faf6f6",
-                  scale: 1.2
+                  scale: 1.2,
                 }}
               >
                 Resend code

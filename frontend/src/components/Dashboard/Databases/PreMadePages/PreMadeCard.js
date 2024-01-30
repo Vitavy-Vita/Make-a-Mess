@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const PreMadeCard = () => {
   const [preMade, setPremade] = useState();
   const [err, setErr] = useState();
@@ -17,7 +17,17 @@ const PreMadeCard = () => {
       });
   }, []);
   return (
-    <main className="user-card-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="user-card-container"
+    >
       {preMade && (
         <article className="user-card">
           <img
@@ -36,7 +46,7 @@ const PreMadeCard = () => {
           </NavLink>
         </article>
       )}
-    </main>
+    </motion.main>
   );
 };
 

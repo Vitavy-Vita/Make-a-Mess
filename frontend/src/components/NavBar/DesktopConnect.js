@@ -18,11 +18,11 @@ export default function Login() {
         <article className="buttons">
           {auth.user ? (
             <>
-              <NavLink to={"/my-account"}>
+              <NavLink to={"/my-profil"}>
                 <MdOutlineManageAccounts className="form-icon" /> My Profil
               </NavLink>
-              <a>
-                <IoIosLogIn className="form-icon" onClick={handleLogout} />
+              <a onClick={handleLogout}>
+                <IoIosLogIn className="form-icon" />
                 Logout
               </a>
               {auth.user.role === "admin" ? (

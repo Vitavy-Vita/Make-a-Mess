@@ -40,3 +40,33 @@
     @include sub-title-style;
   }
 }
+.custom-burger-animation {
+  display: none;
+}
+@media screen and (min-width: 901px) {
+  .custom-container {
+    overflow: scroll;
+    scrollbar-color: variables.$red variables.$light-red;
+    scrollbar-width: thin;
+    height: 60vh;
+    position: fixed;
+    top: 25vh;
+    left: 2vw;
+  }
+  .ingredient-total {
+    position: fixed;
+    bottom: 0;
+    right: 2vw;
+  }
+  .custom-burger-animation {
+    display: block;
+    position: fixed;
+    top: 20vh;
+    left: 42vw;
+    height: 80vh;
+    width: 30vw;
+    background-image: url("../../assets/images/custom-burger.png");
+    background-size: center;
+    background-repeat: no-repeat;
+  }
+}

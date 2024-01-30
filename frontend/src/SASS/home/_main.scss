@@ -46,7 +46,7 @@ body {
   @media screen and (min-width: 480px) and (max-width: 900px) {
     background-position-x: -10em;
     background-position-y: 2em;
-    background-size: 60%;
+    background-size: 60vh;
     h1 {
       font-size: 3.5rem;
       width: 60%;
@@ -70,20 +70,20 @@ body {
   @media screen and (min-width: 901px) {
     background-position-x: 0;
     background-position-y: 0;
-    background-size: 30%;
+    background-size: 60vh;
     h1 {
-      width: 40%;
-      font-size: variables.$title-size-desktop;
+      width: 50vw;
+      font-size: 100px;
       line-height: 80px;
-      margin-left: 5em;
+      margin: 1.5em 0em 0em 5em;
     }
     h2 {
       font-size: variables.$sub-title-size-desktop;
       margin-left: 8em;
     }
     p {
-      width: 30%;
-      font-size: variables.$text-size-desktop;
+      width: 30vw;
+      font-size: 45px;
       line-height: 50px;
       margin-left: 10em;
     }

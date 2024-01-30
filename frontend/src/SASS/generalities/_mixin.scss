@@ -14,7 +14,6 @@
   font-size: variables.$title-size-desktop;
   text-shadow: variables.$text-shadow;
   line-height: 50px;
-
 }
 @mixin sub-title-style {
   color: variables.$brown;
@@ -38,7 +37,6 @@
   font-size: variables.$text-size-mobile;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
-
 }
 @mixin text-style-desktop {
   color: variables.$brown;
@@ -46,7 +44,6 @@
   font-size: variables.$text-size-desktop;
   text-shadow: variables.$text-shadow;
   line-height: 28px;
-
 }
 @mixin burger-style {
   margin: 3px;
@@ -61,12 +58,11 @@
   color: variables.$white;
   line-height: 50px;
   display: flex;
-  border-bottom: 1px solid variables.$white;
-  border-right: 1px solid variables.$white;
-  padding: 0.5em;
   list-style: none;
+  padding: 0.5em;
   text-decoration: none;
- 
+  cursor: pointer;
+
 }
 
 @mixin button {
@@ -99,7 +95,7 @@
   align-items: center;
 }
 
-@mixin input-style{
+@mixin input-style {
   font-family: variables.$text-font;
   padding: 0.5em;
   border: 2px solid variables.$red;
@@ -107,7 +103,7 @@
   outline-color: variables.$red;
   width: 90%;
 }
-@mixin input-style-desktop{
+@mixin input-style-desktop {
   font-family: variables.$text-font;
   padding: 1.5em 3em;
   border: 2px solid variables.$red;
@@ -115,9 +111,8 @@
   outline-color: variables.$red;
 }
 
-@mixin button-style-hover{
-    font-family: variables.$text-font;
-    color: variables.$red;
-    background-color: variables.$gray;
-  
+@mixin button-style-hover {
+  font-family: variables.$text-font;
+  color: variables.$red;
+  background-color: variables.$gray;
 }

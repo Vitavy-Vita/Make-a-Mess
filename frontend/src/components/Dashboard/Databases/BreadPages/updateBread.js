@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import token from "../../../../context/token";
+import { motion } from "framer-motion";
 
 const UpdateBread = () => {
   const [breads, setBreads] = useState([]);
   const [filteredBread, setFilteredBread] = useState([]);
-  const [reload, setReload] = useState(false)
+  const [reload, setReload] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
     protein: "",
@@ -24,7 +25,6 @@ const UpdateBread = () => {
       .then((res) => {
         setBreads(res.data);
         setFilteredBread(res.data);
-     
       })
       .catch((res) => {
         setErr(res.data);
@@ -41,10 +41,10 @@ const UpdateBread = () => {
     e.preventDefault();
     if (
       inputs.name.trim() === "" ||
-      inputs.protein <= 0 ||
-      inputs.carbs <= 0 ||
-      inputs.fat <= 0 ||
-      inputs.calories <= 0
+      inputs.protein < 0 ||
+      inputs.carbs < 0 ||
+      inputs.fat < 0 ||
+      inputs.calories < 0
     ) {
       return setErr("Please provide all informations");
     }
@@ -55,7 +55,7 @@ const UpdateBread = () => {
         headers: token(),
       })
       .then((res) => {
-        setReload(!reload)
+        setReload(!reload);
         setInputs({
           ...inputs,
           name: "",
@@ -64,7 +64,7 @@ const UpdateBread = () => {
           fat: "",
           calories: "",
         });
-        setResponse(res.response.message);
+        setResponse("bread created");
       })
       .catch((err) => {
         setErr(err.message);
@@ -81,7 +81,7 @@ const UpdateBread = () => {
           headers: token(),
         })
         .then((res) => {
-          setReload(!reload)
+          setReload(!reload);
           setBreads((allBreads) =>
             allBreads.filter((bread) => bread.id !== id)
           );
@@ -98,14 +98,23 @@ const UpdateBread = () => {
       bread.name.toLowerCase().includes(value.toLowerCase())
     );
     setBreads(searchResult);
-
   };
 
   return (
-    <section className="bread-container">
-      <article className="bread-wrapper">
+    <motion.section
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="ingredient-container"
+    >
+      <article>
         <h2>Create new Bread</h2>
-        <form onSubmit={handleSubmit} className="bread-form">
+        <form onSubmit={handleSubmit}>
           <input
             value={inputs.name}
             type="text"
@@ -155,13 +164,13 @@ const UpdateBread = () => {
             name="calories"
             required
           />
-          <button className={"button-form"}>Validate</button>
+          <button>Validate</button>
         </form>
         {err && <span>{err}</span>}
         {response && <span>{response}</span>}
       </article>
       {breads && (
-        <article className="bread-wrapper">
+        <article className="ingredient-wrapper">
           <h2>Existing Bread</h2>
           <form>
             <input
@@ -170,28 +179,32 @@ const UpdateBread = () => {
               onChange={(e) => handleSearch(e.target.value)}
             />
           </form>
+          <aside className="article-list-scroll">
+            {breads.map((oneBread) => (
+              <article className="database-card">
+                <NavLink
+                  to={`/custom/bread/${oneBread._id}`}
+                  className="ingredient-name"
+                >
+                  {oneBread.name}
+                </NavLink>
+                <NavLink to={`/custom/bread/${oneBread._id}/update`}>
+                  <button> Update</button>
+                </NavLink>
 
-          {breads.map((oneBread) => (
-            <article className="user-article-dashboard">
-              <NavLink
-                to={`/custom/bread/${oneBread._id}`}
-                className="user-dashboard"
-              >
-                {oneBread.name}
-              </NavLink>
-              <NavLink to={`/custom/bread/${oneBread._id}/update`}>
-                <button>Update</button>
-              </NavLink>
-
-              <button onClick={() => handleRemove(oneBread._id)}>Delete</button>
-            </article>
-          ))}
+                <button onClick={() => handleRemove(oneBread._id)}>
+                  Delete
+                </button>
+              </article>
+            ))}
+          </aside>
         </article>
       )}
-      <NavLink to={"/Settings/Admin"}>
-        <button>Go Back</button>
+
+      <NavLink to={"/Settings/Admin"} className={"go-back-button "}>
+        <button> Go Back</button>
       </NavLink>
-    </section>
+    </motion.section>
   );
 };
 

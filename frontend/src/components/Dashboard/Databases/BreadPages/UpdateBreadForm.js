@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import token from "../../../../context/token"
+import token from "../../../../context/token";
+import { motion } from "framer-motion";
+
 const UpdateBreadForm = () => {
   const [bread, setBread] = useState();
   const [err, setErr] = useState();
@@ -16,7 +18,7 @@ const UpdateBreadForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/bread/${id}`, {headers:token()})
+      .get(`http://localhost:9001/custom/bread/${id}`, { headers: token() })
       .then((res) => {
         setBread(res.data);
         setInputs(res.data);
@@ -48,7 +50,17 @@ const UpdateBreadForm = () => {
     }
   };
   return (
-    <main className="center-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="center-container"
+    >
       <h1>Update this bread:</h1>
 
       <section className="form-container">
@@ -98,7 +110,7 @@ const UpdateBreadForm = () => {
           <button className={"button-form"}>Validate</button>
         </form>
       </section>
-    </main>
+    </motion.main>
   );
 };
 

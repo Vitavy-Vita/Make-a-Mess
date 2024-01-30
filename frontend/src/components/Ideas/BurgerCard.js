@@ -16,6 +16,7 @@ export default function BurgerCard() {
         console.log(res.data);
       });
   }, []);
+  
   return (
     <article className="burger-card">
       {burger && (

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
-
+import { motion } from "framer-motion";
 const ProfilPage = () => {
   const [user, setUser] = useState();
   const [err, setErr] = useState();
@@ -42,10 +42,7 @@ const ProfilPage = () => {
           headers: token(),
         })
         .then((res) => {
-          
-          setFavorites((allFav) =>
-          allFav.filter((fav) => fav._id !== id)
-          );
+          setFavorites((allFav) => allFav.filter((fav) => fav._id !== id));
         })
         .catch((res) => {
           console.log(res.data);
@@ -54,7 +51,17 @@ const ProfilPage = () => {
     }
   };
   return (
-    <main className="user-card-container">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      className="user-card-container"
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+    >
       {user && (
         <article className="user-card">
           <img
@@ -62,7 +69,6 @@ const ProfilPage = () => {
             alt={user.image.alt}
             className="premade-card-img"
           />
-
           <h2>{user.name}</h2>
           <p>Phone Number: {user.tel}</p>
           <p>Email: {user.email}</p>
@@ -72,9 +78,9 @@ const ProfilPage = () => {
           </NavLink>
         </article>
       )}
-      <h2>My Favorites</h2>
       {favorites && (
         <section>
+          <h2>My Favorites</h2>
           {favorites.map((oneFav, i) => (
             <article className="ingredient-card" key={i}>
               <h3>{oneFav.name}</h3>
@@ -93,7 +99,7 @@ const ProfilPage = () => {
           ))}
         </section>
       )}
-    </main>
+    </motion.main>
   );
 };
 

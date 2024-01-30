@@ -6,7 +6,12 @@ export default function About() {
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ y: window.innerWidth }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
       className="about-wrapper"
     >
       <section className={"about-container"}>
@@ -19,7 +24,7 @@ export default function About() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
             whileHover={{
-              scale:1.2
+              scale: 1.2,
             }}
           ></motion.iframe>
         </article>

@@ -58,16 +58,21 @@ export default function Login() {
           { headers: token() }
         )
         .then(() => navigate("/send/recovery-email/otp"))
-        .catch(() => setErr('This email doesn\'t exists'))
+        .catch(() => setErr("This email doesn't exists"));
     } else {
-      setErr("Please provide your email first.")
+      setErr("Please provide your email first.");
     }
   };
   return (
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
-      exit={{ y: window.innerWidth }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
     >
       <section className="center-container">
         <h2>Please login to your account:</h2>
@@ -103,10 +108,9 @@ export default function Login() {
             >
               Forgot password ?
             </span>
-            {!recovery.inputs.email  && <span>{err}</span>}
+            {!recovery.inputs.email && <span>{err}</span>}
             <button className={"button-form"}>Validate</button>
           </form>
-         
         </article>
       </section>
     </motion.main>

@@ -53,7 +53,9 @@ const CustomBurgers = () => {
       setSelectedIngredient([...selectedIngredient, choosenIngredient]);
       const newI = {
         ...ingredients,
-        [name]: ingredients[name].filter((ing) => ing._id === choosenIngredient._id),
+        [name]: ingredients[name].filter(
+          (ing) => ing._id === choosenIngredient._id
+        ),
       };
       setIngredients(newI);
       calculateTotal();
@@ -101,11 +103,10 @@ const CustomBurgers = () => {
     // .filter((ing) => ing.name)
     // .map((ing) => ing.name)[0];
 
-  console.log("====================================");
-  console.log(totalMacros);
-  // console.log(selectedName);
-  console.log("====================================");
-
+    console.log("====================================");
+    console.log(totalMacros);
+    // console.log(selectedName);
+    console.log("====================================");
 
     axios
       .post("http://localhost:9001/favorites", totalMacros, {
@@ -120,7 +121,17 @@ const CustomBurgers = () => {
   };
 
   return (
-    <main className="custom-main">
+    <motion.main
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        mass: 7,
+        damping: 50,
+      }}
+      className="custom-main"
+    >
       <section className="custom-container">
         <motion.h2
           initial={false}
@@ -410,6 +421,7 @@ const CustomBurgers = () => {
           )}
         </motion.section>
       </section>
+      <section className="custom-burger-animation"></section>
       <section className="ingredient-total">
         <h2>Great burger you just made !</h2>
         <ul className="ingredient-list">
@@ -425,7 +437,7 @@ const CustomBurgers = () => {
         <button onClick={addToFavorites}>Add to favorites</button>
         {err && <span>{err}</span>}
       </section>
-    </main>
+    </motion.main>
   );
 };
 
