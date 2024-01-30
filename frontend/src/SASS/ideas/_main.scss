@@ -75,13 +75,17 @@
     }
   }
   .burger-gallery-container {
-    width: 60%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    @include display-flex;
+    justify-content: start;
+    max-width: 1300px;
+  }
+  .carousel {
+    cursor: grab;
+    overflow: hidden;
+    margin-top: 2em;
   }
   .burger-card {
-    margin: 0;
-    width: 20em;
+    min-width: 30%;
+    margin: 0 1em;
   }
 }
