@@ -16,21 +16,21 @@ export default function BurgerCard() {
         console.log(res.data);
       });
   }, []);
-  
+
   return (
     <article className="burger-card">
       {burger && (
-        <img
-          src={`http://localhost:9001/assets/img/${burger.image.src}`}
-          alt={burger.image.alt}
+        <figure
           style={{
-            width: "250px",
-            height: "150px",
-            border: "4px solid white",
+            backgroundImage: `url(http://localhost:9001/assets/img/${burger.image.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "400px",
+            height: "250px",
+            border: "3px solid white",
             borderRadius: "15px",
-            margin: "0 2em",
           }}
-        />
+        ></figure>
       )}
       <table className="burger-description">
         <thead>

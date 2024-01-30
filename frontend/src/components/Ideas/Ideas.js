@@ -1,4 +1,4 @@
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import axios from "axios";
 import React, { useRef, useEffect, useState } from "react";
 
@@ -6,10 +6,13 @@ export default function Ideas() {
   const [burgers, setBurgers] = useState([]);
   const [err, setErr] = useState();
   const [width, setWidth] = useState(0);
-  const scroll = useScroll();
+
   const carousel = useRef();
 
   useEffect(() => {
+    console.log("====================================");
+    console.log(carousel.current.scrollWidth, carousel.current.offsetWidth);
+    console.log("====================================");
     axios
       .get("http://localhost:9001/burgers")
       .then((res) => {
@@ -20,13 +23,6 @@ export default function Ideas() {
         setErr("Impossible de charger les données");
       });
   }, []);
-
-  // useEffect(() => {
-  //   console.log("====================================");
-  //   console.log(carousel.current.scrollWidth, carousel.current.offsetWidth);
-  //   console.log("====================================");
-  //   setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-  // }, []);
 
   return (
     <motion.main
@@ -59,13 +55,22 @@ export default function Ideas() {
         >
           {burgers.map((oneBurger, i) => (
             <article className={"burger-card"} key={i}>
-              <img
-                src={`http://localhost:9001/assets/img/${oneBurger.image.src}`}
-                alt={oneBurger.image.alt}
-              />
+              <figure
+                style={{
+                  backgroundImage: `url(http://localhost:9001/assets/img/${oneBurger.image.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width:"400px",
+                  height:"250px",
+                  border: "3px solid white",
+                  borderRadius:"15px",
+                  
+                }}
+              ></figure>
               <h2>{oneBurger.name}</h2>
               <aside className="burger-description">
                 <p>{oneBurger.description}</p>
+
                 <ul>
                   <li>Protein:</li>
                   <li>Carbs:</li>
@@ -79,6 +84,7 @@ export default function Ideas() {
                   <li>{oneBurger.calories}</li>
                 </ul>
               </aside>
+              <button>Add to Favorites</button>
             </article>
           ))}
         </motion.div>

@@ -85,7 +85,16 @@ const UpdatePreMadeForm = () => {
             name="name"
             onChange={handleChange}
           />
-
+          <textarea
+            value={inputs.description}
+            onChange={handleChange}
+            name="description"
+            id="description"
+            cols="20"
+            rows="10"
+            placeholder="Description:"
+            required
+          />
           <input
             value={inputs.protein}
             type="number"
