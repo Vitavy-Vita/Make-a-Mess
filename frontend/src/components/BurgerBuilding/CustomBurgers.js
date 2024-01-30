@@ -122,8 +122,8 @@ const CustomBurgers = () => {
 
   return (
     <motion.main
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
         type: "spring",
         stiffness: 300,
