@@ -28,7 +28,7 @@
   }
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .database-container {
     justify-content: start;
     form {
@@ -146,7 +146,7 @@ form {
   }
 }
 
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   .users-container {
     .user-dashboard {
       font-size: variables.$text-size-desktop;
@@ -156,7 +156,7 @@ form {
     }
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .users-container {
     .user-dashboard {
       font-size: variables.$text-size-desktop;

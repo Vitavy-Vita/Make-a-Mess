@@ -22,7 +22,7 @@
     background-size: contain;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 991px) {
   .not-found-wrapper {
     h1 {
       @include title-style-desktop;

@@ -34,7 +34,7 @@ const CustomBurgers = () => {
         setIngredients(res.data);
       })
       .catch((res) => {
-        setErr(res.data);
+        navigate("*");
       });
   }, [toggle]);
 
@@ -96,7 +96,7 @@ const CustomBurgers = () => {
       totalMacros.fat <= 0 ||
       totalMacros.calories <= 0
     ) {
-      return setErr("Please provide all informations");
+      return setErr("You need to select some ingredients first.");
     }
 
     // const selectedName = selectedIngredient

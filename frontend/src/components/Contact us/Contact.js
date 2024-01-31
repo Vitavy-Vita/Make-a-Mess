@@ -1,6 +1,6 @@
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import token from "../../context/token";
 import { useAuth } from "../../context/authContext";
 import { CiLocationOn } from "react-icons/ci";
@@ -21,6 +21,29 @@ export default function Contact() {
 
   const [err, setErr] = useState();
   const [response, setResponse] = useState();
+
+  const [disable, setDisable] = useState(false);
+  const [timerCount, setTimerCount] = useState(300);
+
+  useEffect(() => {
+
+    // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
+    // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
+    // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
+    // we also make sure the counter cannont go below 0.
+    // finaly if none of the above happens, it just counts down from the value stated in the timerCount until it reaches one condition.
+
+    let interval = setInterval(() => {
+      setTimerCount((lastTimerCount) => {
+        lastTimerCount <= 1 && clearInterval(interval);
+        if (lastTimerCount <= 1) setDisable(false);
+        if (lastTimerCount <= 0) return lastTimerCount;
+        return lastTimerCount - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [disable]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +66,7 @@ export default function Contact() {
       .then((res) => {
         setSend(res.data);
         setResponse(res.data.message);
+        setDisable(!disable);
         setInputs({
           fullname: "",
           email: "",
@@ -114,9 +138,9 @@ export default function Contact() {
               placeholder="Your Message:"
               onChange={handleChange}
             ></textarea>
-            <button>Send</button>
             {err && <span>{err}</span>}
             {response && <span>{response}</span>}
+            {!disable && <button>Send</button>}
           </form>
         )}
       </section>

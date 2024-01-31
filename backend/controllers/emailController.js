@@ -12,11 +12,15 @@ export const email = async (req, res) => {
 
     if (
       fullname.trim() === "" ||
-      email.trim() === "" ||
-      message.trim() === ""
+      email.trim() === ""
     ) {
       return res.status(401).json({
         message: "Please provide all informations",
+      });
+    }
+    if( message.trim() === ""){
+      return res.status(401).json({
+        message: "Dont forget your message!",
       });
     }
 
@@ -47,7 +51,7 @@ export const email = async (req, res) => {
     EmailSender({ fullname, email, message });
 
     res.status(200).json({
-      message: "Message sent",
+      message: "Your message has been sent!",
     });
   } catch (error) {
     res.status(404).json({

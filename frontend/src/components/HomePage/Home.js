@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import Button from "../NavBar/Button";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+
 export default function Home() {
+  const auth = useAuth();
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -18,6 +22,11 @@ export default function Home() {
       <section>
         <h2>Let us help you!</h2>
         <Button />
+        {!auth.user && (
+          <span>
+            Make sure to <NavLink to={"/login"}>login</NavLink> first!
+          </span>
+        )}
       </section>
     </motion.main>
   );

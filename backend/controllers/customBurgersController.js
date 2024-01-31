@@ -9,13 +9,10 @@ import {
 
 export const getAllFavorites = async (req, res) => {
   try {
-    console.log("====================================");
-    console.log(req.userId);
-    console.log("====================================");
-    if (!req.userId ) {
+    if (!req.userId) {
       return res.status(401).json({
-        status: 'error',
-        message: 'User not authenticated',
+        status: "error",
+        message: "User not authenticated",
       });
     }
 
@@ -23,7 +20,6 @@ export const getAllFavorites = async (req, res) => {
     const favorite = await Favorites.find({ user: userId });
     res.status(200).json(favorite);
   } catch (error) {
-
     res.status(500).json({
       status: error,
       message: "Unable to get favorite list",
@@ -55,7 +51,7 @@ export const getOneFavorite = async (_, res) => {
 export const addFavorite = async (req, res) => {
   try {
     const { protein, carbs, fat, calories } = req.body;
-    const {bread } = req.body
+    const { bread } = req.body;
     if (protein <= 0 || carbs <= 0 || fat <= 0 || calories <= 0) {
       return res
         .status(401)
@@ -75,7 +71,6 @@ export const addFavorite = async (req, res) => {
       message: "Favorite saved",
     });
   } catch (error) {
-
     res.status(500).json({
       message: "Unable to save to favorites",
     });
@@ -134,6 +129,14 @@ export const getOneBread = async (req, res) => {
 export const addBread = async (req, res) => {
   try {
     const { name, protein, carbs, fat, calories } = req.body;
+    const verifName =
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+    if (!verifName.test(name)) {
+      return res.status(401).json({
+        message: "Name format incorrect",
+      });
+    }
+
     if (
       name.trim() === "" ||
       protein < 0 ||

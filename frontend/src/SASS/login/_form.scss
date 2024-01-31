@@ -9,17 +9,29 @@
   text-align: center;
   border-radius: 15px;
   background-color: variables.$light-red;
+  a,
+  small {
+    @include text-style;
+    font-size: 25px;
+    padding: 0 1em;
+    text-decoration: underline;
+  }
+  a:hover,
+  small:hover {
+    color: variables.$gray;
+    text-decoration: underline;
+  }
+  span {
+    @include text-style-desktop;
+    color: variables.$gray;
+    padding: 1em;
+  }
 }
+
 h1 {
   @include title-style;
 }
-span {
-  @include sub-title-style;
-  display: inline-block;
-  color: variables.$gray;
-  font-size: 25px;
-  text-transform: none;
-}
+
 .center-container {
   h2 {
     @include sub-title-style;
@@ -29,7 +41,8 @@ form {
   @include display-flex;
   flex-direction: column;
   padding: 2em 0;
-  input, textarea {
+  input,
+  textarea {
     @include input-style;
     margin-top: 0.5em;
     width: 60%;
@@ -38,7 +51,6 @@ form {
     color: variables.$red;
     font-family: variables.$text-font;
   }
- 
 }
 
 button {
@@ -49,7 +61,7 @@ button {
 button:hover {
   @include button-style-hover;
 }
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   .center-container {
     h2 {
       @include sub-title-style-desktop;
@@ -63,11 +75,14 @@ button:hover {
     }
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .center-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    h2 {
+      @include sub-title-style-desktop;
+    }
   }
   .form-container {
     background-color: variables.$light-red;
@@ -84,7 +99,7 @@ button:hover {
     padding: 1em 2em;
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .center-container {
     flex-direction: column;
     input {
@@ -128,7 +143,7 @@ button:hover {
     color: variables.$gray;
   }
 }
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   .otp-wrapper {
     h2 {
       @include sub-title-style-desktop;
@@ -147,7 +162,7 @@ button:hover {
     }
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .otp-wrapper {
     @include display-flex;
     flex-direction: column;

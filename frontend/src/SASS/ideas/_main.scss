@@ -3,33 +3,43 @@
 /* -------------------------------------------------------------------------- */
 /*                                    TITLE                                   */
 /* -------------------------------------------------------------------------- */
+
 .main-title {
   @include display-flex;
   flex-direction: column;
   h1 {
     @include title-style;
-    font-size: 2.5em;
+    font-size: 3.5em;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.12em;
     line-height: 36px;
   }
 
   h2 {
     margin: 0;
     @include sub-title-style;
+    font-size: 2em;
     font-family: variables.$title-font;
-    width: 60%;
+    width: 60vw;
     margin-top: 1em;
     text-align: left;
     font-style: bold;
-    letter-spacing: -0.03em;
   }
 }
 .burger-card {
   margin: 1em;
+  width: 85vw;
+  figure {
+    background-size: cover;
+    background-position: center;
+    width: 80vw;
+    height: 20vh;
+    border: 3px solid white;
+    border-radius: 15px;
+  }
 }
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   .main-title {
     text-align: center;
 
@@ -57,10 +67,18 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
- 
+  .burger-card {
+    margin: 1em;
+    width: 42vw;
+    figure {
+      width: 40vw;
+      height: 20vh;
+    }
+  }
+
 }
 
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 961px) {
   .ideas-main {
     @include display-flex;
     flex-direction: column;
@@ -95,5 +113,9 @@
 
   .burger-card {
     min-width: 30%;
+    figure {
+      width: 18vw;
+      height: 20vh;
+    }
   }
 }

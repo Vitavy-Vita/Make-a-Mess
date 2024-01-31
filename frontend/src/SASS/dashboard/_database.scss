@@ -5,6 +5,9 @@
   h2 {
     @include sub-title-style;
   }
+  span {
+    @include text-style-desktop;
+  }
   .ingredient-name {
     @include text-style;
     text-transform: capitalize;
@@ -18,7 +21,7 @@
   }
 }
 
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   .ingredient-container {
     .ingredient-name {
       font-size: 20px;
@@ -26,12 +29,13 @@
     h2 {
       @include sub-title-style-desktop;
     }
-    input, textarea {
+    input,
+    textarea {
       font-size: variables.$text-size-desktop;
     }
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .ingredient-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -41,7 +45,8 @@
     h2 {
       @include sub-title-style-desktop;
     }
-    input, textarea {
+    input,
+    textarea {
       font-size: variables.$text-size-desktop;
     }
   }

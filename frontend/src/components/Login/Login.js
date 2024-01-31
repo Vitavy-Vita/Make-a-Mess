@@ -3,12 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useRecovery } from "../../context/recoveryContext";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import token from "../../context/token";
 
 export default function Login() {
   const [err, setErr] = useState();
-
+  const [errEmail, setErrEmail] = useState();
   const auth = useAuth();
   const recovery = useRecovery();
 
@@ -37,7 +37,7 @@ export default function Login() {
           email: "",
         });
       })
-      .catch((res) => {
+      .catch((res) => {        
         setErr(res.data);
       });
   };
@@ -58,9 +58,9 @@ export default function Login() {
           { headers: token() }
         )
         .then(() => navigate("/send/recovery-email/otp"))
-        .catch(() => setErr("This email doesn't exists"));
+        .catch(() => setErrEmail("This email doesn't exists"));
     } else {
-      setErr("Please provide your email first.");
+      setErrEmail("Please provide your email first.");
     }
   };
   return (
@@ -78,7 +78,6 @@ export default function Login() {
         <h2>Please login to your account:</h2>
         <article className="form-container">
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email"></label>
             <input
               value={recovery.inputs.email}
               name="email"
@@ -88,7 +87,7 @@ export default function Login() {
               required
               onChange={recovery.handleChange}
             />
-            <label htmlFor="Password"></label>
+
             <input
               value={recovery.inputs.password}
               name="password"
@@ -98,17 +97,16 @@ export default function Login() {
               required
               onChange={recovery.handleChange}
             />
-            <span
-              onClick={handleEmailRecovery}
-              style={{
-                color: "#825b56",
-                cursor: "pointer",
-                textDecoration: "underline",
-              }}
-            >
-              Forgot password ?
-            </span>
-            {!recovery.inputs.email && <span>{err}</span>}
+            <aside>
+              <NavLink to={"/create-account"}>New account</NavLink>
+              <small
+                onClick={handleEmailRecovery}
+              >
+                Forgot password ?
+              </small>
+            </aside>
+            {!recovery.inputs.email && <span>{errEmail}</span>}
+            {err && <span>{err}</span>}
             <button className={"button-form"}>Validate</button>
           </form>
         </article>

@@ -66,8 +66,8 @@ const UpdateBread = () => {
         });
         setResponse("bread created");
       })
-      .catch((err) => {
-        setErr(err.message);
+      .catch((res) => {
+        setErr(res.response.data.message);
       });
   };
 

@@ -2,10 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+
 const UserCard = () => {
   const [user, setUser] = useState();
   const [err, setErr] = useState();
   const { id } = useParams();
+
+
   useEffect(() => {
     axios
       .get(`http://localhost:9001/users/${id}`)
@@ -13,7 +16,7 @@ const UserCard = () => {
         setUser(res.data);
       })
       .catch((res) => {
-        setErr(res.data);
+        setErr(res.response.data.message);
       });
   }, []);
   return (

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useRecovery } from "../../context/recoveryContext";
 import axios from "axios";
 import token from "../../context/token";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const OTPInput = () => {
   const recovery = useRecovery();

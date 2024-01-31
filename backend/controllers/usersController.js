@@ -21,6 +21,7 @@ export const getAllUsers = async (_, res) => {
 export const getOneUser = async (req, res) => {
   try {
     const { id } = req.params;
+    // never return password to the front
     const user = await User.findById(id).select("-password");
 
     if (!user) {

@@ -106,7 +106,7 @@ nav {
   .visible {
     transition: ease-out 0.5s;
   }
-  @media screen and (min-width: 480px) and (max-width: 900px) {
+  @media screen and (min-width: 481px) and (max-width: 990px) {
     img {
       width: 200px;
       left: 20px;
@@ -128,7 +128,7 @@ nav {
       padding-top: 3em;
     }
   }
-  @media screen and (min-width: 901px) {
+  @media screen and (min-width: 991px) {
     .nav-tablet-desktop {
       flex-wrap: nowrap;
       margin-left: 15em;
@@ -162,7 +162,7 @@ nav {
     @include burger-style;
   }
 
-  @media screen and (min-width: 480px) and (max-width: 900px) {
+  @media screen and (min-width: 481px) and (max-width: 990px) {
     .burger-menu {
       top: 65px;
       right: 50px;
@@ -172,7 +172,7 @@ nav {
       font-size: 70px;
     }
   }
-  @media screen and (min-width: 901px) {
+  @media screen and (min-width: 991px) {
     .burger-menu {
       display: none;
     }
@@ -185,7 +185,7 @@ nav {
 .nav-tablet-desktop {
   display: none;
 }
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   nav {
     height: 10em;
     .nav-menu {
@@ -197,7 +197,7 @@ nav {
     }
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   nav {
     height: 10em;
 
@@ -240,14 +240,14 @@ nav {
   font-size: 40px;
 }
 
-@media screen and (min-width: 480px) and (max-width: 900px) {
+@media screen and (min-width: 481px) and (max-width: 990px) {
   .react-icon {
     font-size: 50px;
     top: 35px;
     right: 130px;
   }
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .react-icon {
     display: none;
   }

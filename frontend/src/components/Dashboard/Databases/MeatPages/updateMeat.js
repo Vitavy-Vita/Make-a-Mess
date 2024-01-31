@@ -27,7 +27,7 @@ const UpdateMeat = () => {
         setFilteredMeat(res.data);
       })
       .catch((res) => {
-        setErr(res.data);
+        setErr(res.response.data.message);
       });
   }, [reload]);
   const handleChange = (e) => {

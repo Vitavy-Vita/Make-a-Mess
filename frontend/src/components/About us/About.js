@@ -29,7 +29,7 @@ export default function About() {
           ></motion.iframe>
         </article>
         <article>
-          <h2>Who are we</h2>
+          <h2>Who we are</h2>
           <ul className="article-section">
             <li>
               At Make-a-Mess, we care for your craving of good

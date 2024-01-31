@@ -1,28 +1,39 @@
 import { motion } from "framer-motion";
 import axios from "axios";
 import React, { useRef, useEffect, useState } from "react";
+import { useMediaQuery } from "@mui/material";
 
 export default function Ideas() {
   const [burgers, setBurgers] = useState([]);
   const [err, setErr] = useState();
   const [width, setWidth] = useState(0);
-
+  const isDesktop = useMediaQuery("(min-width: 961px)");
   const carousel = useRef();
 
   useEffect(() => {
-    console.log("====================================");
-    console.log(carousel.current.scrollWidth, carousel.current.offsetWidth);
-    console.log("====================================");
     axios
       .get("http://localhost:9001/burgers")
       .then((res) => {
         setBurgers(res.data);
+        // scrollWidth = total scroll distance necessary
+        // offsetWidth = the actual size of the visible portion of the carousel
+        // subtract them to create a usable and dynamical breakpoint for the left property of dragConstraints using the width state.
         setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
       })
       .catch((err) => {
-        setErr("Impossible de charger les données");
+        setErr("Unable to load page");
       });
   }, []);
+
+  const variants = isDesktop
+    ? {
+        drag: "x",
+        dragConstraints: {
+          right: 0,
+          left: -width,
+        },
+      }
+    : {};
 
   return (
     <motion.main
@@ -45,32 +56,20 @@ export default function Ideas() {
         className="carousel"
         whileTap={{ cursor: "grabbing" }}
       >
-        <motion.div
-          drag={"x"}
-          dragConstraints={{
-            right: 0,
-            left: -width,
-          }}
-          className="burger-gallery-container"
-        >
+        <motion.div {...variants} className="burger-gallery-container">
           {burgers.map((oneBurger, i) => (
             <article className={"burger-card"} key={i}>
               <figure
                 style={{
                   backgroundImage: `url(http://localhost:9001/assets/img/${oneBurger.image.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width:"400px",
-                  height:"250px",
-                  border: "3px solid white",
-                  borderRadius:"15px",
-                  
                 }}
+                className="burger-picture"
               ></figure>
               <h2>{oneBurger.name}</h2>
               <aside className="burger-description">
-                <p>{oneBurger.description}</p>
-
+                <ul>
+                  <li>{oneBurger.description}</li>
+                </ul>
                 <ul>
                   <li>Protein:</li>
                   <li>Carbs:</li>

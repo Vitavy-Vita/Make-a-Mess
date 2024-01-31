@@ -134,9 +134,9 @@ export default function CreateAccount() {
             required
           />
           <input type="file" name="image" id="image" onChange={handleChange} />
-          <button className={"button-form"}>Validate</button>
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
+          <button className={"button-form"}>Validate</button>
         </form>
       </section>
     </motion.main>

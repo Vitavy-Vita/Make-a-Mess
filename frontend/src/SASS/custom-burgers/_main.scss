@@ -39,11 +39,14 @@
   h2 {
     @include sub-title-style;
   }
+  span{
+    color: variables.$brown
+  }
 }
 .custom-burger-animation {
   display: none;
 }
-@media screen and (min-width: 901px) {
+@media screen and (min-width: 991px) {
   .custom-container {
     overflow: scroll;
     scrollbar-color: variables.$red variables.$light-red;
