@@ -26,7 +26,6 @@ export default function Contact() {
   const [timerCount, setTimerCount] = useState(300);
 
   useEffect(() => {
-
     // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
     // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
     // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
@@ -93,7 +92,11 @@ export default function Contact() {
         <h2>Let us know what you</h2>
         <h1>Think !!</h1>
       </section>
-      <section className="contact-container">
+      <section
+        className={
+          !auth.user ? "contact-container-logout" : "contact-container"
+        }
+      >
         <article>
           <h2>Get in touch with our team </h2>
           <p>
@@ -144,7 +147,9 @@ export default function Contact() {
           </form>
         )}
       </section>
-      <section className="business-wrapper">
+      <section
+        className={!auth.user ? "business-wrapper-logout" : "business-wrapper"}
+      >
         <article className="business">
           <h2>Business info</h2>
           <ul>

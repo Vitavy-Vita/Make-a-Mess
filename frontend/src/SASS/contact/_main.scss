@@ -16,10 +16,9 @@ main {
     text-align: left;
     padding: 0 1em;
   }
-  span{
+  span {
     color: variables.$brown;
-    padding-top: 1em
-    
+    padding-top: 1em;
   }
   h2 {
     @include sub-title-style;
@@ -58,7 +57,6 @@ main {
     @include text-style;
     text-align: start;
     list-style: none;
-   
   }
 }
 .icon-container-contact {
@@ -142,7 +140,6 @@ textarea::placeholder {
     text-align: start;
     padding-left: 1em;
     .main-title {
-      flex-direction: row;
       h1 {
         font-size: 130px;
         margin-top: 0.5em;
@@ -153,13 +150,34 @@ textarea::placeholder {
         width: 10em;
         line-height: 50px;
         text-align: right;
-      
+      }
+    }
+    .contact-container-logout {
+      @include display-flex;
+      flex-direction: column;
+      align-items: start;
+      h2 {
+        @include sub-title-style-desktop;
+      }
+      p {
+        @include text-style-desktop;
+        text-align: left;
+      }
+      form {
+        margin: 4em 1em;
+        input,
+        textarea {
+          font-size: 20px;
+        }
+      }
+      section,
+      form {
+        width: 50%;
       }
     }
     .contact-container {
       flex-direction: row;
       align-items: start;
-
       h2 {
         @include sub-title-style-desktop;
         margin-top: 2em;
@@ -184,7 +202,41 @@ textarea::placeholder {
       text-align: center;
       h2 {
         @include sub-title-style-desktop;
-    
+      }
+    }
+    .business-wrapper-logout {
+      ul {
+        @include text-style;
+        text-align: start;
+        list-style: none;
+      }
+      h2 {
+        @include sub-title-style-desktop;
+      }
+      a {
+        @include text-style-desktop;
+        color: variables.$brown;
+        text-decoration: none;
+      }
+      svg {
+        position: relative;
+        top: 2px;
+        left: -3px;
+      }
+      width: 50%;
+      .icon-container-contact {
+        @include display-flex;
+        justify-content: space-around;
+        font-size: 50px;
+        .facebook-icon {
+          color: #316ff6;
+        }
+        .insta-icon {
+          color: #8a3ab9;
+        }
+        .twitter-icon {
+          color: black;
+        }
       }
     }
     .business-wrapper {
@@ -192,6 +244,7 @@ textarea::placeholder {
       top: 580px;
       left: 0;
       width: 50%;
+
       h2 {
         @include sub-title-style-desktop;
         padding-left: 0.5em;
