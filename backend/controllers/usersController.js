@@ -338,9 +338,7 @@ export const resetPassword = async (req, res) => {
       message: "Password reset successful.",
     });
   } catch (error) {
-    console.log("====================================");
-    console.log(error);
-    console.log("====================================");
+
     res.status(500).json({
       message: "Internal Server Error",
     });

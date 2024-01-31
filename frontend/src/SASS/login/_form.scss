@@ -125,6 +125,10 @@ button:hover {
   margin: 1em;
   padding: 1em;
   border-radius: 15px;
+  span{
+    @include text-style;
+    color: variables.$gray
+  }
   article {
     @include display-flex;
     flex-direction: row;

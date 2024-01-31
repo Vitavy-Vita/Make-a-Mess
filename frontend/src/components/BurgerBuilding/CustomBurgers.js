@@ -18,6 +18,7 @@ const CustomBurgers = () => {
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState([]);
+  const [favoriteIngredients, setFavoriteIngredients] = useState([]);
   const [totalMacros, setTotalMacros] = useState({
     userId: auth.user.id,
     protein: 0,
@@ -25,7 +26,7 @@ const CustomBurgers = () => {
     fat: 0,
     calories: 0,
   });
-
+  
   useEffect(() => {
     calculateTotal();
     axios
@@ -50,6 +51,7 @@ const CustomBurgers = () => {
     );
 
     if (!isAlreadySelected) {
+      setFavoriteIngredients([...favoriteIngredients, choosenIngredient.name]);
       setSelectedIngredient([...selectedIngredient, choosenIngredient]);
       const newI = {
         ...ingredients,
@@ -57,6 +59,7 @@ const CustomBurgers = () => {
           (ing) => ing._id === choosenIngredient._id
         ),
       };
+
       setIngredients(newI);
       calculateTotal();
     }
@@ -99,19 +102,14 @@ const CustomBurgers = () => {
       return setErr("You need to select some ingredients first.");
     }
 
-    // const selectedName = selectedIngredient
-    // .filter((ing) => ing.name)
-    // .map((ing) => ing.name)[0];
-
-    console.log("====================================");
-    console.log(totalMacros);
-    // console.log(selectedName);
-    console.log("====================================");
-
     axios
-      .post("http://localhost:9001/favorites", totalMacros, {
-        headers: token(),
-      })
+      .post(
+        "http://localhost:9001/favorites",
+        { ...totalMacros, ingredients: favoriteIngredients },
+        {
+          headers: token(),
+        }
+      )
       .then((res) => {
         navigate("/my-profil");
       })

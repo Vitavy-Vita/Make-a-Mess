@@ -55,10 +55,7 @@ const favoritesSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  bread:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Bread",
-  },
+  ingredients:[String],
   name: String,
   protein: Number,
   carbs: Number,

@@ -51,7 +51,7 @@ export const getOneFavorite = async (_, res) => {
 export const addFavorite = async (req, res) => {
   try {
     const { protein, carbs, fat, calories } = req.body;
-    const { bread } = req.body;
+    const { ingredients } = req.body;
     if (protein <= 0 || carbs <= 0 || fat <= 0 || calories <= 0) {
       return res
         .status(401)
@@ -60,7 +60,7 @@ export const addFavorite = async (req, res) => {
 
     const favorite = new Favorites({
       user: req.userId,
-      bread,
+      ingredients,
       protein: parseFloat(protein),
       carbs: parseFloat(carbs),
       fat: parseFloat(fat),

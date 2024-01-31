@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const OTPInput = () => {
   const recovery = useRecovery();
   const [err, setErr] = useState();
+  const [response, setResponse] = useState();
   const [timerCount, setTimerCount] = useState(60);
   const [disable, setDisable] = useState(false);
   const [otpInputs, setOtpInputs] = useState(["", "", "", ""]);
@@ -38,14 +39,16 @@ const OTPInput = () => {
   };
 
   const resendOtp = () => {
-    if (!recovery.email) return;
-
+    if (!recovery.inputs.email) return;
     if (disable) return;
+    const OTP = Math.floor(Math.random() * 9000 + 1000);
+    recovery.setOtp(OTP);
     axios
+
       .post(
         "http://localhost:9001/send/recovery-email/otp",
         {
-          OTP: recovery.OTP,
+          OTP,
           userEmail: recovery.inputs.email,
         },
         { headers: token() }
@@ -53,7 +56,7 @@ const OTPInput = () => {
       .then(
         () => setDisable(true),
         setTimerCount(60),
-        setErr("We sent a new verification code to your email address")
+        setResponse("We sent a new verification code to your email address")
       )
       .catch((err) => {
         setErr(err);
@@ -123,6 +126,7 @@ const OTPInput = () => {
               </motion.small>
             )}
           </article>
+          {response && <span>{response}</span>}
           {err && <span>{err}</span>}
           <button className={"button-form"} onClick={verifyOtp}>
             Verify account

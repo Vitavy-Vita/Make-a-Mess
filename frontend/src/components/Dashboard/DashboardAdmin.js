@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import token from "../../context/token";
 import { motion } from "framer-motion";
+import { useAuth } from "../../context/authContext";
 
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ const DashboardAdmin = () => {
   const [err, setErr] = useState();
   const [open, setOpen] = useState(null);
   const [response, setResponse] = useState();
-
+  const auth = useAuth();
   useEffect(() => {
     axios
       .get("http://localhost:9001/users")
@@ -25,9 +26,15 @@ const DashboardAdmin = () => {
   }, [reload]);
 
   const handleRemove = (id) => {
+    
+    if (auth.user.id === id) {
+      return setErr("Admin arent allowed to delete their own account");
+    }
+
     const confirmBox = window.confirm(
       "Do you really want to delete this user ?"
     );
+
     if (confirmBox === true) {
       axios
         .delete(`http://localhost:9001/users/${id}`, { headers: token() })
@@ -111,6 +118,8 @@ const DashboardAdmin = () => {
               onChange={(e) => handleSearch(e.target.value)}
             />
           </form>
+          {response && <span>{response}</span>}
+          {err && <span>{err}</span>}
           <aside className="article-list-scroll">
             {users.map((oneUser, i) => (
               <article className="database-card" key={oneUser._id}>
@@ -152,7 +161,6 @@ const DashboardAdmin = () => {
               </article>
             ))}
           </aside>
-          {response && <span>{response}</span>}
         </article>
       </section>
     </motion.main>
