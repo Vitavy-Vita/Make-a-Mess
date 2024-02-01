@@ -113,8 +113,8 @@ const CustomBurgers = () => {
       .then((res) => {
         navigate("/my-profil");
       })
-      .catch((err) => {
-        setErr(err.message);
+      .catch((res) => {
+        setErr(res.response.data.message);
       });
   };
 

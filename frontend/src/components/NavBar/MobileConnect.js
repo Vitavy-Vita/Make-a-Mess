@@ -44,7 +44,7 @@ export default function MobileConnect() {
                   Settings
                 </NavLink>
               ) : (
-                <NavLink to={"/settings/user"} onClick={onClickSlide}>
+                <NavLink to={"my-profil/update"} onClick={onClickSlide}>
                   <IoIosSettings className="form-icon" />
                   Settings
                 </NavLink>

@@ -31,7 +31,7 @@ export default function Login() {
                   Settings
                 </NavLink>
               ) : (
-                <NavLink to={"/settings/user"}>
+                <NavLink to={"my-profil/update"}>
                   <IoIosSettings className="form-icon" />
                   Settings
                 </NavLink>

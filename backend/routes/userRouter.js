@@ -17,7 +17,7 @@ userRouter.route("/users").get(getAllUsers);
 userRouter
   .route("/users/:id")
   .get(upload.single("image"), getOneUser)
-  .delete(isLogged, isAuthorized(["admin"]), deleteUser)
+  .delete(isLogged, isAuthorized(["admin", "user"]), deleteUser)
   .put(
     isLogged,
     isAuthorized(["admin", "user"]),

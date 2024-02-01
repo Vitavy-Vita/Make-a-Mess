@@ -89,7 +89,6 @@ export default function Login() {
             />
 
             <input
-              value={recovery.inputs.password}
               name="password"
               type="password"
               placeholder="Password:"

@@ -9,7 +9,9 @@
     @include sub-title-style;
   }
 }
-
+span {
+  @include text-style-desktop;
+}
 .database-container {
   @include display-flex;
   flex-direction: column;
@@ -59,26 +61,30 @@
 /* -------------------------------------------------------------------------- */
 /*                                    USERS                                   */
 /* -------------------------------------------------------------------------- */
-.article-list-scroll {
+.article-list-scroll, .favorites-scroll {
   overflow: scroll;
   height: 43vh;
   scrollbar-color: variables.$red variables.$light-red;
   scrollbar-width: thin;
   margin: 0 1em;
 }
+
 .user-card-container {
   @include display-flex;
   flex-direction: column;
   .user-card {
+ 
     background-color: variables.$light-red;
     margin: 2em;
     padding: 2em;
     border-radius: 15px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
     .premade-card-img {
-      width: 250px;
-      height: 150px;
-      border-radius: 25%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 60vw;
+      height: 20vh;
+      border-radius: 15px;
       border: 4px solid variables.$gray;
     }
   }
@@ -87,9 +93,9 @@
     font-size: 2.5em;
   }
   p {
-    @include text-style;
+    @include text-style-desktop;
     color: variables.$gray;
-    width: 100%;
+    text-align: start;
   }
 }
 form {
@@ -104,7 +110,7 @@ form {
   margin: 1em 0;
   padding: 1em;
   height: 10em;
- 
+
   .user-dashboard {
     @include text-style;
     text-transform: capitalize;
@@ -151,7 +157,8 @@ form {
     .user-dashboard {
       font-size: variables.$text-size-desktop;
     }
-    input, textarea {
+    input,
+    textarea {
       font-size: variables.$text-size-desktop;
     }
   }
@@ -161,11 +168,12 @@ form {
     .user-dashboard {
       font-size: variables.$text-size-desktop;
     }
-    input, textarea {
+    input,
+    textarea {
       font-size: variables.$text-size-desktop;
     }
   }
-  .user-card-container{
+  .user-card-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }

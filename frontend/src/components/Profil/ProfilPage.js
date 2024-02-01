@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
 import { motion } from "framer-motion";
+
 const ProfilPage = () => {
   const [user, setUser] = useState();
   const [err, setErr] = useState();
   const auth = useAuth();
   const [favorites, setFavorites] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -45,11 +47,12 @@ const ProfilPage = () => {
           setFavorites((allFav) => allFav.filter((fav) => fav._id !== id));
         })
         .catch((res) => {
-          console.log(res.data);
           setErr("Not working");
         });
     }
   };
+
+ 
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -63,42 +66,58 @@ const ProfilPage = () => {
       }}
     >
       {user && (
-        <article className="user-card">
-          <img
-            src={`http://localhost:9001/assets/img/${user.image.src}`}
-            alt={user.image.alt}
+        <section className="user-card">
+          <figure
+            style={{
+              backgroundImage: `url(http://localhost:9001/assets/img/${user.image.src})`,
+            }}
             className="premade-card-img"
-          />
+          ></figure>
           <h2>{user.name}</h2>
           <p>Phone Number: {user.tel}</p>
           <p>Email: {user.email}</p>
           <p>Role: {user.role}</p>
-          <NavLink to={"/"}>
-            <button>Go Back</button>
-          </NavLink>
-        </article>
-      )}
-      {favorites && (
-        <section>
-          <h2>My Favorites</h2>
-          {favorites.map((oneFav, i) => (
-            <article className="ingredient-card" key={i}>
-              <h3>{oneFav.name}</h3>
-              <ul className="ingredient-list">
-                <li>Protein:</li>
-                <li>{oneFav.protein}</li>
-                <li>Carbs:</li>
-                <li>{oneFav.carbs}</li>
-                <li onClick={() => handleRemove(oneFav._id)}>❌</li>
-                <li>Fat:</li>
-                <li>{oneFav.fat}</li>
-                <li>Calories:</li>
-                <li>{oneFav.calories}</li>
-              </ul>
-            </article>
-          ))}
+          {err && <span>{err}</span>}
+          {auth.user.role === "admin" && (
+            <NavLink to={"/my-profil/update"}>
+              <button>Update</button>
+            </NavLink>
+          )}
         </section>
       )}
+      {favorites && (
+        <>
+          <h2>My Favorites</h2>
+          <section className="favorites-scroll">
+            {favorites.map((oneFav, i) => (
+              <article className={"burger-card"}>
+                <h2>{oneFav.name}</h2>
+                <aside className="burger-description">
+                  <ul>
+                    <li>{oneFav.ingredients}</li>
+                  </ul>
+                  <ul>
+                    <li>Protein:</li>
+                    <li>Carbs:</li>
+                    <li>Fat:</li>
+                    <li>Calories:</li>
+                  </ul>
+                  <ul>
+                    <li>{oneFav.protein}g</li>
+                    <li>{oneFav.carbs}g</li>
+                    <li>{oneFav.fat}g</li>
+                    <li>{oneFav.calories}</li>
+                  </ul>
+                </aside>
+                <button onClick={() => handleRemove(oneFav._id)}>Remove</button>
+              </article>
+            ))}
+          </section>
+        </>
+      )}
+      <NavLink to={"/"}>
+        <button>Go Back</button>
+      </NavLink>
     </motion.main>
   );
 };

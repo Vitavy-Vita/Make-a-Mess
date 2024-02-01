@@ -8,7 +8,6 @@ const UserCard = () => {
   const [err, setErr] = useState();
   const { id } = useParams();
 
-
   useEffect(() => {
     axios
       .get(`http://localhost:9001/users/${id}`)
@@ -32,12 +31,13 @@ const UserCard = () => {
       className="user-card-container"
     >
       {user && (
-        <article className="user-card">
-          <img
-            src={`http://localhost:9001/assets/img/${user.image.src}`}
-            alt={user.image.alt}
+        <section className="user-card">
+          <figure
+            style={{
+              backgroundImage: `url(http://localhost:9001/assets/img/${user.image.src})`,
+            }}
             className="premade-card-img"
-          />
+          ></figure>
           <h2>{user.name}</h2>
           <p>Phone Number: {user.tel}</p>
           <p>Email: {user.email}</p>
@@ -45,7 +45,7 @@ const UserCard = () => {
           <NavLink to={"/Settings/Admin"}>
             <button>Go Back</button>
           </NavLink>
-        </article>
+        </section>
       )}
     </motion.main>
   );

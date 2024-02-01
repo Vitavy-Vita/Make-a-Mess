@@ -146,7 +146,7 @@ export const login = async (req, res) => {
       email,
     });
 
-    if (!email) {
+    if (!user) {
       return res.status(404).json({
         message: "User not found",
       });
@@ -159,6 +159,7 @@ export const login = async (req, res) => {
         message: "Wrong password",
       });
     }
+
     const token = jwt.sign(
       {
         id: user.id,
@@ -214,8 +215,6 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const checkPwd =
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
     const checkNameLength = /^.{1,10}$/;
     const checkSpecialCharacters =
       /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
@@ -224,15 +223,6 @@ export const updateUser = async (req, res) => {
     const checkTel = /^06\d{8}$/;
 
     const { name, password, tel, email } = req.body;
-
-    const verifEmail = await User.findOne({
-      email,
-    });
-    if (verifEmail.email !== email) {
-      return res.status(401).json({
-        message: "This email is already taken",
-      });
-    }
 
     if (!checkEmail.test(email)) {
       return res.status(401).json({
@@ -255,6 +245,7 @@ export const updateUser = async (req, res) => {
         message: "Please use the correct phone number format",
       });
     }
+
     const user = req.body;
     let updateUser;
     if (user.role) {
@@ -263,10 +254,6 @@ export const updateUser = async (req, res) => {
       };
     } else if (!req.file) {
       updateUser = {
-        image: {
-          src: "",
-          alt: "",
-        },
         name: user.name,
         tel: user.tel,
         email: user.email,
@@ -283,35 +270,25 @@ export const updateUser = async (req, res) => {
       };
     }
 
-    if (user.password !== "undefined") {
-      if (!checkPwd.test(password)) {
-        return res.status(401).json({
-          message: "Password format incorrect",
-        });
-      }
-      updateUser.password = password;
-    }
     if (req.file) {
       const getOldFile = await User.findById(req.params.id);
       if (getOldFile.image.src) {
-        fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (error) => {
-          if (error) {
-            console.error(error);
+        fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (err) => {
+          if (err) {
             return res.status(500).json({
               message: "Error deleting old image file",
             });
           }
-          console.log("Old image file deleted");
         });
       }
     }
 
     await User.findByIdAndUpdate(req.params.id, updateUser);
+
     res.status(201).json({
       message: "Updated successfully!",
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: "Could not update",
     });
@@ -321,9 +298,15 @@ export const updateUser = async (req, res) => {
 export const resetPassword = async (req, res) => {
   const { email } = req.params;
   const { password } = req.body;
-  console.log("====================================");
-  console.log(email);
-  console.log("====================================");
+
+  const checkPwd =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
+
+  if (!checkPwd.test(password)) {
+    return res.status(401).json({
+      message: "Email format incorrect",
+    });
+  }
   try {
     const newPassword = await bcrypt.hash(password, 10);
     const user = await User.updateOne({ email }, { password: newPassword });
@@ -338,7 +321,6 @@ export const resetPassword = async (req, res) => {
       message: "Password reset successful.",
     });
   } catch (error) {
-
     res.status(500).json({
       message: "Internal Server Error",
     });

@@ -60,7 +60,7 @@ export const addFavorite = async (req, res) => {
 
     const favorite = new Favorites({
       user: req.userId,
-      ingredients,
+      ingredients: ingredients.join(", "),
       protein: parseFloat(protein),
       carbs: parseFloat(carbs),
       fat: parseFloat(fat),

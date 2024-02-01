@@ -66,29 +66,6 @@ const UpdateProfil = () => {
         });
     }
   };
-  const handleDelete = (id) => {
-    if (auth.user.id === id && auth.user.role === "admin") {
-      return setErr("Admin arent allowed to delete their own account");
-    }
-
-    const confirmBox = window.confirm(
-      "Deleting your account cannot be undone, are you sure you wish to proceed ?"
-    );
-
-    if (confirmBox === true) {
-      axios
-        .delete(`http://localhost:9001/users/${auth.user.id}`, {
-          headers: token(),
-        })
-        .then((res) => {
-          auth.logout();
-          navigate("/");
-        })
-        .catch((res) => {
-          setErr(res.response.data.message);
-        });
-    }
-  };
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -132,23 +109,16 @@ const UpdateProfil = () => {
           />
 
           <input type="file" name="image" id="image" onChange={handleChange} />
-          <NavLink to={`/send/recovery-email/reset/${inputs.email}`}>
-            Reset password
-          </NavLink>
+          <NavLink to={`/send/recovery-email/reset/${inputs.email}`}>Reset password</NavLink>
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
+
+          <button>Validate</button>
+
         </form>
-          <article
-            style={{
-              display: "flex",
-            }}
-          >
-            <button>Update</button>
-            <button onClick={() => handleDelete(auth.user.id)}>Delete</button>
-          </article>
-        <NavLink to={"/my-profil"}>
-          <button>Go Back</button>
-        </NavLink>
+          <NavLink to={"/my-profil"}>
+            <button>Go Back</button>
+          </NavLink>
       </section>
     </motion.main>
   );

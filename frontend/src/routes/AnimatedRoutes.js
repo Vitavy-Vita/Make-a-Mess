@@ -34,6 +34,7 @@ import OTPInput from "../components/Login/OTPInput";
 import ResetPassword from "../components/Login/ResetPassword";
 import PrivateRoutes from "./PrivateRoutes";
 import NotFoundRoute from "./NotFoundRoute";
+import UpdateProfil from "../components/Profil/UpdateProfil";
 
 export default function AnimatedRoutes() {
   const location = useLocation();
@@ -55,11 +56,12 @@ export default function AnimatedRoutes() {
           element={<ResetPassword />}
         />
         <Route path="*" element={<NotFoundRoute />} />
-        
+
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />
           <Route path="/settings/admin" element={<DashboardAdmin />} />
-          <Route path="/settings/user" element={<DashboardUser />} />
+          <Route path="/my-profil/update" element={<DashboardUser />} />
+          <Route path="/my-profil/update" element={<UpdateProfil />} />
           <Route path="/my-profil" element={<ProfilPage />} />
         </Route>
         <Route path="/" element={<PrivateRoutes roles={["admin"]} />}>

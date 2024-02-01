@@ -100,10 +100,6 @@ export const updateBurger = async (req, res) => {
     let updateBurger;
     if (!req.file) {
       updateBurger = {
-        image: {
-          src: "",
-          alt: "",
-        },
         name: name,
         description: description,
         protein: parseFloat(protein),
@@ -125,6 +121,18 @@ export const updateBurger = async (req, res) => {
         calories: parseFloat(calories),
       };
     }
+    if (req.file) {
+      const getOldFile = await Burger.findById(req.params.id);
+      if (getOldFile.image.src) {
+        fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (err) => {
+          if (err) {
+            return res.status(500).json({
+              message: "Error deleting old image file",
+            });
+          }
+        });
+      }
+    }
     await Burger.findByIdAndUpdate(req.params.id, updateBurger);
     res.status(201).json({
       message: "Updated successfully!",
@@ -139,9 +147,8 @@ export const updateBurger = async (req, res) => {
 
 export const deleteBurger = async (req, res) => {
   try {
-
     const deletedBurger = await Burger.findByIdAndDelete(req.params.id);
-    
+
     if (!deletedBurger) {
       return res.status(404).json({
         message: "Burger not found",
@@ -162,7 +169,6 @@ export const deleteBurger = async (req, res) => {
     res.status(204).json({
       status: "success",
     });
-
   } catch (error) {
     res.status(500).json({
       status: "fail",

@@ -10,6 +10,8 @@ const ResetPassword = () => {
   const recovery = useRecovery();
   const navigate = useNavigate();
   const { email } = useParams();
+
+
   const handlePwdChange = (e) => {
     e.preventDefault();
 
@@ -26,7 +28,7 @@ const ResetPassword = () => {
           navigate(`/login`);
         })
         .catch((res) => {
-          setErr(res.data);
+          setErr(res.response.data.message);
         });
     }
     setErr("Make sure to match both passwords");
@@ -48,7 +50,6 @@ const ResetPassword = () => {
         <article className="form-container">
           <form onSubmit={handlePwdChange}>
             <input
-              value={recovery.inputs.password}
               name="password"
               type="password"
               placeholder="Password :"
