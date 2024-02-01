@@ -28,7 +28,7 @@ const ResetPassword = () => {
           navigate(`/login`);
         })
         .catch((res) => {
-          setErr(res.response.data.message);
+          setErr("Password format not correct");
         });
     }
     setErr("Make sure to match both passwords");
