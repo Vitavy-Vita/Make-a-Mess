@@ -138,14 +138,10 @@ const UpdateProfil = () => {
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
         </form>
-          <article
-            style={{
-              display: "flex",
-            }}
-          >
-            <button>Update</button>
-            <button onClick={() => handleDelete(auth.user.id)}>Delete</button>
-          </article>
+        <article>
+          <button>Update</button>
+          <button onClick={() => handleDelete(auth.user.id)}>Delete</button>
+        </article>
         <NavLink to={"/my-profil"}>
           <button>Go Back</button>
         </NavLink>

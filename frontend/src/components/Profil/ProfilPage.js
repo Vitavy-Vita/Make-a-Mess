@@ -72,10 +72,12 @@ const ProfilPage = () => {
             }}
             className="premade-card-img"
           ></figure>
-          <h2>{user.name}</h2>
-          <p>Phone Number: {user.tel}</p>
-          <p>Email: {user.email}</p>
-          <p>Role: {user.role}</p>
+          <article>
+            <h2>{user.name}</h2>
+            <p>Phone Number: {user.tel}</p>
+            <p>Email: {user.email}</p>
+            <p>Role: {user.role}</p>
+          </article>
           {err && <span>{err}</span>}
           {auth.user.role === "admin" && (
             <NavLink to={"/my-profil/update"}>
@@ -86,8 +88,8 @@ const ProfilPage = () => {
       )}
       {favorites && (
         <>
-          <h2>My Favorites</h2>
           <section className="favorites-scroll">
+            <h2>My Favorites</h2>
             {favorites.map((oneFav, i) => (
               <article className={"burger-card"}>
                 <h2>{oneFav.name}</h2>
@@ -108,16 +110,18 @@ const ProfilPage = () => {
                     <li>{oneFav.calories}</li>
                   </ul>
                 </aside>
-                <span>added on: {new Date(oneFav.date).toLocaleDateString()}</span>
+                <span>
+                  added on: {new Date(oneFav.date).toLocaleDateString()}
+                </span>
                 <button onClick={() => handleRemove(oneFav._id)}>Remove</button>
               </article>
             ))}
+            <NavLink to={"/"}>
+              <button>Go Back</button>
+            </NavLink>
           </section>
         </>
       )}
-      <NavLink to={"/"}>
-        <button>Go Back</button>
-      </NavLink>
     </motion.main>
   );
 };

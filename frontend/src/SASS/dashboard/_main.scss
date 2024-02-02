@@ -61,7 +61,8 @@ span {
 /* -------------------------------------------------------------------------- */
 /*                                    USERS                                   */
 /* -------------------------------------------------------------------------- */
-.article-list-scroll, .favorites-scroll {
+.article-list-scroll,
+.favorites-scroll {
   overflow: scroll;
   height: 43vh;
   scrollbar-color: variables.$red variables.$light-red;
@@ -73,7 +74,6 @@ span {
   @include display-flex;
   flex-direction: column;
   .user-card {
- 
     background-color: variables.$light-red;
     margin: 2em;
     padding: 2em;
@@ -162,6 +162,16 @@ form {
       font-size: variables.$text-size-desktop;
     }
   }
+  .favorites-scroll {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    h2 {
+      grid-column: 1/-1;
+    }
+    a {
+      grid-column: 1/-1;
+    }
+  }
 }
 @media screen and (min-width: 991px) {
   .users-container {
@@ -174,7 +184,32 @@ form {
     }
   }
   .user-card-container {
+    flex-direction: row;
+    .user-card {
+      display: flex;
+      width: 40%;
+      .premade-card-img {
+        width: 50%;
+      }
+    }
+  }
+  .burger-card {
+    width: 80%;
+  }
+
+  .favorites-scroll {
+    margin-top: 2em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    width: 50%;
+    height: 55vh;
+    h2 {
+      grid-column: 1/-1;
+    }
+    a {
+      position: absolute;
+      top: 80%;
+      left: 45%;
+    }
   }
 }
