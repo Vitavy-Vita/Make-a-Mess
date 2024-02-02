@@ -52,7 +52,6 @@ const ProfilPage = () => {
     }
   };
 
- 
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -109,6 +108,7 @@ const ProfilPage = () => {
                     <li>{oneFav.calories}</li>
                   </ul>
                 </aside>
+                <span>added on: {new Date(oneFav.date).toLocaleDateString()}</span>
                 <button onClick={() => handleRemove(oneFav._id)}>Remove</button>
               </article>
             ))}

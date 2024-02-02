@@ -15,10 +15,13 @@ const CustomBurgers = () => {
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [togglePopUp, setTogglePopUp] = useState(false);
   const [ingredients, setIngredients] = useState([]);
-  const [err, setErr] = useState([]);
+  const [err, setErr] = useState();
+  const [errName, setErrName] = useState();
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [favoriteIngredients, setFavoriteIngredients] = useState([]);
+  const [inputs, setInputs] = useState({ name: "" });
   const [totalMacros, setTotalMacros] = useState({
     userId: auth.user.id,
     protein: 0,
@@ -26,7 +29,7 @@ const CustomBurgers = () => {
     fat: 0,
     calories: 0,
   });
-  
+
   useEffect(() => {
     calculateTotal();
     axios
@@ -91,30 +94,43 @@ const CustomBurgers = () => {
     calculateTotal();
     setToggle(!toggle);
   };
-
-  const addToFavorites = (i, name) => {
-    if (
-      totalMacros.protein <= 0 ||
-      totalMacros.carbs <= 0 ||
-      totalMacros.fat <= 0 ||
-      totalMacros.calories <= 0
-    ) {
+  const onClickToggle = () => {
+    if (selectedIngredient.length !== 5) {
       return setErr("You need to select some ingredients first.");
+    }
+   
+    if (!togglePopUp) {
+      setTogglePopUp(!togglePopUp);
+    }
+    setTogglePopUp(!togglePopUp);
+  };
+  const handleChange = (e) => {
+    setInputs({ name: e.target.value });
+    setErr("");
+    setErrName("");
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (inputs.name.trim() === "") {
+      return setErrName("Name format incorrect");
     }
 
     axios
       .post(
         "http://localhost:9001/favorites",
-        { ...totalMacros, ingredients: favoriteIngredients },
+        { ...totalMacros, ingredients: favoriteIngredients, ...inputs },
         {
           headers: token(),
         }
       )
       .then((res) => {
         navigate("/my-profil");
+        setTogglePopUp(!togglePopUp);
       })
       .catch((res) => {
         setErr(res.response.data.message);
+        setErrName(res.response.data.message);
       });
   };
 
@@ -432,8 +448,25 @@ const CustomBurgers = () => {
           <li>Calories:</li>
           <li>{totalMacros.calories}</li>
         </ul>
-        <button onClick={addToFavorites}>Add to favorites</button>
         {err && <span>{err}</span>}
+        <button onClick={onClickToggle}>Add to favorites</button>
+      </section>
+      <section
+        className={`ingredient-total ${
+          togglePopUp ? "name-pop-up-visible" : "name-pop-up-hidden"
+        }`}
+      >
+        <h2>What dont you give it a name !</h2>
+
+        <input
+          type="text"
+          name="name"
+          className="inputs"
+          onChange={handleChange}
+        />
+        {errName && <span>{errName}</span>}
+
+        <button onClick={handleSubmit}>Add to favorites</button>
       </section>
     </motion.main>
   );

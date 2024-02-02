@@ -39,12 +39,39 @@
   h2 {
     @include sub-title-style;
   }
-  span{
-    color: variables.$brown
+  span {
+    color: variables.$brown;
+  }
+  input {
+    @include input-style;
+    margin-top: 0.5em;
+    width: 60%;
   }
 }
 .custom-burger-animation {
   display: none;
+}
+
+.name-pop-up-visible {
+  z-index: 2;
+  opacity: 1;
+  position: absolute;
+  background-color: variables.$gray;
+  bottom: -270px;
+  height: 27vh
+}
+
+.name-pop-up-hidden {
+  z-index: -1;
+  opacity: 0;
+}
+
+@media screen and (min-width: 481px) and (max-width: 990px) {
+  .name-pop-up-visible{
+    bottom: -309px;
+    height: 28vh;
+    width: 60%;
+  }
 }
 @media screen and (min-width: 991px) {
   .custom-container {
@@ -72,4 +99,10 @@
     background-size: center;
     background-repeat: no-repeat;
   }
+  .name-pop-up-visible{
+    right:49px;
+    height: 30vh;
+    width: 25%;
+  }
+  
 }

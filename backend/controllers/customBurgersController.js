@@ -50,8 +50,14 @@ export const getOneFavorite = async (_, res) => {
 
 export const addFavorite = async (req, res) => {
   try {
-    const { protein, carbs, fat, calories } = req.body;
-    const { ingredients } = req.body;
+    const { name, protein, carbs, fat, calories, ingredients } = req.body;
+    const verifName =
+      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+    if (!verifName.test(name)) {
+      return res.status(401).json({
+        message: "Numbers are not allowed",
+      });
+    }
     if (protein <= 0 || carbs <= 0 || fat <= 0 || calories <= 0) {
       return res
         .status(401)
@@ -60,17 +66,22 @@ export const addFavorite = async (req, res) => {
 
     const favorite = new Favorites({
       user: req.userId,
+      name,
       ingredients: ingredients.join(", "),
       protein: parseFloat(protein),
       carbs: parseFloat(carbs),
       fat: parseFloat(fat),
       calories: parseFloat(calories),
+      date: new Date().toLocaleDateString(),
     });
     await favorite.save();
     res.status(200).json({
       message: "Favorite saved",
     });
   } catch (error) {
+    console.log("====================================");
+    console.log(error);
+    console.log("====================================");
     res.status(500).json({
       message: "Unable to save to favorites",
     });

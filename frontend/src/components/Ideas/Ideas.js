@@ -2,26 +2,44 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import React, { useRef, useEffect, useState } from "react";
 import { useMediaQuery } from "@mui/material";
+import token from "../../context/token";
+import { useNavigate } from "react-router-dom";
+import favoriteBurger from "../../assets/images/favorite-burger.png";
 
 export default function Ideas() {
   const [burgers, setBurgers] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [err, setErr] = useState();
   const [width, setWidth] = useState(0);
-  const isDesktop = useMediaQuery("(min-width: 961px)");
+
+  const isDesktop = useMediaQuery("(min-width: 991px)");
   const carousel = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
       .get("http://localhost:9001/burgers")
       .then((res) => {
         setBurgers(res.data);
+
         // scrollWidth = total scroll distance necessary
         // offsetWidth = the actual size of the visible portion of the carousel
         // subtract them to create a usable and dynamical breakpoint for the left property of dragConstraints using the width state.
         setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
       })
       .catch((err) => {
-        setErr("Unable to load page");
+        setErr("Unable to get burgers list");
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:9001/favorites", { headers: token() })
+      .then((res) => {
+        setFavorites(res.data);
+      })
+      .catch((err) => {
+        setErr("Unable to get favorite list");
       });
   }, []);
 
@@ -35,6 +53,36 @@ export default function Ideas() {
       }
     : {};
 
+  const addToFavorites = (burger) => {
+    const { user, description, name, protein, carbs, fat, calories } = burger;
+
+    if (favorites.some((fav) => fav.name === burger.name)) {
+      return setErr("Cant add the same burger twice");
+    }
+
+    axios
+      .post(
+        "http://localhost:9001/favorites",
+        {
+          user,
+          name,
+          ingredients: [description],
+          protein,
+          carbs,
+          fat,
+          calories,
+        },
+        {
+          headers: token(),
+        }
+      )
+      .then((res) => {
+        navigate("/my-profil");
+      })
+      .catch((res) => {
+        setErr(res.response.data.message);
+      });
+  };
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -65,7 +113,25 @@ export default function Ideas() {
                 }}
                 className="burger-picture"
               ></figure>
-              <h2>{oneBurger.name}</h2>
+              <h2
+                style={{
+                  position: "relative",
+                }}
+              >
+                {oneBurger.name}{" "}
+                {favorites.some((fav) => fav.name === oneBurger.name) && (
+                  <img
+                    src={favoriteBurger}
+                    alt="favorite logo"
+                    style={{
+                      width: "50px",
+                      position: "absolute",
+                      top: "-30px",
+                    }}
+                  />
+                )}
+              </h2>
+
               <aside className="burger-description">
                 <ul>
                   <li>{oneBurger.description}</li>
@@ -83,7 +149,10 @@ export default function Ideas() {
                   <li>{oneBurger.calories}</li>
                 </ul>
               </aside>
-              <button>Add to Favorites</button>
+              {err && <span>{err}</span>}
+              <button onClick={() => addToFavorites(oneBurger)}>
+                Add to Favorites
+              </button>
             </article>
           ))}
         </motion.div>

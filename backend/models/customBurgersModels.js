@@ -50,18 +50,21 @@ const meatSchema = new mongoose.Schema({
 
 const Meat = mongoose.model("Meat", meatSchema);
 
-const favoritesSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+const favoritesSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    ingredients: [String],
+    name: String,
+    protein: Number,
+    carbs: Number,
+    fat: Number,
+    calories: Number,
+    date: Date,
   },
-  ingredients:[String],
-  name: String,
-  protein: Number,
-  carbs: Number,
-  fat: Number,
-  calories: Number,
-});
+);
 
 const Favorites = mongoose.model("Favorites", favoritesSchema);
 export { Bread, Cheese, Topping, Sauce, Meat, Favorites };

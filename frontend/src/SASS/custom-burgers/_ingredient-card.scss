@@ -11,6 +11,7 @@
   }
   h3 {
     @include sub-title-style;
+    cursor: pointer;
   }
   .ingredient-list {
     @include text-style;
