@@ -65,11 +65,11 @@
   .burger-gallery-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
   }
   .burger-card {
     margin: 1em;
-    width: 42vw;
+    width: 45vw;
+
     figure {
       width: 40vw;
       height: 20vh;

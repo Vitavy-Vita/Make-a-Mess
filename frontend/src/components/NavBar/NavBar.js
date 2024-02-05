@@ -17,7 +17,6 @@ export default function NavBar() {
   });
 
   const onClickToggle = () => {
-    if (!state.toggleBurger) {
       setState({
         navClass: !state.navClass,
         menuClass: !state.menuClass,
@@ -25,7 +24,6 @@ export default function NavBar() {
         hideLogo: !state.hideLogo,
         burgerClass: !state.burgerClass,
       });
-    }
   };
  
   return (

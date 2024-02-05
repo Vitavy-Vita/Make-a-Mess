@@ -10,7 +10,7 @@
   background-color: variables.$red;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 1em;
+  // padding: 1em;
   h2 {
     @include sub-title-style;
     font-family: variables.$title-font;
