@@ -1,6 +1,6 @@
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import token from "../../context/token";
 import { useAuth } from "../../context/authContext";
 import { CiLocationOn } from "react-icons/ci";
@@ -12,69 +12,103 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Contact() {
   const auth = useAuth();
-  const [send, setSend] = useState();
-  const [inputs, setInputs] = useState({
-    fullname: "",
-    email: "",
-    message: "",
-  });
 
-  const [err, setErr] = useState();
-  const [response, setResponse] = useState();
+  const initialState = {
+    send: null,
+    inputs: {
+      fullname: "",
+      email: "",
+      message: "",
+    },
+    err: "",
+    response: "",
+    disable: false,
+    timerCount: 300,
+  };
 
-  const [disable, setDisable] = useState(false);
-  const [timerCount, setTimerCount] = useState(300);
+  const reducer = (state, action) => {
+    switch (action.type) {
+      // case COUNTDOWN:
+      case "ON_CHANGE":
+        return {
+          ...state,
+          inputs: action.payload,
+          err: "",
+          response: "",
+        };
 
-  useEffect(() => {
-    // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
-    // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
-    // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
-    // we also make sure the counter cannont go below 0.
-    // finaly if none of the above happens, it just counts down from the value stated in the timerCount until it reaches one condition.
+      case "ON_SUBMIT":
+        // if (
+        //   // state.inputs.fullname.trim() === "" ||
+        //   // state.inputs.email.trim() === "" ||
+        //   // state.inputs.message.trim() === ""
+        //   {...state.trim() === ""}
+        // ) {
+        //   return { err: "Please provide all informations" };
+        // }
+        console.log("====================================");
+        console.log(state.inputs);
+        console.log("====================================");
+        const newMessage = axios
+          .post(
+            `http://localhost:9001/send`,
 
-    let interval = setInterval(() => {
-      setTimerCount((lastTimerCount) => {
-        lastTimerCount <= 1 && clearInterval(interval);
-        if (lastTimerCount <= 1) setDisable(false);
-        if (lastTimerCount <= 0) return lastTimerCount;
-        return lastTimerCount - 1;
-      });
-    }, 1000);
+            {
+              ...state.inputs,
+            },
+            {
+              headers: token(),
+            }
+          )
+          .then((res) => {
+            return {
+              send: res.data,
+              response: res.data.message,
+              // disable: !state.disable,
+              inputs: {
+                fullname: "",
+                email: "",
+                message: "",
+              },
+            };
+          })
+          .catch((error) => {
+            return { err: error.response.data.message };
+          });
+        console.log("====================================");
+        console.log(newMessage);
+        console.log("====================================");
+        return newMessage;
+      default:
+        return state;
+    }
+  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-    return () => clearInterval(interval);
-  }, [disable]);
+  // useEffect(() => {
+  // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
+  // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
+  // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
+  // we also make sure the counter cannont go below 0.
+  // finaly if none of the above happens, it just counts down from the value stated in the timerCount until it reaches one condition.
+
+  //   let interval = setInterval(() => {
+  //     dispatch({
+  //       type: COUNTDOWN,
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, [state.disable]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
-    setErr("");
-    setResponse("");
+    dispatch({ type: "ON_CHANGE", payload: { [name]: value } });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      inputs.fullname.trim() === "" ||
-      inputs.email.trim() === "" ||
-      inputs.message.trim() === ""
-    ) {
-      return setErr("Please provide all informations");
-    }
-    axios
-      .post(`http://localhost:9001/send`, inputs, { headers: token() })
-      .then((res) => {
-        setSend(res.data);
-        setResponse(res.data.message);
-        setDisable(!disable);
-        setInputs({
-          fullname: "",
-          email: "",
-          message: "",
-        });
-      })
-      .catch((error) => {
-        setErr(error.response.data.message);
-      });
+    dispatch({ type: "ON_SUBMIT" });
   };
   return (
     <motion.main
@@ -111,39 +145,40 @@ export default function Contact() {
 
         {auth.user && (
           <form onSubmit={handleSubmit}>
-            <label htmlFor="Name" />
             <input
               name="fullname"
-              value={inputs.fullname}
+              value={state.inputs.fullname}
               type="text"
               placeholder="Name:"
               size="25"
               onChange={handleChange}
-              required
+              // required
             />
-            <label htmlFor="Mail" />
+
             <input
               name="email"
-              value={inputs.email}
+              value={state.inputs.email}
               type="email"
               placeholder="Email:"
               size="25"
               onChange={handleChange}
-              required
+              // required
             />
-            <label htmlFor="comment" />
+
             <textarea
               name="message"
-              value={inputs.message}
+              value={state.inputs.message}
               id=""
               cols="25"
               rows="10"
               placeholder="Your Message:"
               onChange={handleChange}
+              // required
             ></textarea>
-            {err && <span>{err}</span>}
+            {/* {err && <span>{err}</span>}
             {response && <span>{response}</span>}
-            {!disable && <button>Send</button>}
+            // {!disable && <button>Send</button>} */}
+            <button>Send</button>
           </form>
         )}
       </section>
