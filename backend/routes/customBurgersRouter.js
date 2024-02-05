@@ -47,6 +47,7 @@ import {
   updateTopping,
 } from "../controllers/toppingsController.js";
 
+import { getAllIngredients } from "../controllers/customBurgersController.js";
 
 import { isAuthorized, isLogged } from "../middlewares/auth.js";
 

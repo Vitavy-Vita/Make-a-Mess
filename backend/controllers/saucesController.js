@@ -1,4 +1,4 @@
-import { Sauce } from "../models/customBurgersModels";
+import { Sauce } from "../models/customBurgersModels.js";
 
 
 export const getAllSauce = async (_, res) => {

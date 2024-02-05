@@ -4,15 +4,7 @@ import {
   Sauce,
   Topping,
   Cheese,
-  Favorites,
 } from "../models/customBurgersModels.js";
-
-
-
-
-
-
-
 
 export const getAllIngredients = async (_, res) => {
   try {

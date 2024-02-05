@@ -1,4 +1,4 @@
-import { Favorites } from "../models/customBurgersModels";
+import { Favorites } from "../models/customBurgersModels.js";
 
 export const getAllFavorites = async (req, res) => {
     try {

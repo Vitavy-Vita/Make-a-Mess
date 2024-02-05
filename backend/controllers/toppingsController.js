@@ -1,4 +1,4 @@
-import { Topping } from "../models/customBurgersModels";
+import { Topping } from "../models/customBurgersModels.js";
 
 export const getAllTopping = async (_, res) => {
     try {

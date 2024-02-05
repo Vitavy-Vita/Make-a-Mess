@@ -1,4 +1,4 @@
-import { Cheese } from "../models/customBurgersModels";
+import { Cheese } from "../models/customBurgersModels.js";
 
 
 
