@@ -190,7 +190,7 @@ export const deleteUser = async (req, res) => {
         message: "User not found",
       });
     }
-
+    // we gave a default profil picture to our users, but we dont want it to be removed from our directory when the user deletes his account, so we make sure of it here.
     if (deletedUser.image.src !== "default-user.png") {
       fs.unlink(`./public/assets/img/${deletedUser.image.src}`, (error) => {
         if (error) {
@@ -222,7 +222,7 @@ export const updateUser = async (req, res) => {
       /[a-z0-9!#$%&'*+/=?^_`{|}~\s-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const checkTel = /^06\d{8}$/;
 
-    const { name, password, tel, email } = req.body;
+    const { name, tel, email } = req.body;
 
     if (!checkEmail.test(email)) {
       return res.status(401).json({
@@ -272,13 +272,18 @@ export const updateUser = async (req, res) => {
 
     if (req.file) {
       const getOldFile = await User.findById(req.params.id);
+      // handling cleaning of directory:
+      // if there is an old file, we use unlink method.
       if (getOldFile.image.src) {
+        // unlink takes path and a callback, path being the old file and here the callback is the error handler.
+        
         fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (err) => {
           if (err) {
             return res.status(500).json({
               message: "Error deleting old image file",
             });
           }
+          // returning a success status here would cause a crash, because if we've passed that check, it means it worked and we're already handling that case just below, so no repeat.
         });
       }
     }
@@ -309,6 +314,7 @@ export const resetPassword = async (req, res) => {
   }
   try {
     const newPassword = await bcrypt.hash(password, 10);
+    // according to the email of the user, we're looking into changing only the password.
     const user = await User.updateOne({ email }, { password: newPassword });
 
     if (!user) {

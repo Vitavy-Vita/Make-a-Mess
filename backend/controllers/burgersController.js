@@ -1,5 +1,6 @@
 import Burger from "../models/burgerModels.js";
 import fs from "fs";
+
 export const getAllBurgers = async (req, res) => {
   try {
     const burgers = await Burger.find();
@@ -121,6 +122,7 @@ export const updateBurger = async (req, res) => {
         calories: parseFloat(calories),
       };
     }
+    // function explained on usersController, same thoughts went into it.
     if (req.file) {
       const getOldFile = await Burger.findById(req.params.id);
       if (getOldFile.image.src) {
@@ -154,7 +156,7 @@ export const deleteBurger = async (req, res) => {
         message: "Burger not found",
       });
     }
-
+    // function explained on usersController, same thoughts went into it.
     if (deletedBurger.image.src !== "default-burger.png") {
       fs.unlink(`./public/assets/img/${deletedBurger.image.src}`, (error) => {
         if (error) {
