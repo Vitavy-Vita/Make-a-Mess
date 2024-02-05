@@ -5,6 +5,7 @@ import { useMediaQuery } from "@mui/material";
 import token from "../../context/token";
 import { useNavigate } from "react-router-dom";
 import favoriteBurger from "../../assets/images/favorite-burger.png";
+import { useAuth } from "../../context/authContext";
 
 export default function Ideas() {
   const [burgers, setBurgers] = useState([]);
@@ -15,7 +16,7 @@ export default function Ideas() {
   const isDesktop = useMediaQuery("(min-width: 991px)");
   const carousel = useRef();
   const navigate = useNavigate();
-
+  const auth = useAuth();
   useEffect(() => {
     axios
       .get("http://localhost:9001/burgers")
@@ -149,7 +150,7 @@ export default function Ideas() {
                   <li>{oneBurger.calories}</li>
                 </ul>
               </aside>
-              {err && <span>{err}</span>}
+              {auth.user && err && <span>{err}</span>}
               <button onClick={() => addToFavorites(oneBurger)}>
                 Add to Favorites
               </button>
