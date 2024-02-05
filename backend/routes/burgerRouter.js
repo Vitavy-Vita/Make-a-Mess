@@ -5,7 +5,7 @@ import {
   getAllBurgers,
   getOneBurger,
   updateBurger,
-} from "../controllers/burgerController.js";
+} from "../controllers/burgersController.js";
 import upload from "../middlewares/multer.js";
 import { isLogged, isAuthorized } from "../middlewares/auth.js";
 

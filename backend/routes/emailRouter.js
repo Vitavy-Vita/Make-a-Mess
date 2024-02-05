@@ -1,5 +1,5 @@
 import express from "express";
-import { email, passwordRecovery } from "../controllers/emailController.js";
+import { email, passwordRecovery } from "../controllers/emailsController.js";
 
 const emailRouter = express.Router();
 

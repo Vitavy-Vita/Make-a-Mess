@@ -1,36 +1,53 @@
 import express from "express";
+
+import {
+  addFavorite,
+  getOneFavorite,
+  deleteFavorite,
+  getAllFavorites,
+} from "../controllers/FavoritesController.js";
+
 import {
   addBread,
-  addCheese,
-  addFavorite,
-  addMeat,
-  addSauce,
-  addTopping,
-  deleteBread,
-  deleteCheese,
-  deleteFavorite,
-  deleteMeat,
-  deleteSauce,
-  deleteTopping,
   getAllBread,
-  getAllCheese,
-  getAllFavorites,
-  getAllIngredients,
-  getAllMeat,
-  getAllSauce,
-  getAllTopping,
   getOneBread,
-  getOneCheese,
-  getOneFavorite,
-  getOneMeat,
-  getOneSauce,
-  getOneTopping,
+  deleteBread,
   updateBread,
-  updateCheese,
+} from "../controllers/breadsController.js";
+
+import {
+  addMeat,
+  getAllMeat,
+  getOneMeat,
+  deleteMeat,
   updateMeat,
+} from "../controllers/meatsController.js";
+
+import {
+  addCheese,
+  getAllCheese,
+  getOneCheese,
+  deleteCheese,
+  updateCheese,
+} from "../controllers/cheesesController.js";
+
+import {
+  addSauce,
+  getAllSauce,
+  getOneSauce,
+  deleteSauce,
   updateSauce,
+} from "../controllers/saucesController.js";
+
+import {
+  addTopping,
+  getAllTopping,
+  getOneTopping,
+  deleteTopping,
   updateTopping,
-} from "../controllers/customBurgersController.js";
+} from "../controllers/toppingsController.js";
+
+
 import { isAuthorized, isLogged } from "../middlewares/auth.js";
 
 const favoriteRouter = express.Router();
