@@ -151,9 +151,11 @@ export default function Ideas() {
                 </ul>
               </aside>
               {auth.user && err && <span>{err}</span>}
-              <button onClick={() => addToFavorites(oneBurger)}>
-                Add to Favorites
-              </button>
+              {auth.user && (
+                <button onClick={() => addToFavorites(oneBurger)}>
+                  Add to Favorites
+                </button>
+              )}
             </article>
           ))}
         </motion.div>
