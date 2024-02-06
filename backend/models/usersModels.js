@@ -54,10 +54,6 @@ const userSchema = new mongoose.Schema({
       },
       message: "Please fill a valid email address",
     },
-    match: [
-      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
-      "Please fill a valid email address",
-    ],
   },
   image: {
     src: {
