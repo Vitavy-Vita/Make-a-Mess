@@ -25,13 +25,13 @@ export default function Contact() {
   const [disable, setDisable] = useState(false);
   const [timerCount, setTimerCount] = useState(300);
 
-  useEffect(() => {
-    // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
-    // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
-    // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
-    // we also make sure the counter cannont go below 0.
-    // finaly if none of the above happens, it just counts down from the value stated in the timerCount until it reaches one condition.
+  // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
+  // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
+  // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
+  // we also make sure the counter cannont go below 0.
+  // finaly if none of the above happens, it just counts down from the value stated in the timerCount until it reaches one condition.
 
+  const disableButton = () => {
     let interval = setInterval(() => {
       setTimerCount((lastTimerCount) => {
         lastTimerCount <= 1 && clearInterval(interval);
@@ -42,7 +42,7 @@ export default function Contact() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [disable]);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,15 +90,15 @@ export default function Contact() {
     >
       <section className="main-title">
         <h2>Let us know what you</h2>
-        <h1>Think !!</h1>
+        <h1 className="think">Think !!</h1>
       </section>
+      <h2>Get in touch with us</h2>
       <section
         className={
           !auth.user ? "contact-container-logout" : "contact-container"
         }
       >
         <article>
-          <h2>Get in touch with our team </h2>
           <p>
             Our team will always be available to hear anything you have to say !
           </p>
@@ -143,15 +143,15 @@ export default function Contact() {
             ></textarea>
             {err && <span>{err}</span>}
             {response && <span>{response}</span>}
-            {!disable && <button>Send</button>}
+            {!disable && <button onClick={disableButton}>Send</button>}
           </form>
         )}
       </section>
+      <h2 className={!auth.user ? "" : "business-title"}>Business info</h2>
       <section
         className={!auth.user ? "business-wrapper-logout" : "business-wrapper"}
       >
         <article className="business">
-          <h2>Business info</h2>
           <ul>
             <li>
               <motion.a

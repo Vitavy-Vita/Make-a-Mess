@@ -74,7 +74,11 @@ span {
   @include display-flex;
   flex-direction: column;
   .user-card {
-    background-color: variables.$light-red;
+    background: radial-gradient(
+      circle,
+      rgba(221, 130, 111, 1) 0%,
+      rgba(200, 90, 68, 1) 100%
+    );
     margin: 2em;
     padding: 2em;
     border-radius: 15px;

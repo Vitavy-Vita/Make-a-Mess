@@ -24,7 +24,13 @@ p,
 span {
   @include text-style;
 }
-
+input,
+textarea {
+  @include input-style;
+}
+textarea::placeholder {
+  color: variables.$red;
+}
 @include tablet {
   h1 {
     @include title-style-desktop;
@@ -37,6 +43,10 @@ span {
   p,
   span {
     @include text-style-desktop;
+  }
+  input,
+  textarea {
+    @include input-style-desktop;
   }
 }
 @include desktop {
@@ -51,6 +61,10 @@ span {
   p,
   span {
     @include text-style-desktop;
+  }
+  input,
+  textarea {
+    @include input-style-desktop;
   }
 }
 a {

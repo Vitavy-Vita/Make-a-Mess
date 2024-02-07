@@ -7,14 +7,12 @@
   background-size: 100%;
   background-position-x: -11em;
   background-position-y: 3em;
-  h1 {
-    width: 90%;
-  }
+  text-align: center;
   h2 {
     text-transform: none;
   }
   p {
-    width: 65%;
+    width: 70vw;
     margin-left: 2em;
   }
   span,
@@ -35,11 +33,11 @@
   @include tablet {
     background-position-x: -10em;
     background-position-y: 2em;
-    background-size: 45vh;
+    background-size:60vh;
+    height: 80vh;
     h1 {
-      width: 60%;
       margin-top: 1em;
-      margin-left: 2em;
+      margin-left: 3em;
     }
     h2 {
       text-transform: none;
@@ -47,10 +45,10 @@
     p {
       width: 50%;
       font-size: 35px;
-      margin-left: 3.5em;
+      margin-left: 5.5em;
     }
     section {
-      margin-left: 10em;
+      margin-left: 12em;
     }
   }
   @include desktop {

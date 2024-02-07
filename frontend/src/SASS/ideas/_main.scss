@@ -12,23 +12,28 @@
     text-transform: uppercase;
     letter-spacing: -0.12em;
     line-height: 36px;
+    margin-bottom: 1em;
   }
 
   h2 {
-    margin: 0;
-    font-size: 2em;
     font-family: variables.$title-font;
-    width: 60vw;
+    width: 80vw;
+    margin: 0;
     margin-top: 1em;
+    margin-left: 2em;
     text-align: left;
     font-style: bold;
   }
 }
-
-@media screen and (min-width: 481px) and (max-width: 990px) {
+.burger-gallery-container {
+  overflow: scroll;
+  height: 65vh;
+  scrollbar-color: variables.$red variables.$light-red;
+  scrollbar-width: thin;
+  margin: 0 1em;
+}
+@include tablet {
   .main-title {
-    text-align: center;
-
     margin: 0;
     h1 {
       margin-bottom: 0.5em;
@@ -48,11 +53,9 @@
       letter-spacing: 2px;
     }
   }
-
-
 }
 
-@media screen and (min-width: 961px) {
+@include desktop {
   .ideas-main {
     @include display-flex-column;
   }
@@ -61,6 +64,7 @@
     h1 {
       font-size: 130px;
       margin-top: 0.5em;
+      margin-bottom: 0;
     }
     h2 {
       font-size: variables.$title-size-desktop;
@@ -69,7 +73,9 @@
       text-align: right;
     }
   }
-
+  .burger-gallery-container{
+    overflow:visible;
+  }
   .carousel {
     position: relative;
     cursor: grab;
@@ -78,5 +84,4 @@
     scrollbar-color: variables.$red variables.$gray;
     scrollbar-width: thin;
   }
-
 }

@@ -103,15 +103,16 @@
   padding: 0.5em;
   border: 2px solid variables.$red;
   border-radius: 10px;
-  outline-color: variables.$red;
   width: 90%;
+  color: variables.$red;
 }
 @mixin input-style-desktop {
+  font-size: variables.$text-size-desktop;
   font-family: variables.$text-font;
   padding: 1.5em 3em;
   border: 2px solid variables.$red;
   border-radius: 15px;
-  outline-color: variables.$red;
+  color: variables.$red;
 }
 
 @mixin button-style-hover {
