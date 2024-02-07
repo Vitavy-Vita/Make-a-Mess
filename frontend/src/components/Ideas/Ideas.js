@@ -119,7 +119,7 @@ export default function Ideas() {
                   position: "relative",
                 }}
               >
-                {oneBurger.name}{" "}
+                {oneBurger.name}
                 {favorites.some((fav) => fav.name === oneBurger.name) && (
                   <img
                     src={favoriteBurger}

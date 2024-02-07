@@ -16,7 +16,6 @@
 
   h2 {
     margin: 0;
-    @include sub-title-style;
     font-size: 2em;
     font-family: variables.$title-font;
     width: 60vw;
@@ -25,18 +24,7 @@
     font-style: bold;
   }
 }
-.burger-card {
-  margin: 1em;
-  width: 85vw;
-  figure {
-    background-size: cover;
-    background-position: center;
-    width: 80vw;
-    height: 20vh;
-    border: 3px solid white;
-    border-radius: 15px;
-  }
-}
+
 @media screen and (min-width: 481px) and (max-width: 990px) {
   .main-title {
     text-align: center;
@@ -60,10 +48,7 @@
       letter-spacing: 2px;
     }
   }
-  .burger-gallery-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
+
 
 }
 
@@ -84,11 +69,7 @@
       text-align: right;
     }
   }
-  .burger-gallery-container {
-    @include display-flex;
-    justify-content: start;
-    max-width: 1300px;
-  }
+
   .carousel {
     position: relative;
     cursor: grab;
@@ -98,11 +79,4 @@
     scrollbar-width: thin;
   }
 
-  .burger-card {
-    min-width: 30%;
-    figure {
-      width: 18vw;
-      height: 20vh;
-    }
-  }
 }

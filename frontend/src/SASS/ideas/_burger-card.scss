@@ -1,15 +1,25 @@
 @use "../generalities/variables";
 
-/* -------------------------------------------------------------------------- */
-/*                                   LAYOUT                                   */
-/* -------------------------------------------------------------------------- */
-
 .burger-card {
   @include display-flex-column;
-  background-color: variables.$red;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 90, 68, 1) 35%,
+    rgba(221, 111, 111, 1) 100%
+  );
   border-radius: 15px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 5px solid variables.$brown;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1em;
+  margin: 1em;
+  figure {
+    background-size: cover;
+    background-position: center;
+    width: 80vw;
+    height: 20vh;
+    border: 3px solid white;
+    border-radius: 15px;
+  }
   h2 {
     font-family: variables.$title-font;
     color: variables.$gray;
@@ -28,21 +38,40 @@
     text-align: left;
     margin: 0;
   }
-  button{
+  button {
     margin-top: 1em;
   }
 }
-@media screen and (min-width: 481px) and (max-width: 990px) {
-  .burger-card {
-    margin: 1em;
-    width: 45vw;
-    padding: 0;
-    figure {
-      width: 40vw;
-      height: 20vh;
+@include tablet {
+  .burger-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    .burger-card {
+      margin: 1em;
+      padding: 0;
+
+      figure {
+        width: 37vw;
+        height: 20vh;
+      }
+    }
+    button {
+      margin-bottom: 1em;
     }
   }
-
 }
-
-
+@include desktop {
+  .burger-gallery-container {
+    @include display-flex;
+    justify-content: start;
+    max-width: 1300px;
+    .burger-card {
+      min-width: 30%;
+      figure {
+        width: 350px;
+        height: 20vh;
+      }
+    }
+  }
+}
