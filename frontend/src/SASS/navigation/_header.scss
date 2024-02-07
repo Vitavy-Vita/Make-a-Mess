@@ -1,19 +1,6 @@
 @use "../generalities/variables";
 
 /* -------------------------------------------------------------------------- */
-/*                           HIDE NAVMENU OFFSCREEN                           */
-/* -------------------------------------------------------------------------- */
-html,
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-  height: 100vh;
-}
-body {
-  position: relative;
-}
-
-/* -------------------------------------------------------------------------- */
 /*                                    LOGO                                    */
 /* -------------------------------------------------------------------------- */
 
@@ -35,9 +22,8 @@ nav {
   background-color: variables.$red;
   width: 100%;
   height: 5em;
+
   ul {
-    margin: 0;
-    list-style: none;
     .nav-option {
       @include nav-option;
       border-bottom: 1px solid variables.$gray;
@@ -71,6 +57,9 @@ nav {
       box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     }
   }
+  button {
+    margin-top: 5em;
+  }
   img {
     position: absolute;
     width: 100px;
@@ -87,7 +76,6 @@ nav {
     height: 100%;
     width: 100%;
     list-style: none;
-    
   }
 
   .menu {
@@ -95,9 +83,9 @@ nav {
     z-index: 1;
     right: 0;
     width: 65%;
-    height: 100vh;
     background-color: variables.$red;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 100vh;
   }
   .hidden {
     right: -400px;
@@ -106,42 +94,33 @@ nav {
   .visible {
     transition: ease-out 0.5s;
   }
-  @media screen and (min-width: 481px) and (max-width: 990px) {
+  @include tablet {
     img {
       width: 200px;
       left: 20px;
       top: 5px;
     }
-
+    .menu {
+      height: 560px;
+    }
     .hidden {
       right: 0px;
       top: -1400px;
       width: 100%;
-      height: 100%;
     }
     .visible {
       right: 0px;
       top: 0px;
       width: 100%;
-      height: 50%;
       transition: ease-out 0.5s;
       padding-top: 3em;
     }
   }
-  @media screen and (min-width: 991px) {
+  @include desktop {
     .nav-tablet-desktop {
       flex-wrap: nowrap;
-      margin-left: 15em;
-
       li {
-        margin: 0 1em;
-        margin-top: 3em;
-      }
-      .nav-option {
-        margin: 0;
-        padding: 0 1em;
-        font-size: 1.5rem;
-        border-radius: 15px;
+        margin-top: 2em;
       }
     }
   }
@@ -162,7 +141,7 @@ nav {
     @include burger-style;
   }
 
-  @media screen and (min-width: 481px) and (max-width: 990px) {
+  @include tablet {
     .burger-menu {
       top: 65px;
       right: 50px;
@@ -172,7 +151,8 @@ nav {
       font-size: 70px;
     }
   }
-  @media screen and (min-width: 991px) {
+
+  @include desktop {
     .burger-menu {
       display: none;
     }
@@ -185,7 +165,7 @@ nav {
 .nav-tablet-desktop {
   display: none;
 }
-@media screen and (min-width: 481px) and (max-width: 990px) {
+@include tablet {
   nav {
     height: 10em;
     .nav-menu {
@@ -197,7 +177,7 @@ nav {
     }
   }
 }
-@media screen and (min-width: 991px) {
+@include desktop {
   nav {
     height: 10em;
 
@@ -240,14 +220,15 @@ nav {
   font-size: 40px;
 }
 
-@media screen and (min-width: 481px) and (max-width: 990px) {
+@include tablet {
   .react-icon {
     font-size: 50px;
     top: 35px;
     right: 130px;
   }
 }
-@media screen and (min-width: 991px) {
+
+@include desktop {
   .react-icon {
     display: none;
   }
@@ -257,10 +238,4 @@ nav {
 /* -------------------------------------------------------------------------- */
 .menu {
   text-align: center;
-  button {
-    @include button;
-  }
-}
-.button:hover {
-  @include button-hover;
 }

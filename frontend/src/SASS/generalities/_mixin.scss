@@ -62,22 +62,19 @@
   padding: 0.5em;
   text-decoration: none;
   cursor: pointer;
-
 }
 
 @mixin button {
-  padding: 1.2em;
   color: variables.$white;
   background-color: variables.$red;
   font-family: variables.$text-font;
-  font-size: variables.$text-size-mobile;
   font-weight: bold;
-  text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  padding: 1em 2em;
+  padding: 1em;
+  cursor: pointer;
 }
 
 @mixin button-hover {
@@ -91,6 +88,12 @@
 
 @mixin display-flex {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin display-flex-column {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -115,4 +118,15 @@
   font-family: variables.$text-font;
   color: variables.$red;
   background-color: variables.$gray;
+}
+
+@mixin tablet {
+  @media screen and (min-width: 481px) and (max-width: 990px) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media screen and (min-width: 991px) {
+    @content;
+  }
 }

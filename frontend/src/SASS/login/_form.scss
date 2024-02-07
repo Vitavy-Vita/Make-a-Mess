@@ -28,9 +28,7 @@
   }
 }
 
-h1 {
-  @include title-style;
-}
+
 
 .center-container {
   h2 {
@@ -51,11 +49,9 @@ form {
     color: variables.$red;
     font-family: variables.$text-font;
   }
-}
-
-button {
-  @include button;
-  margin: 2em;
+  button {
+    margin: 2em;
+  }
 }
 
 button:hover {
@@ -125,9 +121,9 @@ button:hover {
   margin: 1em;
   padding: 1em;
   border-radius: 15px;
-  span{
+  span {
     @include text-style;
-    color: variables.$gray
+    color: variables.$gray;
   }
   article {
     @include display-flex;

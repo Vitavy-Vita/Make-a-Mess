@@ -1,36 +1,20 @@
 @use "../generalities/variables";
-html {
-  box-sizing: border-box;
-  margin: 0 auto;
-  height: 100%;
-}
-body {
-  background-color: variables.$gray;
-  height: 100%;
-}
 
 .home-page {
+  @include display-flex-column;
   background-image: url("../../assets/images/bg-burger.png");
   background-repeat: no-repeat;
   background-size: 100%;
   background-position-x: -11em;
   background-position-y: 3em;
-  @include display-flex;
-  flex-direction: column;
-  text-align: center;
-  height: 80vh;
   h1 {
-    @include title-style;
     width: 90%;
   }
   h2 {
-    @include sub-title-style;
     text-transform: none;
   }
   p {
-    @include text-style;
     width: 65%;
-    font-size: 20px;
     margin-left: 2em;
   }
   span,
@@ -48,18 +32,16 @@ body {
     margin-left: 6em;
   }
 
-  @media screen and (min-width: 481px) and (max-width: 990px) {
+  @include tablet {
     background-position-x: -10em;
     background-position-y: 2em;
-    background-size: 60vh;
+    background-size: 45vh;
     h1 {
-      font-size: 3.5rem;
       width: 60%;
       margin-top: 1em;
       margin-left: 2em;
     }
     h2 {
-      @include sub-title-style-desktop;
       text-transform: none;
     }
     p {
@@ -71,23 +53,25 @@ body {
       margin-left: 10em;
     }
   }
-  @media screen and (min-width: 991px) {
+  @include desktop {
     background-position-x: 0;
     background-position-y: 0;
     background-size: 60vh;
+    height: 80vh;
     h1 {
-      width: 40vw;
-      font-size: 100px;
-      line-height: 80px;
-      margin: 1.5em 0em 0em 5em;
+      width: 37vw;
+      font-size: 7rem;
+      line-height: 100px;
+      margin-left: 5em;
     }
     h2 {
       font-size: variables.$sub-title-size-desktop;
-      margin-left: 8em;
+      margin-left: 5em;
+      font-size: 5rem;
     }
     p {
       width: 30vw;
-      font-size: 45px;
+      font-size: 3rem;
       line-height: 50px;
       margin-left: 10em;
     }

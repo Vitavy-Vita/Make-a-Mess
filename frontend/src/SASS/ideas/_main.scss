@@ -5,10 +5,8 @@
 /* -------------------------------------------------------------------------- */
 
 .main-title {
-  @include display-flex;
-  flex-direction: column;
+  @include display-flex-column;
   h1 {
-    @include title-style;
     font-size: 3.5em;
     margin: 0;
     text-transform: uppercase;
@@ -71,10 +69,8 @@
 
 @media screen and (min-width: 961px) {
   .ideas-main {
-    @include display-flex;
-    flex-direction: column;
+    @include display-flex-column;
   }
-
   .main-title {
     flex-direction: row;
     h1 {

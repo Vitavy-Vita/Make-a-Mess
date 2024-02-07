@@ -1,19 +1,13 @@
 @use "../generalities/variables";
 
 .not-found-wrapper {
-  @include display-flex;
-  flex-direction: column;
+  @include display-flex-column;
   h2 {
-    @include sub-title-style;
-    max-width: 300px;
+    max-width: 500px;
+    line-height: 50px;
+    text-transform: none;
   }
 
-  a {
-    color: variables.$brown;
-  }
-  a:hover {
-    color: variables.$red;
-  }
   figure {
     width: 200px;
     height: 200px;
@@ -22,10 +16,5 @@
     background-size: contain;
   }
 }
-@media screen and (min-width: 991px) {
-  .not-found-wrapper {
-    h1 {
-      @include title-style-desktop;
-    }
-  }
-}
+
+

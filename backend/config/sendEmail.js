@@ -14,17 +14,19 @@ const Email = (options) => {
     },
   });
 
-  transporter.sendMail(options, (err, info) => {
+  transporter.sendMail(options, (err) => {
     if (err) {
-      console.log(err);
-      return;
+      res.status(500).json({
+        status: "fail",
+        message: "Email not sent",
+      });
     }
   });
 };
 
 const EmailSender = ({ fullname, email, message }) => {
   const options = {
-    from: `Make-a-Mess 🍔<${process.env.EMAIL}`,
+    from: `Make-a-Mess 🍔${process.env.EMAIL}`,
     to: process.env.EMAIL,
     subject: "New user message",
     text: "This is a test message",

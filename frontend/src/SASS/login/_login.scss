@@ -7,7 +7,7 @@
   display: none;
 }
 
-@media screen and (min-width: 991px) {
+@include desktop {
   .mobile-connect {
     display: none;
   }
@@ -27,30 +27,24 @@
       font-family: variables.$text-font;
       text-decoration: none;
       color: variables.$gray;
-      padding: .5em;
+      padding: 0.5em;
       cursor: pointer;
     }
     a:hover {
       text-decoration: underline white;
     }
+    svg {
+      position: absolute;
+      top: 18px;
+      left: -20px;
+    }
     .buttons {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5em;
-      font-size: variables.$sub-title-size-mobile;
+      font-size: variables.$text-size-mobile;
       margin: 0em 2em;
       width: 100%;
-    }
-    .form-icon {
-      position: absolute;
-      top: 13px;
-      left: -20px;
-    }
-    button {
-      @include button;
-    }
-    button:hover {
-      @include button-style-hover;
     }
   }
 }
@@ -58,9 +52,7 @@
 /* -------------------------------------------------------------------------- */
 /*                               MOBILE CONNECT                               */
 /* -------------------------------------------------------------------------- */
-button {
-  cursor: pointer;
-}
+
 .mobile-connect {
   a {
     position: relative;
@@ -70,12 +62,14 @@ button {
     margin: 0.5em 0.5em;
     cursor: pointer;
   }
+  svg {
+    position: absolute;
+  }
   a:hover {
     text-decoration: underline;
   }
   .buttons {
-    @include display-flex;
-    flex-direction: column;
+    @include display-flex-column;
     align-items: start;
     padding: 1em;
     background-color: variables.$red;
@@ -100,7 +94,7 @@ button {
     right: 0;
     transition: ease-out 0.5s;
   }
-  @media screen and (min-width: 481px) and (max-width: 990px) {
+  @include tablet {
     .buttons {
       display: inline-block;
       border-radius: 15px;
@@ -109,8 +103,8 @@ button {
       }
     }
     .slide-in {
-      top: 30px;
-      right: 200px;
+      top: 50px;
+      right: 220px;
     }
     .slide-out {
       top: -200px;

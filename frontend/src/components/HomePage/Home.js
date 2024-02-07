@@ -17,7 +17,7 @@ export default function Home() {
       }}
       className="home-page"
     >
-      <h1 className={"main-title"}>Welcome to Make-a-Mess</h1>
+      <h1>Welcome to Make-a-Mess</h1>
       <p>Tired of not knowing what you can or cannot eat ?</p>
       <section>
         <h2>Let us help you!</h2>

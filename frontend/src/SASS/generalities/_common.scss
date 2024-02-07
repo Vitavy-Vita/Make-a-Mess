@@ -1,0 +1,70 @@
+@use "../generalities/variables";
+
+html {
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+  background-color: variables.$gray;
+}
+
+h1 {
+  @include title-style;
+}
+
+h2 {
+  @include sub-title-style;
+}
+
+p,
+span {
+  @include text-style;
+}
+
+@include tablet {
+  h1 {
+    @include title-style-desktop;
+  }
+
+  h2 {
+    @include sub-title-style-desktop;
+  }
+
+  p,
+  span {
+    @include text-style-desktop;
+  }
+}
+@include desktop {
+  h1 {
+    @include title-style-desktop;
+  }
+
+  h2 {
+    @include sub-title-style-desktop;
+  }
+
+  p,
+  span {
+    @include text-style-desktop;
+  }
+}
+a {
+  color: variables.$brown;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+button {
+  @include button;
+}
+.button:hover {
+  @include button-hover;
+}

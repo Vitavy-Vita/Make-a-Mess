@@ -5,25 +5,19 @@
 /* -------------------------------------------------------------------------- */
 
 .burger-card {
-  @include display-flex;
-  flex-direction: column;
+  @include display-flex-column;
   background-color: variables.$red;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1em;
   h2 {
-    @include sub-title-style;
     font-family: variables.$title-font;
     color: variables.$gray;
-    font-size: 30px;
-    margin: 1em 0;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     letter-spacing: -0.03em;
     padding-left: 0;
   }
   ul {
-    list-style: none;
-    margin: 0;
     padding: 0 0.5em;
   }
   .burger-description {
@@ -33,6 +27,9 @@
     text-transform: capitalize;
     text-align: left;
     margin: 0;
+  }
+  button{
+    margin-top: 1em;
   }
 }
 @media screen and (min-width: 481px) and (max-width: 990px) {
