@@ -88,8 +88,8 @@ const ProfilPage = () => {
       )}
       {favorites && (
         <>
+          <h2>My Favorites</h2>
           <section className="favorites-scroll">
-            <h2>My Favorites</h2>
             {favorites.map((oneFav, i) => (
               <article className={"burger-card"}>
                 <h2>{oneFav.name}</h2>
@@ -110,9 +110,7 @@ const ProfilPage = () => {
                     <li>{oneFav.calories}</li>
                   </ul>
                 </aside>
-                <span>
-                  added on: {new Date(oneFav.date).toLocaleDateString()}
-                </span>
+                <em>added on: {new Date(oneFav.date).toLocaleDateString()}</em>
                 <button onClick={() => handleRemove(oneFav._id)}>Remove</button>
               </article>
             ))}

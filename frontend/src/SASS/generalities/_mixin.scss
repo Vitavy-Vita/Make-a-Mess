@@ -121,6 +121,12 @@
   background-color: variables.$gray;
 }
 
+@mixin scrollbar{
+  overflow: scroll;
+  scrollbar-color: variables.$red variables.$light-red;
+  scrollbar-width: thin;
+
+}
 @mixin tablet {
   @media screen and (min-width: 481px) and (max-width: 990px) {
     @content;

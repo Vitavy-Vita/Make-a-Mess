@@ -103,7 +103,8 @@ export default function Contact() {
             Our team will always be available to hear anything you have to say !
           </p>
           <p>
-            We have at your disposal (users only, make sure to be logged in) a
+            We have at your disposal
+            {!auth.user && <em>(users only, make sure to be logged in)</em>} a
             form you can use to send us a direct email, we will respond to you
             in no time !
           </p>

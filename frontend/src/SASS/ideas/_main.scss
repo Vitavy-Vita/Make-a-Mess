@@ -26,10 +26,8 @@
   }
 }
 .burger-gallery-container {
-  overflow: scroll;
+  @include scrollbar;
   height: 65vh;
-  scrollbar-color: variables.$red variables.$light-red;
-  scrollbar-width: thin;
   margin: 0 1em;
 }
 @include tablet {
@@ -73,15 +71,13 @@
       text-align: right;
     }
   }
-  .burger-gallery-container{
-    overflow:visible;
+  .burger-gallery-container {
+    overflow: visible;
   }
   .carousel {
+    @include scrollbar;
     position: relative;
     cursor: grab;
-    overflow: scroll;
     margin: 2em;
-    scrollbar-color: variables.$red variables.$gray;
-    scrollbar-width: thin;
   }
 }

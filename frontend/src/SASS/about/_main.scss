@@ -5,6 +5,7 @@
 /* -------------------------------------------------------------------------- */
 .about-wrapper {
   @include display-flex;
+  text-align: center;
 }
 .about-container {
   iframe {
@@ -42,8 +43,7 @@
     color: variables.$red;
   }
 }
-
-@media screen and (min-width: 481px) and (max-width: 990px) {
+@include tablet {
   .about-wrapper {
     iframe {
       width: 630px;
@@ -62,32 +62,29 @@
   }
 }
 
-@media screen and (min-width: 991px) {
+@include desktop {
   .about-container {
+    @include display-flex;
     iframe {
-      width: 700px;
-      height: 400px;
+      width: 1100px;
+      height: 600px;
       border: 5px solid variables.$red;
       border-radius: 15px;
       margin-bottom: 1em;
     }
-  }
-  .about-wrapper {
-    .about-container {
-      @include display-flex;
-
-      article {
-        margin: 1em;
-        padding: 1.5em;
-      }
+    article {
+      margin: 1em;
+      padding: 1.5em;
     }
     .article-section {
-      width: 700px;
-      height: 370px;
+      width: 1100px;
+      height: 600px;
     }
+
     li {
       font-size: variables.$text-size-desktop;
       line-height: 36px;
+      height: 10vh;
     }
   }
 }
