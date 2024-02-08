@@ -137,11 +137,11 @@ const UpdateProfil = () => {
           </NavLink>
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
-        </form>
         <article>
           <button>Update</button>
           <button onClick={() => handleDelete(auth.user.id)}>Delete</button>
         </article>
+        </form>
         <NavLink to={"/my-profil"}>
           <button>Go Back</button>
         </NavLink>

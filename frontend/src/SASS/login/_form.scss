@@ -28,8 +28,6 @@
   }
 }
 
-
-
 .center-container {
   h2 {
     @include sub-title-style;
@@ -81,7 +79,11 @@ button:hover {
     }
   }
   .form-container {
-    background-color: variables.$light-red;
+    background: radial-gradient(
+      circle,
+      rgba(221, 130, 111, 1) 0%,
+      rgba(200, 90, 68, 1) 100%
+    );
     width: 60%;
     input {
       padding: 1em;

@@ -276,15 +276,16 @@ export const updateUser = async (req, res) => {
       // if there is an old file, we use unlink method.
       if (getOldFile.image.src) {
         // unlink takes path and a callback, path being the old file and here the callback is the error handler.
-        
-        fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (err) => {
-          if (err) {
-            return res.status(500).json({
-              message: "Error deleting old image file",
-            });
-          }
-          // returning a success status here would cause a crash, because if we've passed that check, it means it worked and we're already handling that case just below, so no repeat.
-        });
+        if (getOldFile.image.src !== "default-user.png") {
+          fs.unlink(`./public/assets/img/${getOldFile.image.src}`, (err) => {
+            if (err) {
+              return res.status(500).json({
+                message: "Error deleting old image file",
+              });
+            }
+            // returning a success status here would cause a crash, because if we've passed that check, it means it worked and we're already handling that case just below, so no repeat.
+          });
+        }
       }
     }
 

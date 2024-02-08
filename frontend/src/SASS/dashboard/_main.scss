@@ -1,7 +1,7 @@
 @use "../generalities/variables";
 
 /* -------------------------------------------------------------------------- */
-/*                                    USERS                                   */
+/*                                    USER'S PROFIL                                   */
 /* -------------------------------------------------------------------------- */
 .article-list-scroll,
 .favorites-scroll {
@@ -48,14 +48,38 @@ form {
   }
 }
 @include tablet {
-  .user-card {
-    .premade-card-img {
-      width: 60vw;
-      height: 30vh;
+  .user-card-container {
+    .user-card {
+      .premade-card-img {
+        width: 50vw;
+        height: 30vh;
+      }
+    }
+    button {
+      font-size: 20px;
+      padding: 1em 2em;
     }
   }
 }
-
+@include desktop {
+  .go-back-button {
+    position: absolute;
+    top: 90vh;
+    left: 45vw;
+  }
+  .user-card-container {
+    .user-card {
+      .premade-card-img {
+        width: 50vw;
+        height: 30vh;
+      }
+    }
+    button {
+      font-size: 20px;
+      padding: 1em 2em;
+    }
+  }
+}
 /* -------------------------------------------------------------------------- */
 /*                                  DATABASES                                 */
 /* -------------------------------------------------------------------------- */
@@ -105,7 +129,7 @@ form {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                  DATABASE - CARD                                 */
+/*                                  Search bar - CARD                                 */
 /* -------------------------------------------------------------------------- */
 .database-card {
   @include display-flex;
@@ -197,10 +221,10 @@ form {
       }
     }
   }
-  .burger-card {
-    width: 80%;
-  }
 
+  /* -------------------------------------------------------------------------- */
+  /*                                  FAVORITES                                 */
+  /* -------------------------------------------------------------------------- */
   .favorites-scroll {
     margin-top: 2em;
     display: grid;
@@ -212,8 +236,12 @@ form {
     }
     a {
       position: absolute;
-      top: 80%;
+      top: 85vh;
       left: 45%;
+    }
+    .burger-card {
+      width: 80%;
+      margin: 1em;
     }
   }
 }

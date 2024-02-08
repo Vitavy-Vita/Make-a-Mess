@@ -88,8 +88,8 @@ const ProfilPage = () => {
       )}
       {favorites && (
         <>
-          <h2>My Favorites</h2>
           <section className="favorites-scroll">
+          <h2>My Favorites</h2>
             {favorites.map((oneFav, i) => (
               <article className={"burger-card"}>
                 <h2>{oneFav.name}</h2>
