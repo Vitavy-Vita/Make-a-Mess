@@ -14,8 +14,8 @@ const CustomBurgers = () => {
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
-  const [toggle, setToggle] = useState(false);
   const [togglePopUp, setTogglePopUp] = useState(false);
+  
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState();
   const [errName, setErrName] = useState();
@@ -52,14 +52,40 @@ const CustomBurgers = () => {
       .catch((res) => {
         navigate("*");
       });
-  }, [toggle]);
+  }, []);
 
   useEffect(() => {
     calculateTotal();
   }, [selectedIngredient]);
 
   const handleClick = (i, name) => {
-    const choosenIngredient = ingredients[name][i];
+    let choosenIngredient;
+    let choiceArray;
+    switch (name) {
+      case "bread":
+        choiceArray = breadIng;
+        choosenIngredient = breadIng[i];
+        break;
+      case "meat":
+        choiceArray = meatIng;
+        choosenIngredient = meatIng[i];
+        break;
+      case "cheese":
+        choiceArray = cheeseIng;
+        choosenIngredient = cheeseIng[i];
+        break;
+      case "sauce":
+        choiceArray = sauceIng;
+        choosenIngredient = sauceIng[i];
+        break;
+      case "topping":
+        choiceArray = toppingIng;
+        choosenIngredient = toppingIng[i];
+        break;
+
+      default:
+        break;
+    }
 
     const isAlreadySelected = selectedIngredient.find(
       (ing) => ing._id === choosenIngredient._id
@@ -68,14 +94,31 @@ const CustomBurgers = () => {
     if (!isAlreadySelected) {
       setFavoriteIngredients([...favoriteIngredients, choosenIngredient.name]);
       setSelectedIngredient([...selectedIngredient, choosenIngredient]);
-      const newI = {
-        ...ingredients,
-        [name]: ingredients[name].filter(
-          (ing) => ing._id === choosenIngredient._id
-        ),
-      };
 
-      setIngredients(newI);
+      const newI = choiceArray.filter(
+        (ing) => ing._id === choosenIngredient._id
+      );
+
+      switch (name) {
+        case "bread":
+          setBreadIng(newI);
+          break;
+        case "meat":
+          setMeatIng(newI);
+          break;
+        case "cheese":
+          setCheeseIng(newI);
+          break;
+        case "sauce":
+          setSauceIng(newI);
+          break;
+        case "topping":
+          setToppingIng(newI);
+          break;
+        default:
+          break;
+      }
+
       calculateTotal();
     }
   };
@@ -101,35 +144,36 @@ const CustomBurgers = () => {
   };
 
   const handleDelete = (i, name) => {
-    const removeIng = selectedIngredient.filter((ing, index) => index !== i);
+    const removeIng = selectedIngredient.filter((ing, index) => ing._id !== i);
+
     setSelectedIngredient(removeIng);
+    setFavoriteIngredients(removeIng);
     switch (name) {
       case "bread":
-        setBreadIng(removeIng);
+        setBreadIng([...ingredients.bread]);
+        break;
       case "meat":
-        setMeatIng(removeIng);
+        setMeatIng([...ingredients.meat]);
+        break;
       case "cheese":
-        setCheeseIng(removeIng);
+        setCheeseIng([...ingredients.cheese]);
+        break;
       case "sauce":
-        setSauceIng(removeIng);
+        setSauceIng([...ingredients.sauce]);
+        break;
       case "topping":
-        setToppingIng(removeIng);
+        setToppingIng([...ingredients.topping]);
         break;
 
       default:
         break;
     }
     calculateTotal();
-    setToggle(!toggle);
   };
 
   const onClickToggle = () => {
     if (selectedIngredient.length !== 5) {
       return setErr("You need to select some ingredients first.");
-    }
-
-    if (!togglePopUp) {
-      setTogglePopUp(!togglePopUp);
     }
     setTogglePopUp(!togglePopUp);
   };
@@ -211,7 +255,7 @@ const CustomBurgers = () => {
             <motion.article
               initial={false}
               animate={{
-                opacity: breadToOpen ? 1 : 0,
+                display: breadToOpen ? "block" : "none",
               }}
             >
               {breadIng.map((ingredient, i) => (
@@ -224,7 +268,9 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(i, "bread")}>❌</li>
+                    <li onClick={() => handleDelete(ingredient._id, "bread")}>
+                      ❌
+                    </li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -268,10 +314,10 @@ const CustomBurgers = () => {
             <motion.article
               initial={false}
               animate={{
-                opacity: meatToOpen ? 1 : 0,
+                display: meatToOpen ? "block" : "none",
               }}
             >
-              {ingredients.meat.map((ingredient, i) => (
+              {meatIng.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "meat")}>
                     {ingredient.name}
@@ -281,7 +327,9 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(i, "meat")}>❌</li>
+                    <li onClick={() => handleDelete(ingredient._id, "meat")}>
+                      ❌
+                    </li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -325,10 +373,10 @@ const CustomBurgers = () => {
             <motion.article
               initial={false}
               animate={{
-                opacity: cheeseToOpen ? 1 : 0,
+                display: cheeseToOpen ? "block" : "none",
               }}
             >
-              {ingredients.cheese.map((ingredient, i) => (
+              {cheeseIng.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "cheese")}>
                     {ingredient.name}
@@ -338,7 +386,9 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(i, "cheese")}>❌</li>
+                    <li onClick={() => handleDelete(ingredient._id, "cheese")}>
+                      ❌
+                    </li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -382,10 +432,10 @@ const CustomBurgers = () => {
             <motion.article
               initial={false}
               animate={{
-                opacity: toppingToOpen ? 1 : 0,
+                display: toppingToOpen ? "block" : "none",
               }}
             >
-              {ingredients.topping.map((ingredient, i) => (
+              {toppingIng.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "topping")}>
                     {ingredient.name}
@@ -395,7 +445,9 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(i, "topping")}>❌</li>
+                    <li onClick={() => handleDelete(ingredient._id, "topping")}>
+                      ❌
+                    </li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>
@@ -440,10 +492,10 @@ const CustomBurgers = () => {
             <motion.article
               initial={false}
               animate={{
-                opacity: sauceToOpen ? 1 : 0,
+                display: sauceToOpen ? "block" : "none",
               }}
             >
-              {ingredients.sauce.map((ingredient, i) => (
+              {sauceIng.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "sauce")}>
                     {ingredient.name}
@@ -453,7 +505,9 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(i, "sauce")}>❌</li>
+                    <li onClick={() => handleDelete(ingredient._id, "sauce")}>
+                      ❌
+                    </li>
                     <li>Fat:</li>
                     <li>{ingredient.fat}</li>
                     <li>Calories:</li>

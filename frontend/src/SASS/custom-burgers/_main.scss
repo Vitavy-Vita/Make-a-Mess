@@ -1,4 +1,6 @@
 @use "../generalities/variables";
+
+
 .custom-main {
   @include display-flex;
   flex-direction: column;
@@ -20,6 +22,7 @@
   height: 20px;
 }
 .custom-container {
+  text-align: center;
   h2 {
     @include sub-title-style;
     position: relative;
