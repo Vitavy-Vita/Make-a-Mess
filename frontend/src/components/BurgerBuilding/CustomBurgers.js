@@ -22,6 +22,13 @@ const CustomBurgers = () => {
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [favoriteIngredients, setFavoriteIngredients] = useState([]);
   const [inputs, setInputs] = useState({ name: "" });
+
+  const [breadIng, setBreadIng] = useState([]);
+  const [meatIng, setMeatIng] = useState([]);
+  const [cheeseIng, setCheeseIng] = useState([]);
+  const [sauceIng, setSauceIng] = useState([]);
+  const [toppingIng, setToppingIng] = useState([]);
+
   const [totalMacros, setTotalMacros] = useState({
     userId: auth.user.id,
     protein: 0,
@@ -36,6 +43,11 @@ const CustomBurgers = () => {
       .get(`http://localhost:9001/ingredients`)
       .then((res) => {
         setIngredients(res.data);
+        setBreadIng(res.data.bread);
+        setMeatIng(res.data.meat);
+        setCheeseIng(res.data.cheese);
+        setSauceIng(res.data.sauce);
+        setToppingIng(res.data.topping);
       })
       .catch((res) => {
         navigate("*");
@@ -91,19 +103,37 @@ const CustomBurgers = () => {
   const handleDelete = (i, name) => {
     const removeIng = selectedIngredient.filter((ing, index) => index !== i);
     setSelectedIngredient(removeIng);
+    switch (name) {
+      case "bread":
+        setBreadIng(removeIng);
+      case "meat":
+        setMeatIng(removeIng);
+      case "cheese":
+        setCheeseIng(removeIng);
+      case "sauce":
+        setSauceIng(removeIng);
+      case "topping":
+        setToppingIng(removeIng);
+        break;
+
+      default:
+        break;
+    }
     calculateTotal();
     setToggle(!toggle);
   };
+
   const onClickToggle = () => {
     if (selectedIngredient.length !== 5) {
       return setErr("You need to select some ingredients first.");
     }
-   
+
     if (!togglePopUp) {
       setTogglePopUp(!togglePopUp);
     }
     setTogglePopUp(!togglePopUp);
   };
+
   const handleChange = (e) => {
     setInputs({ name: e.target.value });
     setErr("");
@@ -184,7 +214,7 @@ const CustomBurgers = () => {
                 opacity: breadToOpen ? 1 : 0,
               }}
             >
-              {ingredients.bread.map((ingredient, i) => (
+              {breadIng.map((ingredient, i) => (
                 <aside className="ingredient-card">
                   <h3 onClick={() => handleClick(i, "bread")}>
                     {ingredient.name}
