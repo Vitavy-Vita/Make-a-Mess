@@ -38,7 +38,7 @@ export default function Login() {
         });
       })
       .catch((res) => {        
-        setErr(res.data);
+        setErr(res.response.data.message);
       });
   };
 

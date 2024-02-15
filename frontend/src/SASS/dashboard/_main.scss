@@ -69,7 +69,9 @@ form {
   }
   .user-card-container {
     .user-card {
+      flex-direction: column;
       .premade-card-img {
+
         width: 50vw;
         height: 30vh;
       }

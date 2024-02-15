@@ -22,7 +22,7 @@
     text-decoration: underline;
   }
   span {
-    @include text-style-desktop;
+    // @include text-style-desktop;
     color: variables.$gray;
     padding: 1em;
   }
