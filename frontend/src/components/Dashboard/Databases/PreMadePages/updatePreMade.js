@@ -53,8 +53,9 @@ const UpdateBurgerGallery = () => {
     ) {
       return setErr("Please provide all informations");
     }
+    // when a file is involved, sending inputs states directly will not work, this is were the FormData comes into place, making it easy to create key-value pairs of inputs fields of wichever type.
     const formData = new FormData();
-
+    // it requires to use the javascrypt method append
     formData.append("name", inputs.name);
     formData.append("description", inputs.description);
     formData.append("protein", inputs.protein);
@@ -64,6 +65,7 @@ const UpdateBurgerGallery = () => {
     formData.append("image", inputs.image);
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
+      // we then post formData instead of inputs
       .post("http://localhost:9001/burgers/new", formData, { headers: token() })
       .then((res) => {
         setReload(!reload);

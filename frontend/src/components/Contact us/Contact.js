@@ -77,6 +77,7 @@ export default function Contact() {
       });
   };
   return (
+    // we have here multiples checks to change the display of the page depending if the user is logged in or not.
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}

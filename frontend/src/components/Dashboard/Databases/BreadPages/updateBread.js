@@ -20,8 +20,10 @@ const UpdateBread = () => {
   const [response, setResponse] = useState("");
 
   useEffect(() => {
+    // axios request on get method to access data from the selected api
     axios
       .get(`http://localhost:9001/custom/bread`)
+      // we fill our states with those data provided by the api
       .then((res) => {
         setBreads(res.data);
         setFilteredBread(res.data);
@@ -29,10 +31,13 @@ const UpdateBread = () => {
       .catch((res) => {
         setErr(res.data);
       });
+      // use the dependency to refresh the page everytime the reload states is updated
   }, [reload]);
 
   const handleChange = (e) => {
+    // destructuring, we extract the name and value from the "target" property of the event object "e"
     const { name, value } = e.target;
+    // we spread the initial values of inputs (wich we decide to have empty) and override the property "name" with the value (value being what's typed inside the input). 
     setInputs({ ...inputs, [name]: value });
     setErr("");
   };
@@ -48,10 +53,11 @@ const UpdateBread = () => {
     ) {
       return setErr("Please provide all informations");
     }
-
+// axios this time with the method post, because we want to inject those inputs in our collection to create a new document.
     axios
       // .post("http://yohannrousseau.3wa.io:9001",inputs)
       .post("http://localhost:9001/custom/bread/new", inputs, {
+        // not everyone is allowed to post in database, setting the headers with the token is a way to confirm who's posting.
         headers: token(),
       })
       .then((res) => {
@@ -72,31 +78,36 @@ const UpdateBread = () => {
   };
 
   const handleRemove = (id) => {
+    // miss-clicks happen, we make sure that click was volontary
     const confirmBox = window.confirm(
       "Do you really want to delete this bread ?"
     );
     if (confirmBox === true) {
+      // axios method delete, we use dynamicaly the id as a parameter to the function to target the correct element
       axios
         .delete(`http://localhost:9001/custom/bread/${id}`, {
           headers: token(),
         })
         .then((res) => {
-          setReload(!reload);
+          // quick filter method to set bread array to display all bread without the bread of the id we chose
           setBreads((allBreads) =>
-            allBreads.filter((bread) => bread.id !== id)
+          allBreads.filter((bread) => bread.id !== id)
           );
+          // we set reload to its opposite, just to handle the rendering of the page, wich means each time an element is removed, since we've put reload as a dependency of the useEffect, the page refresh with the new array of, in this case, "bread".
+          setReload(!reload);
         })
         .catch((res) => {
-          console.log(res.data);
           setErr("Not working");
         });
     }
   };
 
   const handleSearch = (value) => {
+    // inside the filteredBread array, we look for the value entered in the input, if its the same as the name of the bread, returns an Array of this value
     const searchResult = filteredBread.filter((bread) =>
       bread.name.toLowerCase().includes(value.toLowerCase())
     );
+    // we fill our state with the value entered (again everytime updated with each keychanges since we've put setBreads in a useEffect)
     setBreads(searchResult);
   };
 

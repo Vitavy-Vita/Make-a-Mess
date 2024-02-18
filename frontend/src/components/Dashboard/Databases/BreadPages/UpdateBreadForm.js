@@ -37,11 +37,13 @@ const UpdateBreadForm = () => {
       "Are you sure you wish to make these changes ?"
     );
     if (confirmBox === true) {
+      // axios method put will replace on the targeted element the inputs we've entered
       axios
         .put(`http://localhost:9001/custom/bread/${id}`, inputs, {
           headers: token(),
         })
         .then(() => {
+          // useNavigate from react-router-dom to redirect the user once the action has succeeded
           navigate(`/custom/bread/${id}`);
         })
         .catch((res) => {

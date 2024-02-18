@@ -57,6 +57,7 @@ export const getAllFavorites = async (req, res) => {
           .json({ message: "It seems you forgot a blank space somewhere !" });
       }
   
+    
       const favorite = new Favorites({
         user: req.userId,
         name,
@@ -65,16 +66,14 @@ export const getAllFavorites = async (req, res) => {
         carbs: parseFloat(carbs),
         fat: parseFloat(fat),
         calories: parseFloat(calories),
-        date: new Date().toLocaleDateString(),
+        date: new Date(),
       });
+
       await favorite.save();
       res.status(200).json({
         message: "Favorite saved",
       });
     } catch (error) {
-      console.log("====================================");
-      console.log(error);
-      console.log("====================================");
       res.status(500).json({
         message: "Unable to save to favorites",
       });

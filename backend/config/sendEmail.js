@@ -83,10 +83,6 @@ const EmailSender = ({ fullname, email, message }) => {
     <img src="cid:burger-logo">
     </article>
   </section>`,
-    // html: `<h1>New message received!</h1>
-    // <p>This message comes from ${fullname}</p>
-    // <p>from: ${email}</p>
-    // <p>Message: ${message}</p>`,
   };
   Email(options);
 };

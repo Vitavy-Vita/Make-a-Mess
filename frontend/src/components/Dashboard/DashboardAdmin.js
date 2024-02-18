@@ -26,7 +26,7 @@ const DashboardAdmin = () => {
   }, [reload]);
 
   const handleRemove = (id) => {
-    
+    // admin deleting their account would be a security breach, if their are no more admins the site wouldnt be able to run properly, we prevent that by making sure the admin cannot delete his own account
     if (auth.user.id === id) {
       return setErr("Admin arent allowed to delete their own account");
     }

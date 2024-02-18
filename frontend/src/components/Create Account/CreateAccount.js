@@ -65,7 +65,6 @@ export default function CreateAccount() {
         setResponse("Your account has been successfully created !");
       })
       .catch((res) => {
-        console.log(res);
         setErr(res.response.data.message);
       });
   };

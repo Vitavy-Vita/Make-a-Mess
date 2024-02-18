@@ -6,7 +6,7 @@ dotenv.config();
 
 export const isLogged = (req, res, next) => {
   let authToken = req.headers.authorization;
-
+// authorization token in the header being preceded by "Bearer", split with a blank space and go to the index [1] to target the token
   let token = authToken && authToken.split(" ")[1];
   if (!token) {
     res.status(401).json({

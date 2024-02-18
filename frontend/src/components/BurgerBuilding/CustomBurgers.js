@@ -15,7 +15,7 @@ const CustomBurgers = () => {
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
   const [togglePopUp, setTogglePopUp] = useState(false);
-  
+
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState();
   const [errName, setErrName] = useState();
@@ -37,6 +37,7 @@ const CustomBurgers = () => {
     calories: 0,
   });
 
+  // refresh the page when loading these datas
   useEffect(() => {
     calculateTotal();
     axios
@@ -54,11 +55,15 @@ const CustomBurgers = () => {
       });
   }, []);
 
+  // refresh the page when an ingredient is selected
   useEffect(() => {
     calculateTotal();
   }, [selectedIngredient]);
 
+  // function used to select any ingredient
+
   const handleClick = (i, name) => {
+    // each type of ingredient is inside an object from their respective databases, we target them by name dynamicaly and then we go inside that Array and chose the correct ingredient thanks to its index.
     let choosenIngredient;
     let choiceArray;
     switch (name) {
@@ -86,19 +91,21 @@ const CustomBurgers = () => {
       default:
         break;
     }
-
+    // quick function to make sure the user cannot choose the same ingredient multiple times: e.g. if the ingredient selected is the same id thats already selected then its a no-no.
     const isAlreadySelected = selectedIngredient.find(
       (ing) => ing._id === choosenIngredient._id
     );
-
+    // and we use that check right here - !isAlreadySelected = is not already selected
     if (!isAlreadySelected) {
+      // we spread those value and replace them by the values we're interested to use and store them in those states
       setFavoriteIngredients([...favoriteIngredients, choosenIngredient.name]);
       setSelectedIngredient([...selectedIngredient, choosenIngredient]);
 
+      // to make sure we're now showing only the choosen ingredient, we decide to use the filter method
       const newI = choiceArray.filter(
         (ing) => ing._id === choosenIngredient._id
       );
-
+      // once again dynamicaly with the name, storing the value in their respective states
       switch (name) {
         case "bread":
           setBreadIng(newI);
@@ -118,12 +125,14 @@ const CustomBurgers = () => {
         default:
           break;
       }
-
+      // call this function to render the total each time an ingredient is selected
       calculateTotal();
     }
   };
 
   const calculateTotal = () => {
+    // the reduce method is used to easily iterate through an object.
+    // it will take two parameters, the accumulator wich will contain the initial value, and the new value that we're in this case trying to add wich is macros (selectedIngredient), and then once updated returns the accumulator.
     const newTotalCombine = selectedIngredient.reduce(
       (acc, macros) => {
         acc.protein += macros.protein;
@@ -132,6 +141,7 @@ const CustomBurgers = () => {
         acc.calories += macros.calories;
         return acc;
       },
+      // this is the initial value
       {
         protein: 0,
         carbs: 0,
@@ -139,15 +149,17 @@ const CustomBurgers = () => {
         calories: 0,
       }
     );
-
+    // we then fill our state with the results
     setTotalMacros(newTotalCombine);
   };
 
   const handleDelete = (i, name) => {
+    // the filter method in this case, will create a new array and if the selectedIngredient has the same id, we choose to exclude it from the array
     const removeIng = selectedIngredient.filter((ing, index) => ing._id !== i);
 
     setSelectedIngredient(removeIng);
     setFavoriteIngredients(removeIng);
+    // dynamical rendition of the new Array
     switch (name) {
       case "bread":
         setBreadIng([...ingredients.bread]);
@@ -168,12 +180,15 @@ const CustomBurgers = () => {
       default:
         break;
     }
+    // call this to make sure the total is correctly update 
     calculateTotal();
   };
 
   const onClickToggle = () => {
+    // we make sure that if the user has not selected every ingredient, he is not allowed to save to its favorites.
+    // selectedIngredient being an array we make sure that as long as there is not 5 ingredients, its not possible to continue.
     if (selectedIngredient.length !== 5) {
-      return setErr("You need to select some ingredients first.");
+      return setErr("You need to select all ingredients first.");
     }
     setTogglePopUp(!togglePopUp);
   };
@@ -189,7 +204,10 @@ const CustomBurgers = () => {
     if (inputs.name.trim() === "") {
       return setErrName("Name format incorrect");
     }
-
+    // the user is able to add those burger and giving it a name to add to its favorites.
+    // we need the macros datas stored in totalMacros
+    // we need the name of each ingredients, being here stored in favoriteIngredient
+    // the field inputs comes from the pop-up and only contains the name
     axios
       .post(
         "http://localhost:9001/favorites",
@@ -251,6 +269,7 @@ const CustomBurgers = () => {
             height: breadToOpen ? "auto" : 0,
           }}
         >
+          {/* check that ingredient.bread exist and is stored in an array */}
           {ingredients.bread && Array.isArray(ingredients.bread) && (
             <motion.article
               initial={false}
