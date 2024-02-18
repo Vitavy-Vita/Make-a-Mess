@@ -28,8 +28,8 @@ We also have at your disposal a contact form directly linked to a working gmail 
 
 # Backend dependencies 
 	
--   `axios` : Handle HTTP requests
--   `react-router-dom` : Handle routing in react
+-   `axios` : Handle HTTP requests.
+-   `react-router-dom` : Handle routing in react.
 -   `sass` :  Allows a cleaner workflow of CSS files.
 -   `framer-motion` :  Used for animations in React.
 -   `materielUI` : Simplifies the process of building visually appealing and user-friendly interfaces in React.
