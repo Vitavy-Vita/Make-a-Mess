@@ -17,16 +17,18 @@ export default function Home() {
       }}
       className="home-page"
     >
-      <h1>Welcome to Make-a-Mess</h1>
-      <p>Tired of not knowing what you can or cannot eat ?</p>
       <section>
-        <h2>Let us help you!</h2>
-        <Button />
-        {!auth.user && (
-          <span>
-            Make sure to <NavLink to={"/login"}>login</NavLink> first!
-          </span>
-        )}
+        <h1>Welcome to Make-a-Mess</h1>
+        <p>Tired of not knowing what you can or cannot eat ?</p>
+        <article>
+          <h2>Let us help you!</h2>
+          <Button />
+          {!auth.user && (
+            <span>
+              Make sure to <NavLink to={"/login"}>login</NavLink> first!
+            </span>
+          )}
+        </article>
       </section>
     </motion.main>
   );

@@ -2,18 +2,19 @@
 
 .home-page {
   @include display-flex-column;
+  justify-content: start;
   background-image: url("../../assets/images/bg-burger.png");
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-position-x: -11em;
+  background-size: contain;
+  background-position-x: -12em;
   background-position-y: 3em;
   text-align: center;
+  height: 80vh;
+  section {
+    max-width: 350px;
+  }
   h2 {
     text-transform: none;
-  }
-  p {
-    width: 70vw;
-    margin-left: 2em;
   }
   span,
   a {
@@ -22,60 +23,41 @@
   a:hover {
     color: variables.$red;
   }
-  section {
-    @include display-flex;
-    flex-direction: column;
-    margin-top: 4em;
-    margin-bottom: 10em;
-    margin-left: 6em;
+  article {
+    @include display-flex-column;
   }
 
   @include tablet {
     background-position-x: -10em;
     background-position-y: 2em;
-    background-size:60vh;
-    height: 80vh;
-    h1 {
-      margin-top: 1em;
-      margin-left: 3em;
-    }
-    h2 {
-      text-transform: none;
-    }
-    p {
-      width: 50%;
-      font-size: 35px;
-      margin-left: 5.5em;
-    }
+    background-size: 50vh;
     section {
-      margin-left: 12em;
+      max-width: 600px;
+      margin-left: 5em;
     }
   }
   @include desktop {
     background-position-x: 0;
     background-position-y: 0;
-    background-size: 60vh;
-    height: 80vh;
+    section {
+      max-width: 1100px;
+      margin-left: 17em;
+    }
     h1 {
-      width: 37vw;
-      font-size: 7rem;
+      font-size: 7em;
       line-height: 100px;
-      margin-left: 5em;
     }
     h2 {
-      font-size: variables.$sub-title-size-desktop;
-      margin-left: 5em;
-      font-size: 5rem;
+      font-size: 4em;
     }
     p {
-      width: 30vw;
-      font-size: 3rem;
+      font-size: 2.5em;
       line-height: 50px;
-      margin-left: 10em;
     }
-    section {
+    article {
       flex-direction: row;
-      gap: 2em;
+      margin-top: 8em;
+      gap: 1em;
     }
   }
 }

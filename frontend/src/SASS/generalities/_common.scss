@@ -3,11 +3,12 @@
 html {
   box-sizing: border-box;
   margin: 0 auto;
-  height: 100vh;
-  max-width: 100%;
+  padding: 0;
+  height: 100%;
   overflow-x: hidden;
 }
 body {
+  height: 100%;
   position: relative;
   background-color: variables.$gray;
 }
@@ -24,12 +25,28 @@ p,
 span {
   @include text-style;
 }
-input,
-textarea {
-  @include input-style;
-}
-textarea::placeholder {
-  color: variables.$red;
+
+form {
+  @include display-flex;
+  flex-direction: column;
+  padding: 2em 0;
+
+  input,
+  textarea {
+    @include input-style;
+    margin-top: 0.5em;
+    width: 60%;
+  }
+  input::placeholder {
+    color: variables.$red;
+    font-family: variables.$text-font;
+  }
+  button {
+    margin: 2em;
+  }
+  button:hover {
+    @include button-style-hover;
+  }
 }
 @include tablet {
   h1 {

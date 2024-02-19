@@ -37,7 +37,7 @@ export default function Login() {
           email: "",
         });
       })
-      .catch((res) => {        
+      .catch((res) => {
         setErr(res.response.data.message);
       });
   };
@@ -65,17 +65,14 @@ export default function Login() {
   };
   return (
     <motion.main
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        type: "spring",
-        stiffness: 300,
-        mass: 7,
-        damping: 50,
+        duration: 1,
       }}
     >
       <section className="center-container">
-        <h2>Please login to your account:</h2>
+        <h2>Please login to your account</h2>
         <article className="form-container">
           <form onSubmit={handleSubmit}>
             <input
@@ -98,11 +95,7 @@ export default function Login() {
             />
             <aside>
               <NavLink to={"/create-account"}>New account</NavLink>
-              <small
-                onClick={handleEmailRecovery}
-              >
-                Forgot password ?
-              </small>
+              <small onClick={handleEmailRecovery}>Forgot password ?</small>
             </aside>
             {!recovery.inputs.email && <span>{errEmail}</span>}
             {err && <span>{err}</span>}

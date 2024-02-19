@@ -107,7 +107,7 @@
   color: variables.$red;
 }
 @mixin input-style-desktop {
-  font-size: variables.$text-size-desktop;
+  font-size: variables.$text-size-mobile;
   font-family: variables.$text-font;
   padding: 1.5em 3em;
   border: 2px solid variables.$red;
