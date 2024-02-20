@@ -68,17 +68,14 @@ const UpdateProfil = () => {
   };
   return (
     <motion.main
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        type: "spring",
-        stiffness: 300,
-        mass: 7,
-        damping: 50,
+        duration: 1,
       }}
       className="center-container"
     >
-      <h2>Update your account:</h2>
+      <h2>Update your account</h2>
       <section className="form-container">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input
@@ -109,16 +106,17 @@ const UpdateProfil = () => {
           />
 
           <input type="file" name="image" id="image" onChange={handleChange} />
-          <NavLink to={`/send/recovery-email/reset/${inputs.email}`}>Reset password</NavLink>
+          <NavLink to={`/send/recovery-email/reset/${inputs.email}`}>
+            Reset password
+          </NavLink>
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
 
           <button>Validate</button>
-
         </form>
-          <NavLink to={"/my-profil"}>
-            <button>Go Back</button>
-          </NavLink>
+        <NavLink to={"/my-profil"}>
+          <button>Go Back</button>
+        </NavLink>
       </section>
     </motion.main>
   );

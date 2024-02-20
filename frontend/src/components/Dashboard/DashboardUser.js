@@ -91,17 +91,14 @@ const UpdateProfil = () => {
   };
   return (
     <motion.main
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        mass: 7,
-        damping: 50,
-      }}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{
+      duration: 1,
+    }}
       className="center-container"
     >
-      <h2>Update your account:</h2>
+      <h2>Update your account</h2>
       <section className="form-container">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input
@@ -137,10 +134,10 @@ const UpdateProfil = () => {
           </NavLink>
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
-        <article>
-          <button>Update</button>
-          <button onClick={() => handleDelete(auth.user.id)}>Delete</button>
-        </article>
+          <article>
+            <button>Update</button>
+            <button onClick={() => handleDelete(auth.user.id)}>Delete</button>
+          </article>
         </form>
         <NavLink to={"/my-profil"}>
           <button>Go Back</button>
