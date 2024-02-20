@@ -74,19 +74,16 @@ const OTPInput = () => {
   };
   return (
     <motion.main
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        mass: 7,
-        damping: 50,
-      }}
-      className="otp-wrapper"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{
+      duration: 1,
+    }}
+      className="center-container"
     >
       <h2>Email verification</h2>
 
-      <section className="recovery-form-container">
+      <section className="form-container">
         <form>
           <p>We sent a One-Time-Password to : {recovery.inputs.email}</p>
           <article>
@@ -106,7 +103,7 @@ const OTPInput = () => {
             ))}
           </article>
           <article>
-            <small>Didn't receive code ?</small>
+            <p>Didn't receive code ?</p>
             {disable ? (
               <small>Resend code in {timerCount}</small>
             ) : (

@@ -26,9 +26,9 @@ export default function Contact() {
   const [timerCount, setTimerCount] = useState(300);
 
   // To stop the user from spamming messages, we set an interval of 5min on the "Send" button display once its pressed.
-  // To do that we set an interval that will execute every 1sec in wich we declare a callback function that executes theses checks:
+  // To do that we use setInterval every 1sec with a callback function that executes theses checks:
   // when the timer reaches below 1 the interval stops "counting" and clears itself, while also setting the disable state back to false (e.g: the button reappears).
-  // we also make sure the counter cannont go below 0.
+  // we also make sure the counter cant go below 0.
   // finaly if none of the above happens, it just counts down from the value stated in the timerCount until it reaches one condition.
 
   const disableButton = () => {

@@ -11,7 +11,6 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const { email } = useParams();
 
-
   const handlePwdChange = (e) => {
     e.preventDefault();
 
@@ -36,40 +35,36 @@ const ResetPassword = () => {
 
   return (
     <motion.main
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        mass: 7,
-        damping: 50,
-      }}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{
+      duration: 1,
+    }}
+      className="center-container"
     >
-      <section className="center-container">
-        <h2>Reset your password:</h2>
-        <article className="form-container">
-          <form onSubmit={handlePwdChange}>
-            <input
-              name="password"
-              type="password"
-              placeholder="Password :"
-              size="25"
-              required
-              onChange={recovery.handleChange}
-            />
-            <input
-              name="passwordConfirm"
-              type="password"
-              placeholder="Password confirmation:"
-              size="25"
-              required
-              onChange={recovery.handleChange}
-            />
-            {err && <span>{err}</span>}
-            <button className={"button-form"}>Validate</button>
-          </form>
-        </article>
-      </section>
+      <h2>Reset your password</h2>
+      <article className="form-container">
+        <form onSubmit={handlePwdChange}>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password :"
+            size="25"
+            required
+            onChange={recovery.handleChange}
+          />
+          <input
+            name="passwordConfirm"
+            type="password"
+            placeholder="Password confirmation:"
+            size="25"
+            required
+            onChange={recovery.handleChange}
+          />
+          {err && <span>{err}</span>}
+          <button className={"button-form"}>Validate</button>
+        </form>
+      </article>
     </motion.main>
   );
 };

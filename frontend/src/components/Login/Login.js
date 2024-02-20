@@ -70,39 +70,38 @@ export default function Login() {
       transition={{
         duration: 1,
       }}
+      className="center-container"
     >
-      <section className="center-container">
-        <h2>Please login to your account</h2>
-        <article className="form-container">
-          <form onSubmit={handleSubmit}>
-            <input
-              value={recovery.inputs.email}
-              name="email"
-              type="email"
-              placeholder="Email:"
-              size="25"
-              required
-              onChange={recovery.handleChange}
-            />
+      <h2>Please login to your account</h2>
+      <article className="form-container">
+        <form onSubmit={handleSubmit}>
+          <input
+            value={recovery.inputs.email}
+            name="email"
+            type="email"
+            placeholder="Email:"
+            size="25"
+            required
+            onChange={recovery.handleChange}
+          />
 
-            <input
-              name="password"
-              type="password"
-              placeholder="Password:"
-              size="25"
-              required
-              onChange={recovery.handleChange}
-            />
-            <aside>
-              <NavLink to={"/create-account"}>New account</NavLink>
-              <small onClick={handleEmailRecovery}>Forgot password ?</small>
-            </aside>
-            {!recovery.inputs.email && <span>{errEmail}</span>}
-            {err && <span>{err}</span>}
-            <button className={"button-form"}>Validate</button>
-          </form>
-        </article>
-      </section>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password:"
+            size="25"
+            required
+            onChange={recovery.handleChange}
+          />
+          <aside>
+            <NavLink to={"/create-account"}>New account</NavLink>
+            <small onClick={handleEmailRecovery}>Forgot password ?</small>
+          </aside>
+          {!recovery.inputs.email && <span>{errEmail}</span>}
+          {err && <span>{err}</span>}
+          <button className={"button-form"}>Validate</button>
+        </form>
+      </article>
     </motion.main>
   );
 }
