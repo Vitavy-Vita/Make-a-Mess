@@ -90,21 +90,21 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// Pre-hook to make sure that when the user change its password it stays crypted
-// with the .pre hook findByIdAndUpdate doesnt exist on its own but is include in findOneAndUpdate; 
-userSchema.pre("findOneAndUpdate", async function (next) {
-  try {
-    // find one user, here getQuery() returns a query object, in Mongoose that object contains key-values in pairs that we can now access.
-    const userToUpdate = await User.findOne(this.getQuery());
-    const salt = await bcrypt.genSalt(10);
-    let newPassword = await bcrypt.hash(userToUpdate.password, salt);
-    // we decide here to modify this specific key-value pair to replace old paswword with newPassword
-    this.set({ password: newPassword });
-    next();
-  } catch (error) {
-    next(error);
-  }
-});
+// // Pre-hook to make sure that when the user change its password it stays crypted
+// // with the .pre hook findByIdAndUpdate doesnt exist on its own but is include in findOneAndUpdate; 
+// userSchema.pre("findOneAndUpdate", async function (next) {
+//   try {
+//     // find one user, here getQuery() returns a query object, in Mongoose that object contains key-values in pairs that we can now access.
+//     const userToUpdate = await User.findOne(this.getQuery());
+//     const salt = await bcrypt.genSalt(10);
+//     let newPassword = await bcrypt.hash(userToUpdate.password, salt);
+//     // we decide here to modify this specific key-value pair to replace old paswword with newPassword
+//     this.set({ password: newPassword });
+//     next();
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 const User = mongoose.model("User", userSchema);
 

@@ -46,7 +46,7 @@ const ResetPassword = () => {
       }}
     >
       <section className="center-container">
-        <h1>Reset your password:</h1>
+        <h2>Reset your password:</h2>
         <article className="form-container">
           <form onSubmit={handlePwdChange}>
             <input

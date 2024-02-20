@@ -222,7 +222,8 @@ export const updateUser = async (req, res) => {
       /[a-z0-9!#$%&'*+/=?^_`{|}~\s-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const checkTel = /^06\d{8}$/;
 
-    const { name, tel, email } = req.body;
+    const { name, tel, email, role } = req.body;
+   
 
     if (!checkEmail.test(email)) {
       return res.status(401).json({
@@ -246,17 +247,17 @@ export const updateUser = async (req, res) => {
       });
     }
 
-    const user = req.body;
     let updateUser;
-    if (user.role) {
+    if (role) {
       updateUser = {
-        role: user.role,
+        role: role,
       };
     } else if (!req.file) {
       updateUser = {
-        name: user.name,
-        tel: user.tel,
-        email: user.email,
+        name: name,
+        tel: tel,
+        email: email,
+
       };
     } else {
       updateUser = {
@@ -264,9 +265,10 @@ export const updateUser = async (req, res) => {
           src: req.file.filename,
           alt: req.file.originalname,
         },
-        name: user.name,
-        tel: user.tel,
-        email: user.email,
+        name: name,
+        tel: tel,
+        email: email,
+
       };
     }
 
@@ -289,12 +291,13 @@ export const updateUser = async (req, res) => {
       }
     }
 
-    await User.findByIdAndUpdate(req.params.id, updateUser);
+    await User.findOneAndUpdate({ _id: req.params.id }, updateUser);
 
     res.status(201).json({
       message: "Updated successfully!",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       message: "Could not update",
     });
