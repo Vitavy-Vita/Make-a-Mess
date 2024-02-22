@@ -6,15 +6,16 @@
   border-radius: 15px;
   margin-bottom: 0.5em;
   padding: 0 1em;
-  p {
-    color: variables.$brown;
-  }
+
   h3 {
-    @include sub-title-style;
+    @include text-style;
     cursor: pointer;
+    text-align: start;
+    font-size: 1em;
   }
   .ingredient-list {
     @include text-style;
+    font-size: 1em;
     list-style: none;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -25,19 +26,13 @@
     }
   }
 }
-.ingredient-total {
-  @include display-flex;
-  flex-direction: column;
-  border: 2px solid variables.$red;
-  border-radius: 15px;
-  margin: 2em 0.5em;
-  padding: 1em;
-  .ingredient-list {
-    @include sub-title-style;
-    text-align: start;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+.ingredient-card:hover {
+  background-color: variables.$red;
+  border: 2px solid variables.$brown;
+
+  h3,
+  ul {
+    color: variables.$gray;
   }
 }
+

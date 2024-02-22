@@ -1,6 +1,5 @@
 @use "../generalities/variables";
 
-
 .custom-main {
   @include display-flex;
   flex-direction: column;
@@ -8,7 +7,7 @@
 .cross-minus {
   position: absolute;
   top: 12px;
-  left: 70px;
+  left: 0px;
   background-color: variables.$brown;
   width: 20px;
   height: 3px;
@@ -16,15 +15,18 @@
 .cross-plus {
   position: absolute;
   top: 4px;
-  left: 78px;
+  left: 8px;
   background-color: variables.$brown;
   width: 3px;
   height: 20px;
 }
 .custom-container {
   text-align: center;
+  width: 380px;
+  margin: auto;
+
   h2 {
-    @include sub-title-style;
+    font-size: variables.$text-size-mobile;
     position: relative;
     cursor: pointer;
   }
@@ -35,42 +37,52 @@
   .emoji {
     position: absolute;
     top: -3px;
-    right: 50px;
+    right: 0px;
   }
-}
-.ingredient-total {
-  h2 {
-    @include sub-title-style;
-  }
-  span {
-    color: variables.$brown;
-  }
-  input {
-    @include input-style;
-    margin-top: 0.5em;
-    width: 60%;
-  }
-}
-.custom-burger-animation {
-  display: none;
 }
 
+.ingredient-total {
+  @include display-flex-column;
+  border: 2px solid variables.$red;
+  border-radius: 15px;
+  margin: 2em 0.5em;
+  padding: 1em;
+  h2, span {
+    margin: 1em;
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .ingredient-list {
+    @include sub-title-style;
+    font-size: 1.5em;
+    text-align: start;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+ 
+  button {
+    margin: 1em;
+  }
+}
 .name-pop-up-visible {
   z-index: 2;
   opacity: 1;
   position: absolute;
   background-color: variables.$gray;
-  bottom: -270px;
-  height: 27vh
+  top: 50px;
+  height: 120vh;
 }
 
 .name-pop-up-hidden {
   z-index: -1;
   opacity: 0;
+  transition: ease-in 0.2s;
 }
 
 @media screen and (min-width: 481px) and (max-width: 990px) {
-  .name-pop-up-visible{
+  .name-pop-up-visible {
     bottom: -309px;
     height: 28vh;
     width: 60%;
@@ -91,21 +103,9 @@
     bottom: 0;
     right: 2vw;
   }
-  .custom-burger-animation {
-    display: block;
-    position: fixed;
-    top: 20vh;
-    left: 42vw;
-    height: 80vh;
-    width: 30vw;
-    background-image: url("../../assets/images/custom-burger.png");
-    background-size: center;
-    background-repeat: no-repeat;
-  }
-  .name-pop-up-visible{
-    right:49px;
+  .name-pop-up-visible {
+    right: 49px;
     height: 30vh;
     width: 25%;
   }
-  
 }

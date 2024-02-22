@@ -559,7 +559,7 @@ const CustomBurgers = () => {
           togglePopUp ? "name-pop-up-visible" : "name-pop-up-hidden"
         }`}
       >
-        <h2>What dont you give it a name !</h2>
+        <h2>Why dont you give it a name !</h2>
 
         <input
           type="text"
