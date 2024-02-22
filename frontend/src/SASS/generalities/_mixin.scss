@@ -54,7 +54,7 @@
 @mixin nav-option {
   font-family: variables.$text-font;
   font-style: variables.$title-font;
-  font-size: variables.$sub-title-size-mobile;
+  font-size: variables.$text-size-mobile;
   color: variables.$white;
   line-height: 50px;
   display: flex;

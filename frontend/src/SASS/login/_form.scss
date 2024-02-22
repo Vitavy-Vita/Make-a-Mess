@@ -16,7 +16,12 @@
       rgba(221, 130, 111, 1) 0%,
       rgba(200, 90, 68, 1) 100%
     );
-
+    label {
+      @include text-style;
+      color: variables.$gray;
+      margin-top: 1em;
+      
+    }
     article {
       @include display-flex;
       margin: 0 1em;

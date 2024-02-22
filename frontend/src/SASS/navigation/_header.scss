@@ -189,19 +189,12 @@ nav {
   }
   .nav-tablet-desktop {
     margin: 0;
-    margin-left: 20em;
+    margin-left: 13em;
     padding: 0;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     width: 55%;
-    .nav-option {
-      font-size: 30px;
-      border-radius: 15%;
-      margin: 1em;
-      text-decoration: none;
-      list-style: none;
-    }
   }
 }
 

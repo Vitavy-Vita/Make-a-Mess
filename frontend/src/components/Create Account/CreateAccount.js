@@ -130,6 +130,7 @@ export default function CreateAccount() {
             onChange={handleChange}
             required
           />
+          <label htmlFor="image">Add a profil picture</label>
           <input type="file" name="image" id="image" onChange={handleChange} />
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
