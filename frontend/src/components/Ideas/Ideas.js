@@ -100,12 +100,17 @@ export default function Ideas() {
         <h2>Here is a few pre-made</h2>
         <h1 className="burger">Burgers !!</h1>
       </section>
+      {auth.user && err && <span>{err}</span>}
       <motion.section
         ref={carousel}
         className="carousel"
         whileTap={{ cursor: "grabbing" }}
       >
-        <motion.div {...variants} className="burger-gallery-container">
+        <motion.div
+          {...variants}
+          className="burger-gallery-container"
+          whileDrag={() => setErr("")}
+        >
           {burgers.map((oneBurger, i) => (
             <article className={"burger-card"} key={i}>
               <figure
@@ -150,7 +155,7 @@ export default function Ideas() {
                   <li>{oneBurger.calories}</li>
                 </ul>
               </aside>
-              {auth.user && err && <span>{err}</span>}
+
               {auth.user && (
                 <button onClick={() => addToFavorites(oneBurger)}>
                   Add to Favorites

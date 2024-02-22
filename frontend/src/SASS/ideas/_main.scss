@@ -30,6 +30,13 @@
   height: 65vh;
   margin: 0 1em;
 }
+.ideas-main {
+  span {
+    position: absolute;
+    margin-top: 1em;
+    top: 32%;
+  }
+}
 @include tablet {
   .main-title {
     margin: 0;
