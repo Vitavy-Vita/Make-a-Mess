@@ -14,7 +14,7 @@ const CustomBurgers = () => {
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
-  const [togglePopUp, setTogglePopUp] = useState(false);
+
 
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState();
@@ -184,25 +184,21 @@ const CustomBurgers = () => {
     calculateTotal();
   };
 
-  const onClickToggle = () => {
-    // we make sure that if the user has not selected every ingredient, he is not allowed to save to its favorites.
-    // selectedIngredient being an array we make sure that as long as there is not 5 ingredients, its not possible to continue.
-    if (selectedIngredient.length !== 5) {
-      return setErr("You need to select all ingredients first.");
-    }
-    setTogglePopUp(!togglePopUp);
-  };
-
   const handleChange = (e) => {
     setInputs({ name: e.target.value });
     setErr("");
     setErrName("");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    // we make sure that if the user has not selected every ingredient, he is not allowed to save to its favorites.
+    // selectedIngredient being an array we make sure that as long as there is not 5 ingredients, its not possible to continue.
+    if (selectedIngredient.length !== 5) {
+      return setErr("You need to select all ingredients first.");
+    } 
     if (inputs.name.trim() === "") {
-      return setErrName("Name format incorrect");
+      return setErr("Name format incorrect");
     }
     // the user is able to add those burger and giving it a name to add to its favorites.
     // we need the macros datas stored in totalMacros
@@ -218,11 +214,10 @@ const CustomBurgers = () => {
       )
       .then((res) => {
         navigate("/my-profil");
-        setTogglePopUp(!togglePopUp);
       })
       .catch((res) => {
         setErr(res.response.data.message);
-        setErrName(res.response.data.message);
+
       });
   };
 
@@ -566,10 +561,7 @@ const CustomBurgers = () => {
           <li>Calories:</li>
           <li>{totalMacros.calories}</li>
         </ul>
-        {err && <span>{err}</span>}
-        <article
-          className={``}
-        >
+        <article className={``}>
           <h2>Why dont you give it a name !</h2>
 
           <input
@@ -578,10 +570,10 @@ const CustomBurgers = () => {
             className="inputs"
             onChange={handleChange}
           />
-          {errName && <span>{errName}</span>}
-
+          {err && <span>{err}</span>}
+          {/* {errName && <span>{errName}</span>} */}
         </article>
-        <button onClick={onClickToggle}>Add to favorites</button>
+        <button onClick={handleSubmit}>Add to favorites</button>
       </section>
     </motion.main>
   );

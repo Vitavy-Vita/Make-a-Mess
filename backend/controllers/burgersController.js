@@ -47,7 +47,7 @@ export const addBurger = async (req, res) => {
     ) {
       return res
         .status(401)
-        .json({ message: "It seems you forgot a blank space somewhere !" });
+        .json({ message: "Make sure to select all ingredients !" });
     }
     let burger;
     if (!req.file) {

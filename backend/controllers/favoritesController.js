@@ -54,7 +54,7 @@ export const getAllFavorites = async (req, res) => {
       if (protein <= 0 || carbs <= 0 || fat <= 0 || calories <= 0) {
         return res
           .status(401)
-          .json({ message: "It seems you forgot a blank space somewhere !" });
+          .json({ message: "Make sure to select all ingredients !" });
       }
   
     

@@ -94,7 +94,7 @@
 }
 @include desktop {
   .custom-container {
-    padding:0 2em;
+    padding: 0 2em;
     width: 600px;
     overflow: scroll;
     scrollbar-color: variables.$red variables.$light-red;
@@ -107,13 +107,22 @@
     span {
       font-size: 2em;
     }
-    h2{
+    h2 {
       margin: 2em 0;
     }
   }
   .ingredient-total {
     position: fixed;
-    bottom: 0;
+    top: 27vh;
     right: 2vw;
+    article{
+      @include display-flex-column;
+    }
+    input{
+      padding: 1em;
+      font-size: 100%;
+      text-align: center;
+      text-transform: uppercase;
+    }
   }
 }
