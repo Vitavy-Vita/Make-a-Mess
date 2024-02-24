@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import token from "../../../../context/token";
 import { motion } from "framer-motion";
 
-const UpdateBurgerGallery = () => {
+const UpdatePreMade = () => {
   const [preMade, setPreMade] = useState([]);
   const [filteredPreMade, setFilteredPreMade] = useState([]);
   const [reload, setReload] = useState(false);
@@ -226,4 +226,4 @@ const UpdateBurgerGallery = () => {
   );
 };
 
-export default UpdateBurgerGallery;
+export default UpdatePreMade;

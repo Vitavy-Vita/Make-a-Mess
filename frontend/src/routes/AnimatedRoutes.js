@@ -7,7 +7,7 @@ import Ideas from "../components/Ideas/Ideas";
 import About from "../components/About us/About";
 import Contact from "../components/Contact us/Contact";
 import DashboardAdmin from "../components/Dashboard/DashboardAdmin";
-import UpdateBurgerGallery from "../components/Dashboard/Databases/PreMadePages/UpdatePreMade";
+import UpdatePreMade from "../components/Dashboard/Databases/PreMadePages/UpdatePreMade";
 import UpdateBread from "../components/Dashboard/Databases/BreadPages/UpdateBread";
 import UpdateCheese from "../components/Dashboard/Databases/CheesePages/UpdateCheese";
 import UpdateMeat from "../components/Dashboard/Databases/MeatPages/UpdateMeat";
@@ -65,7 +65,7 @@ export default function AnimatedRoutes() {
           <Route path="/my-profil" element={<ProfilPage />} />
         </Route>
         <Route path="/" element={<PrivateRoutes roles={["admin"]} />}>
-          <Route path="/burgers/new" element={<UpdateBurgerGallery />} />
+          <Route path="/burgers/new" element={<UpdatePreMade />} />
           <Route path="/burgers/:id" element={<PreMadeCard />} />
           <Route path="/burgers/:id/update" element={<UpdatePreMadeForm />} />
 
