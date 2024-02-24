@@ -24,7 +24,9 @@
   text-align: center;
   width: 380px;
   margin: auto;
-
+  .delete-icon {
+    cursor: pointer;
+  }
   h2 {
     font-size: variables.$text-size-mobile;
     position: relative;
@@ -47,7 +49,8 @@
   border-radius: 15px;
   margin: 2em 0.5em;
   padding: 1em;
-  h2, span {
+  h2,
+  span {
     margin: 1em;
     font-size: 1.5em;
     text-align: center;
@@ -61,35 +64,38 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
   }
- 
+
   button {
     margin: 1em;
   }
 }
-.name-pop-up-visible {
-  z-index: 2;
-  opacity: 1;
-  position: absolute;
-  background-color: variables.$gray;
-  top: 50px;
-  height: 120vh;
-}
 
-.name-pop-up-hidden {
-  z-index: -1;
-  opacity: 0;
-  transition: ease-in 0.2s;
-}
-
-@media screen and (min-width: 481px) and (max-width: 990px) {
-  .name-pop-up-visible {
-    bottom: -309px;
-    height: 28vh;
-    width: 60%;
+@include tablet {
+  .custom-container {
+    width: 500px;
+    h2,
+    span {
+      font-size: 2em;
+    }
+    h2 {
+      margin: 1.5em;
+    }
+    .emoji {
+      top: -5px;
+      left: 500px;
+    }
+    .cross-plus {
+      left: -130px;
+    }
+    .cross-minus {
+      left: -138px;
+    }
   }
 }
-@media screen and (min-width: 991px) {
+@include desktop {
   .custom-container {
+    padding:0 2em;
+    width: 600px;
     overflow: scroll;
     scrollbar-color: variables.$red variables.$light-red;
     scrollbar-width: thin;
@@ -97,15 +103,17 @@
     position: fixed;
     top: 25vh;
     left: 2vw;
+    h2,
+    span {
+      font-size: 2em;
+    }
+    h2{
+      margin: 2em 0;
+    }
   }
   .ingredient-total {
     position: fixed;
     bottom: 0;
     right: 2vw;
-  }
-  .name-pop-up-visible {
-    right: 49px;
-    height: 30vh;
-    width: 25%;
   }
 }

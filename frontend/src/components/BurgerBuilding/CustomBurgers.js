@@ -180,7 +180,7 @@ const CustomBurgers = () => {
       default:
         break;
     }
-    // call this to make sure the total is correctly update 
+    // call this to make sure the total is correctly update
     calculateTotal();
   };
 
@@ -287,7 +287,10 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(ingredient._id, "bread")}>
+                    <li
+                      onClick={() => handleDelete(ingredient._id, "bread")}
+                      className="delete-icon"
+                    >
                       ❌
                     </li>
                     <li>Fat:</li>
@@ -346,7 +349,10 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(ingredient._id, "meat")}>
+                    <li
+                      onClick={() => handleDelete(ingredient._id, "meat")}
+                      className="delete-icon"
+                    >
                       ❌
                     </li>
                     <li>Fat:</li>
@@ -405,7 +411,10 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(ingredient._id, "cheese")}>
+                    <li
+                      onClick={() => handleDelete(ingredient._id, "cheese")}
+                      className="delete-icon"
+                    >
                       ❌
                     </li>
                     <li>Fat:</li>
@@ -464,7 +473,10 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(ingredient._id, "topping")}>
+                    <li
+                      onClick={() => handleDelete(ingredient._id, "topping")}
+                      className="delete-icon"
+                    >
                       ❌
                     </li>
                     <li>Fat:</li>
@@ -524,7 +536,10 @@ const CustomBurgers = () => {
                     <li>{ingredient.protein}</li>
                     <li>Carbs:</li>
                     <li>{ingredient.carbs}</li>
-                    <li onClick={() => handleDelete(ingredient._id, "sauce")}>
+                    <li
+                      onClick={() => handleDelete(ingredient._id, "sauce")}
+                      className="delete-icon"
+                    >
                       ❌
                     </li>
                     <li>Fat:</li>
@@ -552,24 +567,21 @@ const CustomBurgers = () => {
           <li>{totalMacros.calories}</li>
         </ul>
         {err && <span>{err}</span>}
+        <article
+          className={``}
+        >
+          <h2>Why dont you give it a name !</h2>
+
+          <input
+            type="text"
+            name="name"
+            className="inputs"
+            onChange={handleChange}
+          />
+          {errName && <span>{errName}</span>}
+
+        </article>
         <button onClick={onClickToggle}>Add to favorites</button>
-      </section>
-      <section
-        className={`ingredient-total ${
-          togglePopUp ? "name-pop-up-visible" : "name-pop-up-hidden"
-        }`}
-      >
-        <h2>Why dont you give it a name !</h2>
-
-        <input
-          type="text"
-          name="name"
-          className="inputs"
-          onChange={handleChange}
-        />
-        {errName && <span>{errName}</span>}
-
-        <button onClick={handleSubmit}>Add to favorites</button>
       </section>
     </motion.main>
   );
