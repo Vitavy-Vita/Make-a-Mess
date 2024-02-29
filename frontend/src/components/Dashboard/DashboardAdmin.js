@@ -23,6 +23,7 @@ const DashboardAdmin = () => {
       .catch((err) => {
         setErr("Cannot access data");
       });
+      // we use a "fake" state to force a reload to the page each time we use the delete function to keep the updated array rendered
   }, [reload]);
 
   const handleRemove = (id) => {
