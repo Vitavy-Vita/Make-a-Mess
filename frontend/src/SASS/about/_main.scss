@@ -87,6 +87,9 @@
     .article-section-title {
       color: variables.$gray;
     }
+    a:hover {
+      color: variables.$light-red;
+    }
     li {
       font-size: variables.$text-size-desktop;
       line-height: 36px;
