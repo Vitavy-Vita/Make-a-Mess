@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import token from "../../context/token";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -14,7 +14,6 @@ const CustomBurgers = () => {
   const [cheeseToOpen, setCheeseToOpen] = useState(false);
   const [sauceToOpen, setSauceToOpen] = useState(false);
   const [toppingToOpen, setToppingToOpen] = useState(false);
-
 
   const [ingredients, setIngredients] = useState([]);
   const [err, setErr] = useState();
@@ -196,7 +195,7 @@ const CustomBurgers = () => {
     // selectedIngredient being an array we make sure that as long as there is not 5 ingredients, its not possible to continue.
     if (selectedIngredient.length !== 5) {
       return setErr("You need to select all ingredients first.");
-    } 
+    }
     if (inputs.name.trim() === "") {
       return setErr("Name format incorrect");
     }
@@ -217,7 +216,6 @@ const CustomBurgers = () => {
       })
       .catch((res) => {
         setErr(res.response.data.message);
-
       });
   };
 
@@ -548,7 +546,20 @@ const CustomBurgers = () => {
           )}
         </motion.section>
       </section>
-      <section className="custom-burger-animation"></section>
+      <motion.section
+        initial={{
+          y: 0,
+        }}
+        animate={{
+          y: [100, -200, 0, -200, 100, 100],
+          x: [100, -200, 0, 200, -200, 100],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 5,
+        }}
+        className="custom-burger-animation"
+      ></motion.section>
       <section className="ingredient-total">
         <h2>Great burger you just made !</h2>
         <ul className="ingredient-list">

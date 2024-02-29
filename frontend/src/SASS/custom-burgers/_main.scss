@@ -93,6 +93,11 @@
   }
 }
 @include desktop {
+  .custom-main {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5em;
+  }
   .custom-container {
     padding: 0 2em;
     width: 600px;
@@ -100,9 +105,6 @@
     scrollbar-color: variables.$red variables.$light-red;
     scrollbar-width: thin;
     height: 60vh;
-    position: fixed;
-    top: 25vh;
-    left: 2vw;
     h2,
     span {
       font-size: 2em;
@@ -111,14 +113,18 @@
       margin: 2em 0;
     }
   }
+  .custom-burger-animation {
+    background-image: url("../../assets/images/custom-burger.png");
+    background-position: center;
+    background-size: cover;
+    width: 500px;
+    height: 600px;
+  }
   .ingredient-total {
-    position: fixed;
-    top: 27vh;
-    right: 2vw;
-    article{
+    article {
       @include display-flex-column;
     }
-    input{
+    input {
       padding: 1em;
       font-size: 100%;
       text-align: center;
