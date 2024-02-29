@@ -1,5 +1,5 @@
 import CreateAccount from "../components/Create Account/CreateAccount";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Home from "../components/HomePage/Home";
 import Login from "../components/Login/Login";
@@ -27,7 +27,6 @@ import UpdateMeatForm from "../components/Dashboard/Databases/MeatPages/UpdateMe
 import UpdateSauceForm from "../components/Dashboard/Databases/SaucePages/UpdateSauceForm";
 import UpdateToppingForm from "../components/Dashboard/Databases/ToppingPages/UpdateToppingForm";
 import UpdatePreMadeForm from "../components/Dashboard/Databases/PreMadePages/UpdatePreMadeForm";
-
 import ProfilPage from "../components/Profil/ProfilPage";
 import DashboardUser from "../components/Dashboard/DashboardUser";
 import OTPInput from "../components/Login/OTPInput";
@@ -37,11 +36,12 @@ import NotFoundRoute from "./NotFoundRoute";
 import UpdateProfil from "../components/Profil/UpdateProfil";
 
 export default function AnimatedRoutes() {
-  const location = useLocation();
-
   return (
     <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
+      <Routes >
+        /* -------------------------------------------------------------------------- */
+        /*                                   VISITOR                                  */
+        /* -------------------------------------------------------------------------- */
         <Route path="/" element={<Home />} />
         <Route path="/ideas" element={<Ideas />} />
         <Route path="/about" element={<About />} />
@@ -56,7 +56,9 @@ export default function AnimatedRoutes() {
           element={<ResetPassword />}
         />
         <Route path="*" element={<NotFoundRoute />} />
-
+        /* -------------------------------------------------------------------------- */
+        /*                                    USER                                    */
+        /* -------------------------------------------------------------------------- */
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />
           <Route path="/settings/admin" element={<DashboardAdmin />} />
@@ -64,6 +66,9 @@ export default function AnimatedRoutes() {
           <Route path="/my-profil/update" element={<UpdateProfil />} />
           <Route path="/my-profil" element={<ProfilPage />} />
         </Route>
+        /* -------------------------------------------------------------------------- */
+        /*                                    ADMIN                                   */
+        /* -------------------------------------------------------------------------- */
         <Route path="/" element={<PrivateRoutes roles={["admin"]} />}>
           <Route path="/burgers/new" element={<UpdatePreMade />} />
           <Route path="/burgers/:id" element={<PreMadeCard />} />

@@ -17,10 +17,8 @@ export default function MobileConnect() {
     navigate("/");
   };
   const onClickSlide = function () {
-    if (!toggleConnect) {
-      setConnectMenu(!connectMenu);
-      setToggleConnect(toggleConnect);
-    }
+    setConnectMenu(!connectMenu);
+    setToggleConnect(!toggleConnect);
   };
 
   return (

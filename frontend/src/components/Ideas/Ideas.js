@@ -14,6 +14,7 @@ export default function Ideas() {
   const [width, setWidth] = useState(0);
 
   const isDesktop = useMediaQuery("(min-width: 991px)");
+  // contrary to states, ref does not cause a re-render, we can then use the mutable object ref provides to update the current "state" of carousel. We use this information to target the movement of the carousel.
   const carousel = useRef();
   const navigate = useNavigate();
   const auth = useAuth();
@@ -56,8 +57,8 @@ export default function Ideas() {
 
   const addToFavorites = (burger) => {
     const { user, description, name, protein, carbs, fat, calories } = burger;
-
-    if (favorites.some((fav) => fav.name === burger.name)) {
+    // filter will always go through the whole array, find or some are quicker method to return the information needed
+    if (favorites.find((fav) => fav.name === burger.name)) {
       return setErr("Cant add the same burger twice");
     }
 

@@ -68,6 +68,7 @@ const OTPInput = () => {
     const newOtp = [...otpInputs];
     newOtp[index] = value;
     setOtpInputs(newOtp);
+    // if there is already a value in the newOtp, change focus to the next one
     if (value && index < newOtp.length - 1) {
       inputs[index + 1].focus();
     }

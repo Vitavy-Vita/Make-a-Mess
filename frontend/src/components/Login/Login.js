@@ -46,6 +46,10 @@ export default function Login() {
     const verifyEmail =
       /[a-z0-9!#$%&'*+/=?^_`{|}~\s-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     if (recovery.inputs.email && verifyEmail.test(recovery.inputs.email)) {
+      // to generate the correct OTP format:
+      // Math.random will generate a random number between 0 and 1, Math.floor will round it down to the nearest whole number
+      // we multiply it by 9000 to get a random number between 0 and 9000
+      // we finaly add 1000 to get a random number between 1000 and 10000
       const OTP = Math.floor(Math.random() * 9000 + 1000);
       recovery.setOtp(OTP);
       axios
