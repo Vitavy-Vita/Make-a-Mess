@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { easeInOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import token from "../../context/token";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import IngredientCard from "./IngredientCard";
+import IngredientList from "./IngredientList";
+import IngredientTitle from "./IngredientTitle";
 
 const CustomBurgers = () => {
   const auth = useAuth();
@@ -232,93 +235,33 @@ const CustomBurgers = () => {
       className="custom-main"
     >
       <section className="custom-container">
-        <motion.h2
-          initial={false}
-          animate={{
-            color: breadToOpen ? "#c85a44" : "#825b56",
-          }}
+        <IngredientTitle
+          title={"Select your bread"}
+          emoji={"🍔"}
+          isOpen={breadToOpen}
           onClick={() => setBreadToOpen(!breadToOpen)}
-        >
-          <motion.span
-            initial={false}
-            animate={{
-              backgroundColor: breadToOpen ? "#c85a44" : "#825b56",
-            }}
-            className={"cross-minus"}
-          ></motion.span>
-          <motion.span
-            initial={false}
-            animate={{
-              opacity: breadToOpen ? 0 : 1,
-            }}
-            className={"cross-plus"}
-          ></motion.span>
-          Select your bread
-          <span className={"emoji"}>🍔</span>
-        </motion.h2>
+        />
         <motion.section
           initial={false}
           animate={{
             height: breadToOpen ? "auto" : 0,
           }}
         >
-          {/* check that ingredient.bread exist and is stored in an array */}
-          {ingredients.bread && Array.isArray(ingredients.bread) && (
-            <motion.article
-              initial={false}
-              animate={{
-                display: breadToOpen ? "block" : "none",
-              }}
-            >
-              {breadIng.map((ingredient, i) => (
-                <aside className="ingredient-card">
-                  <h3 onClick={() => handleClick(i, "bread")}>
-                    {ingredient.name}
-                  </h3>
-                  <ul className="ingredient-list">
-                    <li>Protein:</li>
-                    <li>{ingredient.protein}</li>
-                    <li>Carbs:</li>
-                    <li>{ingredient.carbs}</li>
-                    <li
-                      onClick={() => handleDelete(ingredient._id, "bread")}
-                      className="delete-icon"
-                    >
-                      ❌
-                    </li>
-                    <li>Fat:</li>
-                    <li>{ingredient.fat}</li>
-                    <li>Calories:</li>
-                    <li>{ingredient.calories}</li>
-                  </ul>
-                </aside>
-              ))}
-            </motion.article>
+          {ingredients.bread && (
+            <IngredientList
+              isOpen={breadToOpen}
+              ingredients={breadIng}
+              onClick={(index) => handleClick(index, "bread")}
+              onDelete={(id) => handleDelete(id, "bread")}
+            />
           )}
         </motion.section>
-        <motion.h2
-          initial={false}
-          animate={{
-            color: meatToOpen ? "#c85a44" : "#825b56",
-          }}
+        <IngredientTitle
+          isOpen={meatToOpen}
           onClick={() => setMeatToOpen(!meatToOpen)}
-        >
-          <motion.span
-            initial={false}
-            animate={{
-              backgroundColor: meatToOpen ? "#c85a44" : "#825b56",
-            }}
-            className={"cross-minus"}
-          ></motion.span>{" "}
-          <motion.span
-            className={"cross-plus"}
-            initial={false}
-            animate={{
-              opacity: meatToOpen ? 0 : 1,
-            }}
-          ></motion.span>
-          Select your protein <span className={"emoji"}>🥩</span>
-        </motion.h2>
+          title={"Select your meat"}
+          emoji={"🥩"}
+        />
         <motion.section
           initial={false}
           animate={{
@@ -326,61 +269,20 @@ const CustomBurgers = () => {
           }}
         >
           {ingredients.meat && (
-            <motion.article
-              initial={false}
-              animate={{
-                display: meatToOpen ? "block" : "none",
-              }}
-            >
-              {meatIng.map((ingredient, i) => (
-                <aside className="ingredient-card">
-                  <h3 onClick={() => handleClick(i, "meat")}>
-                    {ingredient.name}
-                  </h3>
-                  <ul className="ingredient-list">
-                    <li>Protein:</li>
-                    <li>{ingredient.protein}</li>
-                    <li>Carbs:</li>
-                    <li>{ingredient.carbs}</li>
-                    <li
-                      onClick={() => handleDelete(ingredient._id, "meat")}
-                      className="delete-icon"
-                    >
-                      ❌
-                    </li>
-                    <li>Fat:</li>
-                    <li>{ingredient.fat}</li>
-                    <li>Calories:</li>
-                    <li>{ingredient.calories}</li>
-                  </ul>
-                </aside>
-              ))}
-            </motion.article>
+            <IngredientList
+              isOpen={meatToOpen}
+              ingredients={meatIng}
+              onClick={(index) => handleClick(index, "meat")}
+              onDelete={(id) => handleDelete(id, "meat")}
+            />
           )}
         </motion.section>
-        <motion.h2
-          initial={false}
-          animate={{
-            color: cheeseToOpen ? "#c85a44" : "#825b56",
-          }}
+        <IngredientTitle
+          isOpen={cheeseToOpen}
           onClick={() => setCheeseToOpen(!cheeseToOpen)}
-        >
-          <motion.span
-            initial={false}
-            animate={{
-              backgroundColor: cheeseToOpen ? "#c85a44" : "#825b56",
-            }}
-            className={"cross-minus"}
-          ></motion.span>{" "}
-          <motion.span
-            className={"cross-plus"}
-            initial={false}
-            animate={{
-              opacity: cheeseToOpen ? 0 : 1,
-            }}
-          ></motion.span>
-          Select your Cheese <span className={"emoji"}>🧀</span>
-        </motion.h2>
+          title={"Select your cheese"}
+          emoji={"🧀"}
+        />
         <motion.section
           initial={false}
           animate={{
@@ -388,61 +290,20 @@ const CustomBurgers = () => {
           }}
         >
           {ingredients.cheese && (
-            <motion.article
-              initial={false}
-              animate={{
-                display: cheeseToOpen ? "block" : "none",
-              }}
-            >
-              {cheeseIng.map((ingredient, i) => (
-                <aside className="ingredient-card">
-                  <h3 onClick={() => handleClick(i, "cheese")}>
-                    {ingredient.name}
-                  </h3>
-                  <ul className="ingredient-list">
-                    <li>Protein:</li>
-                    <li>{ingredient.protein}</li>
-                    <li>Carbs:</li>
-                    <li>{ingredient.carbs}</li>
-                    <li
-                      onClick={() => handleDelete(ingredient._id, "cheese")}
-                      className="delete-icon"
-                    >
-                      ❌
-                    </li>
-                    <li>Fat:</li>
-                    <li>{ingredient.fat}</li>
-                    <li>Calories:</li>
-                    <li>{ingredient.calories}</li>
-                  </ul>
-                </aside>
-              ))}
-            </motion.article>
+            <IngredientList
+              isOpen={cheeseToOpen}
+              ingredients={cheeseIng}
+              onClick={(index) => handleClick(index, "cheese")}
+              onDelete={(id) => handleDelete(id, "cheese")}
+            />
           )}
         </motion.section>
-        <motion.h2
-          initial={false}
-          animate={{
-            color: toppingToOpen ? "#c85a44" : "#825b56",
-          }}
+        <IngredientTitle
+          isOpen={toppingToOpen}
           onClick={() => setToppingToOpen(!toppingToOpen)}
-        >
-          <motion.span
-            initial={false}
-            animate={{
-              backgroundColor: toppingToOpen ? "#c85a44" : "#825b56",
-            }}
-            className={"cross-minus"}
-          ></motion.span>{" "}
-          <motion.span
-            className={"cross-plus"}
-            initial={false}
-            animate={{
-              opacity: toppingToOpen ? 0 : 1,
-            }}
-          ></motion.span>
-          Select your topping <span className={"emoji"}>🥗</span>
-        </motion.h2>
+          title={"Select your topping"}
+          emoji={"🥗"}
+        />
         <motion.section
           initial={false}
           animate={{
@@ -450,62 +311,20 @@ const CustomBurgers = () => {
           }}
         >
           {ingredients.topping && (
-            <motion.article
-              initial={false}
-              animate={{
-                display: toppingToOpen ? "block" : "none",
-              }}
-            >
-              {toppingIng.map((ingredient, i) => (
-                <aside className="ingredient-card">
-                  <h3 onClick={() => handleClick(i, "topping")}>
-                    {ingredient.name}
-                  </h3>
-                  <ul className="ingredient-list">
-                    <li>Protein:</li>
-                    <li>{ingredient.protein}</li>
-                    <li>Carbs:</li>
-                    <li>{ingredient.carbs}</li>
-                    <li
-                      onClick={() => handleDelete(ingredient._id, "topping")}
-                      className="delete-icon"
-                    >
-                      ❌
-                    </li>
-                    <li>Fat:</li>
-                    <li>{ingredient.fat}</li>
-                    <li>Calories:</li>
-                    <li>{ingredient.calories}</li>
-                  </ul>
-                </aside>
-              ))}
-            </motion.article>
+            <IngredientList
+              isOpen={toppingToOpen}
+              ingredients={toppingIng}
+              onClick={(index) => handleClick(index, "topping")}
+              onDelete={(id) => handleDelete(id, "topping")}
+            />
           )}
         </motion.section>
-        <motion.h2
-          initial={false}
-          animate={{
-            color: sauceToOpen ? "#c85a44" : "#825b56",
-          }}
+        <IngredientTitle
+          isOpen={sauceToOpen}
           onClick={() => setSauceToOpen(!sauceToOpen)}
-        >
-          <motion.span
-            initial={false}
-            animate={{
-              backgroundColor: sauceToOpen ? "#c85a44" : "#825b56",
-            }}
-            className={"cross-minus"}
-          ></motion.span>
-          <motion.span
-            className={"cross-plus"}
-            initial={false}
-            animate={{
-              opacity: sauceToOpen ? 0 : 1,
-            }}
-          ></motion.span>
-          Select your sauce
-          <span className={"emoji"}>🥫</span>
-        </motion.h2>
+          title={"Select your sauce"}
+          emoji={"🥫"}
+        />
         <motion.section
           initial={false}
           animate={{
@@ -513,36 +332,12 @@ const CustomBurgers = () => {
           }}
         >
           {ingredients.sauce && (
-            <motion.article
-              initial={false}
-              animate={{
-                display: sauceToOpen ? "block" : "none",
-              }}
-            >
-              {sauceIng.map((ingredient, i) => (
-                <aside className="ingredient-card">
-                  <h3 onClick={() => handleClick(i, "sauce")}>
-                    {ingredient.name}
-                  </h3>
-                  <ul className="ingredient-list">
-                    <li>Protein:</li>
-                    <li>{ingredient.protein}</li>
-                    <li>Carbs:</li>
-                    <li>{ingredient.carbs}</li>
-                    <li
-                      onClick={() => handleDelete(ingredient._id, "sauce")}
-                      className="delete-icon"
-                    >
-                      ❌
-                    </li>
-                    <li>Fat:</li>
-                    <li>{ingredient.fat}</li>
-                    <li>Calories:</li>
-                    <li>{ingredient.calories}</li>
-                  </ul>
-                </aside>
-              ))}
-            </motion.article>
+            <IngredientList
+              isOpen={sauceToOpen}
+              ingredients={sauceIng}
+              onClick={(index) => handleClick(index, "sauce")}
+              onDelete={(id) => handleDelete(id, "sauce")}
+            />
           )}
         </motion.section>
       </section>
@@ -582,7 +377,6 @@ const CustomBurgers = () => {
             onChange={handleChange}
           />
           {err && <span>{err}</span>}
-          {/* {errName && <span>{errName}</span>} */}
         </article>
         <button onClick={handleSubmit}>Add to favorites</button>
       </section>
