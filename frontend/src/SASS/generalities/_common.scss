@@ -20,7 +20,21 @@ h1 {
 h2 {
   @include sub-title-style;
 }
+a {
+  color: variables.$brown;
+}
 
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+button {
+  @include button;
+}
+button:hover {
+  @include button-hover;
+}
 p,
 span {
   @include text-style;
@@ -41,13 +55,8 @@ form {
     color: variables.$red;
     font-family: variables.$text-font;
   }
-  button {
-    margin: 2em;
-  }
-  button:hover {
-    @include button-style-hover;
-  }
 }
+
 @include tablet {
   h1 {
     @include title-style-desktop;
@@ -83,19 +92,4 @@ form {
   textarea {
     @include input-style-desktop;
   }
-}
-a {
-  color: variables.$brown;
-}
-
-ul {
-  margin: 0;
-  list-style: none;
-}
-
-button {
-  @include button;
-}
-.button:hover {
-  @include button-hover;
 }

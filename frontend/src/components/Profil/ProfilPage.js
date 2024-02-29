@@ -86,10 +86,10 @@ const ProfilPage = () => {
           )}
         </section>
       )}
-      {favorites && (
-        <>
-          <section className="favorites-scroll">
-          <h2>My Favorites</h2>
+      <section>
+        <h2>My Favorites</h2>
+        {favorites && (
+          <div className="favorites-scroll">
             {favorites.map((oneFav, i) => (
               <article className={"burger-card"}>
                 <h2>{oneFav.name}</h2>
@@ -114,12 +114,9 @@ const ProfilPage = () => {
                 <button onClick={() => handleRemove(oneFav._id)}>Remove</button>
               </article>
             ))}
-            <NavLink to={"/"}>
-              <button>Go Back</button>
-            </NavLink>
-          </section>
-        </>
-      )}
+          </div>
+        )}
+      </section>
     </motion.main>
   );
 };
