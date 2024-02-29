@@ -3,11 +3,11 @@
 /* -------------------------------------------------------------------------- */
 /*                                   ARTICLES                                  */
 /* -------------------------------------------------------------------------- */
-.about-wrapper {
+.about-container {
   @include display-flex;
   text-align: center;
 }
-.about-container {
+.about-wrapper {
   iframe {
     width: 370px;
     height: 250px;
@@ -21,11 +21,6 @@
   width: 350px;
   height: auto;
   justify-content: start;
-  background: linear-gradient(
-    180deg,
-    rgba(200, 90, 68, 1) 35%,
-    rgba(221, 130, 111, 1) 100%
-  );
   border-radius: 15px;
   padding: 1em;
 
@@ -44,7 +39,7 @@
   }
 }
 @include tablet {
-  .about-wrapper {
+  .about-container {
     iframe {
       width: 630px;
       height: 350px;
@@ -64,27 +59,38 @@
 
 @include desktop {
   .about-container {
-    @include display-flex;
+    justify-content: space-around;
+    align-items: start;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(
+      to top left,
+      variables.$red 0%,
+      variables.$red 50%,
+      transparent 65%,
+      transparent 100%
+    );
     iframe {
-      width: 1100px;
-      height: 600px;
-      border: 5px solid variables.$red;
+      width: 600px;
+      height: 400px;
       border-radius: 15px;
       margin-bottom: 1em;
+      box-shadow: variables.$text-shadow;
     }
     article {
       margin: 1em;
       padding: 1.5em;
     }
     .article-section {
-      width: 1100px;
-      height: 600px;
+      width: 600px;
     }
-
+    .article-section-title {
+      color: variables.$gray;
+    }
     li {
       font-size: variables.$text-size-desktop;
       line-height: 36px;
-      height: 10vh;
+      height: 15vh;
     }
   }
 }

@@ -1,18 +1,20 @@
 import { motion } from "framer-motion";
 import Button from "../NavBar/Button";
 import { NavLink } from "react-router-dom";
+
 export default function About() {
+
   return (
     <motion.main
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
       transition={{
         type: "spring",
-        stiffness: 300,
-        mass: 7,
-        damping: 50,
+        stiffness: 500,
+        mass: 1,
+        damping: 100,
       }}
-      className="about-wrapper"
+      className="about-container"
     >
       <section className={"about-container"}>
         <article>
@@ -21,15 +23,12 @@ export default function About() {
             src="https://www.youtube.com/embed/ulhRORJpuBM?si=Uub0j2n_zNA09Jos"
             title="YouTube video player"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
             allowfullscreen
-            whileHover={{
-              scale: 1.2,
-            }}
           ></motion.iframe>
         </article>
         <article>
-          <h2>Who we are</h2>
+          <h2 className="article-section-title">Who we are</h2>
           <ul className="article-section">
             <li>
               At Make-a-Mess, we care for your craving of good
