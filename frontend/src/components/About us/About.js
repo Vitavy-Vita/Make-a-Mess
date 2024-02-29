@@ -3,7 +3,6 @@ import Button from "../NavBar/Button";
 import { NavLink } from "react-router-dom";
 
 export default function About() {
-
   return (
     <motion.main
       initial={{ width: 0 }}
@@ -20,6 +19,7 @@ export default function About() {
         <article>
           <h2>What we do</h2>
           <motion.iframe
+            aria-label="video"
             src="https://www.youtube.com/embed/ulhRORJpuBM?si=Uub0j2n_zNA09Jos"
             title="YouTube video player"
             frameborder="0"

@@ -145,22 +145,26 @@ export default function Contact() {
         )}
         <article className="business-wrapper">
           <h2>Business info</h2>
-          <a href="https://www.openstreetmap.org/?mlat=33.81900&amp;mlon=-118.38838#map=19/33.81900/-118.38838">
+          <a
+            aria-label="link"
+            href="https://www.openstreetmap.org/?mlat=33.81900&amp;mlon=-118.38838#map=19/33.81900/-118.38838"
+          >
             <CiLocationOn />
             1701, South Catalina Avenue, Redondo Beach, Los Angeles County,
             Californie, 90277, États-Unis d'Amérique
           </a>
-          <a href="mailto:MakeaMess.burgers@gmail.com">
+          <a aria-label="link" href="mailto:MakeaMess.burgers@gmail.com">
             <CiMail />
             MakeaMess.burgers@gmail.com
           </a>
-          <a href="tel:+33603270157">
+          <a aria-label="link" href="tel:+33603270157">
             <CiPhone />
             06 03 27 01 57
           </a>
         </article>
         <article className="icon-wrapper">
           <motion.a
+            aria-label="link"
             href="https://www.facebook.com/?locale=fr_FR"
             target="_blank"
             className="facebook-icon"
@@ -172,6 +176,7 @@ export default function Contact() {
             <FaFacebook />
           </motion.a>
           <motion.a
+            aria-label="link"
             href="https://www.instagram.com/"
             target="_blank"
             className="insta-icon"
@@ -183,6 +188,7 @@ export default function Contact() {
             <FaInstagramSquare />
           </motion.a>
           <motion.a
+            aria-label="link"
             href="https://twitter.com/home?lang=fr"
             target="_blank"
             className="twitter-icon"
@@ -196,7 +202,10 @@ export default function Contact() {
         </article>
         <article className="where-to-wrapper">
           <h2 className="sub-title-contact">Where to find us</h2>
-          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"></iframe>
+          <iframe
+            aria-label="widget"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"
+          ></iframe>
         </article>
       </section>
     </motion.main>

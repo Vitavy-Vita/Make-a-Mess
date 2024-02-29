@@ -242,6 +242,7 @@ const CustomBurgers = () => {
           onClick={() => setBreadToOpen(!breadToOpen)}
         />
         <motion.section
+          aria-label="accordion"
           initial={false}
           animate={{
             height: breadToOpen ? "auto" : 0,
@@ -263,6 +264,7 @@ const CustomBurgers = () => {
           emoji={"🥩"}
         />
         <motion.section
+          aria-label="accordion"
           initial={false}
           animate={{
             height: meatToOpen ? "auto" : 0,
@@ -284,6 +286,7 @@ const CustomBurgers = () => {
           emoji={"🧀"}
         />
         <motion.section
+          aria-label="accordion"
           initial={false}
           animate={{
             height: cheeseToOpen ? "auto" : 0,
@@ -305,6 +308,7 @@ const CustomBurgers = () => {
           emoji={"🥗"}
         />
         <motion.section
+          aria-label="accordion"
           initial={false}
           animate={{
             height: toppingToOpen ? "auto" : 0,
@@ -326,6 +330,7 @@ const CustomBurgers = () => {
           emoji={"🥫"}
         />
         <motion.section
+          aria-label="accordion"
           initial={false}
           animate={{
             height: sauceToOpen ? "auto" : 0,

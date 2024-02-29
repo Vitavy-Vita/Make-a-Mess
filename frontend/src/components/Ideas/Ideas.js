@@ -103,6 +103,7 @@ export default function Ideas() {
       </section>
       {auth.user && err && <span>{err}</span>}
       <motion.section
+        aria-label="carousel"
         ref={carousel}
         className="carousel"
         whileTap={{ cursor: "grabbing" }}
