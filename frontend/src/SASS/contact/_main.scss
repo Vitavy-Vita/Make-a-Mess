@@ -1,118 +1,124 @@
 @use "../generalities/variables";
 
-.main-contact-wrapper {
-  text-align: center;
-  article {
-    text-align: start;
-  }
-}
-.contact-container-logout {
-  @include display-flex-column;
-  align-items: start;
-
-  p {
-    padding: 0 1em;
-  }
-}
-.main-title {
-  .think {
-    margin-top: 0.1em;
-    font-size: 4.5rem;
-  }
-}
-.contact-container {
-  @include display-flex-column;
-  p {
-    padding: 0 1em;
-  }
-  span {
-    padding-top: 1em;
-  }
-  h2 {
-    padding-left: 0;
-  }
-  form {
-    width: 100%;
-  }
-}
-
-.business-wrapper-logout {
-  a {
-    @include text-style;
-    text-decoration: none;
-  }
-  svg {
-    position: relative;
-    top: 2px;
-    left: -3px;
-  }
-}
-.business-wrapper {
-  .business {
-    margin-bottom: 2em;
-  }
-
-  a {
-    color: variables.$brown;
-    text-decoration: none;
-  }
-  svg {
-    position: relative;
-    top: 2px;
-    left: -3px;
-  }
-
-  ul {
-    @include text-style;
-    text-align: start;
-    list-style: none;
-  }
-}
-.icon-container-contact {
-  @include display-flex;
-  justify-content: space-around;
-  font-size: 50px;
-  .facebook-icon {
-    color: #316ff6;
-  }
-  .insta-icon {
-    color: #8a3ab9;
-  }
-  .twitter-icon {
-    color: black;
-  }
-}
-textarea::placeholder {
-  color: variables.$red;
-}
-.where-to-wrapper {
-  iframe {
-    width: 90vw;
-    height: 250px;
-    border: 3px solid variables.$red;
-    border-radius: 10px;
-  }
-}
-@include tablet {
+.main-contact-container {
+  text-align: start;
   .main-title {
     .think {
-      font-size: 7rem;
-      letter-spacing: -10px;
+      margin-top: 0.1em;
+      font-size: 4.5rem;
+      letter-spacing: -5px;
     }
   }
-  .icon-container-contact {
-    font-size: 70px;
+  article {
+    @include display-flex-column;
+    margin: 1em;
+    text-align: start;
+  }
+  form {
+    padding: 0;
+  }
+  .business-wrapper {
+    a {
+      display: block;
+      @include text-style-desktop;
+      text-decoration: none;
+      width: 100%;
+      text-align: start;
+    }
+    a:hover {
+      color: variables.$red;
+      text-decoration: underline;
+    }
+  }
+  .icon-wrapper {
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1em 0;
+    .facebook-icon {
+      color: #316ff6;
+      font-size: 50px;
+    }
+    .insta-icon {
+      color: #8a3ab9;
+      font-size: 50px;
+    }
+    .twitter-icon {
+      color: black;
+      font-size: 50px;
+    }
+  }
+  textarea::placeholder {
+    color: variables.$red;
+  }
+  .where-to-wrapper {
+    iframe {
+      width: 90vw;
+      height: 250px;
+      border: 3px solid variables.$red;
+      border-radius: 10px;
+    }
+  }
+  button:hover {
+    @include button-hover;
+  }
+}
+
+@include tablet {
+  .main-contact-container {
+    max-width: 800px;
+    margin: auto;
+    .main-title {
+      .think {
+        font-size: 7rem;
+        letter-spacing: -10px;
+      }
+    }
+    button {
+      font-size: 1.5em;
+      padding: 0.5em 2em;
+    }
+    .icon-wrapper {
+      margin: 2em;
+      .facebook-icon,
+      .twitter-icon,
+      .insta-icon {
+        font-size: 90px;
+      }
+    }
   }
 }
 
 @include desktop {
-  .main-contact-wrapper {
+  .main-contact-container {
     .main-title {
-      h1 {
+      .think {
         font-size: 130px;
         margin-top: 0.5em;
         padding-right: 1.5em;
       }
+    }
+  }
+  .main-contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1600px;
+    margin: auto;
+    article {
+      grid: 50%;
+      justify-content: start;
+      align-items: start;
+    }
+    form {
+      grid-row: 1/3;
+      grid-column: 2/-1;
+    }
+    button {
+      font-size: 1.5em;
+      padding: 0.5em 2em;
+    }
+    .main-title {
+      grid-column: 1/-1;
+
       h2 {
         font-size: variables.$title-size-desktop;
         width: 10em;
@@ -120,48 +126,26 @@ textarea::placeholder {
         text-align: right;
       }
     }
-    .contact-container {
-      flex-direction: row;
-      align-items: start;
-      section,
-      form {
-        width: 50%;
-      }
-    }
-    .business-wrapper-logout {
-      a {
-        @include text-style-desktop;
-      }
-      svg {
-        position: relative;
-        top: 2px;
-        left: -3px;
-      }
-    }
-    .icon-container-contact {
-      margin: 1em;
-      font-size: 70px;
+    .icon-wrapper {
+      grid-column: 1/-1;
       .facebook-icon {
         color: #316ff6;
+        font-size: 100px;
       }
       .insta-icon {
         color: #8a3ab9;
+        font-size: 100px;
       }
       .twitter-icon {
         color: black;
+        font-size: 100px;
       }
     }
-    .business-wrapper {
-      position: absolute;
-      top: 60vh;
-      left: 0;
-      width: 50%;
-    }
-    .business-title {
-      position: absolute;
-      top: 50vh;
-      left: 25%;
-      width: 50%;
+    .where-to-wrapper {
+      grid-column: 1/-1;
+      iframe {
+        width: 1600px;
+      }
     }
   }
 }

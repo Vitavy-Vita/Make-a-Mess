@@ -87,19 +87,15 @@ export default function Contact() {
         mass: 7,
         damping: 50,
       }}
-      className="main-contact-wrapper"
+      className="main-contact-container"
     >
       <section className="main-title">
         <h2>Let us know what you</h2>
         <h1 className="think">Think !!</h1>
       </section>
-      <h2>Get in touch with us</h2>
-      <section
-        className={
-          !auth.user ? "contact-container-logout" : "contact-container"
-        }
-      >
+      <section className="main-contact-wrapper">
         <article>
+          <h2>Get in touch with us</h2>
           <p>
             Our team will always be available to hear anything you have to say !
           </p>
@@ -110,7 +106,6 @@ export default function Contact() {
             in no time !
           </p>
         </article>
-
         {auth.user && (
           <form onSubmit={handleSubmit}>
             <label htmlFor="Name" />
@@ -148,53 +143,23 @@ export default function Contact() {
             {!disable && <button onClick={disableButton}>Send</button>}
           </form>
         )}
-      </section>
-      <h2 className={!auth.user ? "" : "business-title"}>Business info</h2>
-      <section
-        className={!auth.user ? "business-wrapper-logout" : "business-wrapper"}
-      >
-        <article className="business">
-          <ul>
-            <li>
-              <motion.a
-                href="https://www.openstreetmap.org/?mlat=33.81900&amp;mlon=-118.38838#map=19/33.81900/-118.38838"
-                whileHover={{
-                  color: "#c85a44",
-                  textDecoration: "underline",
-                }}
-              >
-                <CiLocationOn />
-                1701, South Catalina Avenue, Redondo Beach, Los Angeles County,
-                Californie, 90277, États-Unis d'Amérique
-              </motion.a>
-            </li>
-            <li>
-              <motion.a
-                href="mailto:MakeaMess.burgers@gmail.com"
-                whileHover={{
-                  color: "#c85a44",
-                  textDecoration: "underline",
-                }}
-              >
-                <CiMail />
-                MakeaMess.burgers@gmail.com
-              </motion.a>
-            </li>
-            <li>
-              <motion.a
-                href="tel:+33603270157"
-                whileHover={{
-                  color: "#c85a44",
-                  textDecoration: "underline",
-                }}
-              >
-                <CiPhone />
-                06 03 27 01 57
-              </motion.a>
-            </li>
-          </ul>
+        <article className="business-wrapper">
+          <h2>Business info</h2>
+          <a href="https://www.openstreetmap.org/?mlat=33.81900&amp;mlon=-118.38838#map=19/33.81900/-118.38838">
+            <CiLocationOn />
+            1701, South Catalina Avenue, Redondo Beach, Los Angeles County,
+            Californie, 90277, États-Unis d'Amérique
+          </a>
+          <a href="mailto:MakeaMess.burgers@gmail.com">
+            <CiMail />
+            MakeaMess.burgers@gmail.com
+          </a>
+          <a href="tel:+33603270157">
+            <CiPhone />
+            06 03 27 01 57
+          </a>
         </article>
-        <article className="icon-container-contact">
+        <article className="icon-wrapper">
           <motion.a
             href="https://www.facebook.com/?locale=fr_FR"
             target="_blank"
@@ -229,10 +194,10 @@ export default function Contact() {
             <FaXTwitter />
           </motion.a>
         </article>
-      </section>
-      <section className="where-to-wrapper">
-        <h2 className="sub-title-contact">Where to find us</h2>
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"></iframe>
+        <article className="where-to-wrapper">
+          <h2 className="sub-title-contact">Where to find us</h2>
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"></iframe>
+        </article>
       </section>
     </motion.main>
   );
