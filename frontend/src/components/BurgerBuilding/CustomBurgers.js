@@ -1,16 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import token from "../../context/token";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import IngredientCard from "./IngredientCard";
+import token from "../../context/token";
 import IngredientList from "./IngredientList";
 import IngredientTitle from "./IngredientTitle";
 
 const CustomBurgers = () => {
   const auth = useAuth();
   const navigate = useNavigate();
+  const [err, setErr] = useState();
 
   const [breadToOpen, setBreadToOpen] = useState(false);
   const [meatToOpen, setMeatToOpen] = useState(false);
@@ -19,18 +19,16 @@ const CustomBurgers = () => {
   const [toppingToOpen, setToppingToOpen] = useState(false);
 
   const [ingredients, setIngredients] = useState([]);
-  const [err, setErr] = useState();
-  const [errName, setErrName] = useState();
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [favoriteIngredients, setFavoriteIngredients] = useState([]);
-  const [inputs, setInputs] = useState({ name: "" });
-
+  
   const [breadIng, setBreadIng] = useState([]);
   const [meatIng, setMeatIng] = useState([]);
   const [cheeseIng, setCheeseIng] = useState([]);
   const [sauceIng, setSauceIng] = useState([]);
   const [toppingIng, setToppingIng] = useState([]);
-
+  
+  const [inputs, setInputs] = useState({ name: "" });
   const [totalMacros, setTotalMacros] = useState({
     userId: auth.user.id,
     protein: 0,
@@ -189,7 +187,6 @@ const CustomBurgers = () => {
   const handleChange = (e) => {
     setInputs({ name: e.target.value });
     setErr("");
-    setErrName("");
   };
 
   const handleSubmit = (e) => {

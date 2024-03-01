@@ -15,7 +15,7 @@ const UpdateTopping = () => {
     fat: "",
     calories: "",
   });
-  const { id } = useParams();
+
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 

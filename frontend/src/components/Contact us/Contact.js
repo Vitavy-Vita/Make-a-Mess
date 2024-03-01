@@ -1,6 +1,6 @@
 import axios from "axios";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import token from "../../context/token";
 import { useAuth } from "../../context/authContext";
 import { CiLocationOn } from "react-icons/ci";
@@ -12,7 +12,6 @@ import { FaXTwitter } from "react-icons/fa6";
 
 export default function Contact() {
   const auth = useAuth();
-  const [send, setSend] = useState();
   const [inputs, setInputs] = useState({
     fullname: "",
     email: "",
@@ -63,7 +62,6 @@ export default function Contact() {
     axios
       .post(`http://localhost:9001/send`, inputs, { headers: token() })
       .then((res) => {
-        setSend(res.data);
         setResponse(res.data.message);
         setDisable(!disable);
         setInputs({
@@ -204,6 +202,7 @@ export default function Contact() {
           <h2 className="sub-title-contact">Where to find us</h2>
           <iframe
             aria-label="widget"
+            title="map view of Make-a-Mess office"
             src="https://www.openstreetmap.org/export/embed.html?bbox=-118.38889181613924%2C33.818012851179546%2C-118.38786989450458%2C33.81998719507269&amp;layer=mapnik&amp;marker=33.819000028823254%2C-118.38838085532188"
           ></iframe>
         </article>
