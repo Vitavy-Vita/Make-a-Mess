@@ -6,6 +6,8 @@ import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
 import IngredientList from "./IngredientList";
 import IngredientTitle from "./IngredientTitle";
+import AnimatedBurger from "./AnimatedBurger";
+import IngredientTotal from "./IngredientTotal";
 
 const CustomBurgers = () => {
   const auth = useAuth();
@@ -21,13 +23,13 @@ const CustomBurgers = () => {
   const [ingredients, setIngredients] = useState([]);
   const [selectedIngredient, setSelectedIngredient] = useState([]);
   const [favoriteIngredients, setFavoriteIngredients] = useState([]);
-  
+
   const [breadIng, setBreadIng] = useState([]);
   const [meatIng, setMeatIng] = useState([]);
   const [cheeseIng, setCheeseIng] = useState([]);
   const [sauceIng, setSauceIng] = useState([]);
   const [toppingIng, setToppingIng] = useState([]);
-  
+
   const [inputs, setInputs] = useState({ name: "" });
   const [totalMacros, setTotalMacros] = useState({
     userId: auth.user.id,
@@ -155,7 +157,7 @@ const CustomBurgers = () => {
 
   const handleDelete = (i, name) => {
     // the filter method in this case, will create a new array and if the selectedIngredient has the same id, we choose to exclude it from the array
-    const removeIng = selectedIngredient.filter((ing, index) => ing._id !== i);
+    const removeIng = selectedIngredient.filter((ing) => ing._id !== i);
 
     setSelectedIngredient(removeIng);
     setFavoriteIngredients(removeIng);
@@ -343,45 +345,13 @@ const CustomBurgers = () => {
           )}
         </motion.section>
       </section>
-      <motion.section
-        initial={{
-          y: 0,
-        }}
-        animate={{
-          y: [100, -200, 0, -200, 100, 100],
-          x: [100, -200, 0, 200, -200, 100],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 5,
-        }}
-        className="custom-burger-animation"
-      ></motion.section>
-      <section className="ingredient-total">
-        <h2>Great burger you just made !</h2>
-        <ul className="ingredient-list">
-          <li>Protein:</li>
-          <li>{totalMacros.protein}</li>
-          <li>Carbs:</li>
-          <li>{totalMacros.carbs}</li>
-          <li>Fat:</li>
-          <li>{totalMacros.fat}</li>
-          <li>Calories:</li>
-          <li>{totalMacros.calories}</li>
-        </ul>
-        <article className={``}>
-          <h2>Why dont you give it a name !</h2>
-
-          <input
-            type="text"
-            name="name"
-            className="inputs"
-            onChange={handleChange}
-          />
-          {err && <span>{err}</span>}
-        </article>
-        <button onClick={handleSubmit}>Add to favorites</button>
-      </section>
+      <AnimatedBurger />
+      <IngredientTotal
+        totalMacros={totalMacros}
+        err={err}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      />
     </motion.main>
   );
 };

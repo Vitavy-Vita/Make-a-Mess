@@ -18,8 +18,9 @@ const UserCard = () => {
         setErr(res.response.data.message);
       });
   }, []);
+
   return (
-    <motion.main
+    <motion.section
       initial={{ width: 0 }}
       animate={{ width: "100%" }}
       transition={{
@@ -31,7 +32,7 @@ const UserCard = () => {
       className="user-card-container"
     >
       {user && (
-        <section className="user-card">
+        <article className="user-card">
           <figure
             style={{
               backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src})`,
@@ -45,9 +46,9 @@ const UserCard = () => {
           <NavLink to={"/Settings/Admin"}>
             <button>Go Back</button>
           </NavLink>
-        </section>
+        </article>
       )}
-    </motion.main>
+    </motion.section>
   );
 };
 

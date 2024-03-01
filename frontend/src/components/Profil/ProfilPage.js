@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ const ProfilPage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}users/${auth.user.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/users/${auth.user.id}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -24,7 +24,7 @@ const ProfilPage = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}favorites`, { headers: token() })
+      .get(`${process.env.REACT_APP_BASE_URL}/favorites`, { headers: token() })
       .then((res) => {
         setFavorites(res.data);
       })
@@ -67,7 +67,7 @@ const ProfilPage = () => {
         <section className="user-card">
           <figure
             style={{
-              backgroundImage: `url(${process.env.REACT_APP_BASE_URL}assets/img/${user.image.src})`,
+              backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src})`,
             }}
             className="premade-card-img"
           ></figure>

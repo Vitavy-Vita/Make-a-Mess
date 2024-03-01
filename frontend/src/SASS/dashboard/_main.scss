@@ -70,6 +70,7 @@ form {
   .user-card-container {
     margin-top: 2em;
     .user-card {
+      flex-direction: column;
       justify-content: center;
       flex-wrap: wrap;
       .premade-card-img {

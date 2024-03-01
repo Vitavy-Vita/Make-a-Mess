@@ -5,6 +5,7 @@ import token from "../../context/token";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/authContext";
 
+
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
@@ -130,7 +131,6 @@ const DashboardAdmin = () => {
                 >
                   {oneUser.name}
                 </NavLink>
-
                 <form className="dropdown" encType="multipart/form-data">
                   <button onClick={(e) => handleOpen(e, oneUser._id)}>
                     Role:
