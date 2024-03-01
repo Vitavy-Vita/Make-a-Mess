@@ -8,7 +8,7 @@ const ToppingCard = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/topping/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/topping/${id}`)
       .then((res) => {
         setTopping(res.data);
       })

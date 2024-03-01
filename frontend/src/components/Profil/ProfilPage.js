@@ -10,11 +10,10 @@ const ProfilPage = () => {
   const [err, setErr] = useState();
   const auth = useAuth();
   const [favorites, setFavorites] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/users/${auth.user.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}users/${auth.user.id}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -25,7 +24,7 @@ const ProfilPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/favorites`, { headers: token() })
+      .get(`${process.env.REACT_APP_BASE_URL}favorites`, { headers: token() })
       .then((res) => {
         setFavorites(res.data);
       })
@@ -40,7 +39,7 @@ const ProfilPage = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/favorites/${id}`, {
+        .delete(`${process.env.REACT_APP_BASE_URL}/favorites/${id}`, {
           headers: token(),
         })
         .then((res) => {
@@ -68,7 +67,7 @@ const ProfilPage = () => {
         <section className="user-card">
           <figure
             style={{
-              backgroundImage: `url(http://localhost:9001/assets/img/${user.image.src})`,
+              backgroundImage: `url(${process.env.REACT_APP_BASE_URL}assets/img/${user.image.src})`,
             }}
             className="premade-card-img"
           ></figure>

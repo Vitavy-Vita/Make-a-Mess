@@ -9,7 +9,7 @@ const SauceCard = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/sauce/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/sauce/${id}`)
       .then((res) => {
         setSauce(res.data);
       })

@@ -15,7 +15,7 @@ const DashboardAdmin = () => {
   const auth = useAuth();
   useEffect(() => {
     axios
-      .get("http://localhost:9001/users")
+      .get(`${process.env.REACT_APP_BASE_URL}/users`)
       .then((res) => {
         setUsers(res.data);
         setFilteredUser(res.data);
@@ -67,7 +67,7 @@ const DashboardAdmin = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/users/${id}`, formData, {
+        .put(`${process.env.REACT_APP_BASE_URL}/users/${id}`, formData, {
           headers: token(),
         })
         .then((res) => {

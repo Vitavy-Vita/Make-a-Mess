@@ -18,7 +18,7 @@ const UpdateMeatForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/meat/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/meat/${id}`)
       .then((res) => {
         setMeat(res.data);
         setInputs(res.data);
@@ -38,7 +38,7 @@ const UpdateMeatForm = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/custom/meat/${id}`, inputs, {
+        .put(`${process.env.REACT_APP_BASE_URL}/custom/meat/${id}`, inputs, {
           headers: token(),
         })
         .then(() => {

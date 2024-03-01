@@ -21,7 +21,7 @@ const UpdatePreMade = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/burgers`)
+      .get(`${process.env.REACT_APP_BASE_URL}/burgers`)
       .then((res) => {
         setPreMade(res.data);
         setFilteredPreMade(res.data);
@@ -63,10 +63,12 @@ const UpdatePreMade = () => {
     formData.append("fat", inputs.fat);
     formData.append("calories", inputs.calories);
     formData.append("image", inputs.image);
+    
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
       // we then post formData instead of inputs
-      .post("http://localhost:9001/burgers/new", formData, { headers: token() })
+      .post(`${process.env.REACT_APP_BASE_URL}/burgers/new`, formData, {
+        headers: token(),
+      })
       .then((res) => {
         setReload(!reload);
         setInputs({
@@ -90,7 +92,9 @@ const UpdatePreMade = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/burgers/${id}`, { headers: token() })
+        .delete(`${process.env.REACT_APP_BASE_URL}/burgers/${id}`, {
+          headers: token(),
+        })
         .then((res) => {
           setReload(!reload);
           setPreMade((allPreMade) =>

@@ -19,7 +19,7 @@ const UpdateToppingForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/topping/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/topping/${id}`)
       .then((res) => {
         setTopping(res.data);
         setInputs(res.data);
@@ -39,7 +39,7 @@ const UpdateToppingForm = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/custom/topping/${id}`, inputs, {
+        .put(`${process.env.REACT_APP_BASE_URL}/custom/topping/${id}`, inputs, {
           headers: token(),
         })
         .then(() => {

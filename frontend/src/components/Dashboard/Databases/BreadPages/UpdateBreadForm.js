@@ -18,7 +18,7 @@ const UpdateBreadForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/bread/${id}`, { headers: token() })
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/bread/${id}`, { headers: token() })
       .then((res) => {
         setBread(res.data);
         setInputs(res.data);
@@ -39,7 +39,7 @@ const UpdateBreadForm = () => {
     if (confirmBox === true) {
       // axios method put will replace on the targeted element the inputs we've entered
       axios
-        .put(`http://localhost:9001/custom/bread/${id}`, inputs, {
+        .put(`${process.env.REACT_APP_BASE_URL}/custom/bread/${id}`, inputs, {
           headers: token(),
         })
         .then(() => {

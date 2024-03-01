@@ -17,7 +17,7 @@ const UpdateSauceForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/sauce/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/sauce/${id}`)
       .then((res) => {
         setSauce(res.data);
         setInputs(res.data);
@@ -37,7 +37,7 @@ const UpdateSauceForm = () => {
     );
     if (confirmBox === true) {
       axios
-        .put(`http://localhost:9001/custom/sauce/${id}`, inputs, {
+        .put(`${process.env.REACT_APP_BASE_URL}/custom/sauce/${id}`, inputs, {
           headers: token(),
         })
         .then(() => {

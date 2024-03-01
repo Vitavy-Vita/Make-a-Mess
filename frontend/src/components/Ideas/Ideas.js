@@ -20,7 +20,7 @@ export default function Ideas() {
   const auth = useAuth();
   useEffect(() => {
     axios
-      .get("http://localhost:9001/burgers")
+      .get(`${process.env.REACT_APP_BASE_URL}/burgers`)
       .then((res) => {
         setBurgers(res.data);
 
@@ -36,7 +36,7 @@ export default function Ideas() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:9001/favorites", { headers: token() })
+      .get(`${process.env.REACT_APP_BASE_URL}/favorites`, { headers: token() })
       .then((res) => {
         setFavorites(res.data);
       })
@@ -64,7 +64,7 @@ export default function Ideas() {
 
     axios
       .post(
-        "http://localhost:9001/favorites",
+        `${process.env.REACT_APP_BASE_URL}/favorites`,
         {
           user,
           name,
@@ -117,7 +117,7 @@ export default function Ideas() {
             <article className={"burger-card"} key={i}>
               <figure
                 style={{
-                  backgroundImage: `url(http://localhost:9001/assets/img/${oneBurger.image.src})`,
+                  backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${oneBurger.image.src})`,
                 }}
                 className="burger-picture"
               ></figure>

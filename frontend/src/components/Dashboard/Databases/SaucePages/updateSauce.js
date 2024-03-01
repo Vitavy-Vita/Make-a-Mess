@@ -21,7 +21,7 @@ const UpdateSauce = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/sauce`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/sauce`)
       .then((res) => {
         setSauces(res.data);
         setFilteredSauce(res.data);
@@ -50,8 +50,7 @@ const UpdateSauce = () => {
     }
 
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/sauce/new", inputs, {
+      .post(`${process.env.REACT_APP_BASE_URL}/custom/sauce/new`, inputs, {
         headers: token(),
       })
       .then((res) => {
@@ -76,7 +75,7 @@ const UpdateSauce = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/sauce/${id}`, {
+        .delete(`${process.env.REACT_APP_BASE_URL}/custom/sauce/${id}`, {
           headers: token(),
         })
         .then((res) => {

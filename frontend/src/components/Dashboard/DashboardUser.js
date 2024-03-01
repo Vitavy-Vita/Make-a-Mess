@@ -21,7 +21,7 @@ const UpdateProfil = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/users/${auth.user.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/users/${auth.user.id}`)
       .then((res) => {
         setInputs(res.data);
       })
@@ -55,9 +55,13 @@ const UpdateProfil = () => {
       formData.append("image", inputs.image);
 
       axios
-        .put(`http://localhost:9001/users/${auth.user.id}`, formData, {
-          headers: token(),
-        })
+        .put(
+          `${process.env.REACT_APP_BASE_URL}/users/${auth.user.id}`,
+          formData,
+          {
+            headers: token(),
+          }
+        )
         .then(() => {
           navigate("/my-profil");
         })
@@ -77,7 +81,7 @@ const UpdateProfil = () => {
 
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/users/${auth.user.id}`, {
+        .delete(`${process.env.REACT_APP_BASE_URL}/users/${auth.user.id}`, {
           headers: token(),
         })
         .then((res) => {
@@ -91,11 +95,11 @@ const UpdateProfil = () => {
   };
   return (
     <motion.main
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{
-      duration: 1,
-    }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 1,
+      }}
       className="center-container"
     >
       <h2>Update your account</h2>

@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink} from "react-router-dom";
 import token from "../../../../context/token";
 import { motion } from "framer-motion";
 const UpdateCheese = () => {
@@ -14,13 +14,12 @@ const UpdateCheese = () => {
     fat: "",
     calories: "",
   });
-  const { id } = useParams();
   const [err, setErr] = useState("");
   const [response, setResponse] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/cheese`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/cheese`)
       .then((res) => {
         setCheeses(res.data);
         setfilteredCheese(res.data);
@@ -50,8 +49,7 @@ const UpdateCheese = () => {
     }
 
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/cheese/new", inputs, {
+      .post(`${process.env.REACT_APP_BASE_URL}/custom/cheese/new`, inputs, {
         headers: token(),
       })
       .then((res) => {
@@ -77,7 +75,7 @@ const UpdateCheese = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/cheese/${id}`, {
+        .delete(`${process.env.REACT_APP_BASE_URL}/custom/cheese/${id}`, {
           headers: token(),
         })
         .then((res) => {

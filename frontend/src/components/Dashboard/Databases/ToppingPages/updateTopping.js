@@ -21,7 +21,7 @@ const UpdateTopping = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/topping`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/topping`)
       .then((res) => {
         setToppings(res.data);
         setFilteredTopping(res.data);
@@ -50,8 +50,7 @@ const UpdateTopping = () => {
     }
 
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/topping/new", inputs, {
+      .post(`${process.env.REACT_APP_BASE_URL}/custom/topping/new`, inputs, {
         headers: token(),
       })
       .then((res) => {
@@ -77,7 +76,7 @@ const UpdateTopping = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/topping/${id}`, {
+        .delete(`${process.env.REACT_APP_BASE_URL}/custom/topping/${id}`, {
           headers: token(),
         })
         .then((res) => {

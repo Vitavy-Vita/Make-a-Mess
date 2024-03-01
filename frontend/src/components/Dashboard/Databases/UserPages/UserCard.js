@@ -10,7 +10,7 @@ const UserCard = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/users/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/users/${id}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -34,7 +34,7 @@ const UserCard = () => {
         <section className="user-card">
           <figure
             style={{
-              backgroundImage: `url(http://localhost:9001/assets/img/${user.image.src})`,
+              backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src})`,
             }}
             className="premade-card-img"
           ></figure>

@@ -23,7 +23,7 @@ export default function Login() {
       return setErr("Please provide all informations");
     }
     axios
-      .post("http://localhost:9001/users/login", recovery.inputs, {
+      .post(`${process.env.REACT_APP_BASE_URL}/users/login`, recovery.inputs, {
         headers: token(),
       })
       .then((res) => {
@@ -54,7 +54,7 @@ export default function Login() {
       recovery.setOtp(OTP);
       axios
         .post(
-          "http://localhost:9001/send/recovery-email/otp",
+          `${process.env.REACT_APP_BASE_URL}/send/recovery-email/otp`,
           {
             OTP,
             userEmail: recovery.inputs.email,

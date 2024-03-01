@@ -41,7 +41,7 @@ const CustomBurgers = () => {
   useEffect(() => {
     calculateTotal();
     axios
-      .get(`http://localhost:9001/ingredients`)
+      .get(`${process.env.REACT_APP_BASE_URL}/ingredients`)
       .then((res) => {
         setIngredients(res.data);
         setBreadIng(res.data.bread);
@@ -205,7 +205,7 @@ const CustomBurgers = () => {
     // the field inputs comes from the pop-up and only contains the name
     axios
       .post(
-        "http://localhost:9001/favorites",
+        `${process.env.REACT_APP_BASE_URL}/favorites`,
         { ...totalMacros, ingredients: favoriteIngredients, ...inputs },
         {
           headers: token(),

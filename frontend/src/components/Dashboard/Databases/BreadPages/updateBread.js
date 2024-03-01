@@ -22,7 +22,7 @@ const UpdateBread = () => {
   useEffect(() => {
     // axios request on get method to access data from the selected api
     axios
-      .get(`http://localhost:9001/custom/bread`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/bread`)
       // we fill our states with those data provided by the api
       .then((res) => {
         setBreads(res.data);
@@ -55,8 +55,7 @@ const UpdateBread = () => {
     }
 // axios this time with the method post, because we want to inject those inputs in our collection to create a new document.
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/bread/new", inputs, {
+      .post(`${process.env.REACT_APP_BASE_URL}/custom/bread/new`, inputs, {
         // not everyone is allowed to post in database, setting the headers with the token is a way to confirm who's posting.
         headers: token(),
       })
@@ -85,7 +84,7 @@ const UpdateBread = () => {
     if (confirmBox === true) {
       // axios method delete, we use dynamicaly the id as a parameter to the function to target the correct element
       axios
-        .delete(`http://localhost:9001/custom/bread/${id}`, {
+        .delete(`${process.env.REACT_APP_BASE_URL}/custom/bread/${id}`, {
           headers: token(),
         })
         .then((res) => {

@@ -21,7 +21,7 @@ const UpdateProfil = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/users/${auth.user.id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/users/${auth.user.id}`)
       .then((res) => {
         setInputs(res.data);
       })
@@ -55,9 +55,13 @@ const UpdateProfil = () => {
       formData.append("image", inputs.image);
 
       axios
-        .put(`http://localhost:9001/users/${auth.user.id}`, formData, {
-          headers: token(),
-        })
+        .put(
+          `${process.env.REACT_APP_BASE_URL}/users/${auth.user.id}`,
+          formData,
+          {
+            headers: token(),
+          }
+        )
         .then(() => {
           navigate("/my-profil");
         })

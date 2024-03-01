@@ -9,7 +9,7 @@ const MeatCard = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/meat/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/meat/${id}`)
       .then((res) => {
         setMeat(res.data);
       })

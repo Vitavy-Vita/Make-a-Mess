@@ -60,7 +60,7 @@ export default function Contact() {
       return setErr("Please provide all informations");
     }
     axios
-      .post(`http://localhost:9001/send`, inputs, { headers: token() })
+      .post(`${process.env.REACT_APP_BASE_URL}/send`, inputs, { headers: token() })
       .then((res) => {
         setResponse(res.data.message);
         setDisable(!disable);

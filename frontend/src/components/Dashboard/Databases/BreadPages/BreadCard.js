@@ -10,7 +10,7 @@ const BreadCard = () => {
   useEffect(() => {
     // to get a specific element, from the database bread in this case, we target the _id of the element using params, thanks to the react-router-dom method useParams (we go into the object and look for req.params.id)
     axios
-      .get(`http://localhost:9001/custom/bread/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/bread/${id}`)
       .then((res) => {
         setBread(res.data);
       })

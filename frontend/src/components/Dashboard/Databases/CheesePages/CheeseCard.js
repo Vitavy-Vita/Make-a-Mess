@@ -8,7 +8,7 @@ const CheeseCard = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/cheese/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/cheese/${id}`)
       .then((res) => {
         setCheese(res.data);
       })

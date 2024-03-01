@@ -49,8 +49,7 @@ export default function CreateAccount() {
     formData.append("email", inputs.email);
     formData.append("image", inputs.image);
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/users/register", formData)
+      .post(`${process.env.REACT_APP_BASE_URL}/users/register`, formData)
       .then((res) => {
         setInputs({
           ...inputs,

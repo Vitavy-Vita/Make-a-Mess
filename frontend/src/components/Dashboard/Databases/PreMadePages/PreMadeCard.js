@@ -8,7 +8,7 @@ const PreMadeCard = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/burgers/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/burgers/${id}`)
       .then((res) => {
         setPremade(res.data);
       })
@@ -31,7 +31,7 @@ const PreMadeCard = () => {
       {preMade && (
         <article className="user-card">
           <img
-            src={`http://localhost:9001/assets/img/${preMade.image.src}`}
+            src={`${process.env.REACT_APP_BASE_URL}/assets/img/${preMade.image.src}`}
             alt={preMade.image.alt}
             className="premade-card-img"
           />

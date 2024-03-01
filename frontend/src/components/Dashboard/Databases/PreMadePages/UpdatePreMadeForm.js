@@ -17,7 +17,7 @@ const UpdatePreMadeForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/burgers/${id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/burgers/${id}`)
       .then((res) => {
         setPreMade(res.data);
         setInputs(res.data);
@@ -51,7 +51,7 @@ const UpdatePreMadeForm = () => {
       formData.append("calories", inputs.calories);
       formData.append("image", inputs.image);
       axios
-        .put(`http://localhost:9001/burgers/${id}`, formData, {
+        .put(`${process.env.REACT_APP_BASE_URL}/burgers/${id}`, formData, {
           headers: token(),
         })
         .then(() => {

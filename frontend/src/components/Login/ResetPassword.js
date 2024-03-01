@@ -17,7 +17,7 @@ const ResetPassword = () => {
     if (recovery.inputs.password === recovery.inputs.passwordConfirm) {
       axios
         .put(
-          `http://localhost:9001/send/recovery-email/reset/${email}`,
+          `${process.env.REACT_APP_BASE_URL}/send/recovery-email/reset/${email}`,
           recovery.inputs,
           {
             headers: token(),
@@ -35,11 +35,11 @@ const ResetPassword = () => {
 
   return (
     <motion.main
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{
-      duration: 1,
-    }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 1,
+      }}
       className="center-container"
     >
       <h2>Reset your password</h2>

@@ -21,7 +21,7 @@ const UpdateMeat = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9001/custom/meat`)
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/meat`)
       .then((res) => {
         setMeats(res.data);
         setFilteredMeat(res.data);
@@ -49,8 +49,7 @@ const UpdateMeat = () => {
     }
 
     axios
-      // .post("http://yohannrousseau.3wa.io:9001",inputs)
-      .post("http://localhost:9001/custom/meat/new", inputs, {
+      .post(`${process.env.REACT_APP_BASE_URL}/custom/meat/new`, inputs, {
         headers: token(),
       })
       .then((res) => {
@@ -75,7 +74,7 @@ const UpdateMeat = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/custom/meat/${id}`, { headers: token() })
+        .delete(`${process.env.REACT_APP_BASE_URL}/custom/meat/${id}`, { headers: token() })
         .then((res) => {
           setReload(!reload);
           setMeats((allMeats) => allMeats.filter((meat) => meat.id !== id));

@@ -46,7 +46,7 @@ const OTPInput = () => {
     axios
 
       .post(
-        "http://localhost:9001/send/recovery-email/otp",
+        `${process.env.REACT_APP_BASE_URL}/send/recovery-email/otp`,
         {
           OTP,
           userEmail: recovery.inputs.email,
@@ -75,11 +75,11 @@ const OTPInput = () => {
   };
   return (
     <motion.main
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{
-      duration: 1,
-    }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 1,
+      }}
       className="center-container"
     >
       <h2>Email verification</h2>
