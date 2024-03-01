@@ -7,7 +7,7 @@
 .favorites-scroll {
   @include scrollbar;
   margin: 0 1em;
-  height: 50vh;
+  height: 40vh;
 }
 
 .user-card-container {
@@ -106,22 +106,47 @@ form {
   }
 }
 @include tablet {
+  .article-container {
+    @include display-flex-column;
+  }
+  .users-container {
+    width: 600px;
+  }
   .database-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 2em;
     h2 {
       grid-column: 1/-1;
     }
     a {
       font-size: variables.$text-size-mobile;
+      width: 150px;
     }
   }
 }
 @include desktop {
   .database-container {
-    justify-content: start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    h2 {
+      grid-column: 1/-1;
+    }
+  }
+  .users-container,
+  .database-container {
+    width: 800px;
+  }
+  .database-container {
+    a {
+      margin-left: 2em;
+    }
   }
   .article-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    @include display-flex;
+    justify-content: space-around;
+    align-items: start;
     a {
       @include text-style-desktop;
       color: variables.$gray;
