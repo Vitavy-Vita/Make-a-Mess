@@ -1,14 +1,13 @@
 @use "../generalities/variables";
 
 .custom-main {
-  @include display-flex;
-  flex-direction: column;
+  @include display-flex-column;
 }
 .cross-minus {
   position: absolute;
   top: 12px;
   left: 0px;
-  background-color: variables.$brown;
+  background-color: variables.$gray;
   width: 20px;
   height: 3px;
 }
@@ -16,26 +15,37 @@
   position: absolute;
   top: 4px;
   left: 8px;
-  background-color: variables.$brown;
+  background-color: variables.$gray;
   width: 3px;
   height: 20px;
 }
 .custom-container {
-  text-align: center;
   width: 380px;
-  margin: auto;
+  margin-top: 2em;
+  padding: 0 1em;
+  overflow: scroll;
+  scrollbar-color: variables.$red variables.$light-red;
+  scrollbar-width: thin;
+  height: 30vh;
+  background: radial-gradient(
+    circle,
+    rgba(221, 130, 111, 1) 0%,
+    rgba(200, 90, 68, 1) 100%
+  );
+  box-shadow: variables.$text-shadow;
+  border-radius: 15px;
+  z-index: 1;
+  text-align: center;
   .delete-icon {
     cursor: pointer;
   }
   h2 {
+    color: variables.$gray;
     font-size: variables.$text-size-mobile;
     position: relative;
     cursor: pointer;
   }
-  h2:hover {
-    color: variables.$red;
-    text-decoration: underline;
-  }
+
   .emoji {
     position: absolute;
     top: -3px;
@@ -45,15 +55,26 @@
 
 .ingredient-total {
   @include display-flex-column;
+  width: 380px;
+  z-index: 1;
+  background: radial-gradient(
+    circle,
+    rgba(221, 130, 111, 1) 0%,
+    rgba(200, 90, 68, 1) 100%
+  );
   border: 2px solid variables.$red;
   border-radius: 15px;
   margin: 2em 0.5em;
   padding: 1em;
   h2,
   span {
+    color: variables.$gray;
     margin: 1em;
     font-size: 1.5em;
     text-align: center;
+  }
+  li {
+    color: variables.$gray;
   }
   .ingredient-list {
     @include sub-title-style;
@@ -72,7 +93,8 @@
 
 @include tablet {
   .custom-container {
-    width: 500px;
+    width: 600px;
+    height: 450px;
     h2,
     span {
       font-size: 2em;
@@ -82,21 +104,24 @@
     }
     .emoji {
       top: -5px;
-      left: 500px;
+      left: 450px;
     }
-    .cross-plus {
-      left: -130px;
-    }
-    .cross-minus {
-      left: -138px;
+  }
+  .ingredient-total {
+    justify-content: space-around;
+    width: 600px;
+    height: 450px;
+    h2 {
+      font-size: variables.$sub-title-size-mobile;
     }
   }
 }
 @include desktop {
   .custom-main {
-    flex-direction: row;
-    align-items: center;
-    margin-top: 5em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+    margin: 0 2em;
   }
   .custom-container {
     padding: 0 2em;
@@ -113,16 +138,16 @@
       margin: 2em 0;
     }
   }
-  .custom-burger-animation {
-    background-image: url("../../assets/images/custom-burger.png");
-    background-position: center;
-    background-size: cover;
-    width: 500px;
-    height: 600px;
-  }
   .ingredient-total {
-    article {
-      @include display-flex-column;
+    justify-content: space-around;
+    height: 550px;
+    width: 500px;
+    h2 {
+      color: variables.$gray;
+      font-size: variables.$text-size-desktop;
+    }
+    li {
+      color: variables.$gray;
     }
     input {
       padding: 1em;

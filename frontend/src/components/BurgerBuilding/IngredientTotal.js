@@ -1,7 +1,7 @@
 const IngredientTotal = ({onChange, totalMacros, onSubmit, err}) => {
   return (
     <section className="ingredient-total">
-      <h2>Great burger you just made !</h2>
+      <h2>Here is your macros!</h2>
       <ul className="ingredient-list">
         <li>Protein:</li>
         <li>{totalMacros.protein}</li>
@@ -13,8 +13,7 @@ const IngredientTotal = ({onChange, totalMacros, onSubmit, err}) => {
         <li>{totalMacros.calories}</li>
       </ul>
       <article className={``}>
-        <h2>Why dont you give it a name !</h2>
-
+        <h2>Give it a name !</h2>
         <input
           type="text"
           name="name"

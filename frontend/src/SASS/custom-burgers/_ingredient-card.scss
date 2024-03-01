@@ -2,6 +2,7 @@
 
 .ingredient-card {
   @include display-flex;
+  background-color: variables.$gray;
   border: 2px solid variables.$red;
   border-radius: 15px;
   margin-bottom: 0.5em;
@@ -29,7 +30,6 @@
 .ingredient-card:hover {
   background-color: variables.$red;
   border: 2px solid variables.$brown;
-
   h3,
   ul {
     color: variables.$gray;
@@ -45,10 +45,9 @@
 @include desktop {
   .ingredient-card {
     overflow-x: hidden;
-   
-    h3, li {
+    h3,
+    li {
       font-size: 1.5em;
     }
-   
   }
 }

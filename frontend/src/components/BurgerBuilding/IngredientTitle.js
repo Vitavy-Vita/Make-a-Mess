@@ -4,16 +4,10 @@ const IngredientTitle = ({ onClick, isOpen, title, emoji }) => {
   return (
     <motion.h2
       initial={false}
-      animate={{
-        color: isOpen ? "#c85a44" : "#825b56",
-      }}
       onClick={onClick}
     >
       <motion.span
         initial={false}
-        animate={{
-          backgroundColor: isOpen ? "#c85a44" : "#825b56",
-        }}
         className={"cross-minus"}
       ></motion.span>
       <motion.span

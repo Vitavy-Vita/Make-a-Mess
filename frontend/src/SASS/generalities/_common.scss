@@ -28,7 +28,10 @@ ul {
   margin: 0;
   list-style: none;
 }
-
+input,
+textarea {
+  @include input-style;
+}
 button {
   @include button;
 }
@@ -69,10 +72,6 @@ form {
   p,
   span {
     @include text-style-desktop;
-  }
-  input,
-  textarea {
-    @include input-style-desktop;
   }
 }
 @include desktop {
