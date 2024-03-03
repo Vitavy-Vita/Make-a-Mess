@@ -116,6 +116,8 @@ export default function Ideas() {
           {burgers.map((oneBurger, i) => (
             <article className={"burger-card"} key={i}>
               <figure
+                role="img"
+                aria-label="Image of a burger"
                 style={{
                   backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${oneBurger.image.src})`,
                 }}

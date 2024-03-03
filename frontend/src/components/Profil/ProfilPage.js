@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import token from "../../context/token";
 import { motion } from "framer-motion";
@@ -66,6 +66,8 @@ const ProfilPage = () => {
       {user && (
         <section className="user-card">
           <figure
+            role="img"
+            aria-label="Profil picture of the user"
             style={{
               backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src})`,
             }}

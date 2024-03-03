@@ -34,6 +34,8 @@ const UserCard = () => {
       {user && (
         <article className="user-card">
           <figure
+            role="img"
+            aria-label="Profil picture of the user"
             style={{
               backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src})`,
             }}

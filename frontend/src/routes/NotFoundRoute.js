@@ -13,6 +13,8 @@ const NotFoundRoute = () => {
       className="not-found-wrapper"
     >
       <motion.figure
+        role="img"
+        aria-label="Image of a burger emoji with a sad face"
         animate={{
           x: [-160, 0],
           rotate: 180,
@@ -30,6 +32,8 @@ const NotFoundRoute = () => {
         <button>homepage</button>
       </NavLink>
       <motion.figure
+        role="img"
+        aria-label="Image of a burger emoji with a sad face"
         animate={{
           x: [160, 0],
           rotate: -180,
