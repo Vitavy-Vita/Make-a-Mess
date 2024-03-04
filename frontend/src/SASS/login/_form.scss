@@ -20,7 +20,6 @@
       @include text-style;
       color: variables.$gray;
       margin-top: 1em;
-      
     }
     article {
       @include display-flex;
@@ -75,9 +74,10 @@
     background-image: url("../../assets/images/bg-full.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 84vh;
+
     .form-container {
-      margin-top: 5%;
+      margin-top: 11em;
       max-width: 500px;
       input::placeholder {
         font-size: 20px;
@@ -85,6 +85,9 @@
       p {
         font-size: variables.$text-size-mobile;
       }
+    }
+    .create-form {
+      margin-top: 2em;
     }
     article {
       max-width: 400px;
@@ -108,78 +111,3 @@
     }
   }
 }
-
-/* -------------------------------------------------------------------------- */
-/*                                  RECOVERY                                  */
-/* -------------------------------------------------------------------------- */
-
-// .recovery-form-container {
-//   background-color: variables.$light-red;
-//   margin: 1em;
-//   padding: 1em;
-//   border-radius: 15px;
-//   span {
-//     @include text-style;
-//     color: variables.$gray;
-//   }
-//   article {
-//     @include display-flex;
-//     flex-direction: row;
-//   }
-//   input {
-//     width: 50%;
-//     margin: 0 0.5em;
-//     color: variables.$brown;
-//   }
-//   p {
-//     @include text-style;
-//     color: variables.$gray;
-//   }
-//   small {
-//     padding: 0.5em;
-//     color: variables.$gray;
-//   }
-// }
-// @media screen and (min-width: 481px) and (max-width: 990px) {
-//   .otp-wrapper {
-//     h2 {
-//       @include sub-title-style-desktop;
-//     }
-//     p {
-//       @include text-style-desktop;
-//       color: variables.$gray;
-//     }
-//     small {
-//       @include text-style;
-//       color: variables.$gray;
-//     }
-//     input {
-//       width: 10%;
-//       margin: 0 0.5em;
-//     }
-//   }
-// }
-// @media screen and (min-width: 991px) {
-//   .otp-wrapper {
-//     @include display-flex;
-//     flex-direction: column;
-//     .recovery-form-container {
-//       max-width: 600px;
-//     }
-//     h2 {
-//       @include sub-title-style-desktop;
-//     }
-//     p {
-//       @include text-style-desktop;
-//       color: variables.$gray;
-//     }
-//     small {
-//       @include text-style;
-//       color: variables.$gray;
-//     }
-//     input {
-//       width: 10%;
-//       margin: 0 0.5em;
-//     }
-//   }
-// }

@@ -77,7 +77,7 @@ export default function CreateAccount() {
       className="center-container"
     >
       <h2>Create your account</h2>
-      <section className="form-container">
+      <section className="form-container create-form">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <input
             type="text"
