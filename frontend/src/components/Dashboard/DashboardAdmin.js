@@ -39,7 +39,7 @@ const DashboardAdmin = () => {
 
     if (confirmBox === true) {
       axios
-        .delete(`http://localhost:9001/users/${id}`, { headers: token() })
+        .delete(`${process.env.REACT_APP_BASE_URL}/users/${id}`, { headers: token() })
         .then((res) => {
           setReload(!reload);
           setUsers((allUsers) => allUsers.filter((user) => user.id !== id));

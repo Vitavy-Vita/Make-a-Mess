@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import axios from "axios";
 import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function CreateAccount() {
   const [inputs, setInputs] = useState({
@@ -12,7 +13,7 @@ export default function CreateAccount() {
   });
   const [err, setErr] = useState();
   const [response, setResponse] = useState();
-
+  const [capValue, setCapValue] = useState(null);
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "image") {
@@ -132,7 +133,18 @@ export default function CreateAccount() {
           <input type="file" name="image" id="image" onChange={handleChange} />
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
-          <button className={"button-form"}>Validate</button>
+          <ReCAPTCHA
+            sitekey={process.env.REACT_APP_CAPTCHA_SERVER_KEY}
+            onChange={(value) => setCapValue(value)}
+            style={{
+              margin: "2em",
+              border: "2px solid #c85a44",
+              borderRadius: "5px",
+            }}
+          />
+          <button disabled={!capValue} className={"button-form"}>
+            Validate
+          </button>
         </form>
       </section>
     </motion.main>

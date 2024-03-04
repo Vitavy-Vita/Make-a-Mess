@@ -31,6 +31,7 @@ ul {
 input,
 textarea {
   @include input-style;
+  resize: none;
 }
 button {
   @include button;

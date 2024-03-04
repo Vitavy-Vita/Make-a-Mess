@@ -9,6 +9,7 @@ import { CiPhone } from "react-icons/ci";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
   const auth = useAuth();
@@ -20,7 +21,7 @@ export default function Contact() {
 
   const [err, setErr] = useState();
   const [response, setResponse] = useState();
-
+  const [capValue, setCapValue] = useState(null);
   const [disable, setDisable] = useState(false);
   const [timerCount, setTimerCount] = useState(300);
 
@@ -60,7 +61,9 @@ export default function Contact() {
       return setErr("Please provide all informations");
     }
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}/send`, inputs, { headers: token() })
+      .post(`${process.env.REACT_APP_BASE_URL}/send`, inputs, {
+        headers: token(),
+      })
       .then((res) => {
         setResponse(res.data.message);
         setDisable(!disable);
@@ -138,7 +141,20 @@ export default function Contact() {
             ></textarea>
             {err && <span>{err}</span>}
             {response && <span>{response}</span>}
-            {!disable && <button onClick={disableButton}>Send</button>}
+            <ReCAPTCHA
+              sitekey={process.env.REACT_APP_CAPTCHA_SERVER_KEY}
+              onChange={(value) => setCapValue(value)}
+              style={{
+                margin:"2em",
+                border:"2px solid #c85a44",
+                borderRadius:"5px"
+              }}
+            />
+            {!disable && (
+              <button disabled={!capValue} onClick={disableButton}>
+                Send
+              </button>
+            )}
           </form>
         )}
         <article className="business-wrapper">

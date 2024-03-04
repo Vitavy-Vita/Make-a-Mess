@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import token from "../../context/token";
 import { useNavigate, useParams } from "react-router-dom";
-
+import ReCAPTCHA from "react-google-recaptcha";
 const ResetPassword = () => {
   const [err, setErr] = useState();
   const recovery = useRecovery();
   const navigate = useNavigate();
   const { email } = useParams();
-
+  const [capValue, setCapValue] = useState(null);
   const handlePwdChange = (e) => {
     e.preventDefault();
 
@@ -62,7 +62,18 @@ const ResetPassword = () => {
             onChange={recovery.handleChange}
           />
           {err && <span>{err}</span>}
-          <button className={"button-form"}>Validate</button>
+          <ReCAPTCHA
+            sitekey={process.env.REACT_APP_CAPTCHA_SERVER_KEY}
+            onChange={(value) => setCapValue(value)}
+            style={{
+              margin: "2em",
+              border: "2px solid #c85a44",
+              borderRadius: "5px",
+            }}
+          />
+          <button disabled={!capValue} className={"button-form"}>
+            Validate
+          </button>
         </form>
       </article>
     </motion.main>

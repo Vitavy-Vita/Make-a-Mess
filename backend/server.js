@@ -22,8 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(
   cors({
-    // origin: "https://make-a-mess.vercel.app",
-    origin: "http://localhost:3000",
+    // origin: " http://localhost:9001",
+    origin: `${process.env.BASE_URL}:${process.env.PORT_REACT}`,
     credentials: true,
   })
 );
@@ -45,6 +45,8 @@ app.use(favoriteRouter);
 app.get("/", (req, res) => {
   res.send("Hello");
 });
-app.listen(process.env.PORT, () => {
-  console.log(`Server is working on port: ${process.env.BASE_URL}`);
+app.listen(process.env.PORT_MONGO, () => {
+  console.log(
+    `Server is working on port: ${process.env.BASE_URL}:${process.env.PORT_MONGO}`
+  );
 });
