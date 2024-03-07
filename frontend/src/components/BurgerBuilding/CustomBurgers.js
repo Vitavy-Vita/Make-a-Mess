@@ -182,8 +182,6 @@ const CustomBurgers = () => {
       default:
         break;
     }
-    // call this to make sure the total is correctly update
-    calculateTotal();
   };
 
   const handleChange = (e) => {
