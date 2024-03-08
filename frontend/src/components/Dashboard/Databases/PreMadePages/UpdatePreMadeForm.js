@@ -74,7 +74,7 @@ const UpdatePreMadeForm = () => {
       }}
       className="center-container"
     >
-      <h1>Update this Burger:</h1>
+      <h2>Update this Burger:</h2>
 
       <section className="form-container">
         <form onSubmit={handleSubmit} encType="multipart/form-data">

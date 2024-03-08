@@ -61,7 +61,7 @@ const UpdateMeatForm = () => {
       }}
       className="center-container"
     >
-      <h1>Update this Meat:</h1>
+      <h2>Update this Meat:</h2>
 
       <section className="form-container">
         <form onSubmit={handleSubmit}>

@@ -18,7 +18,9 @@ const UpdateBreadForm = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BASE_URL}/custom/bread/${id}`, { headers: token() })
+      .get(`${process.env.REACT_APP_BASE_URL}/custom/bread/${id}`, {
+        headers: token(),
+      })
       .then((res) => {
         setBread(res.data);
         setInputs(res.data);
@@ -63,7 +65,7 @@ const UpdateBreadForm = () => {
       }}
       className="center-container"
     >
-      <h1>Update this bread:</h1>
+      <h2>Update this bread:</h2>
 
       <section className="form-container">
         <form onSubmit={handleSubmit}>

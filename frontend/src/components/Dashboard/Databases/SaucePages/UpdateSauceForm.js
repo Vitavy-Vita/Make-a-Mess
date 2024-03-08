@@ -60,7 +60,7 @@ const UpdateSauceForm = () => {
       }}
       className="center-container"
     >
-      <h1>Update this Sauce:</h1>
+      <h2>Update this Sauce:</h2>
 
       <section className="form-container">
         <form onSubmit={handleSubmit}>

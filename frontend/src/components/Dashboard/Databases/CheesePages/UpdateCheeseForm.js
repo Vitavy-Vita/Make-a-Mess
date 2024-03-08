@@ -62,7 +62,7 @@ const UpdateCheeseForm = () => {
       }}
       className="center-container"
     >
-      <h1>Update this cheese:</h1>
+      <h2>Update this cheese:</h2>
 
       <section className="form-container">
         <form onSubmit={handleSubmit}>

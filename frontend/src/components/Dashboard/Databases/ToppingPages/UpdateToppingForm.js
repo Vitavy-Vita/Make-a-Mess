@@ -62,7 +62,7 @@ const UpdateToppingForm = () => {
       }}
       className="center-container"
     >
-      <h1>Update this Topping:</h1>
+      <h2>Update this Topping:</h2>
 
       <section className="form-container">
         <form onSubmit={handleSubmit}>
