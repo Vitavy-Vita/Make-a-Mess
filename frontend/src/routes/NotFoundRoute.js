@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
+import sadBurger from "../assets/images/sad-burger.png";
 
 const NotFoundRoute = () => {
   return (
@@ -12,8 +13,8 @@ const NotFoundRoute = () => {
       }}
       className="not-found-wrapper"
     >
-      <motion.figure
-        role="img"
+      <motion.img
+        src={sadBurger}
         aria-label="Image of a burger emoji with a sad face"
         animate={{
           x: [-160, 0],
@@ -25,15 +26,15 @@ const NotFoundRoute = () => {
           mass: 10,
           damping: 0,
         }}
-      ></motion.figure>
+      />
       <h1>Error 404</h1>
       <h2>You seem a bit lost, let me redirect you to</h2>
       <NavLink to={"/"}>
         <button>homepage</button>
       </NavLink>
-      <motion.figure
-        role="img"
-        aria-label="Image of a burger emoji with a sad face"
+      <motion.img
+        src={sadBurger}
+        alt="Image of a burger emoji with a sad face"
         animate={{
           x: [160, 0],
           rotate: -180,
@@ -44,7 +45,7 @@ const NotFoundRoute = () => {
           mass: 10,
           damping: 0,
         }}
-      ></motion.figure>
+      />
     </motion.main>
   );
 };

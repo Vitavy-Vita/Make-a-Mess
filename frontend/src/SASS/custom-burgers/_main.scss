@@ -118,10 +118,10 @@
 }
 @include desktop {
   .custom-main {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2em;
-    margin: 0 2em;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 84vh;
   }
   .custom-container {
     padding: 0 2em;

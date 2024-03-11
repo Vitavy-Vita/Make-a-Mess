@@ -14,6 +14,7 @@ export default function CreateAccount() {
   const [err, setErr] = useState();
   const [response, setResponse] = useState();
   const [capValue, setCapValue] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "image") {
@@ -133,16 +134,20 @@ export default function CreateAccount() {
           <input type="file" name="image" id="image" onChange={handleChange} />
           {err && <span>{err}</span>}
           {response && <span>{response}</span>}
+          <p>Check the box to create your account</p>
           <ReCAPTCHA
             sitekey={process.env.REACT_APP_CAPTCHA_SERVER_KEY}
             onChange={(value) => setCapValue(value)}
             style={{
-              margin: "2em",
+              margin: "0.5em",
               border: "2px solid #c85a44",
               borderRadius: "5px",
             }}
           />
-          <button disabled={!capValue} className={"button-form"}>
+          <button
+            className={`button-form ${capValue ? "" : "disable"}`}
+            disabled={!capValue}
+          >
             Validate
           </button>
         </form>

@@ -24,12 +24,11 @@
     border-radius: 15px;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
     .premade-card-img {
-      background-size: cover;
-      background-repeat: no-repeat;
       width: 250px;
       height: 200px;
       border-radius: 50%;
       border: 4px solid variables.$brown;
+      object-fit: fill;
     }
     p {
       color: variables.$gray;

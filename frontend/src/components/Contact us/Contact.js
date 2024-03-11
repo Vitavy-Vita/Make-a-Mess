@@ -22,6 +22,7 @@ export default function Contact() {
   const [err, setErr] = useState();
   const [response, setResponse] = useState();
   const [capValue, setCapValue] = useState(null);
+
   const [disable, setDisable] = useState(false);
   const [timerCount, setTimerCount] = useState(300);
 
@@ -141,17 +142,22 @@ export default function Contact() {
             ></textarea>
             {err && <span>{err}</span>}
             {response && <span>{response}</span>}
+            <p>Check the box to send a message</p>
             <ReCAPTCHA
               sitekey={process.env.REACT_APP_CAPTCHA_SERVER_KEY}
               onChange={(value) => setCapValue(value)}
               style={{
-                margin:"2em",
-                border:"2px solid #c85a44",
-                borderRadius:"5px"
+                margin: "2em",
+                border: "2px solid #c85a44",
+                borderRadius: "5px",
               }}
             />
             {!disable && (
-              <button disabled={!capValue} onClick={disableButton}>
+              <button
+                className={`${capValue ? "" : "disable"}`}
+                onClick={disableButton}
+                disabled={!capValue}
+              >
                 Send
               </button>
             )}

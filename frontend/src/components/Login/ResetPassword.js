@@ -5,6 +5,7 @@ import axios from "axios";
 import token from "../../context/token";
 import { useNavigate, useParams } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+
 const ResetPassword = () => {
   const [err, setErr] = useState();
   const recovery = useRecovery();
@@ -61,6 +62,7 @@ const ResetPassword = () => {
             required
             onChange={recovery.handleChange}
           />
+          <p>Check the box to reset your password</p>
           {err && <span>{err}</span>}
           <ReCAPTCHA
             sitekey={process.env.REACT_APP_CAPTCHA_SERVER_KEY}
@@ -71,7 +73,10 @@ const ResetPassword = () => {
               borderRadius: "5px",
             }}
           />
-          <button disabled={!capValue} className={"button-form"}>
+          <button
+            className={`button-form ${capValue ? "" : "disable"}`}
+            disabled={!capValue}
+          >
             Validate
           </button>
         </form>

@@ -65,14 +65,11 @@ const ProfilPage = () => {
     >
       {user && (
         <section className="user-card">
-          <figure
-            role="img"
-            aria-label="Profil picture of the user"
-            style={{
-              backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src})`,
-            }}
+          <img
+            src={`${process.env.REACT_APP_BASE_URL}/assets/img/${user.image.src}`}
+            alt="Profil picture of the user"
             className="premade-card-img"
-          ></figure>
+          />
           <article>
             <h2>{user.name}</h2>
             <p>Phone Number: {user.tel}</p>
