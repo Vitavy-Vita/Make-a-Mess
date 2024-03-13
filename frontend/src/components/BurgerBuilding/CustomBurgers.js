@@ -62,7 +62,7 @@ const CustomBurgers = () => {
           (ing) => ing._id === choosenIngredient._id
         ),
       };
-
+      console.log(choosenIngredient.name)
       setIngredients(newI);
       calculateTotal();
     }

@@ -20,10 +20,12 @@
   height: 20px;
 }
 .custom-container {
+  background-color: pink;
   h2 {
     @include sub-title-style;
     position: relative;
     cursor: pointer;
+    
   }
   h2:hover {
     color: variables.$red;
@@ -82,6 +84,7 @@
     position: fixed;
     top: 25vh;
     left: 2vw;
+   
   }
   .ingredient-total {
     position: fixed;
