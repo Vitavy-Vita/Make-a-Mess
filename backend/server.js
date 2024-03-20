@@ -43,7 +43,9 @@ app.use(allIngredientsRouter);
 app.use(favoriteRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.send(
+    "Dont worry you're not lost, use the README file to find your path!"
+  );
 });
 app.listen(process.env.PORT_MONGO, () => {
   console.log(

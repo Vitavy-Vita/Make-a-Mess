@@ -46,10 +46,11 @@ export const register = async (req, res) => {
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,30}$/;
     const checkNameLength = /^.{1,10}$/;
     const checkSpecialCharacters =
-      /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+      /^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
     const checkEmail =
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    const checkTel = /^06\d{8}$/;
+    const checkTel =
+      /^\+((?:9[679]|8[035789]|6[789]|5[90]|42|3[578]|2[1-689])|9[0-58]|8[1246]|6[0-6]|5[1-8]|4[013-9]|3[0-469]|2[70]|7|1)(?:\W*\d){0,13}\d$/;
     const { name, password, passwordConfirm, tel, email } = req.body;
 
     if (
@@ -60,8 +61,7 @@ export const register = async (req, res) => {
       email.trim() === ""
     ) {
       return res.status(401).json({
-        status: "error",
-        message: "Please provide all informations",
+        message: "Please provide all informations.",
       });
     }
     const verifEmail = await User.findOne({
@@ -69,38 +69,39 @@ export const register = async (req, res) => {
     });
     if (verifEmail) {
       return res.status(401).json({
-        message: "This email is already taken",
+        message: "This email is already taken.",
       });
     }
     if (!checkEmail.test(email)) {
       return res.status(401).json({
-        message: "Email format incorrect",
+        message: "Email format incorrect.",
       });
     }
     if (!checkPwd.test(password)) {
       return res.status(401).json({
-        message: "Password incorrect",
+        message:
+          "Password must contain at least one capitalized letter, one number and one special character(#?!@$%^&*-).",
       });
     }
     if (password !== passwordConfirm) {
       return res.status(401).json({
-        status: "error",
-        message: "Passwords do not match",
+        message: "Passwords do not match.",
       });
     }
     if (!checkNameLength.test(name)) {
       return res.status(401).json({
-        message: "Name must be 10 characters maximum",
+        message: "Name must be 10 characters maximum.",
       });
     }
     if (!checkSpecialCharacters.test(name)) {
       return res.status(401).json({
-        message: "Name must not include special characters",
+        message: "Name must not include special characters.",
       });
     }
-    if (!checkTel.test(tel)) {
+    const phone = tel.replace(" ", "");
+    if (!checkTel.test(phone)) {
       return res.status(401).json({
-        message: "Please use the correct phone number format",
+        message: "Please use the correct phone number format.",
       });
     }
     let user;
@@ -109,7 +110,7 @@ export const register = async (req, res) => {
         name: name,
         password: password,
         passwordConfirm: passwordConfirm,
-        tel: tel,
+        tel: phone,
         email: email,
       });
     } else {
@@ -117,7 +118,7 @@ export const register = async (req, res) => {
         name: name,
         password: password,
         passwordConfirm: passwordConfirm,
-        tel: tel,
+        tel: phone,
         email: email,
         image: {
           src: req.file.filename,
@@ -132,7 +133,6 @@ export const register = async (req, res) => {
       message: "User created",
     });
   } catch (error) {
-    console.error("Error creating new user:", error);
     res.status(500).json({
       message: "Unable to create new user",
     });
@@ -206,7 +206,6 @@ export const deleteUser = async (req, res) => {
       message: "Account deleted",
     });
   } catch (error) {
-    console.log("Error deleting user:", error);
     res.status(500).json({
       message: "Delete not working",
     });
@@ -219,32 +218,33 @@ export const updateUser = async (req, res) => {
     const checkSpecialCharacters =
       /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
     const checkEmail =
-      /[a-z0-9!#$%&'*+/=?^_`{|}~\s-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const checkTel = /^06\d{8}$/;
 
     const { name, tel, email, role } = req.body;
-   
 
-    if (!checkEmail.test(email)) {
-      return res.status(401).json({
-        message: "Email format incorrect",
-      });
-    }
+    if (!role) {
+      if (!checkEmail.test(email)) {
+        return res.status(401).json({
+          message: "Email format incorrect",
+        });
+      }
 
-    if (!checkNameLength.test(name)) {
-      return res.status(401).json({
-        message: "Name must be 10 characters maximum",
-      });
-    }
-    if (!checkSpecialCharacters.test(name)) {
-      return res.status(401).json({
-        message: "Name must not include special characters",
-      });
-    }
-    if (!checkTel.test(tel)) {
-      return res.status(401).json({
-        message: "Please use the correct phone number format",
-      });
+      if (!checkNameLength.test(name)) {
+        return res.status(401).json({
+          message: "Name must be 10 characters maximum",
+        });
+      }
+      if (!checkSpecialCharacters.test(name)) {
+        return res.status(401).json({
+          message: "Name must not include special characters",
+        });
+      }
+      if (!checkTel.test(tel)) {
+        return res.status(401).json({
+          message: "Please use the correct phone number format",
+        });
+      }
     }
 
     let updateUser;
@@ -257,7 +257,6 @@ export const updateUser = async (req, res) => {
         name: name,
         tel: tel,
         email: email,
-
       };
     } else {
       updateUser = {
@@ -268,7 +267,6 @@ export const updateUser = async (req, res) => {
         name: name,
         tel: tel,
         email: email,
-
       };
     }
 
@@ -297,7 +295,6 @@ export const updateUser = async (req, res) => {
       message: "Updated successfully!",
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: "Could not update",
     });

@@ -12,7 +12,6 @@ const burgerSchema = new mongoose.Schema({
       type: String,
       default: "default-burger.png",
       required: true,
-
     },
     alt: {
       type: String,

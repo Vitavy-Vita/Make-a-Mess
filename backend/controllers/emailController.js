@@ -1,4 +1,4 @@
-import {EmailSender, ForgotPassword} from "../config/sendEmail.js";
+import { EmailSender, ForgotPassword } from "../config/sendEmail.js";
 
 export const email = async (req, res) => {
   try {
@@ -10,15 +10,12 @@ export const email = async (req, res) => {
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     const checkMessage = /^[a-zA-Z0-9?$@#()'!,+\-=_:.&€£*%\s]+$/;
 
-    if (
-      fullname.trim() === "" ||
-      email.trim() === ""
-    ) {
+    if (fullname.trim() === "" || email.trim() === "") {
       return res.status(401).json({
         message: "Please provide all informations",
       });
     }
-    if( message.trim() === ""){
+    if (message.trim() === "") {
       return res.status(401).json({
         message: "Dont forget your message!",
       });

@@ -140,7 +140,6 @@ export const updateBurger = async (req, res) => {
       message: "Updated successfully!",
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: "Could not update",
     });

@@ -5,7 +5,7 @@ import {
   getOneFavorite,
   deleteFavorite,
   getAllFavorites,
-} from "../controllers/FavoritesController.js";
+} from "../controllers/favoritesController.js";
 
 import {
   addBread,
