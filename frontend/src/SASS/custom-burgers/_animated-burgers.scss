@@ -1,5 +1,7 @@
 @use "../generalities/variables";
-
+.animated-wrapper {
+  display: none;
+}
 @include desktop {
   .animated-wrapper {
     @include display-flex-column;

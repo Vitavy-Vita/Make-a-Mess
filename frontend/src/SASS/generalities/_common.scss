@@ -31,7 +31,9 @@ ul {
 input,
 textarea {
   @include input-style;
-  resize: none;
+}
+textarea {
+  color: variables.$gray;
 }
 button {
   @include button;
@@ -53,7 +55,6 @@ form {
   textarea {
     @include input-style;
     margin-top: 0.5em;
-    width: 60%;
   }
   input::placeholder {
     color: variables.$red;

@@ -9,12 +9,12 @@
   width: 100%;
   height: 100vh;
   background: linear-gradient(
-      to top left,
-      variables.$red 0%,
-      variables.$red 60%,
-      transparent 65%,
-      transparent 100%
-    );
+    to top left,
+    variables.$red 0%,
+    variables.$red 60%,
+    transparent 65%,
+    transparent 100%
+  );
 
   iframe {
     width: 370px;
@@ -23,12 +23,11 @@
     border-radius: 15px;
     margin-bottom: 1em;
     box-shadow: variables.$text-shadow;
-  
-}
+  }
 }
 .article-section-title {
-      color: variables.$gray;
-    }
+  color: variables.$gray;
+}
 .article-section {
   width: 350px;
   height: auto;
@@ -74,7 +73,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: start;
-    
+
     iframe {
       width: 600px;
       height: 400px;
@@ -89,7 +88,7 @@
     .article-section {
       width: 600px;
     }
-    
+
     a:hover {
       color: variables.$light-red;
     }

@@ -28,6 +28,8 @@
 }
 @include desktop {
   .ingredient-container {
+    max-width: 1600px;
+    margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     .ingredient-name {

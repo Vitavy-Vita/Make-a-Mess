@@ -50,13 +50,9 @@
   }
   .burger-card {
     margin: 0.5em;
-    padding: 0;
+
     h2 {
       font-size: 2em;
-    }
-    figure {
-      width: 37vw;
-      height: 20vh;
     }
   }
   button {
@@ -68,15 +64,10 @@
     @include display-flex;
     justify-content: start;
     max-width: 1300px;
-  
   }
   .burger-card {
     min-width: 30%;
-    margin:0 1em ;
-    figure {
-      width: 350px;
-      height: 20vh;
-    }
+    margin: 0 1em;
     h2 {
       font-size: 2em;
     }

@@ -43,7 +43,6 @@
     color: variables.$gray;
     font-size: variables.$text-size-mobile;
     position: relative;
-    cursor: pointer;
   }
 
   .emoji {
@@ -114,6 +113,9 @@
     h2 {
       font-size: variables.$sub-title-size-mobile;
     }
+    input {
+      font-size: variables.$text-size-desktop;
+    }
   }
 }
 @include desktop {
@@ -142,6 +144,7 @@
     justify-content: space-around;
     height: 550px;
     width: 500px;
+    box-shadow: variables.$text-shadow;
     h2 {
       color: variables.$gray;
       font-size: variables.$text-size-desktop;
@@ -150,10 +153,8 @@
       color: variables.$gray;
     }
     input {
-      padding: 1em;
-      font-size: 100%;
-      text-align: center;
-      text-transform: uppercase;
+      font-size: variables.$text-size-desktop;
+      padding: 0.5em 1em;
     }
   }
 }

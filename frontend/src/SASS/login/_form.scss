@@ -3,19 +3,25 @@
 /* -------------------------------------------------------------------------- */
 /*                                    FORM                                    */
 /* -------------------------------------------------------------------------- */
+.disable {
+  display: none;
+}
 .center-container {
   text-align: center;
-
   .form-container {
     position: relative;
     text-align: center;
     border-radius: 15px;
-    margin: 2em;
+    margin: 1em;
     background: radial-gradient(
       circle,
       rgba(221, 130, 111, 1) 0%,
       rgba(200, 90, 68, 1) 100%
     );
+    box-shadow: variables.$text-shadow;
+    .PhoneInput {
+      margin-right: 2.5em;
+    }
     label {
       @include text-style;
       color: variables.$gray;
@@ -44,7 +50,6 @@
     span,
     p {
       color: variables.$gray;
-      padding: 1em;
       font-size: 15px;
     }
   }
@@ -54,8 +59,12 @@
     max-width: 600px;
     margin: auto;
     .form-container {
+      margin: 2em;
       h2 {
         line-height: 50px;
+      }
+      input {
+        font-size: variables.$text-size-mobile;
       }
       article {
         max-width: 400px;
@@ -75,10 +84,13 @@
     background-size: 100%;
     background-repeat: no-repeat;
     height: 84vh;
-
     .form-container {
       margin-top: 11em;
+      margin-left: 5em;
       max-width: 500px;
+      form {
+        padding: 1em;
+      }
       input::placeholder {
         font-size: 20px;
       }
@@ -95,7 +107,7 @@
     }
     h2 {
       margin-top: 2em;
-      margin-left: 5em;
+      margin-left: 4em;
       font-family: variables.$title-font;
       font-size: 5em;
       line-height: 100px;
