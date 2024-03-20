@@ -31,13 +31,13 @@ const UpdateBread = () => {
       .catch((res) => {
         setErr(res.data);
       });
-      // use the dependency to refresh the page everytime the reload states is updated
+    // use the dependency to refresh the page everytime the reload states is updated
   }, [reload]);
 
   const handleChange = (e) => {
     // destructuring, we extract the name and value from the "target" property of the event object "e"
     const { name, value } = e.target;
-    // we spread the initial values of inputs (wich we decide to have empty) and override the property "name" with the value (value being what's typed inside the input). 
+    // we spread the initial values of inputs (wich we decide to have empty) and override the property "name" with the value (value being what's typed inside the input).
     setInputs({ ...inputs, [name]: value });
     setErr("");
   };
@@ -53,7 +53,7 @@ const UpdateBread = () => {
     ) {
       return setErr("Please provide all informations");
     }
-// axios this time with the method post, because we want to inject those inputs in our collection to create a new document.
+    // axios this time with the method post, because we want to inject those inputs in our collection to create a new document.
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/custom/bread/new`, inputs, {
         // not everyone is allowed to post in database, setting the headers with the token is a way to confirm who's posting.
@@ -90,7 +90,7 @@ const UpdateBread = () => {
         .then((res) => {
           // quick filter method to set bread array to display all bread without the bread of the id we chose
           setBreads((allBreads) =>
-          allBreads.filter((bread) => bread.id !== id)
+            allBreads.filter((bread) => bread.id !== id)
           );
           // we set reload to its opposite, just to handle the rendering of the page, wich means each time an element is removed, since we've put reload as a dependency of the useEffect, the page refresh with the new array of, in this case, "bread".
           setReload(!reload);

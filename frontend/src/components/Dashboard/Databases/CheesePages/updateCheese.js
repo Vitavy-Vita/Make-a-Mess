@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import token from "../../../../context/token";
 import { motion } from "framer-motion";
 const UpdateCheese = () => {

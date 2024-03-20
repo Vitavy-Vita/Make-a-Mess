@@ -93,7 +93,7 @@ export default function Contact() {
     >
       <section className="main-title">
         <h2>Let us know what you</h2>
-        <h1 className="think">Think !!</h1>
+        <h1 className="think">Think!!</h1>
       </section>
       <section className="main-contact-wrapper">
         <article>

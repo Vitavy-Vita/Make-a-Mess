@@ -17,15 +17,15 @@ export default function NavBar() {
   });
 
   const onClickToggle = () => {
-      setState({
-        navClass: !state.navClass,
-        menuClass: !state.menuClass,
-        menuIndex: !state.menuIndex,
-        hideLogo: !state.hideLogo,
-        burgerClass: !state.burgerClass,
-      });
+    setState({
+      navClass: !state.navClass,
+      menuClass: !state.menuClass,
+      menuIndex: !state.menuIndex,
+      hideLogo: !state.hideLogo,
+      burgerClass: !state.burgerClass,
+    });
   };
- 
+
   return (
     <motion.header>
       <motion.nav
@@ -40,7 +40,6 @@ export default function NavBar() {
           <motion.img
             src={logo}
             alt="logo du site Make-a-Mess"
-            className={state.hideLogo}
             initial={false}
             animate={{
               opacity: state.hideLogo ? 0 : 1,

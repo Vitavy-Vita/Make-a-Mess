@@ -5,7 +5,6 @@ import token from "../../context/token";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/authContext";
 
-
 const DashboardAdmin = () => {
   const [users, setUsers] = useState([]);
   const [filteredUser, setFilteredUser] = useState([]);
@@ -14,6 +13,7 @@ const DashboardAdmin = () => {
   const [open, setOpen] = useState(null);
   const [response, setResponse] = useState();
   const auth = useAuth();
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/users`)
@@ -24,7 +24,7 @@ const DashboardAdmin = () => {
       .catch((err) => {
         setErr("Cannot access data");
       });
-      // we use a "fake" state to force a reload to the page each time we use the delete function to keep the updated array rendered
+    // we use a "fake" state to force a reload to the page each time we use the delete function to keep the updated array rendered
   }, [reload]);
 
   const handleRemove = (id) => {
@@ -39,7 +39,9 @@ const DashboardAdmin = () => {
 
     if (confirmBox === true) {
       axios
-        .delete(`${process.env.REACT_APP_BASE_URL}/users/${id}`, { headers: token() })
+        .delete(`${process.env.REACT_APP_BASE_URL}/users/${id}`, {
+          headers: token(),
+        })
         .then((res) => {
           setReload(!reload);
           setUsers((allUsers) => allUsers.filter((user) => user.id !== id));
@@ -59,7 +61,7 @@ const DashboardAdmin = () => {
     }
   };
 
-  const handleMenu = (e, id) => {
+  const handleRoleChange = (e, id) => {
     const formData = new FormData();
 
     formData.append("role", e.target.value);
@@ -139,7 +141,7 @@ const DashboardAdmin = () => {
                     <ul className="drowpdown-menu">
                       <li>
                         <button
-                          onClick={(e) => handleMenu(e, oneUser._id)}
+                          onClick={(e) => handleRoleChange(e, oneUser._id)}
                           value="user"
                         >
                           User
@@ -147,7 +149,7 @@ const DashboardAdmin = () => {
                       </li>
                       <li>
                         <button
-                          onClick={(e) => handleMenu(e, oneUser._id)}
+                          onClick={(e) => handleRoleChange(e, oneUser._id)}
                           value="admin"
                         >
                           Admin

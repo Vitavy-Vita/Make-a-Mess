@@ -89,7 +89,7 @@ const ProfilPage = () => {
         {favorites && (
           <div className="favorites-scroll">
             {favorites.map((oneFav, i) => (
-              <article className={"burger-card"}>
+              <article className={"burger-card"} key={i}>
                 <h2>{oneFav.name}</h2>
                 <aside className="burger-description">
                   <ul>

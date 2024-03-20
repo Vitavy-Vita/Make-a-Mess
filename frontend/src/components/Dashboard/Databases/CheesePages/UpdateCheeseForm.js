@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 
 const UpdateCheeseForm = () => {
   const [cheese, setCheese] = useState([]);
-
   const [err, setErr] = useState();
   const [inputs, setInputs] = useState({
     name: "",
@@ -17,6 +16,7 @@ const UpdateCheeseForm = () => {
   });
   const navigate = useNavigate();
   const { id } = useParams();
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/custom/cheese/${id}`)
@@ -28,12 +28,24 @@ const UpdateCheeseForm = () => {
         setErr(res.data);
       });
   }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
+    setErr("");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      inputs.name.trim() === "" ||
+      inputs.protein < 0 ||
+      inputs.carbs < 0 ||
+      inputs.fat < 0 ||
+      inputs.calories < 0
+    ) {
+      return setErr("Please provide all informations");
+    }
     const confirmBox = window.confirm(
       "Are you sure you wish to make these changes ?"
     );
@@ -108,6 +120,7 @@ const UpdateCheeseForm = () => {
             placeholder={`${cheese ? cheese.calories : "not working"}`}
             onChange={handleChange}
           />
+          {err && <span>{err}</span>}
           <button className={"button-form"}>Validate</button>
         </form>
       </section>

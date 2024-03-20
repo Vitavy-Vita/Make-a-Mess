@@ -20,7 +20,7 @@ export default function Login() {
           {auth.user ? (
             <>
               <NavLink to={"/my-profil"}>
-                <MdOutlineManageAccounts  /> My Profil
+                <MdOutlineManageAccounts /> My Profil
               </NavLink>
               <a onClick={handleLogout}>
                 <IoIosLogIn className="form-icon" />
@@ -29,13 +29,13 @@ export default function Login() {
               {/* if he's admin he gets this link to the dashboard admin */}
               {auth.user.role === "admin" ? (
                 <NavLink to={"/settings/admin"}>
-                  <IoIosSettings  />
+                  <IoIosSettings />
                   Settings
                 </NavLink>
               ) : (
                 // else its the user's settings
                 <NavLink to={"my-profil/update"}>
-                  <IoIosSettings  />
+                  <IoIosSettings />
                   Settings
                 </NavLink>
               )}
@@ -44,10 +44,10 @@ export default function Login() {
             // else we show those
             <>
               <NavLink to={"/create-account"}>
-                <MdOutlineManageAccounts  /> New Account
+                <MdOutlineManageAccounts /> New Account
               </NavLink>
               <NavLink to={"/login"}>
-                <IoIosLogIn  /> Login
+                <IoIosLogIn /> Login
               </NavLink>
             </>
           )}

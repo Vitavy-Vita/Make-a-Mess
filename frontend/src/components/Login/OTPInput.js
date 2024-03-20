@@ -93,6 +93,7 @@ const OTPInput = () => {
                 className="recovery-input"
                 key={index}
                 type="text"
+                size="1"
                 maxLength={1}
                 required
                 onChange={(e) => handleOtpChange(e.target.value, index)}

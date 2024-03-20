@@ -37,6 +37,16 @@ const UpdatePreMadeForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      inputs.name.trim() === "" ||
+      inputs.description.trim() === "" ||
+      inputs.protein < 0 ||
+      inputs.carbs < 0 ||
+      inputs.fat < 0 ||
+      inputs.calories < 0
+    ) {
+      return setErr("Please provide all informations");
+    }
     const confirmBox = window.confirm(
       "Are you sure you wish to make these changes ?"
     );
@@ -130,9 +140,9 @@ const UpdatePreMadeForm = () => {
             onChange={handleChange}
           />
           <input type="file" name="image" id="image" onChange={handleChange} />
+          {err && <span>{err}</span>}
           <button className={"button-form"}>Validate</button>
         </form>
-        {err && <span>{err}</span>}
       </section>
     </motion.main>
   );

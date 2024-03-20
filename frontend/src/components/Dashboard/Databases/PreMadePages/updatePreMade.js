@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import token from "../../../../context/token";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "@mui/material";
 
 const UpdatePreMade = () => {
+  const isDesktop = useMediaQuery("(min-width: 991px)");
   const [preMade, setPreMade] = useState([]);
   const [filteredPreMade, setFilteredPreMade] = useState([]);
   const [reload, setReload] = useState(false);
@@ -63,7 +65,7 @@ const UpdatePreMade = () => {
     formData.append("fat", inputs.fat);
     formData.append("calories", inputs.calories);
     formData.append("image", inputs.image);
-    
+
     axios
       // we then post formData instead of inputs
       .post(`${process.env.REACT_APP_BASE_URL}/burgers/new`, formData, {
@@ -112,6 +114,16 @@ const UpdatePreMade = () => {
     );
     setPreMade(searchResult);
   };
+
+  const displayDesktop = isDesktop
+    ? {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "1em",
+        padding: "0",
+        width: "80%",
+      }
+    : {};
   return (
     <motion.section
       initial={{ width: 0 }}
@@ -126,7 +138,11 @@ const UpdatePreMade = () => {
     >
       <article>
         <h2>Create new Burger</h2>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          style={displayDesktop}
+        >
           <input
             value={inputs.name}
             type="text"
@@ -141,12 +157,16 @@ const UpdatePreMade = () => {
             onChange={handleChange}
             name="description"
             id="description"
-            cols="30"
-            rows="10"
+            cols="25"
+            rows="5"
             placeholder="Description:"
             required
+            style={{
+              gridRow: "1/3",
+              gridColumn: "2/-1",
+            }}
           />
-
+          <input type="file" name="image" id="image" onChange={handleChange} />
           <input
             value={inputs.protein}
             onChange={handleChange}
@@ -186,10 +206,18 @@ const UpdatePreMade = () => {
             name="calories"
             required
           />
-          <input type="file" name="image" id="image" onChange={handleChange} />
-          <button className={"button-form"}>Validate</button>
+
+          {err && <span>{err}</span>}
+          <button
+            className={"button-form"}
+            style={{
+              width: "30%",
+              gridColumn: "2/-1",
+            }}
+          >
+            Validate
+          </button>
         </form>
-        {err && <span>{err}</span>}
         {response && <span>{response}</span>}
       </article>
       {preMade && (

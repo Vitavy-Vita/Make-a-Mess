@@ -74,7 +74,9 @@ const UpdateMeat = () => {
     );
     if (confirmBox === true) {
       axios
-        .delete(`${process.env.REACT_APP_BASE_URL}/custom/meat/${id}`, { headers: token() })
+        .delete(`${process.env.REACT_APP_BASE_URL}/custom/meat/${id}`, {
+          headers: token(),
+        })
         .then((res) => {
           setReload(!reload);
           setMeats((allMeats) => allMeats.filter((meat) => meat.id !== id));

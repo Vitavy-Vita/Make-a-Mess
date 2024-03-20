@@ -38,17 +38,17 @@ import UpdateProfil from "../components/Profil/UpdateProfil";
 export default function AnimatedRoutes() {
   return (
     <AnimatePresence>
-      <Routes >
-        /* -------------------------------------------------------------------------- */
-        /*                                   VISITOR                                  */
-        /* -------------------------------------------------------------------------- */
+      <Routes>
+        /*
+        --------------------------------------------------------------------------
+        */ /* VISITOR */ /*
+        --------------------------------------------------------------------------
+        */
         <Route path="/" element={<Home />} />
         <Route path="/ideas" element={<Ideas />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-
         <Route path="/create-account" element={<CreateAccount />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/send/recovery-email/otp" element={<OTPInput />} />
         <Route
@@ -56,9 +56,11 @@ export default function AnimatedRoutes() {
           element={<ResetPassword />}
         />
         <Route path="*" element={<NotFoundRoute />} />
-        /* -------------------------------------------------------------------------- */
-        /*                                    USER                                    */
-        /* -------------------------------------------------------------------------- */
+        /*
+        --------------------------------------------------------------------------
+        */ /* USER */ /*
+        --------------------------------------------------------------------------
+        */
         <Route path="/" element={<PrivateRoutes roles={["admin", "user"]} />}>
           <Route path="/custom-burger" element={<CustomBurgers />} />
           <Route path="/settings/admin" element={<DashboardAdmin />} />
@@ -66,9 +68,11 @@ export default function AnimatedRoutes() {
           <Route path="/my-profil/update" element={<UpdateProfil />} />
           <Route path="/my-profil" element={<ProfilPage />} />
         </Route>
-        /* -------------------------------------------------------------------------- */
-        /*                                    ADMIN                                   */
-        /* -------------------------------------------------------------------------- */
+        /*
+        --------------------------------------------------------------------------
+        */ /* ADMIN */ /*
+        --------------------------------------------------------------------------
+        */
         <Route path="/" element={<PrivateRoutes roles={["admin"]} />}>
           <Route path="/burgers/new" element={<UpdatePreMade />} />
           <Route path="/burgers/:id" element={<PreMadeCard />} />

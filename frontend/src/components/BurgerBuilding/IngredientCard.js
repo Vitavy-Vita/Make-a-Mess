@@ -1,16 +1,13 @@
-const IngredientCard = ({ingredient, onClick, onDelete}) => {
+const IngredientCard = ({ ingredient, onClick, onDelete }) => {
   return (
-    <aside className="ingredient-card">
-      <h3 onClick={onClick}>{ingredient.name}</h3>
+    <aside onClick={onClick} className="ingredient-card">
+      <h3>{ingredient.name}</h3>
       <ul className="ingredient-list">
         <li>Protein:</li>
         <li>{ingredient.protein}</li>
         <li>Carbs:</li>
         <li>{ingredient.carbs}</li>
-        <li
-          onClick={onDelete}
-          className="delete-icon"
-        >
+        <li onClick={onDelete} className="delete-icon">
           ❌
         </li>
         <li>Fat:</li>

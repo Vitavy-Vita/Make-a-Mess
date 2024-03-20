@@ -22,9 +22,9 @@ export default function About() {
             aria-label="video"
             src="https://www.youtube.com/embed/ulhRORJpuBM?si=Uub0j2n_zNA09Jos"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
-            allowfullscreen
+            allowFullScreen
           ></motion.iframe>
         </article>
         <article>

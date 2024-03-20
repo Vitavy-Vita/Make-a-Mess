@@ -99,7 +99,7 @@ export default function Ideas() {
     >
       <section className="main-title">
         <h2>Here is a few pre-made</h2>
-        <h1 className="burger">Burgers !!</h1>
+        <h1 className="burger">Burgers!!</h1>
       </section>
       {auth.user && err && <span>{err}</span>}
       <motion.section

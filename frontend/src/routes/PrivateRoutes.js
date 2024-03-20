@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 
-const PrivateRoutes = ({roles}) => {
+const PrivateRoutes = ({ roles }) => {
   const { user } = useAuth();
   const isAuthorized = user && roles.includes(user.role);
   if (!isAuthorized) {

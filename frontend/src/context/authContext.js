@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   const login = (userData) => {
@@ -14,7 +14,7 @@ export const AuthProvider = ({children}) => {
     setUser(null);
   };
   useEffect(() => {
-    // initialiser l'état de la connextion à partir du localStorage
+    // initialiser l'état de la connexion à partir du localStorage
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     if (storedUser) {

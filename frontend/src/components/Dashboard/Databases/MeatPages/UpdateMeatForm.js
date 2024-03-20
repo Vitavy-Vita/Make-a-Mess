@@ -30,9 +30,19 @@ const UpdateMeatForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
+    setErr("");
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      inputs.name.trim() === "" ||
+      inputs.protein < 0 ||
+      inputs.carbs < 0 ||
+      inputs.fat < 0 ||
+      inputs.calories < 0
+    ) {
+      return setErr("Please provide all informations");
+    }
     const confirmBox = window.confirm(
       "Are you sure you wish to make these changes ?"
     );
@@ -107,6 +117,7 @@ const UpdateMeatForm = () => {
             placeholder={`${meat ? meat.calories : "not working"}`}
             onChange={handleChange}
           />
+          {err && <span>{err}</span>}
           <button className={"button-form"}>Validate</button>
         </form>
       </section>

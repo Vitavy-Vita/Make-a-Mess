@@ -1,4 +1,4 @@
-const IngredientTotal = ({onChange, totalMacros, onSubmit, err}) => {
+const IngredientTotal = ({ onChange, totalMacros, onSubmit, err }) => {
   return (
     <section className="ingredient-total">
       <h2>Here is your macros!</h2>
@@ -14,12 +14,7 @@ const IngredientTotal = ({onChange, totalMacros, onSubmit, err}) => {
       </ul>
       <article className={``}>
         <h2>Give it a name !</h2>
-        <input
-          type="text"
-          name="name"
-          className="inputs"
-          onChange={onChange}
-        />
+        <input type="text" name="name" className="inputs" onChange={onChange} />
         {err && <span>{err}</span>}
       </article>
       <button onClick={onSubmit}>Add to favorites</button>

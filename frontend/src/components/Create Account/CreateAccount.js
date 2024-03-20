@@ -2,13 +2,17 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useNavigate } from "react-router-dom";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 export default function CreateAccount() {
+  const navigate = useNavigate();
+  const [tel, setTel] = useState();
   const [inputs, setInputs] = useState({
     name: "",
     password: "",
     passwordConfirm: "",
-    tel: "",
     email: "",
   });
   const [err, setErr] = useState();
@@ -19,12 +23,15 @@ export default function CreateAccount() {
     const { name, value } = e.target;
     if (name === "image") {
       setInputs({ ...inputs, image: e.target.files[0] });
+    } else if (name === "tel") {
+      setTel({ tel, [name]: value });
     } else {
       setInputs({ ...inputs, [name]: value });
     }
     setErr("");
     setResponse("");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputs.password !== inputs.passwordConfirm) {
@@ -37,7 +44,7 @@ export default function CreateAccount() {
       inputs.name.trim() === "" ||
       inputs.password.trim() === "" ||
       inputs.passwordConfirm.trim() === "" ||
-      inputs.tel.trim() === "" ||
+      tel.trim() === "" ||
       inputs.email.trim() === ""
     ) {
       return setErr("Please provide all informations");
@@ -47,9 +54,10 @@ export default function CreateAccount() {
     formData.append("name", inputs.name);
     formData.append("password", inputs.password);
     formData.append("passwordConfirm", inputs.passwordConfirm);
-    formData.append("tel", inputs.tel);
+    formData.append("tel", tel);
     formData.append("email", inputs.email);
     formData.append("image", inputs.image);
+    console.log(tel);
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/users/register`, formData)
       .then((res) => {
@@ -58,11 +66,14 @@ export default function CreateAccount() {
           name: "",
           password: "",
           passwordConfirm: "",
-          tel: "",
           email: "",
           image: null,
         });
+        setTel("");
         setResponse("Your account has been successfully created !");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       })
       .catch((res) => {
         setErr(res.response.data.message);
@@ -90,7 +101,6 @@ export default function CreateAccount() {
             onChange={handleChange}
             required
           />
-
           <input
             type="password"
             placeholder="Password:"
@@ -100,7 +110,6 @@ export default function CreateAccount() {
             onChange={handleChange}
             required
           />
-
           <input
             type="password"
             placeholder="Confirm Password:"
@@ -110,17 +119,14 @@ export default function CreateAccount() {
             onChange={handleChange}
             required
           />
-
-          <input
-            type="tel"
-            placeholder="Phone number:"
+          <PhoneInput
             size="25"
-            value={inputs.tel}
+            placeholder="Phone number:"
+            value={tel}
             name="tel"
-            onChange={handleChange}
+            onChange={setTel}
             required
           />
-
           <input
             type="email"
             placeholder="Email:"

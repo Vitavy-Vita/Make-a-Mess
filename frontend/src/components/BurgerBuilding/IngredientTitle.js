@@ -2,14 +2,8 @@ import { motion } from "framer-motion";
 
 const IngredientTitle = ({ onClick, isOpen, title, emoji }) => {
   return (
-    <motion.h2
-      initial={false}
-      onClick={onClick}
-    >
-      <motion.span
-        initial={false}
-        className={"cross-minus"}
-      ></motion.span>
+    <motion.h2 initial={false} onClick={onClick}>
+      <motion.span initial={false} className={"cross-minus"}></motion.span>
       <motion.span
         initial={false}
         animate={{
