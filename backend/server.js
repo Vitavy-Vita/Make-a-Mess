@@ -13,7 +13,7 @@ import {
   customToppingRouter,
 } from "./routes/customBurgersRouter.js";
 import emailRouter from "./routes/emailRouter.js";
-
+import path from "path";
 import cors from "cors";
 const app = express();
 
@@ -42,7 +42,6 @@ app.use(customMeatRouter);
 app.use(customToppingRouter);
 app.use(allIngredientsRouter);
 app.use(favoriteRouter);
-
 
 app.get("/", function (_, res) {
   app.use(express.static(path.resolve(__dirname, "../frontend", "build")));
