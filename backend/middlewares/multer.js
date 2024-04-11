@@ -4,7 +4,7 @@ import path from "path";
 const maxSize = 5242880;
 
 const storageEngine = multer.diskStorage({
-  destination: "./public/assets/img",
+  destination: "/tmp/assets/img",
   filename: (_, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname.split(" ").join("_")}`);
   },
