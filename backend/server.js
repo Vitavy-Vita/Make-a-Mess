@@ -19,6 +19,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.use(
   cors({
@@ -41,6 +42,7 @@ app.use(customMeatRouter);
 app.use(customToppingRouter);
 app.use(allIngredientsRouter);
 app.use(favoriteRouter);
+
 
 app.get("/", function (_, res) {
   app.use(express.static(path.resolve(__dirname, "../frontend", "build")));
