@@ -19,7 +19,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+
 app.use(
   cors({
     // origin: " http://localhost:9001",
@@ -42,10 +42,9 @@ app.use(customToppingRouter);
 app.use(allIngredientsRouter);
 app.use(favoriteRouter);
 
-app.get("/", (req, res) => {
-  res.send(
-    "Dont worry you're not lost, use the README file to find your path!"
-  );
+app.get("/", function (_, res) {
+  app.use(express.static(path.resolve(__dirname, "../frontend", "build")));
+  res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
 });
 app.listen(process.env.PORT_MONGO, () => {
   console.log(
