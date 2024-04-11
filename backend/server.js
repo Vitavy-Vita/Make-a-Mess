@@ -44,8 +44,8 @@ app.use(allIngredientsRouter);
 app.use(favoriteRouter);
 
 app.get("/", function (_, res) {
-  app.use(express.static(path.resolve(__dirname, "../frontend", "build")));
-  res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  app.use(express.static(path.resolve("../frontend", "build")));
+  res.sendFile(path.resolve("../frontend", "build", "index.html"));
 });
 app.listen(process.env.PORT_MONGO, () => {
   console.log(
