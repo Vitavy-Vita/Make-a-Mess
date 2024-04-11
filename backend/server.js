@@ -15,6 +15,10 @@ import {
 import emailRouter from "./routes/emailRouter.js";
 import path from "path";
 import cors from "cors";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const app = express();
 
 app.use(express.json());
@@ -44,8 +48,8 @@ app.use(allIngredientsRouter);
 app.use(favoriteRouter);
 
 app.get("/", function (_, res) {
-  app.use(express.static("./../frontend/build"));
-  res.sendFile("./../frontend/build/index.html");
+  app.use(express.static(path.resolve(__dirname, "../frontend", "build")));
+  res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
 });
 app.listen(process.env.PORT_MONGO, () => {
   console.log(
