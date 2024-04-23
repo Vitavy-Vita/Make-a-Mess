@@ -46,7 +46,7 @@ export const addBurger = async (req, res) => {
       calories < 0
     ) {
       return res
-        .status(401)
+        .status(400)
         .json({ message: "Make sure to select all ingredients !" });
     }
     let burger;
